@@ -1,0 +1,35 @@
+<div>
+  <form ngForm="" (ngSubmit)="formSubmit()">
+    <select name="title" id="title" [(ngModel)]="title">
+      <option *ngFor="let one_title of titleList" [value]="one_title" >{{one_title}}</option>
+    </select>{{title}}<br>
+    <input type="text" [(ngModel)]="name" name="name">
+    <br>
+
+
+    <select name="faculty" id="faculty" [(ngModel)]="faculty">
+      <option *ngFor="let faculty of faculties" [value]="faculty['name']">{{faculty['name']}}</option>
+    </select>{{faculty}}
+    <br>
+
+    <div *ngFor="let fac of faculties">
+      <select *ngIf="fac.name == faculty" name="dep" id="dep" [(ngModel)]="department">
+        <option *ngFor="let dep of fac.departments">{{dep}}</option>
+      </select>
+    </div>
+
+    <br>
+    <input type="text" [(ngModel)]="dateTime" name="dateTime">
+    <br>
+    <input type="text" [(ngModel)]="email" name="email">
+    <br>
+    <input type="text" [(ngModel)]="password" name="password">
+    <br>
+    <input type="text" [(ngModel)]="destination" name="destination">
+    <br>
+    <input type="text" [(ngModel)]="numOfPassangers" name="numOfPassangers">
+    <br>
+    <input type="submit" value="Request->">
+
+  </form>
+</div>
