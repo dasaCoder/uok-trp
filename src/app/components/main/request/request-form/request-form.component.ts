@@ -49,7 +49,7 @@ export class RequestFormComponent implements OnInit {
    password = '';
 
     formSubmit() {
-      let userReq = new Request(1, this.title , this.name, this.faculty, this.department, this.destination , this.dateTime , this.numOfPassangers, this.email , this.password );
+      let userReq = new Request(1, this.title , this.name, this.faculty, this.department, this.destination , this.dateTime , 5, this.email , this.password );
       console.log(userReq);
     }
   constructor() {

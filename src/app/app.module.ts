@@ -16,6 +16,7 @@ import { CreateRequestComponent } from './components/main/home/request-btns/crea
 import { CheckRequestComponent } from './components/main/home/request-btns/check-request/check-request.component';
 import { RequestFormComponent } from './components/main/request/request-form/request-form.component';
 import { CheckReqStatusComponent } from './components/main/request/check-req-status/check-req-status.component';
+import {MDBBootstrapModule} from 'angular-bootstrap-md/index';
 
 
 
@@ -37,7 +38,8 @@ import { CheckReqStatusComponent } from './components/main/request/check-req-sta
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
