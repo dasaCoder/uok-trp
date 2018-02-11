@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+ You can add global styles to this file, and also import other style files
+body{
+  font: 15px/1.5 Arial, Helvetica , sans-serif;
+  padding:0;
+  margin:0;
+  background-color:#f4f4f4;
+}
+
+.container{
+  width:80%;
+  margin:auto;
+  overflow: hidden;
+}
+#navbarNavAltMarkup{
+  margin-top: 3em;
+}
+
+.header{
+  border-bottom:#C01830 3px solid;
+}
+
+.nav-link-edit{
+  color:white;
+  padding:1em 1em 1em 1em;
+  text-decoration: none;
+
+}
+
+.nav-link-edit:hover{
+  background-color: #C01830;
+  text-decoration: none;
+  color:#ffffff;
+}
+
+
+
+@media(max-width:990px){
+  #navbarNavAltMarkup{
+    margin-top: 0;
+  }
+
+}
