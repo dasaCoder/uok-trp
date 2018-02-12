@@ -2,7 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
+
+
 import { AppRoutingModule } from './app-routing.module';
+
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -47,7 +51,10 @@ import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
     BrowserAnimationsModule,
     IntlModule,
     DateInputsModule,
-    DropDownsModule
+    DropDownsModule,
+    AgmCoreModule.forRoot({
+      libraries: ["places"]
+    }),
     /*MDBBootstrapModule.forRoot()*/
   ],
   providers: [],
