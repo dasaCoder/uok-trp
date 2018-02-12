@@ -8,7 +8,9 @@ import {IntlService} from '@progress/kendo-angular-intl';
   styleUrls: ['./request-form.component.css']
 })
 export class RequestFormComponent implements OnInit {
+  public source: Array<string> = [ '1 Hour', '2 Hour' , '1 Day' , '2 Day' ];
 
+  public data: Array<string>;
   /*userReq = new Request(3, 'dilusha' );*/
    id: number;
    titleList = [
@@ -37,9 +39,11 @@ export class RequestFormComponent implements OnInit {
          'department of managment'
        ]
      }
-   ]
+   ];
 
-   title = '';
+
+
+  title = '';
    name = '';
    faculty = '';
    department = '';
@@ -47,6 +51,7 @@ export class RequestFormComponent implements OnInit {
    dateTime ;
    enddate ;
    endtime ;
+   duration;
    end_date_time;
    jstartTime: Date = new Date(2000, 2, 10, 10, 0) ;
     jdatetime = '';
@@ -59,9 +64,13 @@ export class RequestFormComponent implements OnInit {
       this.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;
       this.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;
     }
-  constructor(private intl: IntlService ) {
-  }
 
+    handleFilter(value) {
+      this.data = this.source.filter((s) => s.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+    }
+  constructor(private intl: IntlService ) {
+    this.data = this.source.slice();
+  }
   ngOnInit() {
   }
   /*public onChange(value: Date): void {

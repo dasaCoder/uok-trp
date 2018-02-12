@@ -83,14 +83,20 @@
 
 
           </div>-->
+          <div>
+            <label for="">Duration</label>
+            <kendo-autocomplete
+              [data]="data"
+              [filterable]="true"
+              (filterChange)="handleFilter($event)"
+              [placeholder]="'e.g. 5 Hours or 2 Day'"
+              class="countries"
+              [(value)]="duration"
+            >
+            </kendo-autocomplete>
+          </div>
 
 
-
-
-
-
-          <br>
-          <input type="text" [(ngModel)]="destination" name="destination">
          <div>
            <input class="trp-btn" type="submit" value="Request->">
          </div>

@@ -19,6 +19,7 @@ import { CheckReqStatusComponent } from './components/main/request/check-req-sta
 import {DateInputsModule} from '@progress/kendo-angular-dateinputs';
 import {IntlModule} from '@progress/kendo-angular-intl';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
 
 
 
@@ -45,7 +46,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     /*kendoUi*/
     BrowserAnimationsModule,
     IntlModule,
-    DateInputsModule
+    DateInputsModule,
+    DropDownsModule
     /*MDBBootstrapModule.forRoot()*/
   ],
   providers: [],
