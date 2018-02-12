@@ -40,3 +40,26 @@ body{
   }
 
 }
+
+
+ .trp-btn{
+   background-color: #C01830;
+   border:none;
+   color: #ffffff;
+   padding: 5px 15px 5px 15px;
+   text-transform: uppercase;
+   font-size: 17px;
+ }
+ .trp-btn:hover{
+   background-color:#680000;
+ }
+
+ .trp-title{
+   font-family: monospace;
+ }
+
+
+
+ input,.trp-select{
+   padding: 5px 15px 5px 15px;
+ }

@@ -1,35 +1,72 @@
 <div>
-  <form ngForm="" (ngSubmit)="formSubmit()">
-    <select name="title" id="title" [(ngModel)]="title">
-      <option *ngFor="let one_title of titleList" [value]="one_title" >{{one_title}}</option>
-    </select>{{title}}<br>
-    <input type="text" [(ngModel)]="name" name="name">
-    <br>
+  <div class="row m-xl-4">
+
+        <form ngForm="" (ngSubmit)="formSubmit()">
+
+          <div class="form-group">
+            <label for="form-title">Title</label>
+
+            <select class="trp-select" name="title" id="form-title" [(ngModel)]="title">
+            <option *ngFor="let one_title of titleList" [value]="one_title" >{{one_title}}</option>
+          </select>
+
+          </div>
+
+          <div>
+            <label for="form-name">Name</label>
+            <input type="text" [(ngModel)]="name" id="form-name" name="name">
+
+          </div>
+
+          <div>
+            <label for="form-faculty">Faculty</label>
+
+            <select class="trp-select" name="faculty" id="form-faculty" [(ngModel)]="faculty">
+            <option *ngFor="let faculty of faculties" [value]="faculty['name']">{{faculty['name']}}</option>
+          </select>
+          </div>
+
+          <div *ngIf="faculty!=null">
+            <div  *ngFor="let fac of faculties">
+              <select class="trp-select" *ngIf="fac.name == faculty" name="dep" id="form-dep" [(ngModel)]="department">
+                <option *ngFor="let dep of fac.departments">{{dep}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="form-email">Email</label>
+            <input type="text" [(ngModel)]="email" id="form-email" name="email">
+          </div>
+
+          <div>
+            <label for="form-password">Password</label>
+            <input type="password" [(ngModel)]="password" id="form-password" name="password">
+          </div>
+
+          <div>
+            <label for="form-password-re">Retype Password</label>
+            <input id="form-password-re" type="password" [(ngModel)]="rePassword" name="password">
+          </div>
+
+          <div>
+            <label for="form-numOfPassanger">Number of Passangers</label>
+            <input type="number" [(ngModel)]="numOfPassangers" id="form-numOfPassanger" name="numOfPassangers">
+          </div>
+
+          <input  type="text" [(ngModel)]="dateTime" name="dateTime">
 
 
-    <select name="faculty" id="faculty" [(ngModel)]="faculty">
-      <option *ngFor="let faculty of faculties" [value]="faculty['name']">{{faculty['name']}}</option>
-    </select>{{faculty}}
-    <br>
+          <br>
+          <input type="text" [(ngModel)]="destination" name="destination">
+         <div>
+           <input class="trp-btn" type="submit" value="Request->">
+         </div>
 
-    <div *ngFor="let fac of faculties">
-      <select *ngIf="fac.name == faculty" name="dep" id="dep" [(ngModel)]="department">
-        <option *ngFor="let dep of fac.departments">{{dep}}</option>
-      </select>
-    </div>
 
-    <br>
-    <input type="text" [(ngModel)]="dateTime" name="dateTime">
-    <br>
-    <input type="text" [(ngModel)]="email" name="email">
-    <br>
-    <input type="text" [(ngModel)]="password" name="password">
-    <br>
-    <input type="text" [(ngModel)]="destination" name="destination">
-    <br>
-    <input type="text" [(ngModel)]="numOfPassangers" name="numOfPassangers">
-    <br>
-    <input type="submit" value="Request->">
+        </form>
 
-  </form>
+  </div>
 </div>
+
+

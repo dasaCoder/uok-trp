@@ -47,6 +47,7 @@ export class RequestFormComponent implements OnInit {
    numOfPassangers = '';
    email = '';
    password = '';
+   rePassword = '';
 
     formSubmit() {
       let userReq = new Request(1, this.title , this.name, this.faculty, this.department, this.destination , this.dateTime , 5, this.email , this.password );
