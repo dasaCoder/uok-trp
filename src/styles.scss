@@ -1,4 +1,8 @@
- You can add global styles to this file, and also import other style files
+
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@progress/kendo-theme-default/scss/all";
+
 body{
   font: 15px/1.5 Arial, Helvetica , sans-serif;
   padding:0;
@@ -61,5 +65,6 @@ body{
 
 
  input,.trp-select{
-   padding: 5px 15px 5px 15px;
+   padding: 5px 4px 5px 4px;
  }
+

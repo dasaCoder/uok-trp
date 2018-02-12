@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Request } from '../../../../classes/request';
+import {IntlService} from '@progress/kendo-angular-intl';
 
 @Component({
   selector: 'app-request-form',
@@ -43,19 +44,37 @@ export class RequestFormComponent implements OnInit {
    faculty = '';
    department = '';
    destination = '';
-   dateTime = '';
+   dateTime ;
+   enddate ;
+   endtime ;
+   end_date_time;
+   jstartTime: Date = new Date(2000, 2, 10, 10, 0) ;
+    jdatetime = '';
    numOfPassangers = '';
    email = '';
    password = '';
    rePassword = '';
 
     formSubmit() {
-      let userReq = new Request(1, this.title , this.name, this.faculty, this.department, this.destination , this.dateTime , 5, this.email , this.password );
-      console.log(userReq);
+      this.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;
+      this.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;
     }
-  constructor() {
+  constructor(private intl: IntlService ) {
   }
 
   ngOnInit() {
   }
+  /*public onChange(value: Date): void {
+    this.log(value);
+  }
+
+  private log( value?: Date): void {
+    this.dateTime = `${this.formatValue(value)}`;
+  }
+
+  private formatValue(value?: Date): string {
+    return value ? `${this.intl.formatDate(value, 'yyyy-MMM-dd')}` : '';
+  }*/
+
+
 }

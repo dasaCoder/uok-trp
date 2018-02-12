@@ -54,7 +54,39 @@
             <input type="number" [(ngModel)]="numOfPassangers" id="form-numOfPassanger" name="numOfPassangers">
           </div>
 
-          <input  type="text" [(ngModel)]="dateTime" name="dateTime">
+
+          <div class="example-wrapper">
+            <label>Date & Time:</label>
+            <kendo-datepicker
+
+                [format]="'dd-MMM-yyyy '"
+                [(value)]="dateTime"
+            ></kendo-datepicker>
+            <kendo-timepicker
+              [format]="'HH:mm'"
+              [(value)]="jstartTime"
+            ></kendo-timepicker>
+          </div>
+
+          <!--<div class="example-wrapper" >
+            <label>Select a date:</label>
+            <kendo-datepicker
+              [value]="dateTime"
+              [format]="'dd-MMM-yyyy '"
+              [(value)]="enddate"
+            ></kendo-datepicker>
+            <kendo-timepicker
+              [value]="jstartTime"
+              [format]="'HH:mm'"
+              [(value)]="endtime"
+            ></kendo-timepicker>
+
+
+          </div>-->
+
+
+
+
 
 
           <br>
