@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import { Request } from '../../../../classes/request';
 import {IntlService} from '@progress/kendo-angular-intl';
+import {MapsAPILoader} from '@agm/core';
+import {} from '@types/googlemaps';
 
 @Component({
   selector: 'app-request-form',
@@ -27,24 +29,6 @@ export class RequestFormComponent implements OnInit {
    ];
    isGood = true;
 
-  /* faculties = [
-     {
-       name : 'science',
-       departments : [
-         'software engineering',
-         'department of chemistry',
-         'department of mathemetics'
-       ]
-     },
-     {
-       name : 'Commerce',
-       departments : [
-         'department of economics',
-         'department of managment'
-       ]
-     }
-   ];*/
-
    formData: any = {};
    dateTime ;
    enddate ;
@@ -52,31 +36,53 @@ export class RequestFormComponent implements OnInit {
    jstartTime;
    rePassword = '';
 
-    formSubmit() {
-      this.formData.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;
-       /*this.formData.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;*/
-       console.log(this.formData);
-    }
 
-    handleFilter(value) {
-      this.data = this.source.filter((s) => s.toLowerCase().indexOf(value.toLowerCase()) !== -1);
-    }
-  constructor(private intl: IntlService ) {
+  @ViewChild('search') public searchElement: ElementRef;
+  @ViewChild('search2') public searchElement2: ElementRef;
+  constructor(private  mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private intl: IntlService ) {
     this.data = this.source.slice();
   }
   ngOnInit() {
-  }
- /* public onChange(value: Date): void {
-    this.log(value);
+    this.mapsAPILoader.load().then(
+      () => {
+        let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement);
+        autocomplete.setComponentRestrictions({'country' : ['lk']});
+        autocomplete.addListener('place_changed' , () => {
+          this.ngZone.run( () => {
+            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+            if ( place.geometry === undefined || place.geometry == null ) {
+              return;
+            }
+          })
+        })
+      }
+    );
+    this.mapsAPILoader.load().then(
+      () => {
+        let autocomplete = new google.maps.places.Autocomplete(this.searchElement2.nativeElement);
+        autocomplete.setComponentRestrictions({'country' : ['lk']});
+        autocomplete.addListener('place_changed' , () => {
+          this.ngZone.run( () => {
+            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+            if ( place.geometry === undefined || place.geometry == null ) {
+              return;
+            }
+          })
+        })
+      }
+    )
+
   }
 
-  private log( value?: Date): void {
-    this.dateTime = `${this.formatValue(value)}`;
+  formSubmit() {
+    this.formData.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;
+    /*this.formData.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;*/
+    console.log(this.formData);
   }
 
-  private formatValue(value?: Date): string {
-    return value ? `${this.intl.formatDate(value, 'yyyy-MMM-dd')}` : '';
-  }*/
+  handleFilter(value) {
+    this.data = this.source.filter((s) => s.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+  }
 
 
 }

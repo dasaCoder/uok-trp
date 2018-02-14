@@ -102,11 +102,21 @@
             <input type="text" class="trp-min-input" id="duration" name="duration" [(ngModel)]="formData.duration">
 
           </div>
+          <div class="">
+            <label for="pickupPoint">Pickup Point</label>
+            <input type="text" autocomplete="off" placeholder="search for pickup location" autocapitalize="off" id="pickupPoint" name="pickupPoint" class="trp-min-input" #search>
+          </div>
 
+          <div class="">
+            <label for="dropPoint">Drop Point</label>
+            <input type="text" autocomplete="off" placeholder="search for drop location" autocapitalize="off" id="dropPoint" name="dropPoint" class="trp-min-input" #search2>
+          </div>
 
           <div style="text-align: center; padding:0 10px 0 10px ">
             <input class="trp-btn" type="submit" value="Request->">
           </div>
+
+
 
 
         </form>

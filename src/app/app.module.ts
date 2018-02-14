@@ -5,7 +5,7 @@ import {FormsModule} from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
-
+/*google maps api*/
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 import { AppComponent } from './app.component';
@@ -53,8 +53,9 @@ import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
     DateInputsModule,
     DropDownsModule,
     AgmCoreModule.forRoot({
-      libraries: ["places"]
-    }),
+      apiKey: 'AIzaSyAF5gLv9sWNx3t2yxPGa9FuSBBhaZSVNUc',
+      libraries : ['places']
+    })
     /*MDBBootstrapModule.forRoot()*/
   ],
   providers: [],
