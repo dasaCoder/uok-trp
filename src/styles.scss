@@ -65,6 +65,21 @@ body{
 
 
  input,.trp-select{
-   padding: 5px 4px 5px 4px;
+   border-radius: 0;
+   border: 1px solid;
+   box-shadow: none !important;
+   border-color: #680000;
+   min-height: 40px;
+   font-size: 16px;
+   font-weight: 400;
+   padding: 4px;
  }
 
+.trp-min-input{
+   min-width:100% ;
+ }
+
+.trp-autocomplete{
+  padding: 4px 0 0 0!important;
+
+}

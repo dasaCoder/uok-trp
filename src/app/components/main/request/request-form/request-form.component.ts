@@ -8,7 +8,11 @@ import {IntlService} from '@progress/kendo-angular-intl';
   styleUrls: ['./request-form.component.css']
 })
 export class RequestFormComponent implements OnInit {
-  public source: Array<string> = [ '1 Hour', '2 Hour' , '1 Day' , '2 Day' ];
+  public source: Array<string> = [
+    'software engineering',
+    'department of chemistry',
+    'department of mathemetics'
+  ];
 
   public data: Array<string>;
   /*userReq = new Request(3, 'dilusha' );*/
@@ -23,7 +27,7 @@ export class RequestFormComponent implements OnInit {
    ];
    isGood = true;
 
-   faculties = [
+  /* faculties = [
      {
        name : 'science',
        departments : [
@@ -39,30 +43,19 @@ export class RequestFormComponent implements OnInit {
          'department of managment'
        ]
      }
-   ];
+   ];*/
 
-
-
-  title = '';
-   name = '';
-   faculty = '';
-   department = '';
-   destination = '';
+   formData: any = {};
    dateTime ;
    enddate ;
    endtime ;
-   duration;
-   end_date_time;
-   jstartTime: Date = new Date(2000, 2, 10, 10, 0) ;
-    jdatetime = '';
-   numOfPassangers = '';
-   email = '';
-   password = '';
+   jstartTime;
    rePassword = '';
 
     formSubmit() {
-      this.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;
-      this.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;
+      this.formData.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;
+       /*this.formData.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;*/
+       console.log(this.formData);
     }
 
     handleFilter(value) {
@@ -73,7 +66,7 @@ export class RequestFormComponent implements OnInit {
   }
   ngOnInit() {
   }
-  /*public onChange(value: Date): void {
+ /* public onChange(value: Date): void {
     this.log(value);
   }
 

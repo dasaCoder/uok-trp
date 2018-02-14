@@ -1,70 +1,84 @@
-<div>
-  <div class="row m-xl-4">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-2 col-xl-1"></div>
+    <div class="col-lg-5  col-md-8 col-xl-10">
+      <div>
+        <h1>Request Vehicle</h1>
+      </div>
+      <div class="">
 
         <form ngForm="" (ngSubmit)="formSubmit()">
 
-          <div class="form-group">
-            <label for="form-title">Title</label>
 
-            <select class="trp-select" name="title" id="form-title" [(ngModel)]="title">
-            <option *ngFor="let one_title of titleList" [value]="one_title" >{{one_title}}</option>
-          </select>
 
-          </div>
-
-          <div>
-            <label for="form-name">Name</label>
-            <input type="text" [(ngModel)]="name" id="form-name" name="name">
+          <div class="" style="display: inline">
+            <label label="name" for="form-name">Name</label>
+            <input type="text" class=" trp-min-input " [(ngModel)]="formData.name" id="form-name" name="name">
 
           </div>
-
-          <div>
+          <br>
+          <!--<div class="  " style="display: inline">
             <label for="form-faculty">Faculty</label>
 
-            <select class="trp-select" name="faculty" id="form-faculty" [(ngModel)]="faculty">
+            <select class="trp-select   " name="faculty" id="form-faculty" [(ngModel)]="formData.faculty">
             <option *ngFor="let faculty of faculties" [value]="faculty['name']">{{faculty['name']}}</option>
           </select>
-          </div>
+          </div>-->
 
-          <div *ngIf="faculty!=null">
-            <div  *ngFor="let fac of faculties">
-              <select class="trp-select" *ngIf="fac.name == faculty" name="dep" id="form-dep" [(ngModel)]="department">
-                <option *ngFor="let dep of fac.departments">{{dep}}</option>
-              </select>
+
+          <!--<div  *ngFor="let fac of faculties" class=" " style="display: inline">
+            <div *ngIf="fac.name == formData.faculty">
+                <label for="form-dep"></label>
+                <select class="trp-select   "  name="dep" id="form-dep" [(ngModel)]="formData.department">
+                  <option *ngFor="let dep of fac.departments">{{dep}}</option>
+                </select>
             </div>
-          </div>
 
-          <div>
+          </div>-->
+
+          <div class="  ">
+            <label for="">Department/Unit</label>
+            <kendo-autocomplete class="trp-select trp-min-input"
+                                [data]="data"
+                                [filterable]="true"
+                                (filterChange)="handleFilter($event)"
+                                [placeholder]="'e.g. Department of Software Engineering'"
+                                class="trp-select trp-min-input trp-autocomplete"
+                                [(value)]="formData.department"
+            >
+            </kendo-autocomplete>
+          </div>
+          <div class="  ">
             <label for="form-email">Email</label>
-            <input type="email" [(ngModel)]="email" id="form-email" name="email">
+            <input class=" trp-min-input " type="email" [(ngModel)]="formData.email" id="form-email" name="email">
           </div>
 
-          <div>
+          <div class="  ">
             <label for="form-password">Password</label>
-            <input type="password" [(ngModel)]="password" id="form-password" name="password">
+            <input class=" trp-min-input " type="password" [(ngModel)]="formData.password" id="form-password" name="password">
           </div>
 
-          <div>
+          <div class="  ">
             <label for="form-password-re">Retype Password</label>
-            <input id="form-password-re" type="password" [(ngModel)]="rePassword" name="password">
+            <input class=" trp-min-input " id="form-password-re" type="password" [(ngModel)]="rePassword" name="password">
           </div>
 
-          <div>
+          <div class="  ">
             <label for="form-numOfPassanger">Number of Passangers</label>
-            <input type="number" [(ngModel)]="numOfPassangers" id="form-numOfPassanger" name="numOfPassangers">
+            <input class=" trp-min-input " type="number" [(ngModel)]="formData.numOfPassangers" id="form-numOfPassanger" name="numOfPassangers">
           </div>
 
 
-          <div class="example-wrapper">
+          <div class="example-wrapper   ">
             <label>Date & Time:</label>
-            <kendo-datepicker
+            <kendo-datepicker class="trp-select trp-min-input "
 
-                [format]="'dd-MMM-yyyy '"
-                [(value)]="dateTime"
+                              [format]="'dd-MMM-yyyy '"
+                              [(value)]="dateTime"
             ></kendo-datepicker>
-            <kendo-timepicker
-              [format]="'HH:mm'"
-              [(value)]="jstartTime"
+            <kendo-timepicker class=" trp-select trp-min-input "
+                              [format]="'HH:mm'"
+                              [(value)]="jstartTime"
             ></kendo-timepicker>
           </div>
 
@@ -83,28 +97,29 @@
 
 
           </div>-->
-          <div>
-            <label for="">Duration</label>
-            <kendo-autocomplete
-              [data]="data"
-              [filterable]="true"
-              (filterChange)="handleFilter($event)"
-              [placeholder]="'e.g. 5 Hours or 2 Day'"
-              class="countries"
-              [(value)]="duration"
-            >
-            </kendo-autocomplete>
+          <div class="  ">
+            <label for="duration">Duration</label>
+            <input type="text" class="trp-min-input" id="duration" name="duration" [(ngModel)]="formData.duration">
+
           </div>
 
 
-         <div>
-           <input class="trp-btn" type="submit" value="Request->">
-         </div>
+          <div style="text-align: center; padding:0 10px 0 10px ">
+            <input class="trp-btn" type="submit" value="Request->">
+          </div>
 
 
         </form>
 
+      </div>
+
+    </div>
+    <div class="col-lg-3 col-md-2 col-xl-1"></div>
+
+
   </div>
 </div>
+
+
 
 
