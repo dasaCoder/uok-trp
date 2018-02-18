@@ -5,106 +5,107 @@
       <div style="text-align: center">
         <h1 class="trp-title">Request Vehicle</h1>
       </div>
-      <div class="">
+      <div class="animate-switch-container" [ngSwitch]=step ng-class="{forward: direction, backward:!direction}">
 
-        <form ngForm="" (ngSubmit)="formSubmit()">
-
-
-
-          <div class="" style="display: inline">
-            <label label="name" for="form-name">Name</label>
-            <input type="text" class=" trp-min-input " [(ngModel)]="formData.name" id="form-name" name="name">
-
-          </div>
-          <br>
-          <!--<div class="  " style="display: inline">
-            <label for="form-faculty">Faculty</label>
-
-            <select class="trp-select   " name="faculty" id="form-faculty" [(ngModel)]="formData.faculty">
-            <option *ngFor="let faculty of faculties" [value]="faculty['name']">{{faculty['name']}}</option>
-          </select>
-          </div>-->
+        <div>
 
 
-          <!--<div  *ngFor="let fac of faculties" class=" " style="display: inline">
-            <div *ngIf="fac.name == formData.faculty">
-                <label for="form-dep"></label>
-                <select class="trp-select   "  name="dep" id="form-dep" [(ngModel)]="formData.department">
-                  <option *ngFor="let dep of fac.departments">{{dep}}</option>
-                </select>
+          <div id="step1" *ngSwitchCase="1" class="animate-switch">
+            <div class="">
+              <label for="pickupPoint">Pickup Point</label>
+              <input type="text"  autocomplete="off" placeholder="search for pickup location" autocapitalize="off" id="pickupPoint" name="pickupPoint" class="trp-min-input" #search>
             </div>
 
-          </div>-->
+            <div class="">
+              <label for="dropPoint">Drop Point</label>
+              <input type="text"  autocomplete="off" placeholder="search for drop location" autocapitalize="off" id="dropPoint" name="dropPoint" class="trp-min-input" #search2>
+            </div>
+            <div class="  ">
 
-          <div class="  ">
-            <label for="">Department/Unit</label>
-            <kendo-autocomplete class="trp-select trp-min-input"
-                                [data]="data"
-                                [filterable]="true"
-                                (filterChange)="handleFilter($event)"
-                                [placeholder]="'e.g. Department of Software Engineering'"
-                                class="trp-select trp-min-input trp-autocomplete"
-                                [(value)]="formData.department"
-            >
-            </kendo-autocomplete>
-          </div>
-          <div class="  ">
-            <label for="form-email">Email</label>
-            <input class=" trp-min-input " type="email" [(ngModel)]="formData.email" id="form-email" name="email">
-          </div>
-
-          <div class="  ">
-            <label for="form-password">Password</label>
-            <input class=" trp-min-input " type="password" [(ngModel)]="formData.password" id="form-password" name="password">
-          </div>
-
-          <div class="  ">
-            <label for="form-password-re">Retype Password</label>
-            <input class=" trp-min-input " id="form-password-re" type="password" [(ngModel)]="rePassword" name="password">
-          </div>
-
-          <div class="  ">
-            <label for="form-numOfPassanger">Number of Passangers</label>
-            <input class=" trp-min-input " type="number" [(ngModel)]="formData.numOfPassangers" id="form-numOfPassanger" name="numOfPassangers">
-          </div>
+              <label for="form-numOfPassanger">Number of Passangers</label>
+              <input class=" trp-min-input " type="number" [(ngModel)]="formData.numOfPassangers" id="form-numOfPassanger" name="numOfPassangers">
+            </div>
 
 
-          <div class="example-wrapper   ">
-            <label>Date & Time:</label>
-            <kendo-datepicker class="trp-select trp-min-input "
 
-                              [format]="'dd-MMM-yyyy '"
-                              [(value)]="dateTime"
-            ></kendo-datepicker>
-            <kendo-timepicker class=" trp-select trp-min-input "
-                              [format]="'HH:mm'"
-                              [(value)]="jstartTime"
-            ></kendo-timepicker>
-          </div>
-
-          <div class="  ">
-            <label for="duration">Duration</label>
-            <input type="text" class="trp-min-input" id="duration" name="duration" [(ngModel)]="formData.duration">
-
-          </div>
-          <div class="">
-            <label for="pickupPoint">Pickup Point</label>
-            <input type="text" autocomplete="off" placeholder="search for pickup location" autocapitalize="off" id="pickupPoint" name="pickupPoint" class="trp-min-input" #search>
-          </div>
-
-          <div class="">
-            <label for="dropPoint">Drop Point</label>
-            <input type="text" autocomplete="off" placeholder="search for drop location" autocapitalize="off" id="dropPoint" name="dropPoint" class="trp-min-input" #search2>
-          </div>
-
-          <div style="text-align: center; padding:0 10px 0 10px ">
-            <input class="trp-btn" type="submit" value="Request->">
+            <div style="text-align: center; padding:0 10px 0 10px ">
+                   <Button type="button" class="trp-btn" (click)="nextStep(2)">Next -></Button>
+            </div>
           </div>
 
 
 
+          <div id="step2" *ngSwitchCase="2" class="animate-switch">
 
-        </form>
+            <div class="example-wrapper   ">
+              <label>Date & Time:</label>
+              <kendo-datepicker class="trp-select trp-min-input "
+
+                                [format]="'dd-MMM-yyyy '"
+                                [(value)]="dateTime"
+              ></kendo-datepicker>
+              <kendo-timepicker class=" trp-select trp-min-input "
+                                [format]="'HH:mm'"
+                                [(value)]="jstartTime"
+              ></kendo-timepicker>
+            </div>
+
+            <div class="  ">
+              <label for="duration">Duration</label>
+              <input type="text" class="trp-min-input" id="duration" name="duration" [(ngModel)]="formData.duration">
+
+            </div>
+
+
+            <div style="text-align: center; padding:0 10px 0 10px ">
+
+              <Button type="button" class="trp-btn" (click)="nextStep(3)">Next -></Button>
+            </div>
+          </div>
+
+          <div id="step3" *ngSwitchCase="3" class="animate-switch">
+            <div class="" style="display: inline">
+              <label label="name" for="form-name">Name</label>
+              <input type="text" class=" trp-min-input " [(ngModel)]="formData.name" id="form-name" name="name">
+
+            </div>
+            <br>
+
+            <div class="  ">
+              <label for="">Department/Unit</label>
+              <kendo-autocomplete class="trp-select trp-min-input"
+                                  [data]="data"
+                                  [filterable]="true"
+                                  (filterChange)="handleFilter($event)"
+                                  [placeholder]="'e.g. Department of Software Engineering'"
+                                  class="trp-select trp-min-input trp-autocomplete"
+                                  [(value)]="formData.department"
+              >
+              </kendo-autocomplete>
+            </div>
+            <div class="  ">
+              <label for="form-email">Email</label>
+              <input class=" trp-min-input " type="email" [(ngModel)]="formData.email" id="form-email" name="email">
+            </div>
+
+            <div class="  ">
+              <label for="form-password">Password</label>
+              <input class=" trp-min-input " type="password" [(ngModel)]="formData.password" id="form-password" name="password">
+            </div>
+
+            <div class="  ">
+              <label for="form-password-re">Retype Password</label>
+              <input class=" trp-min-input " id="form-password-re" type="password" [(ngModel)]="rePassword" name="password">
+            </div>
+            <div style="text-align: center; padding:0 10px 0 10px ">
+              <Button type="button" class="trp-btn" (click)="nextStep(2)"><- Back</Button>
+              <Button type="button" class="trp-btn" (click)="formSubmit()">Request -></Button>
+            </div>
+          </div>
+
+
+
+        </div>
 
       </div>
 

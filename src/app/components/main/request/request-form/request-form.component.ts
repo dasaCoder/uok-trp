@@ -3,6 +3,8 @@ import { Request } from '../../../../classes/request';
 import {IntlService} from '@progress/kendo-angular-intl';
 import {MapsAPILoader} from '@agm/core';
 import {} from '@types/googlemaps';
+import { NgSwitch } from '@angular/common';
+
 
 @Component({
   selector: 'app-request-form',
@@ -28,6 +30,7 @@ export class RequestFormComponent implements OnInit {
      'Ven'
    ];
    isGood = true;
+   step = 1;
 
    formData: any = {};
    dateTime ;
@@ -42,6 +45,9 @@ export class RequestFormComponent implements OnInit {
   constructor(private  mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private intl: IntlService ) {
     this.data = this.source.slice();
   }
+  nextStep(nStep) {
+    this.step = nStep;
+  }
   ngOnInit() {
     this.mapsAPILoader.load().then(
       () => {
@@ -52,6 +58,10 @@ export class RequestFormComponent implements OnInit {
             let place: google.maps.places.PlaceResult = autocomplete.getPlace();
             if ( place.geometry === undefined || place.geometry == null ) {
               return;
+            }
+            else {
+              this.formData.pickupPointName = place.name;
+              this.formData.pickupPointAddress = place.formatted_address;
             }
           })
         })
@@ -66,6 +76,10 @@ export class RequestFormComponent implements OnInit {
             let place: google.maps.places.PlaceResult = autocomplete.getPlace();
             if ( place.geometry === undefined || place.geometry == null ) {
               return;
+            }
+            else {
+              this.formData.dropPointName = place.name;
+              this.formData.dropPointAddress = place.formatted_address;
             }
           })
         })
