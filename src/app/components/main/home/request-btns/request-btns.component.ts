@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./request-btns.component.css']
 })
 export class RequestBtnsComponent implements OnInit {
-
+  xy = 9;
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }
