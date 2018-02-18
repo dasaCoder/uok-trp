@@ -24,10 +24,6 @@ import {DateInputsModule} from '@progress/kendo-angular-dateinputs';
 import {IntlModule} from '@progress/kendo-angular-intl';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
-import { Step1Component } from './components/main/request/request-form/step1/step1.component';
-import { Step2Component } from './components/main/request/request-form/step2/step2.component';
-import { Step3Component } from './components/main/request/request-form/step3/step3.component';
-
 
 
 @NgModule({
@@ -44,9 +40,6 @@ import { Step3Component } from './components/main/request/request-form/step3/ste
     CheckRequestComponent,
     RequestFormComponent,
     CheckReqStatusComponent,
-    Step1Component,
-    Step2Component,
-    Step3Component
   ],
   imports: [
     BrowserModule,
