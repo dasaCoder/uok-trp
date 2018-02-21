@@ -1,5 +1,6 @@
 #notice-main{
-  height: 500px;
+  max-height: 500px;
+  min-height: 400px;
   width: 100%;
   position: relative;
 }
@@ -8,6 +9,7 @@
   height: 90%;
   width: 90%;
   background-color: aqua;
+  background: url("../../../../../assets/images/trasport.jpg");
   bottom:0;
   position: absolute;
 }
@@ -17,5 +19,6 @@
   width: 30%;
   float:right;
   background-color:#680000;
+  background-repeat: no-repeat;
   /*background: url("../../../../../assets/images/pattern/pattern2.png") repeat;*/
 }

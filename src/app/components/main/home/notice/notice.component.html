@@ -4,7 +4,21 @@
       <span id="notice-corner">
         <!--<img src="../../../../../assets/images/pattern/pattern2.png" style="repeat-y" alt="">-->
       </span>
-      <div id="notice-board"></div>
+      <div id="notice-board">
+        <div class="row">
+          <div class="col-lg-6 col-md-12"></div>
+          <div class="col-lg-6 col-md-12 col-xs-12">
+            <div class="example-wrapper   ">
+              <label>Date & Time:</label>
+              <kendo-datepicker class="trp-select trp-min-input "
+
+                                [format]="'dd-MMM-yyyy '"
+                                [(value)]="selectedDate"
+              ></kendo-datepicker>
+            </div>
+          </div>
+        </div>
+      </div>
 
   </div>
 </div>

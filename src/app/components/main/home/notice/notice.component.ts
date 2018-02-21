@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notice.component.css']
 })
 export class NoticeComponent implements OnInit {
-
+  selectedDate = new Date();
   constructor() { }
 
   ngOnInit() {
