@@ -1,6 +1,5 @@
 import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import { Request } from '../../../../classes/request';
-import {IntlService} from '@progress/kendo-angular-intl';
 import {MapsAPILoader} from '@agm/core';
 import {} from '@types/googlemaps';
 import { NgSwitch } from '@angular/common';
@@ -42,7 +41,7 @@ export class RequestFormComponent implements OnInit {
 
   @ViewChild('search') public searchElement: ElementRef;
   @ViewChild('search2') public searchElement2: ElementRef;
-  constructor(private  mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private intl: IntlService ) {
+  constructor(private  mapsAPILoader: MapsAPILoader, private ngZone: NgZone ) {
     this.data = this.source.slice();
   }
   nextStep(nStep) {
@@ -89,7 +88,7 @@ export class RequestFormComponent implements OnInit {
   }
 
   formSubmit() {
-    this.formData.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;
+    /*this.formData.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;*/
     /*this.formData.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;*/
     console.log(this.formData);
   }

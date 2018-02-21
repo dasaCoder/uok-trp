@@ -20,11 +20,7 @@ import { CreateRequestComponent } from './components/main/home/request-btns/crea
 import { CheckRequestComponent } from './components/main/home/request-btns/check-request/check-request.component';
 import { RequestFormComponent } from './components/main/request/request-form/request-form.component';
 import { CheckReqStatusComponent } from './components/main/request/check-req-status/check-req-status.component';
-import {DateInputsModule} from '@progress/kendo-angular-dateinputs';
-import {IntlModule} from '@progress/kendo-angular-intl';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
-
 
 @NgModule({
   declarations: [
@@ -48,9 +44,6 @@ import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
 
     /*kendoUi*/
     BrowserAnimationsModule,
-    IntlModule,
-    DateInputsModule,
-    DropDownsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAF5gLv9sWNx3t2yxPGa9FuSBBhaZSVNUc',
       libraries : ['places']

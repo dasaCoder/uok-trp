@@ -39,15 +39,7 @@
 
             <div class="example-wrapper   ">
               <label>Date & Time:</label>
-              <kendo-datepicker class="trp-select trp-min-input "
 
-                                [format]="'dd-MMM-yyyy '"
-                                [(value)]="dateTime"
-              ></kendo-datepicker>
-              <kendo-timepicker class=" trp-select trp-min-input "
-                                [format]="'HH:mm'"
-                                [(value)]="jstartTime"
-              ></kendo-timepicker>
             </div>
 
             <div class="  ">
@@ -73,15 +65,8 @@
 
             <div class="  ">
               <label for="">Department/Unit</label>
-              <kendo-autocomplete class="trp-select trp-min-input"
-                                  [data]="data"
-                                  [filterable]="true"
-                                  (filterChange)="handleFilter($event)"
-                                  [placeholder]="'e.g. Department of Software Engineering'"
-                                  class="trp-select trp-min-input trp-autocomplete"
-                                  [(value)]="formData.department"
-              >
-              </kendo-autocomplete>
+
+
             </div>
             <div class="  ">
               <label for="form-email">Email</label>
