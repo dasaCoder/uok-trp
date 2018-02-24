@@ -8,11 +8,19 @@
         <div class="row">
           <div class="col-lg-6 col-md-12"></div>
           <div class="col-lg-6 col-md-12 col-xs-12">
-            <div class="example-wrapper   ">
-              <label>Date & Time:</label>
 
+              <div class="input-wrapper">
+                <label>check date:</label>
+                <input [(ngModel)]="selectedDate"
+                       [owlDateTimeTrigger]="dtPicker1"
+                       [owlDateTime]="dtPicker1"
+                       class="trp-min-input"
+                >
+                <owl-date-time
+                  [pickerType]="'calendar'"
+                  #dtPicker1></owl-date-time>
+              </div>
 
-            </div>
           </div>
         </div>
       </div>

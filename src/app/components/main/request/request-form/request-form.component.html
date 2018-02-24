@@ -37,9 +37,16 @@
 
           <div id="step2" *ngSwitchCase="2" class="animate-switch">
 
-            <div class="example-wrapper   ">
-              <label>Date & Time:</label>
-
+            <div class="input-wrapper">
+              <label>Date Time(binding via ngModel):</label>
+              <input [(ngModel)]="selectedMoment"
+                     [owlDateTimeTrigger]="dtPicker1"
+                     [owlDateTime]="dtPicker1"
+                      class="trp-min-input"
+              >
+              <owl-date-time
+                (afterPickerClosed)="picker()"
+                #dtPicker1></owl-date-time>
             </div>
 
             <div class="  ">

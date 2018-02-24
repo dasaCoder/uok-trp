@@ -17,6 +17,8 @@ export class RequestFormComponent implements OnInit {
     'department of mathemetics'
   ];
 
+  public selectedMoment = new Date();
+
   public data: Array<string>;
   /*userReq = new Request(3, 'dilusha' );*/
    id: number;
@@ -85,6 +87,9 @@ export class RequestFormComponent implements OnInit {
       }
     )
 
+  }
+  picker() {
+    console.log(this.selectedMoment);
   }
 
   formSubmit() {

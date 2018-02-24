@@ -21,6 +21,7 @@ import { CheckRequestComponent } from './components/main/home/request-btns/check
 import { RequestFormComponent } from './components/main/request/request-form/request-form.component';
 import { CheckReqStatusComponent } from './components/main/request/check-req-status/check-req-status.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAF5gLv9sWNx3t2yxPGa9FuSBBhaZSVNUc',
       libraries : ['places']
-    })
+    }),
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     /*MDBBootstrapModule.forRoot()*/
   ],
   providers: [],
