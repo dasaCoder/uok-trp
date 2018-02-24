@@ -99,6 +99,13 @@ export class RequestFormComponent implements OnInit {
   handleFilter(value) {
     this.data = this.source.filter((s) => s.toLowerCase().indexOf(value.toLowerCase()) !== -1);
   }
+  isActive(step) {
+    if (step == this.step) {
+      return 'active';
+    }
+    else
+      return '';
+  }
 
 
 

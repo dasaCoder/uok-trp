@@ -23,6 +23,8 @@ import { CheckReqStatusComponent } from './components/main/request/check-req-sta
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
+import {AvailableVehicleService} from './services/available-vehicle.service';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -53,9 +55,12 @@ import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     /*MDBBootstrapModule.forRoot()*/
-    DropDownsModule
+    DropDownsModule,
+    AngularFontAwesomeModule
   ],
-  providers: [],
+  providers: [
+    AvailableVehicleService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,12 +2,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~ng-pick-datetime/assets/style/picker.min.css";
 @import "~@progress/kendo-theme-default/scss/all";
+@import 'variables';
+@import '../node_modules/font-awesome/scss/font-awesome';
 body{
-  font: 15px/1.5 Arial, Helvetica , sans-serif;
+  font: 15px/1.5;
+  font-family:'Raleway', sans-serif;;
   padding:0;
   margin:0;
   background-color:#f4f4f4;
 }
+
 
 .container{
   width:80%;
@@ -52,16 +56,41 @@ body{
    padding: 5px 15px 5px 15px;
    text-transform: uppercase;
    font-size: 17px;
+   margin-top: 1em;
  }
  .trp-btn:hover{
    background-color:#680000;
  }
 
  .trp-title{
-   font-family: monospace;
+
  }
 
+.trp-align-center{
+  text-align:center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 
+.trp-form-bar{
+  background-color: #f9d5e5;
+  margin-right: -20px;
+  margin-left: -20px;
+
+}
+
+.trp-align-center.active{
+  background-color:#C01830 ;
+}
+
+.errspan {
+  float: right;
+  margin-right: 6px;
+  margin-top: -30px;
+  position: relative;
+  z-index: 2;
+  color: black;
+}
 
  input,.trp-select{
    border-radius: 0;
@@ -82,6 +111,23 @@ body{
   padding: 0 4px 0 0!important;
 
 }
+
+.trp-form-div{
+  min-height: 550px;
+}
+
+.trp-notice-background{
+  background-color:rgba(0,0,0,0.4);
+  margin: 1em;
+  padding-bottom: 1em;
+}
+
+.trp-check-date{
+  color: white;
+  font-family: 'Patua One', cursive;
+}
+/*request form styles*/
+
 
 
 /*------>>> Animations <<<-----*/

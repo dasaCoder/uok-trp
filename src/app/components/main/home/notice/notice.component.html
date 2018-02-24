@@ -1,31 +1,38 @@
 
-<div class="row">
+<div class="row" style="margin: 0">
   <div id="notice-main">
       <span id="notice-corner">
         <!--<img src="../../../../../assets/images/pattern/pattern2.png" style="repeat-y" alt="">-->
       </span>
       <div id="notice-board">
         <div class="row">
-          <div class="col-lg-6 col-md-12"></div>
-          <div class="col-lg-6 col-md-12 col-xs-12">
+          <div class="col-lg-8 col-md-7"></div>
+          <div class="col-lg-4 col-md-5 col-xs-12">
 
-              <div class="input-wrapper">
-                <label>check date:</label>
-                <input [(ngModel)]="selectedDate"
-                       [owlDateTimeTrigger]="dtPicker1"
-                       [owlDateTime]="dtPicker1"
-                       class="trp-min-input"
-                >
-                <owl-date-time
-                  (afterPickerClosed)="picker()"
-                  [pickerType]="'calendar'"
-                  #dtPicker1></owl-date-time>
-              </div>
-            <div class="contarner">
-              <ul>
-                <li *ngFor="let vehicle of availableVehicles">{{vehicle.type}}{{vehicle.left}}</li>
-              </ul>
-            </div>
+                  <div class="input-wrapper trp-notice-background">
+                    <div class="container">
+                      <label class="trp-check-date">Check date:</label>
+                      <input [(ngModel)]="selectedDate"
+                             [owlDateTimeTrigger]="dtPicker1"
+                             [owlDateTime]="dtPicker1"
+                             class="trp-min-input"
+                      >
+                      <fa name="calendar" class="errspan"></fa>
+                      <owl-date-time
+                        (afterPickerClosed)="picker()"
+                        [pickerType]="'calendar'"
+                        #dtPicker1></owl-date-time>
+                      <div class="card">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item" *ngFor="let vehicle of availableVehicles">{{vehicle.type}}{{vehicle.left}}</li>
+
+                        </ul>
+
+                      </div>
+                    </div>
+
+                  </div>
+
 
           </div>
         </div>
