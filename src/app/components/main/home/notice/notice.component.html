@@ -21,6 +21,11 @@
                   [pickerType]="'calendar'"
                   #dtPicker1></owl-date-time>
               </div>
+            <div class="contarner">
+              <ul>
+                <li *ngFor="let vehicle of availableVehicles">{{vehicle.type}}{{vehicle.left}}</li>
+              </ul>
+            </div>
 
           </div>
         </div>
