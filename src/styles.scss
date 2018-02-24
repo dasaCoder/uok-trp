@@ -1,6 +1,7 @@
 
 /* You can add global styles to this file, and also import other style files */
 @import "~ng-pick-datetime/assets/style/picker.min.css";
+@import "~@progress/kendo-theme-default/scss/all";
 body{
   font: 15px/1.5 Arial, Helvetica , sans-serif;
   padding:0;
@@ -145,3 +146,6 @@ body{
 
 
 /*-----------------------------------*/
+.example-wrapper {  align-content: flex-start; }
+.example-wrapper p, .example-col p { margin: 0 0 10px; }
+.example-wrapper p:first-child, .example-col p:first-child { margin-top: 0; }

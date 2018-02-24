@@ -13,7 +13,7 @@
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0-beta.2",
-    "@angular/animations": "^5.2.4",
+    "@angular/animations": "^5.2.6",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
     "@angular/core": "^5.2.0",
@@ -22,6 +22,9 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@progress/kendo-angular-dropdowns": "^2.0.2",
+    "@progress/kendo-angular-l10n": "^1.0.6",
+    "@progress/kendo-theme-default": "^2.48.1",
     "@types/googlemaps": "^3.30.7",
     "bootstrap": "^4.0.0-beta",
     "chart.js": "^2.5.0",

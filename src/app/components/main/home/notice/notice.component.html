@@ -17,6 +17,7 @@
                        class="trp-min-input"
                 >
                 <owl-date-time
+                  (afterPickerClosed)="picker()"
                   [pickerType]="'calendar'"
                   #dtPicker1></owl-date-time>
               </div>

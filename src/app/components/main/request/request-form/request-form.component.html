@@ -38,20 +38,26 @@
           <div id="step2" *ngSwitchCase="2" class="animate-switch">
 
             <div class="input-wrapper">
-              <label>Date Time(binding via ngModel):</label>
-              <input [(ngModel)]="selectedMoment"
+              <label>Time to pick you up :</label>
+              <input [(ngModel)]="formData.startMoment"
                      [owlDateTimeTrigger]="dtPicker1"
                      [owlDateTime]="dtPicker1"
                       class="trp-min-input"
               >
               <owl-date-time
-                (afterPickerClosed)="picker()"
                 #dtPicker1></owl-date-time>
             </div>
 
             <div class="  ">
-              <label for="duration">Duration</label>
-              <input type="text" class="trp-min-input" id="duration" name="duration" [(ngModel)]="formData.duration">
+              <label>End date & time:</label>
+              <input [(ngModel)]="formData.endMoment"
+                     [owlDateTimeTrigger]="dtPicker2"
+                     [owlDateTime]="dtPicker2"
+                     class="trp-min-input"
+              >
+              <owl-date-time
+                (afterPickerClosed)="picker()"
+                #dtPicker2></owl-date-time>
 
             </div>
 
@@ -70,10 +76,17 @@
             </div>
             <br>
 
-            <div class="  ">
+            <div class="example-wrapper">
               <label for="">Department/Unit</label>
 
-
+              <kendo-autocomplete
+                [data]="data"
+                [filterable]="true"
+                (filterChange)="handleFilter($event)"
+                class="trp-select trp-min-input trp-autocomplete"
+                [(value)]="formData.department"
+              >
+              </kendo-autocomplete>
             </div>
             <div class="  ">
               <label for="form-email">Email</label>

@@ -22,6 +22,7 @@ import { RequestFormComponent } from './components/main/request/request-form/req
 import { CheckReqStatusComponent } from './components/main/request/check-req-status/check-req-status.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
+import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     /*MDBBootstrapModule.forRoot()*/
+    DropDownsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

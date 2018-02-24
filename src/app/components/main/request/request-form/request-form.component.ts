@@ -17,7 +17,7 @@ export class RequestFormComponent implements OnInit {
     'department of mathemetics'
   ];
 
-  public selectedMoment = new Date();
+
 
   public data: Array<string>;
   /*userReq = new Request(3, 'dilusha' );*/
@@ -88,9 +88,7 @@ export class RequestFormComponent implements OnInit {
     )
 
   }
-  picker() {
-    console.log(this.selectedMoment);
-  }
+
 
   formSubmit() {
     /*this.formData.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;*/
@@ -101,6 +99,8 @@ export class RequestFormComponent implements OnInit {
   handleFilter(value) {
     this.data = this.source.filter((s) => s.toLowerCase().indexOf(value.toLowerCase()) !== -1);
   }
+
+
 
 
 }
