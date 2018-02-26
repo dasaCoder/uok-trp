@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xl-4 col-lg-5 col-md-6 col-sm-10">
 
-      <div class="card" [ngSwitch]=step ng-class="{forward: direction, backward:!direction}">
+      <div class="card"  [ngSwitch]=step @slide >
 
       <div class="trp-form-div card-body">
 
@@ -21,7 +21,7 @@
         </div>
 
 
-        <div id="step1" *ngSwitchCase="1" class="animate-switch ">
+        <div id="step1"  *ngSwitchCase="1"  >
           <div class="">
             <label for="pickupPoint">Pickup Point</label>
             <input type="text"  autocomplete="off" placeholder="search for pickup location" autocapitalize="off" id="pickupPoint" name="pickupPoint" class="trp-min-input" #search>
@@ -46,7 +46,7 @@
 
 
 
-        <div id="step2" *ngSwitchCase="2" class="animate-switch">
+        <div id="step2" *ngSwitchCase="2" >
 
           <div class="input-wrapper">
             <label>Time to pick you up :</label>
@@ -79,7 +79,7 @@
           </div>
         </div>
 
-        <div id="step3" *ngSwitchCase="3" class="animate-switch">
+        <div id="step3"  *ngSwitchCase="3" >
           <div class="" style="display: inline">
             <label label="name" for="form-name">Name</label>
             <input type="text" class=" trp-min-input " [(ngModel)]="formData.name" id="form-name" name="name">

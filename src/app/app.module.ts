@@ -25,6 +25,7 @@ import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
 import {AvailableVehicleService} from './services/available-vehicle.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { ViewStatusComponent } from './components/main/request/view-status/view-status.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     CheckRequestComponent,
     RequestFormComponent,
     CheckReqStatusComponent,
+    ViewStatusComponent,
   ],
   imports: [
     BrowserModule,

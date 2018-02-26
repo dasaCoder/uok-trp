@@ -3,12 +3,16 @@ import { Request } from '../../../../classes/request';
 import {MapsAPILoader} from '@agm/core';
 import {} from '@types/googlemaps';
 import { NgSwitch } from '@angular/common';
+import {slide} from '../../../../animations';
 
 
 @Component({
   selector: 'app-request-form',
   templateUrl: './request-form.component.html',
-  styleUrls: ['./request-form.component.css']
+  styleUrls: ['./request-form.component.css'],
+  animations: [
+    slide
+  ]
 })
 export class RequestFormComponent implements OnInit {
   public source: Array<string> = [
