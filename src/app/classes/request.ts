@@ -1,6 +1,8 @@
+import { StatusOfRequest} from './status';
+
 export class Request {
   constructor(
-    public id: number ,
+    /*public id: number ,
     public title: string ,
     public name: string ,
     public faculty: string,
@@ -11,6 +13,31 @@ export class Request {
     public duration: string,
     public numOfPassangers: number,
     public email: string,
-    public password: string
-  ) {}
+    public password: string*/
+  ) {  }
+
+  refNo: number;
+  lecturer?: string;
+  email?: string;
+  password?: string;
+  dep_unit?: string; // department or unit which request is from
+  position?: string; // position of the officail/lecturer
+  num_passangers?: number; // number of other passangers which hoping to travel
+  purpose?: string; // for what you need the vehicle
+  vehicleType?: string; // type of the vehicle
+  status?: StatusOfRequest; // check whether the status is confirmed? not Reviewed ? or rejected
+  isPermited?: boolean; // if this trip is permited from
+  fundingWay?: string; // if this trip is not permited, how they going to find funds for this
+  departure?: Trip;
+  arrival?: Trip;
 }
+
+
+export class Trip {
+  pickupPoint?: string;
+  pickPointAddress?: string;
+  dropPoint?: string;
+  dropPointAddress?: string;
+  time?: string;
+}
+

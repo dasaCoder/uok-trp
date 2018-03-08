@@ -15,7 +15,7 @@ const routes: Routes = [
     children : [
       {path : 'req_form' , component : RequestFormComponent },
       {path : 'check_req' , component : CheckReqStatusComponent},
-      {path : 'view_req' , component : ViewStatusComponent}
+      {path : 'view_req/:refNo' , component : ViewStatusComponent}
     ]
   }
 ];

@@ -1,5 +1,5 @@
 import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
-import { Request } from '../../../../classes/request';
+import {Request, Trip} from '../../../../classes/request';
 import {MapsAPILoader} from '@agm/core';
 import {} from '@types/googlemaps';
 import { NgSwitch } from '@angular/common';
@@ -37,17 +37,20 @@ export class RequestFormComponent implements OnInit {
    isGood = true;
    step = 1;
 
-   formData: any = {};
-   dateTime ;
+   formData: Request = new Request();
+   arrival: Trip = new Trip();
+   departure: Trip = new Trip();
+   /*dateTime ;
    enddate ;
    endtime ;
-   jstartTime;
+   jstartTime;*/
    rePassword = '';
 
 
   @ViewChild('search') public searchElement: ElementRef;
   @ViewChild('search2') public searchElement2: ElementRef;
   constructor(private  mapsAPILoader: MapsAPILoader, private ngZone: NgZone ) {
+    // this.formData = new Request();
     this.data = this.source.slice();
   }
   nextStep(nStep) {
@@ -65,8 +68,8 @@ export class RequestFormComponent implements OnInit {
               return;
             }
             else {
-              this.formData.pickupPointName = place.name;
-              this.formData.pickupPointAddress = place.formatted_address;
+              this.departure.pickupPoint = place.name;
+              this.departure.pickPointAddress = place.formatted_address;
             }
           })
         })
@@ -83,8 +86,8 @@ export class RequestFormComponent implements OnInit {
               return;
             }
             else {
-              this.formData.dropPointName = place.name;
-              this.formData.dropPointAddress = place.formatted_address;
+              this.arrival.dropPoint = place.name;
+              this.arrival.dropPointAddress = place.formatted_address;
             }
           })
         })
@@ -97,7 +100,11 @@ export class RequestFormComponent implements OnInit {
   formSubmit() {
     /*this.formData.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;*/
     /*this.formData.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;*/
-    console.log(this.formData);
+    // const x = <Request> this.formData;
+    this.formData.arrival = this.arrival;
+    this.formData.departure = this.departure;
+    this.formData.isPermited = false;
+     console.log(this.formData);
   }
 
   handleFilter(value) {

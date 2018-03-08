@@ -9,13 +9,13 @@
         <h1 class="trp-title card-title">Plan a journey</h1>
         <div class="row trp-form-bar">
           <div class="col-md-4 col-sm-3 col-4 trp-align-center {{isActive(1)}}" >
-            <fa name="location-arrow" inverse="true" size="2x" > </fa>
+            <fa name="location-arrow" inverse="true" size="1x" > </fa>
           </div>
           <div class="col-md-4 col-sm-3 col-4 trp-align-center {{isActive(2)}}" >
-            <fa name="calendar" inverse="true" size="2x" > </fa>
+            <fa name="calendar" inverse="true" size="1x" > </fa>
           </div>
           <div class="col-md-4 col-sm-3 col-4 trp-align-center {{isActive(3)}}">
-            <fa name="info-circle" inverse="true" size="2x" > </fa>
+            <fa name="info-circle" inverse="true" size="1x" > </fa>
           </div>
 
         </div>
@@ -34,7 +34,7 @@
           <div class="  ">
 
             <label for="form-numOfPassanger">Number of Passangers</label>
-            <input class="trp-min-input " type="number" [(ngModel)]="formData.numOfPassangers" id="form-numOfPassanger" name="numOfPassangers">
+            <input class="trp-min-input " type="number" [(ngModel)]="formData.num_passangers" id="form-numOfPassanger" name="numOfPassangers">
           </div>
 
 
@@ -50,7 +50,7 @@
 
           <div class="input-wrapper">
             <label>Time to pick you up :</label>
-            <input [(ngModel)]="formData.startMoment"
+            <input [(ngModel)]="departure.time"
                    [owlDateTimeTrigger]="dtPicker1"
                    [owlDateTime]="dtPicker1"
                    class="trp-min-input"
@@ -61,7 +61,7 @@
 
           <div class="  ">
             <label>End date & time:</label>
-            <input [(ngModel)]="formData.endMoment"
+            <input [(ngModel)]="arrival.time"
                    [owlDateTimeTrigger]="dtPicker2"
                    [owlDateTime]="dtPicker2"
                    class="trp-min-input"
@@ -82,7 +82,7 @@
         <div id="step3"  *ngSwitchCase="3" >
           <div class="" style="display: inline">
             <label label="name" for="form-name">Name</label>
-            <input type="text" class=" trp-min-input " [(ngModel)]="formData.name" id="form-name" name="name">
+            <input type="text" class=" trp-min-input " [(ngModel)]="formData.lecturer" id="form-name" name="name">
 
           </div>
           <br>
@@ -95,7 +95,7 @@
               [filterable]="true"
               (filterChange)="handleFilter($event)"
               class="trp-select trp-min-input trp-autocomplete"
-              [(value)]="formData.department"
+              [(value)]="formData.dep_unit"
             >
             </kendo-autocomplete>
           </div>

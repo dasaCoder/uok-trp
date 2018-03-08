@@ -26,6 +26,7 @@ import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
 import {AvailableVehicleService} from './services/available-vehicle.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { ViewStatusComponent } from './components/main/request/view-status/view-status.component';
+import {RequestService} from './services/request.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ViewStatusComponent } from './components/main/request/view-status/view-
     AngularFontAwesomeModule
   ],
   providers: [
-    AvailableVehicleService
+    AvailableVehicleService,
+    RequestService
   ],
   bootstrap: [AppComponent]
 })

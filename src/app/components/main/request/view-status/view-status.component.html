@@ -1,56 +1,163 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+
+<!--      request form-->
+
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
+          <h5 class="card-title">Requesting vehicle form for Official Purpose</h5>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
+        <div class="form-horizontal">
+          <fieldset>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="officails_id">Name of the Lecturer or Official</label>
+              <div class="col-md-8">
+                <input [(ngModel)]="request.lecturer" id="officails_id" name="officails_id" type="text" placeholder="Name of the Lecturer or Official who travel" class="form-control input-md ">
+
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput">Department / Unit</label>
+              <div class="col-md-8">
+                <input [(ngModel)]="request.dep_unit" id="textinput" name="textinput" type="text" placeholder="Enter your Department or Unit" class="form-control input-md">
+
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="position">Position</label>
+              <div class="col-md-8">
+                <input [(ngModel)]="request.position" id="position" name="position" type="text" placeholder="Position of the lecturer or Official" class="form-control input-md">
+
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="numOfPassangers">Number of other passengers  </label>
+              <div class="col-md-8">
+                <input [(ngModel)]="request.num_passangers" id="numOfPassangers" name="numOfPassangers" type="text" placeholder="Number of other passengers who are willing to travel" class="form-control input-md">
+
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="purpose">Purpose</label>
+              <div class="col-md-8">
+                <input [(ngModel)]="request.purpose" id="purpose" name="purpose" type="text" placeholder="For what you want to use the vehicle?" class="form-control input-md" required="">
+                <span class="help-block">If there is an invitation from other party, please attach it</span>
+              </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="vehicleType">Vehicle needed</label>
+              <div class="col-md-8">
+                <select [(ngModel)]="request.vehicleType" id="vehicleType" name="vehicleType" class="form-control">
+                  <option value="three_wheel">Three wheel</option>
+                  <option value="car" selected >Car</option>
+                  <option value="van">Van</option>
+                  <option value="bus">Bus</option>
+                  <option value="cab">Cab</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <Button (click)="addRequest()">Update</Button>
+              </div>
+            </div>
+
+          </fieldset>
+
+        </div>
       </div>
 
-      <div class="card border-warning mb-3">
-        <div class="card-body text-warning">
-          <h5 class="card-title">Warning card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
+      <!--      </request form>-->
 
     </div>
+
+
+
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+
+      <!--notifications.. ** this shows request is not reviewed, accepted or rejected.-->
+      <div class="card border-warning mb-3">
+        <div class="card-body text-warning">
+          <h5 class="card-title">Your Request is not being reviewed</h5>
+        </div>
+      </div>
+
+
+
       <div class="card" >
         <img class="card-img-top" src="..." alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h5 class="card-title">Depature</h5>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="officails_id">Pick up place</label>
+            <div class="col-md-8">
+              <input [(ngModel)]="request.departure.pickPointAddress" autocapitalize="off" autocomplete="off" id="departure_pickpoint" name="departure_pickpoint" type="text" placeholder="Place to pick you up" class="form-control input-md ">
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="officails_id">Drop place</label>
+            <div class="col-md-8">
+              <input [(ngModel)]="request.departure.pickPointAddress" autocapitalize="off" autocomplete="off" id="departure_drop_point" name="departure_drop_point" type="text" placeholder="Place to pick you up" class="form-control input-md ">
+
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="officails_id">Pick up time</label>
+            <div class="col-md-8">
+              <input [(ngModel)]="request.departure.time" autocapitalize="off" autocomplete="off" id="departure_time" name="departure_time" type="text" placeholder="Place to pick you up" class="form-control input-md ">
+
+            </div>
+          </div>
+
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
+
       </div>
       <div class="card" >
         <img class="card-img-top" src="..." alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h5 class="card-title">Arrival</h5>
+
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
+
         <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="officails_id">Pick up place</label>
+            <div class="col-md-8">
+              <input [(ngModel)]="request.arrival.pickPointAddress" autocapitalize="off" autocomplete="off" id="arrival_pickpoint" name="arrival_pickpoint" type="text" placeholder="Place to pick you up" class="form-control input-md ">
+
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="officails_id">Drop place</label>
+            <div class="col-md-8">
+              <input [(ngModel)]="request.arrival.pickPointAddress" autocapitalize="off" autocomplete="off" id="arrival_drop_point" name="arrival_drop_point" type="text" placeholder="Place to pick you up" class="form-control input-md ">
+
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="officails_id">Pick up time</label>
+            <div class="col-md-8">
+              <input [(ngModel)]="request.arrival.time" autocapitalize="off" autocomplete="off" id="arrival_time" name="arrival_time" type="text" placeholder="Place to pick you up" class="form-control input-md">
+
+            </div>
+          </div>
         </div>
       </div>
     </div>
