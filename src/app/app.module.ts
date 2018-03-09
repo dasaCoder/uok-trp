@@ -27,6 +27,7 @@ import {AvailableVehicleService} from './services/available-vehicle.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { ViewStatusComponent } from './components/main/request/view-status/view-status.component';
 import {RequestService} from './services/request.service';
+import { DriverComponent } from './classes/driver/driver.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import {RequestService} from './services/request.service';
     RequestFormComponent,
     CheckReqStatusComponent,
     ViewStatusComponent,
+    DriverComponent,
   ],
   imports: [
     BrowserModule,
