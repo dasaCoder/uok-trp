@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
 
 <!--      request form-->
 
@@ -12,54 +12,53 @@
           <fieldset>
 
             <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="officails_id">Name of the Lecturer or Official</label>
-              <div class="col-md-8">
+            <div class="form-group1">
+              <label class="col-md-12 control-label" for="officails_id">Name of the Lecturer or Official</label>
+              <div class="col-md-12">
                 <input [(ngModel)]="request.lecturer" id="officails_id" name="officails_id" type="text" placeholder="Name of the Lecturer or Official who travel" class="form-control input-md ">
 
               </div>
             </div>
 
             <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="textinput">Department / Unit</label>
-              <div class="col-md-8">
+            <div class="form-group1">
+              <label class="col-md-12 control-label" for="textinput">Department / Unit</label>
+              <div class="col-md-12">
                 <input [(ngModel)]="request.dep_unit" id="textinput" name="textinput" type="text" placeholder="Enter your Department or Unit" class="form-control input-md">
 
               </div>
             </div>
 
             <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="position">Position</label>
-              <div class="col-md-8">
+            <div class="form-group1">
+              <label class="col-md-12 control-label" for="position">Position</label>
+              <div class="col-md-12">
                 <input [(ngModel)]="request.position" id="position" name="position" type="text" placeholder="Position of the lecturer or Official" class="form-control input-md">
 
               </div>
             </div>
 
             <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="numOfPassangers">Number of other passengers  </label>
-              <div class="col-md-8">
+            <div class="form-group1">
+              <label class="col-md-12 control-label" for="numOfPassangers">Number of other passengers  </label>
+              <div class="col-md-12">
                 <input [(ngModel)]="request.num_passangers" id="numOfPassangers" name="numOfPassangers" type="text" placeholder="Number of other passengers who are willing to travel" class="form-control input-md">
 
               </div>
             </div>
 
             <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="purpose">Purpose</label>
-              <div class="col-md-8">
+            <div class="form-group1">
+              <label class="col-md-12 control-label" for="purpose">Purpose</label>
+              <div class="col-md-12">
                 <input [(ngModel)]="request.purpose" id="purpose" name="purpose" type="text" placeholder="For what you want to use the vehicle?" class="form-control input-md" required="">
-                <span class="help-block">If there is an invitation from other party, please attach it</span>
               </div>
             </div>
 
             <!-- Select Basic -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="vehicleType">Vehicle needed</label>
-              <div class="col-md-8">
+            <div class="form-group1">
+              <label class="col-md-12 control-label" for="vehicleType">Vehicle needed</label>
+              <div class="col-md-12">
                 <select [(ngModel)]="request.vehicleType" id="vehicleType" name="vehicleType" class="form-control">
                   <option value="three_wheel">Three wheel</option>
                   <option value="car" selected >Car</option>
@@ -69,9 +68,9 @@
                 </select>
               </div>
             </div>
-            <div class="form-group">
-              <div class="col-md-4"></div>
-              <div class="col-md-4">
+            <div class="form-group1">
+              <div class="col-md-12"></div>
+              <div class="col-md-12">
                 <Button (click)="addRequest()">Update</Button>
               </div>
             </div>
@@ -87,7 +86,7 @@
 
 
 
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
 
       <!--notifications.. ** this shows request is not reviewed, accepted or rejected.-->
       <div class="card border-warning mb-3">
@@ -99,28 +98,28 @@
 
 
       <div class="card" >
-        <img class="card-img-top" src="..." alt="Card image cap">
+
         <div class="card-body">
           <h5 class="card-title">Depature</h5>
 
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="officails_id">Pick up place</label>
-            <div class="col-md-8">
+          <div class="form-group1">
+            <label class="col-md-12 control-label" for="officails_id">Pick up place</label>
+            <div class="col-md-12">
               <input [(ngModel)]="request.departure.pickPointAddress" autocapitalize="off" autocomplete="off" id="departure_pickpoint" name="departure_pickpoint" type="text" placeholder="Place to pick you up" class="form-control input-md ">
 
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="officails_id">Drop place</label>
-            <div class="col-md-8">
+          <div class="form-group1">
+            <label class="col-md-12 control-label" for="officails_id">Drop place</label>
+            <div class="col-md-12">
               <input [(ngModel)]="request.departure.pickPointAddress" autocapitalize="off" autocomplete="off" id="departure_drop_point" name="departure_drop_point" type="text" placeholder="Place to pick you up" class="form-control input-md ">
 
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="officails_id">Pick up time</label>
-            <div class="col-md-8">
+          <div class="form-group1">
+            <label class="col-md-12 control-label" for="officails_id">Pick up time</label>
+            <div class="col-md-12">
               <input [(ngModel)]="request.departure.time" autocapitalize="off" autocomplete="off" id="departure_time" name="departure_time" type="text" placeholder="Place to pick you up" class="form-control input-md ">
 
             </div>
@@ -130,30 +129,27 @@
 
       </div>
       <div class="card" >
-        <img class="card-img-top" src="..." alt="Card image cap">
+
         <div class="card-body">
           <h5 class="card-title">Arrival</h5>
 
-        </div>
-
-        <div class="card-body">
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="officails_id">Pick up place</label>
-            <div class="col-md-8">
+          <div class="form-group1">
+            <label class="col-md-12 control-label" for="officails_id">Pick up place</label>
+            <div class="col-md-12">
               <input [(ngModel)]="request.arrival.pickPointAddress" autocapitalize="off" autocomplete="off" id="arrival_pickpoint" name="arrival_pickpoint" type="text" placeholder="Place to pick you up" class="form-control input-md ">
 
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="officails_id">Drop place</label>
-            <div class="col-md-8">
+          <div class="form-group1">
+            <label class="col-md-12 control-label" for="officails_id">Drop place</label>
+            <div class="col-md-12">
               <input [(ngModel)]="request.arrival.pickPointAddress" autocapitalize="off" autocomplete="off" id="arrival_drop_point" name="arrival_drop_point" type="text" placeholder="Place to pick you up" class="form-control input-md ">
 
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="officails_id">Pick up time</label>
-            <div class="col-md-8">
+          <div class="form-group1">
+            <label class="col-md-12 control-label" for="officails_id">Pick up time</label>
+            <div class="col-md-12">
               <input [(ngModel)]="request.arrival.time" autocapitalize="off" autocomplete="off" id="arrival_time" name="arrival_time" type="text" placeholder="Place to pick you up" class="form-control input-md">
 
             </div>

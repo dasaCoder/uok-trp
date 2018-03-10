@@ -1,4 +1,6 @@
 import { StatusOfRequest} from './status';
+import {Vehicle} from './vehicle';
+import {Driver} from './driver';
 
 export class Request {
   constructor(
@@ -30,6 +32,8 @@ export class Request {
   fundingWay?: string; // if this trip is not permited, how they going to find funds for this
   departure?: Trip;
   arrival?: Trip;
+  vehicle?: Vehicle;
+  driver?: Driver;
 }
 
 
