@@ -44,5 +44,5 @@ module.exports.addVehicle = function (newVehicle, callback) {
 }
 
 module.exports.get_vehicle_list = function(callback){
-  Vehicle.find({},'vehicle_no',callback);
+  Vehicle.find({},'vehicle_no vehicle_type',callback);
 }

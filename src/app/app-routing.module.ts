@@ -5,6 +5,7 @@ import {RequestComponent} from './components/main/request/request.component';
 import {RequestFormComponent} from './components/main/request/request-form/request-form.component';
 import {CheckReqStatusComponent} from './components/main/request/check-req-status/check-req-status.component';
 import {ViewStatusComponent} from './components/main/request/view-status/view-status.component';
+import {AdminComponent} from './components/main/admin/admin.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,10 @@ const routes: Routes = [
       {path : 'check_req' , component : CheckReqStatusComponent},
       {path : 'view_req/:refNo' , component : ViewStatusComponent}
     ]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent
   }
 ];
 

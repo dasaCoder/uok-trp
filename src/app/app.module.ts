@@ -28,6 +28,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { ViewStatusComponent } from './components/main/request/view-status/view-status.component';
 import {RequestService} from './services/request.service';
 import {HttpClientModule} from '@angular/common/http';
+import { AdminComponent } from './components/main/admin/admin.component';
+import {VehicleService} from './services/vehicle.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import {HttpClientModule} from '@angular/common/http';
     RequestFormComponent,
     CheckReqStatusComponent,
     ViewStatusComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   providers: [
     AvailableVehicleService,
-    RequestService
+    RequestService,
+    VehicleService
   ],
   bootstrap: [AppComponent]
 })
