@@ -26,7 +26,7 @@ export class Request {
   position?: string; // position of the officail/lecturer
   num_passangers?: number; // number of other passangers which hoping to travel
   purpose?: string; // for what you need the vehicle
-  vehicleType?: string; // type of the vehicle
+  vehicle_type?: string; // type of the vehicle
   status?: StatusOfRequest; // check whether the status is confirmed? not Reviewed ? or rejected
   isPermited?: boolean; // if this trip is permited from
   fundingWay?: string; // if this trip is not permited, how they going to find funds for this
@@ -40,8 +40,9 @@ export class Request {
 export class Trip {
   pickupPoint?: string;
   pickPointAddress?: string;
+  pickupTime?: string;
   dropPoint?: string;
   dropPointAddress?: string;
-  time?: string;
+  dropTime?: string;
 }
 

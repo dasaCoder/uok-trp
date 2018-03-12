@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class AvailableVehicleService {
@@ -32,18 +33,22 @@ export class AvailableVehicleService {
       ]
     }
   ];
-
   get_free_vehicles(value) {
     return this.find_free_vehicle_on_day(this.vehicles, 'date', value);
   }
 
   find_free_vehicle_on_day( vehicle_arr , key , value) {
+    this.http.get('http://localhost:3000/vehicles/all_vehicles')
+      .subscribe(response => {
+        console.log(response['msg']);
+      });
     for (let x = 0; x < vehicle_arr.length; x++) {
       if (vehicle_arr[x][key] === value) {
         return vehicle_arr[x]['vehicles'] ;
       }
     }
   }
-  constructor() { }
+  constructor(private http: HttpClient) {
+  }
 
 }

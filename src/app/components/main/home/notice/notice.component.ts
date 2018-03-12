@@ -24,6 +24,7 @@ export class NoticeComponent implements OnInit {
   picker() {
     this.newSelectedDate = this.selectedDate.toLocaleDateString();
     this.availableVehicles = this.availableVehicleService.get_free_vehicles(this.newSelectedDate);
+    console.log(this.newSelectedDate);
       }
 
 

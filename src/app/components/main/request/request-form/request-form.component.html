@@ -50,7 +50,7 @@
 
           <div class="input-wrapper">
             <label>Time to pick you up :</label>
-            <input [(ngModel)]="departure.time"
+            <input [(ngModel)]="departure.pickupTime"
                    [owlDateTimeTrigger]="dtPicker1"
                    [owlDateTime]="dtPicker1"
                    class="trp-min-input"
@@ -61,7 +61,7 @@
 
           <div class="  ">
             <label>End date & time:</label>
-            <input [(ngModel)]="arrival.time"
+            <input [(ngModel)]="arrival.dropTime"
                    [owlDateTimeTrigger]="dtPicker2"
                    [owlDateTime]="dtPicker2"
                    class="trp-min-input"

@@ -27,6 +27,7 @@ import {AvailableVehicleService} from './services/available-vehicle.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { ViewStatusComponent } from './components/main/request/view-status/view-status.component';
 import {RequestService} from './services/request.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import {RequestService} from './services/request.service';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-
+    HttpClientModule,
     /*kendoUi*/
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({

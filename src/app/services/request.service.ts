@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Request} from '../classes/request';
 import { StatusEnum} from '../classes/status';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class RequestService {
@@ -24,10 +25,10 @@ export class RequestService {
       position: 'head',
       num_passangers: 3,
       purpose: 'official',
-      vehicleType: 'car'
+      vehicle_type: 'car'
     }
   ];
-  constructor() { }
+  constructor(private http: HttpClient) { }
   getALLRequests() {
     return this.requests;
   }
@@ -40,5 +41,9 @@ export class RequestService {
   }
   addRequest(request: Request) {
     this.requests.push(request);
+    this.http.post('http://localhost:3000/requests/add', request )
+      .subscribe(response => {
+        console.log(response);
+      });
   }
 }

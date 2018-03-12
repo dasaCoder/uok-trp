@@ -4,6 +4,7 @@ import {MapsAPILoader} from '@agm/core';
 import {} from '@types/googlemaps';
 import { NgSwitch } from '@angular/common';
 import {slide} from '../../../../animations';
+import {RequestService} from '../../../../services/request.service';
 
 
 @Component({
@@ -49,7 +50,7 @@ export class RequestFormComponent implements OnInit {
 
   @ViewChild('search') public searchElement: ElementRef;
   @ViewChild('search2') public searchElement2: ElementRef;
-  constructor(private  mapsAPILoader: MapsAPILoader, private ngZone: NgZone ) {
+  constructor(private  mapsAPILoader: MapsAPILoader, private ngZone: NgZone , private requestService: RequestService) {
     // this.formData = new Request();
     this.data = this.source.slice();
   }
@@ -70,6 +71,9 @@ export class RequestFormComponent implements OnInit {
             else {
               this.departure.pickupPoint = place.name;
               this.departure.pickPointAddress = place.formatted_address;
+
+              this.arrival.dropPoint = place.name;
+              this.arrival.dropPointAddress = place.formatted_address;
             }
           })
         })
@@ -86,8 +90,11 @@ export class RequestFormComponent implements OnInit {
               return;
             }
             else {
-              this.arrival.dropPoint = place.name;
-              this.arrival.dropPointAddress = place.formatted_address;
+              this.arrival.pickupPoint = place.name;
+              this.arrival.pickPointAddress = place.formatted_address;
+
+              this.departure.dropPoint = place.name;
+              this.departure.dropPointAddress = place.formatted_address;
             }
           })
         })
@@ -105,6 +112,8 @@ export class RequestFormComponent implements OnInit {
     this.formData.departure = this.departure;
     this.formData.isPermited = false;
      console.log(this.formData);
+     this.requestService.addRequest(this.formData);
+
   }
 
   handleFilter(value) {
