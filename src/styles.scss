@@ -83,6 +83,11 @@ body{
   background-color:#C01830 ;
 }
 
+.trp-img-vehicle{
+  max-width: 50%;
+  padding: 0.6em;
+}
+
 .errspan {
   float: right;
   margin-right: 6px;
@@ -214,6 +219,7 @@ body{
   height: 100%;
   color: #e1ffff;
 }
+
 .nav-side-menu .brand {
   background-color: #23282e;
   line-height: 50px;

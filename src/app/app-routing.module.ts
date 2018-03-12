@@ -6,6 +6,7 @@ import {RequestFormComponent} from './components/main/request/request-form/reque
 import {CheckReqStatusComponent} from './components/main/request/check-req-status/check-req-status.component';
 import {ViewStatusComponent} from './components/main/request/view-status/view-status.component';
 import {AdminComponent} from './components/main/admin/admin.component';
+import {VehicleComponent} from './components/main/admin/vehicle/vehicle.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,10 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent
+    component: AdminComponent,
+    children: [
+      { path: 'vehicle/:vehicle_no' , component: VehicleComponent }
+    ]
   }
 ];
 

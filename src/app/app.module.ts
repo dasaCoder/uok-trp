@@ -30,6 +30,7 @@ import {RequestService} from './services/request.service';
 import {HttpClientModule} from '@angular/common/http';
 import { AdminComponent } from './components/main/admin/admin.component';
 import {VehicleService} from './services/vehicle.service';
+import { VehicleComponent } from './components/main/admin/vehicle/vehicle.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {VehicleService} from './services/vehicle.service';
     CheckReqStatusComponent,
     ViewStatusComponent,
     AdminComponent,
+    VehicleComponent,
   ],
   imports: [
     BrowserModule,
