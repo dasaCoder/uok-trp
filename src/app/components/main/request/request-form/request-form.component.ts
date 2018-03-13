@@ -5,6 +5,7 @@ import {} from '@types/googlemaps';
 import { NgSwitch } from '@angular/common';
 import {slide} from '../../../../animations';
 import {RequestService} from '../../../../services/request.service';
+import {StatusEnum} from '../../../../classes/status';
 
 
 @Component({
@@ -108,9 +109,13 @@ export class RequestFormComponent implements OnInit {
     /*this.formData.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;*/
     /*this.formData.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;*/
     // const x = <Request> this.formData;
+    this.formData.refNo =
     this.formData.arrival = this.arrival;
     this.formData.departure = this.departure;
     this.formData.isPermited = false;
+    this.formData.status = {
+      status: StatusEnum.NOT_CONSIDERED
+    };
      console.log(this.formData);
      this.requestService.addRequest(this.formData);
 

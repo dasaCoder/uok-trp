@@ -58,3 +58,7 @@ const Request = module.exports = mongoose.model('Reqeust',ReqeustSchema);
 module.exports.add_request = function(newRequest, callback){
   newRequest.save(callback);
 }
+
+module.exports.get_not_considered_requests = function (callback) {
+  Request.find({'status.status':3},'refNo',callback);
+}

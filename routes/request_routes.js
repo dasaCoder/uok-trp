@@ -18,4 +18,19 @@ router.post('/add',(req,res,next)=>{
   })
 });
 
+router.get('/get_not_considered_requests',(req,res,next) => {
+  Request.get_not_considered_requests((err,callback)=>{
+    if(err){
+      res.json({
+        success: false, msg: 'error occured'
+      })
+    }else{
+      res.json({
+        success: true,
+        msg: callback
+      })
+    }
+  })
+});
+
 module.exports = router;

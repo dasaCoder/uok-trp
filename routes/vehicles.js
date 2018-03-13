@@ -55,6 +55,7 @@ router.get('/get_vehicle_on_date/:date',(req,res,next)=>{
       })
     }
   })
-})
+});
+
 
 module.exports = router;

@@ -1,10 +1,11 @@
 export enum StatusEnum {
-  ACCEPTED,
-  REJECTED,
-  NOT_CONSIDERED
+  ACCEPTED, // basic request is accepted and user is asked to fill the form
+  CONFIRMED, // user is given the full details
+  REJECTED, // request is rejected
+  NOT_CONSIDERED // request is not been reviewed by official
 }
 
 export interface StatusOfRequest {
-  isAccepted?: StatusEnum;
+  status: StatusEnum;
   message?: string;
 }

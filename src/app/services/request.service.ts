@@ -14,7 +14,7 @@ export class RequestService {
       num_passangers: 3,
       purpose: 'official',
       status: {
-        isAccepted: StatusEnum.NOT_CONSIDERED,
+        status: StatusEnum.NOT_CONSIDERED,
         message: 'Your message is not considered yet. pleas be patient...'
       }
     },
@@ -46,4 +46,5 @@ export class RequestService {
         console.log(response);
       });
   }
+
 }
