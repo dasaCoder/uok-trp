@@ -31,6 +31,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AdminComponent } from './components/main/admin/admin.component';
 import {VehicleService} from './services/vehicle.service';
 import { VehicleComponent } from './components/main/admin/vehicle/vehicle.component';
+import { RequestAdminViewComponent } from './components/main/admin/request-admin-view/request-admin-view.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { VehicleComponent } from './components/main/admin/vehicle/vehicle.compon
     ViewStatusComponent,
     AdminComponent,
     VehicleComponent,
+    RequestAdminViewComponent,
   ],
   imports: [
     BrowserModule,

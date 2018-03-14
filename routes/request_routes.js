@@ -8,7 +8,7 @@ router.post('/add',(req,res,next)=>{
   Request.add_request(newRequest,(err,callback)=>{
     if(err){
       res.json({
-        success: false, msg: 'error occured'
+        success: false, msg: 'error ocuured'
       })
     }else{
       res.json({

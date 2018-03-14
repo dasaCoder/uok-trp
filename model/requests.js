@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const config = require('../config/database');
+const autoIncrement = require('mongoose-auto-increment');
 
-const ReqeustSchema = mongoose.Schema({
+autoIncrement.initialize(mongoose.connection);
+
+const RequestSchema = mongoose.Schema({
   refNo:{
     type: Number
   },
@@ -53,7 +56,8 @@ const ReqeustSchema = mongoose.Schema({
   }
 });
 
-const Request = module.exports = mongoose.model('Reqeust',ReqeustSchema);
+RequestSchema.plugin(autoIncrement.plugin, {model: 'Request', field: 'refNo'});
+const Request = module.exports = mongoose.model('Request',RequestSchema);
 
 module.exports.add_request = function(newRequest, callback){
   newRequest.save(callback);

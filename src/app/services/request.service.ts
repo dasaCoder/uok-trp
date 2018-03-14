@@ -46,5 +46,7 @@ export class RequestService {
         console.log(response);
       });
   }
-
+  get_not_considered_requests(){
+    return this.http.get('http://localhost:3000/requests/get_not_considered_requests');
+  }
 }
