@@ -19,7 +19,7 @@ export class AdminComponent implements OnInit {
       });
     requestService.get_not_considered_requests()
       .subscribe(response => {
-        console.log(response['msg']);
+        // console.log(response['msg']);
         this.not_considered_requests = response['msg'];
       });
   }

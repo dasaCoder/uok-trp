@@ -109,7 +109,10 @@
     <div class="container">
 
 
-      <div class="card border-danger mb-3 text-center" style="max-width: 18rem;">
+      <div
+        [ngClass]="{'border-danger':!test , 'border-success': test}"
+        class="card mb-3 text-center"
+        style="max-width: 18rem;">
         <div class="card-header bg-transparent text-danger">
           <i class="fa fa-car"></i>
           Vehicle Section
@@ -120,15 +123,58 @@
         </div>
       </div>
 
-      <div class="card border-danger mb-3 text-center" style="max-width: 18rem;">
+      <div [hidden]="!test" class="card border-danger mb-3 text-center" style="max-width: 18rem;">
         <div class="card-header bg-transparent text-danger">
           <i class="fa fa-car"></i>
           Driver Section
         </div>
         <div class="card-body text-danger">
           <p class="card-text">Driver is not assigned yet</p>
-          <button class="btn btn-danger">Add Driver</button>
+          <button class="btn btn-danger" data-toggle="modal" data-target="#addDriverModal">Add Driver</button>
         </div>
+
+
+        <!--Add driver Modal -->
+
+        <div class="modal fade" id="addDriverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Driver</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label for="">Select a driver</label>
+                  </div>
+                  <div class="col-md-8">
+
+                    <kendo-autocomplete
+                      [data]="data"
+                      [filterable]="true"
+                      (filterChange)="handleFilter($event)"
+                      class="trp-min-input trp-autocomplete"
+                      [(value)]="test"
+                    >
+                    </kendo-autocomplete>
+                  </div>
+
+                </div>
+              </div>
+              <div class="modal-footer" ngClass="">
+                <button type="button"  class="btn btn-primary" data-dismiss="modal" (click)="addDriver()"><i class="fa fa-add"></i>Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--///// Add driver Modal -->
+
       </div>
 
 

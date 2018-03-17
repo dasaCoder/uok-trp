@@ -32,6 +32,7 @@ import { AdminComponent } from './components/main/admin/admin.component';
 import {VehicleService} from './services/vehicle.service';
 import { VehicleComponent } from './components/main/admin/vehicle/vehicle.component';
 import { RequestAdminViewComponent } from './components/main/admin/request-admin-view/request-admin-view.component';
+import {AdminService} from './services/admin.service';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { RequestAdminViewComponent } from './components/main/admin/request-admin
   providers: [
     AvailableVehicleService,
     RequestService,
-    VehicleService
+    VehicleService,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })

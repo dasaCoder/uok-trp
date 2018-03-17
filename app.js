@@ -20,6 +20,7 @@ mongoose.connection.on('error', (err)=>{
 
 const vehicles = require('./routes/vehicles');
 const requests = require('./routes/request_routes');
+const admin = require('./routes/admin_routes');
 
 const port = 3000;
 
@@ -31,6 +32,7 @@ app.use(bodyParser.json());
 
 app.use('/vehicles',vehicles);
 app.use('/requests',requests);
+app.use('/admin',admin);
 
 app.get('/', (req,res)=>{
   res.send("home page");
