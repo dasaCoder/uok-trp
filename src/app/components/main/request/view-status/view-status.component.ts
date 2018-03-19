@@ -19,7 +19,7 @@ export class ViewStatusComponent implements OnInit {
       });
   }
   ngOnInit() {
-    this.requests = this.requestService.getALLRequests();
+   // this.requests = this.requestService.getALLRequests();
   }
   addRequest() {
     console.log(this.request);

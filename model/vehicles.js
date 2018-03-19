@@ -46,3 +46,7 @@ module.exports.addVehicle = function (newVehicle, callback) {
 module.exports.get_vehicle_list = function(callback){
   Vehicle.find({},'vehicle_no vehicle_type',callback);
 }
+
+module.exports.get_admin_to_reqeust = function (callback) {
+  Vehicle.find({},{'_id' : 0,'vehicle_no' : 1},callback);
+}

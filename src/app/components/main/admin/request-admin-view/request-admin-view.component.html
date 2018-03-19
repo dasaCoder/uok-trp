@@ -1,140 +1,318 @@
-<div class="row">
-  <div class="col-md-7">
-    <div class="container-fluid">
-      <table class="table">
-        <tr>
-          <th scope="row">
-            Refferance No
-          </th>
-          <td>
-            TRD-uok-1
-          </td>
-        </tr>
 
-        <tr>
-          <th scope="row">
-            Lecturer
-          </th>
-          <td>
-            Dr. Saman Jayamanna
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">
-            Designation
-          </th>
-          <td>
-            HOD
-          </td>
-        </tr>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-7">
 
-        <tr>
-          <th scope="row">
-            Department/ Unit
-          </th>
-          <td>
-            Department of Physics
-          </td>
-        </tr>
+        <div
+          [ngClass]="{
+              'alert-danger': request.status.status == 3,
+              'alert-warning': request.status.status == 2,
+              'alert-success': request.status.status == 0
+            }"
+          class="alert " role="alert">
+          <div *ngIf="request.status.status == 3">
+            Request is not being reviewed
+          </div>
 
-        <tr>
-          <th scope="row">
-            Purpose
-          </th>
-          <td>
-            what to need your service
-          </td>
-        </tr>
-
-        <tr>
-          <th scope="row">
-            Funding method
-          </th>
-          <td>
-            dddddddddddddddddddddddddddd
-          </td>
-        </tr>
-
-        <tr>
-          <th scope="row">
-            Email
-          </th>
-          <td>
-            dilushadasanayaka@gmail.com
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">
-            Password
-          </th>
-          <td>
-            xxxxxxxxxxx
-          </td>
-        </tr>
-
-        <tr>
-          <th scope="row">
-            Number of Passangers
-          </th>
-          <td>
-            5
-          </td>
-        </tr>
-
-        <tr>
-          <th scope="row">
-            Vehicle number
-          </th>
-          <td>
-            CAD-4655
-          </td>
-        </tr>
-
-        <tr>
-          <th scope="row">
-            Vehicle type
-          </th>
-          <td>
-            Car
-          </td>
-        </tr>
-
-
-
-      </table>
-    </div>
-
-  </div>
-  <div class="col-md-5">
-    <div class="container">
-
-
-      <div
-        [ngClass]="{'border-danger':!test , 'border-success': test}"
-        class="card mb-3 text-center"
-        style="max-width: 18rem;">
-        <div class="card-header bg-transparent text-danger">
-          <i class="fa fa-car"></i>
-          Vehicle Section
+          <div *ngIf="request.status.status == 2">
+            Request is accepted
+          </div>
         </div>
-        <div class="card-body text-danger">
-          <p class="card-text">Vehicle is not assigned yet</p>
-          <button class="btn btn-danger">Add Vehicle</button>
-        </div>
+
+      <div class="container-fluid">
+        <table class="table table-sm">
+          <tr>
+            <th scope="row">
+              Refferance No
+            </th>
+            <td>
+              TRD-uok-{{request.refNo}}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">
+              Lecturer
+            </th>
+            <td>
+              {{request.lecturer}}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              Designation
+            </th>
+            <td>
+              {{request.position}}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">
+              Department/ Unit
+            </th>
+            <td>
+              {{request.dep_unit}}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">
+              Purpose
+            </th>
+            <td>
+              {{request.purpose}}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">
+              Funding method
+            </th>
+            <td>
+              {{request.fundingWay}}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">
+              Email
+            </th>
+            <td>
+              {{request.email}}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              Password
+            </th>
+            <td>
+              {{request.password}}
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">
+              Number of Passangers
+            </th>
+            <td>
+              {{request.num_passangers}}
+            </td>
+          </tr>
+
+
+
+
+        </table>
       </div>
 
-      <div [hidden]="!test" class="card border-danger mb-3 text-center" style="max-width: 18rem;">
-        <div class="card-header bg-transparent text-danger">
-          <i class="fa fa-car"></i>
-          Driver Section
+
+      <div class="row">
+        <div class="col-lg-4">
+          <button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#acceptReqModal">Accept</button>
         </div>
-        <div class="card-body text-danger">
-          <p class="card-text">Driver is not assigned yet</p>
-          <button class="btn btn-danger" data-toggle="modal" data-target="#addDriverModal">Add Driver</button>
+        <div class="col-lg-4">
+          <button type="button" class="btn btn-block btn-danger">Reject</button>
+        </div>
+
+        <div class="modal fade" id="acceptReqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" >Accept Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you shure that this request is possible?
+              </div>
+              <div class="modal-footer" ngClass="">
+                <button type="button"  class="btn btn-success" data-dismiss="modal" (click)="acceptReq()"><i class="fa fa-add"></i>Acept</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+          </div>
         </div>
 
 
-        <!--Add driver Modal -->
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div id="accordion">
+        <div class="card">
+          <div
+            class="card-header bg-dark text-white" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <h6 class="mb-0">
+              <i class="fa fa-map"></i>
+              Trip Section
+            </h6>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              <div>
+                <h6>Departure</h6>
+                <table class="table table-sm">
+
+                  <tr>
+
+                    <th scope="row">
+                      Date
+                    </th>
+                    <td>
+                      {{request.departure.pickupTime}}
+                    </td>
+                  </tr>
+
+                  <tr>
+
+                    <th scope="row">
+                      Time
+                    </th>
+                    <td>
+                      2017/12/8
+                    </td>
+                  </tr>
+
+                  <tr>
+
+                    <th scope="row">
+                      From
+                    </th>
+                    <td>
+                      {{request.departure.pickupPoint}}
+                    </td>
+                  </tr>
+
+                  <tr>
+
+                    <th scope="row">
+                      To
+                    </th>
+                    <td>
+                      {{request.departure.dropPoint}}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div>
+                <h6>Arrival</h6>
+                <table class="table table-sm">
+
+                  <tr>
+
+                    <th scope="row">
+                      Date
+                    </th>
+                    <td>
+                      {{request.arrival.dropTime}}
+                    </td>
+                  </tr>
+
+                  <tr>
+
+                    <th scope="row">
+                      Time
+                    </th>
+                    <td>
+                      2017/12/8
+                    </td>
+                  </tr>
+
+                  <tr>
+
+                    <th scope="row">
+                      From
+                    </th>
+                    <td>
+                      {{request.arrival.dropPoint}}
+                    </td>
+                  </tr>
+
+                  <tr>
+
+                    <th scope="row">
+                      To
+                    </th>
+                    <td>
+                      {{request.arrival.pickupPoint}}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div
+            [ngClass]="{'bg-danger':!vehicle, 'bg-success': vehicle}"
+            class="card-header text-white" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <h6 class="mb-0">
+              <i class="fa fa-car"></i>
+              Vehicle Section
+            </h6>
+          </div>
+
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div
+              [ngClass]="{'text-danger': !vehicle, 'text-success' : vehicle}"
+              class="card-body">
+              <div *ngIf="vehicle">
+                Vehicle no: {{vehicle}}
+              </div>
+              <div *ngIf="!vehicle">
+                <p class="card-text">
+                  Vehicle is not assigned yet
+                </p>
+                <button
+                  class="btn"
+                  [ngClass]="{'btn-danger':!vehicle, 'btn-success': vehicle}"
+                  data-toggle="modal" data-target="#addVehicleModal">Add Vehicle</button>
+              </div>
+
+             </div>
+          </div>
+        </div>
+
+
+
+        <div class="card">
+          <div
+            [ngClass]="{
+                      'bg-danger':!test, 'bg-success': test}"
+            class="card-header text-white" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <h6 class="mb-0">
+              <i class="fa fa-car"></i>
+              Driver Section
+            </h6>
+          </div>
+
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div
+              [ngClass]="{'text-danger':!test, 'text-success' : test}"
+              class="card-body">
+              <div *ngIf="test">
+                Driver name: {{test}}
+              </div>
+              <div *ngIf="!test">
+                <p class="card-text">
+
+                </p>
+                <button
+                  class="btn"
+                  [ngClass]="{'btn-danger':!test, 'btn-success': test}"
+                  data-toggle="modal" data-target="#addDriverModal">Add Driver</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!--add driver model-->
 
         <div class="modal fade" id="addDriverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -173,12 +351,108 @@
           </div>
         </div>
 
-        <!--///// Add driver Modal -->
+        <!--end of add driver model-->
+
+        <!--add vehicle model-->
+
+        <div class="modal fade" id="addVehicleModal" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="ModalLongTitle">Add Driver</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label for="">Select a Vehicle</label>
+                  </div>
+                  <div class="col-md-8">
+
+                    <kendo-autocomplete
+                      [data]="vehicleData"
+                      [filterable]="true"
+                      (filterChange)="handleFilter2($event)"
+                      class="trp-min-input trp-autocomplete"
+                      [(value)]="vehicle"
+                    >
+                    </kendo-autocomplete>
+                  </div>
+
+                </div>
+              </div>
+              <div class="modal-footer" ngClass="">
+                <button type="button"  class="btn btn-primary" data-dismiss="modal" (click)="addDriver()"><i class="fa fa-add"></i>Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--end of add vehicle model-->
+
+      </div>
+      <div class="container">
+
+        <!--
+              <div
+                [ngClass]="{'border-danger':!test , 'border-success': test}"
+                class="card mb-3 text-center"
+                style="max-width: 18rem;">
+                <div class="card-header bg-transparent text-danger">
+                  <i class="fa fa-car"></i>
+                  Vehicle Section
+                </div>
+                <div class="card-body text-danger">
+                  <p class="card-text">Vehicle is not assigned yet</p>
+                  <button class="btn btn-danger">Add Vehicle</button>
+                </div>
+              </div>
+
+              <div
+                [ngClass]="{'border-danger':!test , 'border-success': test}"
+                class="card  mb-3 text-center" style="max-width: 18rem;">
+                <div
+                  [ngClass]="{'text-danger':!test, 'text-success' : test}"
+                  class="card-header bg-transparent text-danger">
+                  <i class="fa fa-car"></i>
+                  Driver Section
+                </div>
+                <div
+                  [ngClass]="{'text-danger':!test, 'text-success' : test}"
+                  class="card-body">
+                  <div *ngIf="test">
+                    Driver name: {{test}}
+                  </div>
+                  <div *ngIf="!test">
+                    <p class="card-text">
+
+                    </p>
+                    <button
+                      class="btn"
+                      [ngClass]="{'btn-danger':!test, 'btn-success': test}"
+                      data-toggle="modal" data-target="#addDriverModal">Add Driver</button>
+                  </div>
+
+                </div>
+
+
+                &lt;!&ndash;Add driver Modal &ndash;&gt;
+
+
+
+                &lt;!&ndash;///// Add driver Modal &ndash;&gt;
+
+              </div>-->
+
 
       </div>
 
-
     </div>
-
   </div>
+
 </div>
+

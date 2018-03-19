@@ -33,4 +33,46 @@ router.get('/get_not_considered_requests',(req,res,next) => {
   })
 });
 
+router.get('/get/:refNo',(req,res,next)=> {
+  Request.get_request(req.params.refNo, (err,callback)=> {
+    if(err){
+      res.json({
+        success: false, msg: 'error occured'
+      });
+    }else{
+      res.json({
+        success: true, msg: callback
+      })
+    }
+  } )
+});
+
+router.get('/setDriver/:refNo',(req,res,next) => {
+  Request.setDriver(req.params.refNo,'mr. Gihan ekanayaka',(err,callback) => {
+    if(err){
+      res.json({
+        success: false, msg: 'error occured'
+      });
+    }else{
+      res.json({
+        success: true, msg: callback
+      });
+    }
+  })
+});
+
+router.get('/status/:refNo/:status',(req,res,next) => {
+  Request.change_status(req.params.refNo, req.params.status, (err, callback) => {
+    if(err){
+      res.json({
+        success: false, msg: 'error occured'
+      });
+    }else{
+      res.json({
+        success: true, msg: callback
+      });
+    }
+  });
+});
+
 module.exports = router;

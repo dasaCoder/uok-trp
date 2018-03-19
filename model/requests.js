@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const config = require('../config/database');
 const autoIncrement = require('mongoose-auto-increment');
+const Schema = mongoose.Schema;
 
 autoIncrement.initialize(mongoose.connection);
 
@@ -49,12 +50,14 @@ const RequestSchema = mongoose.Schema({
     type: Object
   },
   vehicle:{
-    type: Object
+    type: Schema.Types.ObjectId, ref: 'Vehicle'
   },
   driver:{
     type: Object
   }
 });
+
+const Vehicle = require('./vehicles');
 
 RequestSchema.plugin(autoIncrement.plugin, {model: 'Request', field: 'refNo'});
 const Request = module.exports = mongoose.model('Request',RequestSchema);
@@ -65,4 +68,22 @@ module.exports.add_request = function(newRequest, callback){
 
 module.exports.get_not_considered_requests = function (callback) {
   Request.find({'status.status':3},'refNo',callback);
+}
+
+module.exports.get_request = function (refNo, callback) {
+  Request.find({'refNo':refNo},callback);
+}
+
+module.exports.change_status = function (refNo, status, callback) {
+  let query = {'refNo': refNo};
+  console.log('refNO is : '+refNo + status);
+  Request.update(query, {'status.status' : status}, callback);
+}
+
+module.exports.setDriver = function(refNo, name, callback) {
+  vehicle = Vehicle.find({'vehicle_no':'CDD-46kkkk89'});
+  console.log(vehicle);
+  let query = {'refNo': refNo};
+  // let options = { multi: true };
+  Request.update(query, {'vehicle': vehicle._id}, callback);
 }
