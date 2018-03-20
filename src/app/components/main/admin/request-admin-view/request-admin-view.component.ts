@@ -31,6 +31,7 @@ export class RequestAdminViewComponent implements OnInit {
       .subscribe(response => {
         this.request = response['msg'][0];
       });
+
     adminService.getDrivers()
       .subscribe( response => {
         for (let x = 0; x < response['msg'].length; x++) {
@@ -62,6 +63,13 @@ export class RequestAdminViewComponent implements OnInit {
   }
   acceptReq() {
     this.requestService.change_status(this.request['refNo'], StatusEnum.ACCEPTED)
+      .subscribe( (response) => {
+        console.log('response is ' + response['msg']);
+      });
+    // alert('accepted');
+  }
+  rejectReq() {
+    this.requestService.change_status(this.request['refNo'], StatusEnum.REJECTED)
       .subscribe( (response) => {
         console.log('response is ' + response['msg']);
       });
