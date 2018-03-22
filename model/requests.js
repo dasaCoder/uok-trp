@@ -76,7 +76,7 @@ module.exports.get_request = function (refNo, callback) {
 
 module.exports.change_status = function (refNo, status, callback) {
   let query = {'refNo': refNo};
-  console.log('refNO is : '+refNo + status);
+  // console.log('refNO is : '+refNo + status);
   Request.update(query, {'status.status' : status}, callback);
 }
 
@@ -86,4 +86,20 @@ module.exports.setDriver = function(refNo, name, callback) {
   let query = {'refNo': refNo};
   // let options = { multi: true };
   Request.update(query, {'vehicle': vehicle._id}, callback);
+}
+
+module.exports.set_moredetails = function(params, callback) {
+  let query = { 'refNo': params.refNo };
+  Request.update(query,
+                    {
+                    'position': params.position,
+                    'purpose': params.purpose,
+                    'fundingWay': params.fundingWay
+                  },
+                callback
+                );
+}
+
+module.exports.setMoreInfo = function(){
+
 }

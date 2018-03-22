@@ -22,4 +22,7 @@ export class RequestService {
   change_status(refNo, status) {
     return this.http.get('http://localhost:3000/requests/status/' + refNo + '/' + status);
   }
+  add_more_details(request: Request) {
+    return this.http.post('http://localhost:3000/requests/more_details', request);
+  }
 }

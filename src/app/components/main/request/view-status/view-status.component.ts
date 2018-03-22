@@ -11,20 +11,34 @@ import { Request} from '../../../../classes/request';
 export class ViewStatusComponent implements OnInit {
   request: any = {};
   requests: Request[];
+  moreDetails: Request = new Request();
 
   constructor(private requestService: RequestService, private route: ActivatedRoute) {
     this.route.paramMap
       .subscribe(params => {
-        this.request = this.requestService.getOneRequest(+params.get('refNo'));
+        console.log(+params.get('refNo'));
+        requestService.getOneRequest(+params.get('refNo'))
+          .subscribe(response => {
+            this.request = response['msg'][0];
+            console.log(this.request['status']['status']);
+          });
       });
+
   }
   ngOnInit() {
    // this.requests = this.requestService.getALLRequests();
-  }
-  addRequest() {
     console.log(this.request);
     this.requestService.addRequest(this.request);
     // this.requests.push(this.request);
+  }
+  updateRequest() {
+    this.moreDetails.refNo = this.request.refNo;
+    console.log('updateRequest');
+    console.log(this.moreDetails);
+    this.requestService.add_more_details(this.moreDetails)
+      .subscribe(response => {
+        console.log(response);
+      });
   }
 
 }
