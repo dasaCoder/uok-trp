@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="table-responsive">
+    <table *ngIf="requests" class="table table-sm">
+      <thead>
+      <tr>
+        <th scope="col">ref no</th>
+        <th scope="col">Description</th>
+        <th scope="col">Departure time</th>
+        <th scope="col">Arrival time</th>
+        <th scope="col">Driver</th>
+        <th scope="col">Vehicle</th>
+        <th scope="col">Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let request of requests">
+        <td>TRD/{{request['refNo']}}</td>
+        <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['arrival']['dropPoint']}}</b></td>
+        <td>{{request['departure']['pickupTime']}}</td>
+        <td>{{request['arrival']['dropTime']}}</td>
+        <td><!--{{request['driver']['name']}}--></td>
+        <td><!--{{request['vehicle']['vehicle_no']}}--></td>
+        <td>
+          <button class="btn btn-success btn-sm" (click)="change_status(request['refNo'], 2)">Done</button>
+          <button class="btn btn-danger btn-sm" (click)="change_status(request['refNo'], 3)">Cancel</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

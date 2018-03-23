@@ -8,6 +8,7 @@ import {ViewStatusComponent} from './components/main/request/view-status/view-st
 import {AdminComponent} from './components/main/admin/admin.component';
 import {VehicleComponent} from './components/main/admin/vehicle/vehicle.component';
 import {RequestAdminViewComponent} from './components/main/admin/request-admin-view/request-admin-view.component';
+import {SheduleComponent} from './components/main/admin/shedule/shedule.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: 'vehicle/:vehicle_no' , component: VehicleComponent },
-      { path: 'request/:refNO' , component: RequestAdminViewComponent }
+      { path: 'request/:refNO' , component: RequestAdminViewComponent },
+      { path: '', component: SheduleComponent }
     ]
   }
 ];

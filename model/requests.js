@@ -77,7 +77,7 @@ module.exports.get_request = function (refNo, callback) {
 module.exports.change_status = function (refNo, status, callback) {
   let query = {'refNo': refNo};
   // console.log('refNO is : '+refNo + status);
-  Request.update(query, {'status.status' : status}, callback);
+  Request.update(query, {'status' : status}, callback);
 }
 
 module.exports.setDriver = function(refNo, name, callback) {
@@ -102,4 +102,8 @@ module.exports.set_moredetails = function(params, callback) {
 
 module.exports.setMoreInfo = function(){
 
+}
+
+module.exports.getActiveRequests = function (callback) {
+  Request.find({status : {"$in": [1,2,'1','2']} },'refNo departure arrival status driver vehicle',callback);
 }

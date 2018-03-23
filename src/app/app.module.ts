@@ -33,6 +33,7 @@ import {VehicleService} from './services/vehicle.service';
 import { VehicleComponent } from './components/main/admin/vehicle/vehicle.component';
 import { RequestAdminViewComponent } from './components/main/admin/request-admin-view/request-admin-view.component';
 import {AdminService} from './services/admin.service';
+import { SheduleComponent } from './components/main/admin/shedule/shedule.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {AdminService} from './services/admin.service';
     AdminComponent,
     VehicleComponent,
     RequestAdminViewComponent,
+    SheduleComponent,
   ],
   imports: [
     BrowserModule,

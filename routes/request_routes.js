@@ -87,6 +87,20 @@ router.post('/more_details', (req,res,next) => {
       })
     }
   })
+});
+
+router.get('/active_requests', (req,res,next) => {
+  Request.getActiveRequests((err, callback)=> {
+    if(err){
+      res.json({
+        success: false, msg: 'error occured'
+      })
+    }else{
+      res.json({
+        success: true, msg: callback
+      })
+    }
+  })
 })
 
 module.exports = router;
