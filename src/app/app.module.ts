@@ -34,6 +34,7 @@ import { VehicleComponent } from './components/main/admin/vehicle/vehicle.compon
 import { RequestAdminViewComponent } from './components/main/admin/request-admin-view/request-admin-view.component';
 import {AdminService} from './services/admin.service';
 import { SheduleComponent } from './components/main/admin/shedule/shedule.component';
+import { StatusMsgComponent } from './components/main/home/request-btns/check-request/status-msg/status-msg.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { SheduleComponent } from './components/main/admin/shedule/shedule.compon
     VehicleComponent,
     RequestAdminViewComponent,
     SheduleComponent,
+    StatusMsgComponent,
   ],
   imports: [
     BrowserModule,

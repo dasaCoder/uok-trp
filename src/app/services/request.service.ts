@@ -28,4 +28,8 @@ export class RequestService {
   get_active_req(){
     return this.http.get('http://localhost:3000/requests/active_requests');
   }
+  get_status(refNo, password) {
+    console.log(refNo,password);
+    return this.http.get('http://localhost:3000/requests/getStatus/' + refNo + '/' + password);
+  }
 }

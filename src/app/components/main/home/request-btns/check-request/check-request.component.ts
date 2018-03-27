@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {RequestService} from '../../../../../services/request.service';
 
 @Component({
   selector: 'app-check-request',
@@ -6,10 +7,8 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./check-request.component.css']
 })
 export class CheckRequestComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit(){
   }
+  constructor() {}
 
 }

@@ -101,6 +101,20 @@ router.get('/active_requests', (req,res,next) => {
       })
     }
   })
+});
+
+router.get('/getStatus/:refNo/:password',(req,res,next) =>{
+  Request.getStatusReq(req.params, (err, callback)=>{
+   if(err){
+     res.json({
+       success: false, msg: 'error occured'
+     });
+   }else{
+     res.json({
+       success: true, msg: callback
+     })
+   }
+  })
 })
 
 module.exports = router;

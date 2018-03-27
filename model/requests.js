@@ -107,3 +107,8 @@ module.exports.setMoreInfo = function(){
 module.exports.getActiveRequests = function (callback) {
   Request.find({status : {"$in": [1,2,'1','2']} },'refNo departure arrival status driver vehicle',callback);
 }
+
+module.exports.getStatusReq = function (params, callback) {
+  let query = {'refNo': params.refNo, 'password': params.password};
+  Request.find(query,'status',callback);
+}
