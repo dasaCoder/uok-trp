@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const Driver = require('../model/driver');
 const Vehicle = require('../model/vehicles');
+const Request = require('../model/requests')
 router.post('/driver',(req,res,next)=>{
   let newDriver = new Driver(req.body);
   Driver.addDriver(newDriver , (err,callback) => {
@@ -50,6 +51,21 @@ router.get('/vehicle/admin_to_request',(req,res,next)=>{
       });
     }
   })
+});
+
+router.get('/vehicle/set_vehicle',(req, res, next) => {
+  Request.set_vehicle(req.query.refNo, req.query.vehicle_no, (err, callback)=> {
+    if(err){
+      res.json({
+        success: false, msg: 'error occured'
+      });
+    }else{
+      res.json({
+        success: true, msg: callback
+      })
+    }
+  });
+  // console.log(req.query.vehicle_no);
 })
 
 module.exports = router;

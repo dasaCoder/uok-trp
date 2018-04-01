@@ -71,7 +71,7 @@ module.exports.get_not_considered_requests = function (callback) {
 }
 
 module.exports.get_request = function (refNo, callback) {
-  Request.find({'refNo':refNo},callback);
+  Request.find({'refNo':refNo},callback).populate({path:'vehicle',select:'vehicle_no'});
 }
 
 module.exports.change_status = function (refNo, status, callback) {
@@ -100,8 +100,21 @@ module.exports.set_moredetails = function(params, callback) {
                 );
 }
 
-module.exports.setMoreInfo = function(){
-
+module.exports.setMoreInfo = function(params, callback){
+  console.log(params);
+  Request.findOneAndUpdate({'refNo':params.refNo}, {'$set':{
+      'position': params.position,
+      'purpose': params.purpose,
+      'fundingWay': params.fundingWay,
+    }})
+    .exec(function (err, request) {
+        if(err){
+          console.log(err);
+          res.status(500).send(err);
+        }else {
+          res.status(200).send(request);
+        }
+  })
 }
 
 module.exports.getActiveRequests = function (callback) {
@@ -111,4 +124,14 @@ module.exports.getActiveRequests = function (callback) {
 module.exports.getStatusReq = function (params, callback) {
   let query = {'refNo': params.refNo, 'password': params.password};
   Request.find(query,'status',callback);
+}
+
+module.exports.set_vehicle = function (refNo, vehicle_no, callback) {
+  Vehicle.find({'vehicle_no': vehicle_no}, '_id', function (err, data) {
+    let vehicle = data[0];
+    let query = { 'refNo': refNo};
+    Request.findOneAndUpdate(query, {$set: {'vehicle': vehicle._id} }, { new: true }, callback);
+  });
+  //console.log(vehicle);
+
 }

@@ -43,8 +43,8 @@ router.get('/all_vehicles',(req,res,next)=>{
   });
 });
 
-router.get('/get_vehicle_on_date/:date',(req,res,next)=>{
-  Vehicle.get_vehicle_on_day(req.params.date,(err,callback)=>{
+router.get('/get_vehicle_on_date',(req,res,next)=>{
+  Vehicle.get_vehicle_on_day(req.query.date,(err,callback)=>{
     if(err){
       res.json({
         success: false, msg: 'error occured'
@@ -54,7 +54,7 @@ router.get('/get_vehicle_on_date/:date',(req,res,next)=>{
         success: true, msg: callback
       })
     }
-  })
+  });
 });
 
 

@@ -5,16 +5,16 @@
 
         <div
           [ngClass]="{
-              'alert-danger': request.status.status == 3,
-              'alert-warning': request.status.status == 2,
-              'alert-success': request.status.status == 0
+              'alert-danger': request.status == 3,
+              'alert-warning': request.status == 2,
+              'alert-success': request.status == 0
             }"
           class="alert " role="alert">
-          <div *ngIf="request.status.status == 3">
+          <div *ngIf="request.status == 3">
             Request is not being reviewed
           </div>
 
-          <div *ngIf="request.status.status == 2">
+          <div *ngIf="request.status == 2">
             Request is accepted
           </div>
         </div>
@@ -268,7 +268,7 @@
         </div>
         <div class="card">
           <div
-            [ngClass]="{'bg-danger':!vehicle, 'bg-success': vehicle}"
+            [ngClass]="{'bg-danger':!request.vehicle, 'bg-success': request.vehicle}"
             class="card-header text-white" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             <h6 class="mb-0">
               <i class="fa fa-car"></i>
@@ -278,18 +278,18 @@
 
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
             <div
-              [ngClass]="{'text-danger': !vehicle, 'text-success' : vehicle}"
+              [ngClass]="{'text-danger': !request.vehicle, 'text-success' : request.vehicle}"
               class="card-body">
-              <div *ngIf="vehicle">
-                Vehicle no: {{vehicle}}
+              <div *ngIf="request.vehicle">
+                Vehicle no: {{request.vehicle.vehicle_no}}
               </div>
-              <div *ngIf="!vehicle">
+              <div *ngIf="!request.vehicle">
                 <p class="card-text">
                   Vehicle is not assigned yet
                 </p>
                 <button
                   class="btn"
-                  [ngClass]="{'btn-danger':!vehicle, 'btn-success': vehicle}"
+                  [ngClass]="{'btn-danger':!request.vehicle, 'btn-success': request.vehicle}"
                   data-toggle="modal" data-target="#addVehicleModal">Add Vehicle</button>
               </div>
 
@@ -378,7 +378,7 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="ModalLongTitle">Add Driver</h5>
+                <h5 class="modal-title" id="ModalLongTitle">Add Vehicle</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -393,9 +393,10 @@
                     <kendo-autocomplete
                       [data]="vehicleData"
                       [filterable]="true"
+                      (valueChange)="set_vehicle_no($event)"
                       (filterChange)="handleFilter2($event)"
                       class="trp-min-input trp-autocomplete"
-                      [(value)]="vehicle"
+                      [value]="vehicle_no"
                     >
                     </kendo-autocomplete>
                   </div>
@@ -403,7 +404,7 @@
                 </div>
               </div>
               <div class="modal-footer" ngClass="">
-                <button type="button"  class="btn btn-primary" data-dismiss="modal" (click)="addDriver()"><i class="fa fa-add"></i>Add</button>
+                <button type="button"  class="btn btn-primary" data-dismiss="modal" (click)="set_vehicle()"><i class="fa fa-add"></i>Add</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
               </div>

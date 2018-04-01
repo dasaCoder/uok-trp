@@ -18,7 +18,8 @@ export class StatusMsgComponent implements OnInit {
   getStatus() {
     this.requestService.get_status(this.refNo, this.password)
       .subscribe(response => {
-        status = response['msg'][0]['status'];
+        this.status = response['msg'][0]['status'];
+        console.log(this.status);
       });
   }
 

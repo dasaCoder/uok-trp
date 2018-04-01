@@ -16,4 +16,7 @@ export class AdminService {
   serDriver() {
     return this.http.get('http://localhost:3000/');
   }
+  set_vehicle(refNo, vehicle_no) {
+    return this.http.get(`http://localhost:3000/admin/vehicle/set_vehicle/?refNo=${refNo}&vehicle_no=${vehicle_no}`);
+  }
 }

@@ -32,7 +32,12 @@ module.exports.getVehicleByNo = function(vehicle_no, callback) {
 }
 
 module.exports.get_vehicle_on_day = function(date, callback){
-  Vehicle.find({'trips.departure_time': date},'vehicle_no',callback);
+  Vehicle.find({'trips.departure_time': date},'vehicle_no type',callback)
+    .where('trips.departure_time').equals(date).or()
+    .where('trips.departure_time').lt(date)
+    .where('trips.arrival_time').gt(date);
+
+  // {$and:[{'trips.departure_time':{$lte:'2018/3/11'}},{'trips.arrival_time':{$gte:'2018/03/17'}}]}
 }
 
 module.exports.addVehicle = function (newVehicle, callback) {
@@ -49,4 +54,8 @@ module.exports.get_vehicle_list = function(callback){
 
 module.exports.get_admin_to_reqeust = function (callback) {
   Vehicle.find({},{'_id' : 0,'vehicle_no' : 1},callback);
+}
+// we used to set arrival time and departure time of trip
+module.exports.set_trip = function (trip_plan, callback) {
+
 }

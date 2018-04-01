@@ -17,7 +17,8 @@ export class RequestAdminViewComponent implements OnInit {
   public vehicleSource: string[] = [];
   public vehicleData: Array<string>;
   test;
-  vehicle;
+  public vehicle_no;
+  public isSetVehicle = false;
   refNo;
   request: Request = new Request() ;
   constructor(private route: ActivatedRoute, private requestService: RequestService, private adminService: AdminService) {
@@ -30,6 +31,7 @@ export class RequestAdminViewComponent implements OnInit {
     requestService.getOneRequest(this.refNo)
       .subscribe(response => {
         this.request = response['msg'][0];
+        console.log(response);
       });
 
     adminService.getDrivers()
@@ -38,7 +40,7 @@ export class RequestAdminViewComponent implements OnInit {
           this.source[x] = (response['msg'][x]['name']);
         }
        // this.source = response['msg'];
-        console.log(this.source);
+        // console.log(this.source);
         this.data = this.source.slice();
       });
     adminService.getVehicle_to_req()
@@ -46,6 +48,7 @@ export class RequestAdminViewComponent implements OnInit {
         for (let y = 0; y < response['msg'].length; y++) {
           this.vehicleSource[y] = response['msg'][y]['vehicle_no'];
         }
+        this.vehicleData = this.vehicleSource.slice();
       }));
   }
 
@@ -74,6 +77,20 @@ export class RequestAdminViewComponent implements OnInit {
         console.log('response is ' + response['msg']);
       });
     // alert('accepted');
+  }
+  set_vehicle() {
+    if (this.vehicle_no != null) {
+      this.adminService.set_vehicle(this.refNo, this.vehicle_no)
+        .subscribe(response => {
+          console.log(response);
+          if (response['msg']){
+            this.isSetVehicle = true;
+          }
+        });
+    }
+  }
+  set_vehicle_no(value: any) {
+    this.vehicle_no = value;
   }
 
 

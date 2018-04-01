@@ -76,7 +76,8 @@ router.get('/status/:refNo/:status',(req,res,next) => {
 });
 
 router.post('/more_details', (req,res,next) => {
-  Request.set_moredetails(req.params, (err, callback ) => {
+
+  Request.set_moredetails(req.body, (err, callback ) => {
     if(err){
       res.json({
         success: false, msg: 'error occured'
