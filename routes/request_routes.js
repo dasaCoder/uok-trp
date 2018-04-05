@@ -47,6 +47,21 @@ router.get('/get/:refNo',(req,res,next)=> {
   } )
 });
 
+router.get('/get_for_user/:refNo/:password',(req,res,next)=> {
+  // console.log(req.params);
+  Request.get_req_for_user(req.params, (err,callback)=> {
+    if(err){
+      res.json({
+        success: false, msg: 'error occured'
+      });
+    }else{
+      res.json({
+        success: true, msg: callback
+      })
+    }
+  } )
+});
+
 router.get('/setDriver/:refNo',(req,res,next) => {
   Request.setDriver(req.params.refNo,'mr. Gihan ekanayaka',(err,callback) => {
     if(err){
@@ -105,6 +120,7 @@ router.get('/active_requests', (req,res,next) => {
 });
 
 router.get('/getStatus/:refNo/:password',(req,res,next) =>{
+  // console.log(req.params);
   Request.getStatusReq(req.params, (err, callback)=>{
    if(err){
      res.json({

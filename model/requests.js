@@ -74,6 +74,10 @@ module.exports.get_request = function (refNo, callback) {
   Request.find({'refNo':refNo},callback).populate({path:'vehicle',select:'vehicle_no'});
 }
 
+module.exports.get_req_for_user = function (params, callback) {
+  Request.find({'refNo':params.refNo, 'password': params.password},callback).populate({path:'vehicle',select:'vehicle_no'});
+}
+
 module.exports.change_status = function (refNo, status, callback) {
   let query = {'refNo': refNo};
   // console.log('refNO is : '+refNo + status);
@@ -122,7 +126,7 @@ module.exports.getActiveRequests = function (callback) {
 }
 
 module.exports.getStatusReq = function (params, callback) {
-  let query = {'refNo': params.refNo, 'password': params.password};
+  let query = {$and:[{'refNo':params.refNo},{'password':params.password}]};
   Request.find(query,'status',callback);
 }
 

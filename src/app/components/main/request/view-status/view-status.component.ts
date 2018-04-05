@@ -13,6 +13,7 @@ export class ViewStatusComponent implements OnInit {
   requests: Request[];
   moreDetails: Request = new Request();
 
+
   constructor(private requestService: RequestService, private route: ActivatedRoute) {
     this.route.paramMap
       .subscribe(params => {
@@ -40,5 +41,6 @@ export class ViewStatusComponent implements OnInit {
         console.log(response);
       });
   }
+
 
 }

@@ -4,9 +4,9 @@
 
       <div class="card"  [ngSwitch]=step @slide >
 
-      <div class="trp-form-div card-body">
+      <div class="trp-form-div card-body" #formDiv>
 
-        <h1 class="trp-title card-title">Plan a journey</h1>
+        <h2 class="trp-title card-title">Plan a journey</h2>
         <div class="row trp-form-bar">
           <div class="col-md-4 col-sm-3 col-4 trp-align-center {{isActive(1)}}" >
             <fa name="location-arrow" inverse="true" size="1x" > </fa>
@@ -20,27 +20,37 @@
 
         </div>
 
-
+        <div class="alert alert-danger" role="alert" style="margin-top: 8px" [hidden]="!formD.isError">
+          <strong>Error! </strong> {{formD.errMsg.toString()}}
+        </div>
         <div id="step1"  *ngSwitchCase="1"  >
+
           <div class="">
             <label for="pickupPoint">Pickup Point</label>
-            <input type="text"  autocomplete="off" placeholder="search for pickup location" autocapitalize="off" id="pickupPoint" name="pickupPoint" class="trp-min-input" #search>
+            <input type="text"  autocomplete="off" placeholder="search for pickup location" autocapitalize="off" id="pickupPoint" name="pickupPoint" class="trp-min-input" #search required>
           </div>
 
           <div class="">
             <label for="dropPoint">Drop Point</label>
-            <input type="text"  autocomplete="off" placeholder="search for drop location" autocapitalize="off" id="dropPoint" name="dropPoint" class="trp-min-input" #search2>
+            <input type="text"  autocomplete="off" placeholder="search for drop location" autocapitalize="off" id="dropPoint" name="dropPoint" class="trp-min-input" #search2 required>
           </div>
           <div class="  ">
 
             <label for="form-numOfPassanger">Number of Passangers</label>
-            <input class="trp-min-input " type="number" [(ngModel)]="formData.num_passangers" id="form-numOfPassanger" name="numOfPassangers">
+            <input class="trp-min-input " type="number" [(ngModel)]="formData.num_passangers" id="form-numOfPassanger" name="numOfPassangers" required>
           </div>
 
 
 
           <div style="text-align: center; padding:0 10px 0 10px ">
-            <Button type="button" class="trp-btn" (click)="nextStep(2)">Next <fa name="arrow-right" inverse="true"> </fa></Button>
+            <Button type="button"
+                    [disabled]="!arrival.pickPointAddress || !departure.pickPointAddress || !formData.num_passangers"
+                    class="trp-btn"
+                    [class.btn-disabled]="!arrival.pickPointAddress || !departure.pickPointAddress || !formData.num_passangers"
+                    (click)="nextStep(2)"
+            >
+              Next <fa name="arrow-right" inverse="true"> </fa>
+            </Button>
           </div>
         </div>
 
@@ -54,6 +64,7 @@
                    [owlDateTimeTrigger]="dtPicker1"
                    [owlDateTime]="dtPicker1"
                    class="trp-min-input"
+                   [min]="today"
             >
             <owl-date-time
               #dtPicker1></owl-date-time>
@@ -65,6 +76,7 @@
                    [owlDateTimeTrigger]="dtPicker2"
                    [owlDateTime]="dtPicker2"
                    class="trp-min-input"
+                   [min]="departure.pickupTime"
             >
             <owl-date-time
               #dtPicker2
@@ -75,7 +87,14 @@
 
           <div style="text-align: center; padding:0 10px 0 10px ">
 
-            <Button type="button" class="trp-btn" (click)="nextStep(3)">Next <fa name="arrow-right" inverse="true"> </fa></Button>
+            <Button type="button"
+                    class="trp-btn"
+                    [disabled]="!departure.pickupTime || !arrival.dropTime"
+                    [class.btn-disabled]="!departure.pickupTime || !arrival.dropTime"
+                    (click)="nextStep(3)"
+            >
+              Next <fa name="arrow-right" inverse="true"> </fa>
+            </Button>
           </div>
         </div>
 
@@ -106,7 +125,7 @@
 
           <div class="  ">
             <label for="form-password">Password</label>
-            <input class=" trp-min-input " type="password" [(ngModel)]="formData.password" id="form-password" name="password">
+            <input class=" trp-min-input " type="password" minlength="11" [(ngModel)]="formData.password" id="form-password" name="password">
           </div>
 
           <div class="  ">
@@ -115,7 +134,12 @@
           </div>
           <div style="text-align: center; padding:0 10px 0 10px ">
             <Button type="button" class="trp-btn" (click)="nextStep(2)"><fa name="arrow-left" inverse="true"> </fa> Back</Button>
-            <Button type="button" class="trp-btn" (click)="formSubmit()">Request <fa name="arrow-right" inverse="true"> </fa></Button>
+            <Button
+              type="button"
+              class="trp-btn"
+              (click)="validateForm()"
+
+            >Request <fa name="arrow-right" inverse="true"> </fa></Button>
           </div>
         </div>
 

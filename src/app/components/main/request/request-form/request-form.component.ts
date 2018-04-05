@@ -38,7 +38,7 @@ export class RequestFormComponent implements OnInit {
    ];
    isGood = true;
    step = 1;
-
+   today = new Date();
    formData: Request = new Request();
    arrival: Trip = new Trip();
    departure: Trip = new Trip();
@@ -47,6 +47,10 @@ export class RequestFormComponent implements OnInit {
    endtime ;
    jstartTime;*/
    rePassword = '';
+   formD: any = {
+     isError: false,
+     errMsg: 'no Error'
+   };
 
 
   @ViewChild('search') public searchElement: ElementRef;
@@ -104,21 +108,65 @@ export class RequestFormComponent implements OnInit {
 
   }
 
+  validateEmail(email): boolean {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  validateForm() {
+    // checking the fields are empty
+    if ( !this.formData.lecturer || !this.formData.dep_unit || !this.formData.email || !this.formData.password ) {
+      this.formD.isError = true;
+      this.formD.errMsg = 'Please fill all requird fields';
+      alert(this.formD.errMsg);
+    } else {
+      // validate the email
+      // console.log(this.validateEmail(this.formData.email));
+      if ( this.validateEmail(this.formData.email)) {
+        // check whether the password is matchin
+        if ( this.formData.password === this.rePassword) {
+          // check the size of the password in healthy
+          if ( this.formData.password.length < 5 ) {
+            this.formD.isError = true;
+            this.formD.errMsg = 'Password is too short';
+            // alert('password is too short');
+            this.formData.password = '';
+            this.rePassword = '';
+          } else {
+            this.formSubmit();
+          }
+
+        } else {
+          this.formData.password = '';
+          this.rePassword = '';
+          this.formD.isError = true;
+          this.formD.errMsg = 'Passwords are not matching';
+          // alert('password not matched');
+        }
+      } else {
+        this.formD.isError = true;
+        this.formD.errMsg = 'Please enter valid email address';
+        // alert('Please enter valid email');
+        this.formData.email = '';
+      }
+
+    }
+  }
 
   formSubmit() {
     /*this.formData.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;*/
     /*this.formData.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;*/
     // const x = <Request> this.formData;
     // this.formData.refNo =
-    this.formData.arrival = this.arrival;
-    this.formData.departure = this.departure;
-    this.formData.isPermited = false;
     this.formData.status = {
       status: StatusEnum.NOT_CONSIDERED
     };
-     console.log(this.formData);
-     this.requestService.addRequest(this.formData);
-
+    this.formData.arrival = this.arrival;
+    this.formData.departure = this.departure;
+    this.formData.isPermited = false;
+    console.log(this.formData);
+    // add data to the database
+    this.requestService.addRequest(this.formData);
   }
 
   handleFilter(value) {

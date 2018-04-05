@@ -7,7 +7,10 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 export class RequestService {
   constructor(private http: HttpClient) { }
   getOneRequest(refNo) {
-    return this.http.get('http://localhost:3000/requests/get/' + refNo );
+    return this.http.get(`http://localhost:3000/requests/get/${refNo}` );
+  }
+  getOneReq_for_user(refNo, password) {
+    return this.http.get(`http://localhost:3000/requests/get_for_user/${refNo}/${password}` );
   }
   addRequest(request: Request) {
     // this.requests.push(request);
@@ -29,7 +32,7 @@ export class RequestService {
     return this.http.get('http://localhost:3000/requests/active_requests');
   }
   get_status(refNo, password) {
-    console.log(refNo, password);
+    // console.log(refNo, password);
     return this.http.get('http://localhost:3000/requests/getStatus/' + refNo + '/' + password);
   }
 

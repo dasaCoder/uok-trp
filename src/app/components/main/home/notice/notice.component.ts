@@ -27,7 +27,6 @@ export class NoticeComponent implements OnInit {
     this.newSelectedDate.month = this.selectedDate.getMonth() + 1;
     this.newSelectedDate.year = this.selectedDate.getFullYear();
 
-
     this.availableVehicles = this.availableVehicleService.get_free_vehicles(`${this.newSelectedDate.date}/${this.newSelectedDate.month}/${this.newSelectedDate.year}`);
     console.log(this.availableVehicles);
       }
