@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {RequestService} from '../../../../services/request.service';
 import {ActivatedRoute} from '@angular/router';
 import { Request} from '../../../../classes/request';
+import {AuthService} from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-view-status',
@@ -11,10 +12,11 @@ import { Request} from '../../../../classes/request';
 export class ViewStatusComponent implements OnInit {
   request: any = {};
   requests: Request[];
+  isPermited = false;
   moreDetails: Request = new Request();
 
 
-  constructor(private requestService: RequestService, private route: ActivatedRoute) {
+  constructor(private requestService: RequestService, private route: ActivatedRoute, private authService: AuthService) {
     this.route.paramMap
       .subscribe(params => {
         console.log(+params.get('refNo'));
@@ -24,7 +26,7 @@ export class ViewStatusComponent implements OnInit {
             console.log(this.request['status']['status']);
           });
       });
-
+    this.isPermited = this.authService.isLoggedIn();
   }
   ngOnInit() {
    // this.requests = this.requestService.getALLRequests();

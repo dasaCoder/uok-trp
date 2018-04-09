@@ -35,6 +35,7 @@ import { RequestAdminViewComponent } from './components/main/admin/request-admin
 import {AdminService} from './services/admin.service';
 import { SheduleComponent } from './components/main/admin/shedule/shedule.component';
 import { StatusMsgComponent } from './components/main/home/request-btns/check-request/status-msg/status-msg.component';
+import {AuthService} from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { StatusMsgComponent } from './components/main/home/request-btns/check-re
     AvailableVehicleService,
     RequestService,
     VehicleService,
-    AdminService
+    AdminService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

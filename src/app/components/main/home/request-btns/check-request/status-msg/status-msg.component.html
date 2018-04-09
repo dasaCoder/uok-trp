@@ -33,8 +33,10 @@
 
       </div>
       <div *ngSwitchDefault class="row">
+
+
         <div class="col-md-10">
-          <form class="form-horizontal">
+          <form class="form-horizontal" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
             <fieldset>
 
 
@@ -43,7 +45,7 @@
                 <div class="col-md-12">
                   <div class="input-group">
                     <span class="input-group-addon">TRD</span>
-                    <input id="redNo" name="redNo" [(ngModel)]="refNo" class="form-control input-md" placeholder="Ex: - 5" type="number" required="">
+                    <input id="redNo" name="refNo" autofocus [(ngModel)]="refNo" class="form-control input-md" placeholder="Ex: - 5" type="text" required="">
                   </div>
 
                 </div>
@@ -58,11 +60,12 @@
                 </div>
               </div>
               <div class="form-group text-center">
-                <button class="btn trp-btn" (click)="getStatus()">View</button>
+                <button class="btn trp-btn">View</button>
               </div>
 
             </fieldset>
           </form>
+          <button (click)="logout()">ok</button>
         </div>
         <div class="col-md-2">
 

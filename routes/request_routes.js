@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 const Request = require('../model/requests');
@@ -55,9 +56,26 @@ router.get('/get_for_user/:refNo/:password',(req,res,next)=> {
         success: false, msg: 'error occured'
       });
     }else{
-      res.json({
-        success: true, msg: callback
-      })
+
+      if(!callback[0]){
+        res.json({
+          success: true, msg: 0
+        })
+      } else {
+
+        var content = JSON.stringify(callback[0]);
+
+        var token = jwt.sign(content,'uoktrd');
+
+
+        res.json({
+          success: true, msg: 1, token: token
+        });
+      }
+
+      /*res.json({
+        success: true, msg: callback[0]
+      })*/
     }
   } )
 });
@@ -119,7 +137,7 @@ router.get('/active_requests', (req,res,next) => {
   })
 });
 
-router.get('/getStatus/:refNo/:password',(req,res,next) =>{
+/*router.get('/getStatus/:refNo/:password',(req,res,next) =>{
   // console.log(req.params);
   Request.getStatusReq(req.params, (err, callback)=>{
    if(err){
@@ -132,6 +150,41 @@ router.get('/getStatus/:refNo/:password',(req,res,next) =>{
      })
    }
   })
+});*/
+
+router.post('/getStatus', (req,res,next) => {
+  // console.log(req);
+  Request.getStatusReq(req.body, (err, callback) => {
+    if(err){    // if some error occured return 10
+      res.json({
+        success: false, isLogged: 0
+      })
+    } else {
+
+      if(!callback[0]){ // checks wherther the request is exixts
+        res.json({
+          success: true, isLogged: 0 // if no return 0
+        })
+      } else {
+
+        var content = JSON.stringify(callback[0]);
+
+        var token = jwt.sign(content,'uoktrd');
+
+
+        res.json({
+          success: true, isLogged: 1, token: token
+        });
+      }
+    }
+  })
+})
+
+router.get('/test',(req,res,next) => {
+  Request.authTest(5, (err, request) => {
+    if(err) console.log(err);
+    console.log(request);
+  });
 })
 
 module.exports = router;

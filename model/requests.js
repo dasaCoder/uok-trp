@@ -75,7 +75,7 @@ module.exports.get_request = function (refNo, callback) {
 }
 
 module.exports.get_req_for_user = function (params, callback) {
-  Request.find({'refNo':params.refNo, 'password': params.password},callback).populate({path:'vehicle',select:'vehicle_no'});
+  Request.find({'refNo':params.refNo, 'password': params.password}, 'lecturer refNo' ,callback).populate({path:'vehicle',select:'vehicle_no'});
 }
 
 module.exports.change_status = function (refNo, status, callback) {
@@ -127,7 +127,7 @@ module.exports.getActiveRequests = function (callback) {
 
 module.exports.getStatusReq = function (params, callback) {
   let query = {$and:[{'refNo':params.refNo},{'password':params.password}]};
-  Request.find(query,'status',callback);
+  Request.find(query,'status lecturer refNo',callback);
 }
 
 module.exports.set_vehicle = function (refNo, vehicle_no, callback) {
@@ -136,6 +136,11 @@ module.exports.set_vehicle = function (refNo, vehicle_no, callback) {
     let query = { 'refNo': refNo};
     Request.findOneAndUpdate(query, {$set: {'vehicle': vehicle._id} }, { new: true }, callback);
   });
+
+
   //console.log(vehicle);
 
+}
+module.exports.authTest = function (id, callback ) {
+  Request.find({'refNo':1},'refNo',callback)
 }
