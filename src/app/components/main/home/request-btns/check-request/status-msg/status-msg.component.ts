@@ -26,7 +26,10 @@ export class StatusMsgComponent implements OnInit {
           this.isLogged = true;
           localStorage.setItem('token', response['token']);
           this.status = this.authService.get_status();
+          console.log(this.status);
+
         }
+        console.log(response);
       });
   }
   logout() {

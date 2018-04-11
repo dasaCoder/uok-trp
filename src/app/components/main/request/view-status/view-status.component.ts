@@ -23,7 +23,7 @@ export class ViewStatusComponent implements OnInit {
         requestService.getOneRequest(+params.get('refNo'))
           .subscribe(response => {
             this.request = response['msg'][0];
-            console.log(this.request['status']['status']);
+            // console.log(this.request['status']);
           });
       });
     this.isPermited = this.authService.isLoggedIn();
@@ -34,12 +34,26 @@ export class ViewStatusComponent implements OnInit {
     this.requestService.addRequest(this.request);
     // this.requests.push(this.request);
   }
+ /*
+  update more details about request
+  */
   updateRequest() {
     this.moreDetails.refNo = this.request.refNo;
-    console.log('updateRequest');
-    console.log(this.moreDetails);
+    this.moreDetails.status = '2';
+    // console.log('updateRequest');
+    // console.log(this.moreDetails);
     this.requestService.add_more_details(this.moreDetails)
       .subscribe(response => {
+        if (response['success'] && response['msg']['nModified'] === 1) {
+          alert('success');
+          this.request.position = this.moreDetails.position;
+          this.request.fundingWay = this.moreDetails.fundingWay;
+          this.request.purpose = this.moreDetails.purpose;
+          this.request.status = this.moreDetails.status;
+        } else {
+          alert('error occured');
+        }
+        // console.log('rsponst is');
         console.log(response);
       });
   }

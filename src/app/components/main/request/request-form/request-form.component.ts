@@ -6,6 +6,7 @@ import { NgSwitch } from '@angular/common';
 import {slide} from '../../../../animations';
 import {RequestService} from '../../../../services/request.service';
 import {StatusEnum} from '../../../../classes/status';
+import {Route, Router} from '@angular/router';
 
 
 @Component({
@@ -42,10 +43,6 @@ export class RequestFormComponent implements OnInit {
    formData: Request = new Request();
    arrival: Trip = new Trip();
    departure: Trip = new Trip();
-   /*dateTime ;
-   enddate ;
-   endtime ;
-   jstartTime;*/
    rePassword = '';
    formD: any = {
      isError: false,
@@ -55,7 +52,12 @@ export class RequestFormComponent implements OnInit {
 
   @ViewChild('search') public searchElement: ElementRef;
   @ViewChild('search2') public searchElement2: ElementRef;
-  constructor(private  mapsAPILoader: MapsAPILoader, private ngZone: NgZone , private requestService: RequestService) {
+  constructor(
+    private  mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone ,
+    private requestService: RequestService,
+    private router: Router
+  ) {
     // this.formData = new Request();
     this.data = this.source.slice();
   }
@@ -158,15 +160,21 @@ export class RequestFormComponent implements OnInit {
     /*this.formData.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;*/
     // const x = <Request> this.formData;
     // this.formData.refNo =
-    this.formData.status = {
-      status: StatusEnum.NOT_CONSIDERED
-    };
+    this.formData.status = '0';
     this.formData.arrival = this.arrival;
     this.formData.departure = this.departure;
     this.formData.isPermited = false;
-    console.log(this.formData);
+     console.log(this.formData);
     // add data to the database
-    this.requestService.addRequest(this.formData);
+    this.requestService.addRequest(this.formData)
+      .subscribe(response => {
+        if (!response['success']) {
+          alert('Error occured');
+        } else {
+          alert('Requested!');
+          this.router.navigate(['']);
+        }
+      });
   }
 
   handleFilter(value) {

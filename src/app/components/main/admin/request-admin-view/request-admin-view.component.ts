@@ -65,9 +65,9 @@ export class RequestAdminViewComponent implements OnInit {
 
   }
   acceptReq() {
-    this.requestService.change_status(this.request['refNo'], StatusEnum.ACCEPTED)
+    this.requestService.change_status(this.request['refNo'], 1)
       .subscribe( (response) => {
-        console.log('response is ' + response['msg']);
+        console.log(response['msg']);
       });
     // alert('accepted');
   }

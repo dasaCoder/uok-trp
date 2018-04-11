@@ -5,18 +5,27 @@ const router = express.Router();
 const Request = require('../model/requests');
 
 router.post('/add',(req,res,next)=>{
-  let newRequest = new Request(req.body);
-  Request.add_request(newRequest,(err,callback)=>{
-    if(err){
-      res.json({
-        success: false, msg: 'error ocuured'
-      })
-    }else{
-      res.json({
-        success: true, msg: 'successfully added'
-      })
-    }
-  })
+
+  if(req.body) {
+    let newRequest = new Request(req.body);
+    console.log(newRequest);
+    Request.add_request(newRequest,(err,callback)=>{
+      if(err){
+        res.json({
+          success: false, msg: 'error ocuured'
+        })
+      }else{
+        res.json({
+          success: true, msg: 'successfully added'
+        })
+      }
+    })
+  } else {
+    res.json({
+      success: false, msg: 'error occured'
+    });
+  }
+
 });
 
 router.get('/get_not_considered_requests',(req,res,next) => {
@@ -136,21 +145,6 @@ router.get('/active_requests', (req,res,next) => {
     }
   })
 });
-
-/*router.get('/getStatus/:refNo/:password',(req,res,next) =>{
-  // console.log(req.params);
-  Request.getStatusReq(req.params, (err, callback)=>{
-   if(err){
-     res.json({
-       success: false, msg: 'error occured'
-     });
-   }else{
-     res.json({
-       success: true, msg: callback
-     })
-   }
-  })
-});*/
 
 router.post('/getStatus', (req,res,next) => {
   // console.log(req);

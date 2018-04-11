@@ -63,7 +63,11 @@ RequestSchema.plugin(autoIncrement.plugin, {model: 'Request', field: 'refNo'});
 const Request = module.exports = mongoose.model('Request',RequestSchema);
 
 module.exports.add_request = function(newRequest, callback){
-  newRequest.save(callback);
+  if(newRequest) {
+    newRequest.save(callback);
+  }
+
+
 }
 
 module.exports.get_not_considered_requests = function (callback) {

@@ -14,7 +14,7 @@ export class Request {
   num_passangers?: number; // number of other passangers which hoping to travel
   purpose?: string; // for what you need the vehicle
   vehicle_type?: string; // type of the vehicle
-  status?: StatusOfRequest; // check whether the status is confirmed? not Reviewed ? or rejected
+  status?: string; // check whether the status is confirmed? not Reviewed ? or rejected
   isPermited?: boolean; // if this trip is permited from
   fundingWay?: string; // if this trip is not permited, how they going to find funds for this
   departure?: Trip;

@@ -14,10 +14,7 @@ export class RequestService {
   }
   addRequest(request: Request) {
     // this.requests.push(request);
-    this.http.post('http://localhost:3000/requests/add', request )
-      .subscribe(response => {
-        console.log(response);
-      });
+    return this.http.post('http://localhost:3000/requests/add', request );
   }
   get_not_considered_requests() {
     return this.http.get('http://localhost:3000/requests/get_not_considered_requests');

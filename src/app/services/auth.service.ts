@@ -7,7 +7,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   login(body) {
-    console.log(body);
+    // console.log(body);
     return this.http.post('http://localhost:3000/requests/getStatus', body);
   }
   isLoggedIn(): boolean {

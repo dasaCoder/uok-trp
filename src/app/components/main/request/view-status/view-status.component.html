@@ -34,14 +34,19 @@
           <div id="accordion">
             <div class="card">
               <div
-                class="card-header bg-dark text-white" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                class="card-header bg-dark text-white" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
+
+                [attr.aria-expanded]="request.status != 1"
+                aria-controls="collapseOne">
                 <h6 class="mb-0">
                   <i class="fa fa-map"></i>
                   Trip Section
                 </h6>
               </div>
 
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div id="collapseOne" class="collapse"
+                   [class.show]="request.status != 1"
+                   aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
                   <div>
                     <h6>Departure</h6>
@@ -302,14 +307,18 @@
               </div>
             </div>
             <div class="card" id="more_info_form" *ngIf="request.status == 1 ">
-              <div class="card-header bg-secondary text-white" id="headingFive" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              <div class="card-header bg-secondary text-white" id="headingFive" data-toggle="collapse" data-target="#collapseFive"
+                   [attr.aria-expanded]="request.status == 1"
+                   aria-controls="collapseFive">
                 <h6 class="md-0">
                   <i class="fa fa-info-circle"></i>
                   More Infomation
                 </h6>
 
               </div>
-                <div class="collapse" id="collapseFive" aria-labelledy="headingFive" data-parent="#accordion">
+                <div class="collapse"
+                     [class.show]="request.status == 1"
+                     id="collapseFive" aria-labelledy="headingFive" data-parent="#accordion">
                   <div class="card-body">
 
                     <form >
