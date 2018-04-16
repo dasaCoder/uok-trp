@@ -19,14 +19,17 @@ export class ViewStatusComponent implements OnInit {
   constructor(private requestService: RequestService, private route: ActivatedRoute, private authService: AuthService) {
     this.route.paramMap
       .subscribe(params => {
-        console.log(+params.get('refNo'));
+         console.log(+params.get('refNo'));
         requestService.getOneRequest(+params.get('refNo'))
           .subscribe(response => {
-            this.request = response['msg'][0];
+            if (+params.get('refNo') === this.authService.get_refNo()) {
+              this.request = response['msg'][0];
+            }
+            this.isPermited = this.authService.isLoggedInWithRefno(+params.get('refNo'));
             // console.log(this.request['status']);
           });
       });
-    this.isPermited = this.authService.isLoggedIn();
+
   }
   ngOnInit() {
    // this.requests = this.requestService.getALLRequests();
@@ -41,20 +44,22 @@ export class ViewStatusComponent implements OnInit {
     this.moreDetails.refNo = this.request.refNo;
     this.moreDetails.status = '2';
     // console.log('updateRequest');
-    // console.log(this.moreDetails);
+     // console.log(this.moreDetails);
     this.requestService.add_more_details(this.moreDetails)
       .subscribe(response => {
         if (response['success'] && response['msg']['nModified'] === 1) {
-          alert('success');
+          alert('Your details updated successfully');
+          alert('please, print the application form and send it to Transport devision');
           this.request.position = this.moreDetails.position;
           this.request.fundingWay = this.moreDetails.fundingWay;
           this.request.purpose = this.moreDetails.purpose;
           this.request.status = this.moreDetails.status;
+
         } else {
           alert('error occured');
         }
         // console.log('rsponst is');
-        console.log(response);
+        // console.log(response);
       });
   }
 

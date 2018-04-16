@@ -10,11 +10,11 @@
               'alert-success': request.status == 0
             }"
           class="alert " role="alert">
-          <div *ngIf="request.status == 3">
+          <div *ngIf="request.status == '3'">
             Request is not being reviewed
           </div>
 
-          <div *ngIf="request.status == 2">
+          <div *ngIf="request.status == '2'">
             Request is accepted
           </div>
         </div>
@@ -107,8 +107,8 @@
       </div>
 
 
-      <div class="row">
-        <div class="col-lg-4">
+      <div class="row" >
+        <div class="col-lg-4" *ngIf="request.status == '0'">
           <button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#acceptReqModal">Accept</button>
         </div>
         <div class="col-lg-4">

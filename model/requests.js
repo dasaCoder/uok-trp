@@ -90,7 +90,7 @@ module.exports.change_status = function (refNo, status, callback) {
 
 module.exports.setDriver = function(refNo, name, callback) {
   vehicle = Vehicle.find({'vehicle_no':'CDD-46kkkk89'});
-  console.log(vehicle);
+  // console.log(vehicle);
   let query = {'refNo': refNo};
   // let options = { multi: true };
   Request.update(query, {'vehicle': vehicle._id}, callback);
@@ -102,7 +102,8 @@ module.exports.set_moredetails = function(params, callback) {
                     {
                     'position': params.position,
                     'purpose': params.purpose,
-                    'fundingWay': params.fundingWay
+                    'fundingWay': params.fundingWay,
+                      'status': params.status
                   },
                 callback
                 );
@@ -126,7 +127,7 @@ module.exports.setMoreInfo = function(params, callback){
 }
 
 module.exports.getActiveRequests = function (callback) {
-  Request.find({status : {"$in": [1,2,'1','2']} },'refNo departure arrival status driver vehicle',callback);
+  Request.find({status : {"$in": [1,2,'1','2']} },'refNo departure arrival status driver vehicle dep_unit',callback);
 }
 
 module.exports.getStatusReq = function (params, callback) {

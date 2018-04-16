@@ -23,8 +23,8 @@
         <td><!--{{request['driver']['name']}}--></td>
         <td><!--{{request['vehicle']['vehicle_no']}}--></td>
         <td>
-          <button class="btn btn-success btn-sm" (click)="change_status(request['refNo'], 2)">Done</button>
-          <button class="btn btn-danger btn-sm" (click)="change_status(request['refNo'], 3)">Cancel</button>
+          <button class="btn btn-success btn-sm" (click)="change_status('complete', request['refNo'], 6)">Done</button>
+          <button class="btn btn-danger btn-sm" (click)="change_status('reject', request['refNo'], 3)">Cancel</button>
         </td>
       </tr>
       </tbody>

@@ -1,41 +1,50 @@
-<div >
 
 
-  <div>
-    <div class="row" [ngSwitch]="status">
+
+  <div class="row">
+
+    <div class="col-md-4">
+      <img src="../../../../../../../assets/images/logo/logo.png" alt="" style="height: 20vh;padding-top: 20px;">
+    </div>
+
+    <div class="col-md-8" [ngSwitch]="status">
       <div *ngSwitchCase="0" class="text-center">
         <div class="alert alert-warning" role="alert">
           <strong>Sorry !</strong> Your request in not being review yet.
         </div>
+        <button class="btn btn-warning" [routerLink]="['/request/view_req/'+refNo]" data-dismiss="modal" aria-label="Close">View more</button>
       </div>
       <div *ngSwitchCase="1" class="text-center" >
         <div class="alert alert-success" role="alert">
           <strong>Success!</strong>  Your request is accepted... <br>
           <strong>fill more details</strong>. <br>
         </div>
-        <button class="btn btn-success" [routerLink]="['/request/view_req/'+refNo]" data-dismiss="modal" aria-label="Close">go</button>
+        <button class="btn btn-success" [routerLink]="['/request/view_req/'+refNo]" data-dismiss="modal" aria-label="Close">View more</button>
 
       </div>
       <div *ngSwitchCase="2" class="text-center">
         <div class="alert alert-success" role="alert">
-          <strong>Success!</strong>  Your request is confirmed
+          <strong>Congratulations!</strong>  Your request is confirmed
         </div>
+        <button class="btn btn-success" [routerLink]="['/request/view_req/'+refNo]" data-dismiss="modal" aria-label="Close">View more</button>
       </div>
       <div *ngSwitchCase="3" class="text-center"><p>
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-danger" role="alert">
           <strong>Sorry !</strong> Your request is rejected.
         </div>
+        <button class="btn btn-danger" [routerLink]="['/request/view_req/'+refNo]" data-dismiss="modal" aria-label="Close">View more</button>
       </div>
       <div *ngSwitchCase="5" class="text-center">
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-danger" role="alert">
           <strong>Error !</strong> Referance number or password is invalid.
         </div>
+        <button class="btn btn-danger" data-dismiss="modal" (click)="reset()">Try again</button>
 
       </div>
       <div *ngSwitchDefault class="row">
 
 
-        <div class="col-md-10">
+        <div class="col-md-12">
           <form class="form-horizontal" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
             <fieldset>
 
@@ -65,14 +74,14 @@
 
             </fieldset>
           </form>
-          <button (click)="logout()">ok</button>
+         <!-- <button (click)="logout()">ok</button>-->
         </div>
-        <div class="col-md-2">
+       <!-- <div class="col-md-2">
 
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
 
-</div>
+
 

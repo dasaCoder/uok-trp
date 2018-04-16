@@ -22,18 +22,26 @@ export class StatusMsgComponent implements OnInit {
   login(body) {
     this.authService.login(body)
       .subscribe( response => {
-        if (response['isLogged']) {
+        console.log(response['isLogged']);
+        if (response['isLogged'] === 1) {
           this.isLogged = true;
           localStorage.setItem('token', response['token']);
           this.status = this.authService.get_status();
-          console.log(this.status);
+          // console.log(this.status);
 
+        } else {
+          this.status = 5;
+          if (3==3)
+          console.log('erro');
         }
         console.log(response);
       });
   }
   logout() {
     this.authService.logout();
+  }
+  reset() {
+    this.status = 100;
   }
   /*getStatus() {
     this.requestService.get_status(this.refNo, this.password)

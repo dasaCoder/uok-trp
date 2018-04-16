@@ -20,6 +20,17 @@ export class AuthService {
         }
         return false;
   }
+  isLoggedInWithRefno(refNo): boolean {
+    let jwtHelper = new JwtHelper();
+    let token = localStorage.getItem('token');
+    let token_decoded = jwtHelper.decodeToken(token);
+
+    if ( token_decoded && token_decoded['refNo'] === refNo) {
+      // console.log('true');
+      return true;
+    }
+    return false;
+  }
   logout() {
     localStorage.removeItem('token');
   }
@@ -28,6 +39,12 @@ export class AuthService {
     let token = localStorage.getItem('token');
     let token_decoded = jwtHelper.decodeToken(token);
     return token_decoded['status'];
+  }
+  get_refNo() {
+    let jwtHelper = new JwtHelper();
+    let token = localStorage.getItem('token');
+    let token_decoded = jwtHelper.decodeToken(token);
+    return token_decoded['refNo'];
   }
 
 }

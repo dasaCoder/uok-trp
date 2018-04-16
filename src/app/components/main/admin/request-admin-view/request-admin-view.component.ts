@@ -50,6 +50,7 @@ export class RequestAdminViewComponent implements OnInit {
         }
         this.vehicleData = this.vehicleSource.slice();
       }));
+
   }
 
   ngOnInit() {
@@ -72,9 +73,9 @@ export class RequestAdminViewComponent implements OnInit {
     // alert('accepted');
   }
   rejectReq() {
-    this.requestService.change_status(this.request['refNo'], StatusEnum.REJECTED)
+    this.requestService.change_status(this.request['refNo'], 3)
       .subscribe( (response) => {
-        console.log('response is ' + response['msg']);
+        console.log(response['msg']);
       });
     // alert('accepted');
   }

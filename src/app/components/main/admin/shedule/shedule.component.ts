@@ -18,13 +18,16 @@ export class SheduleComponent implements OnInit {
     this.requestService.get_active_req()
       .subscribe(response => {
         this.requests = response['msg'];
+        console.log(this.requests[0]);
       });
   }
-  change_status(refNo: number, status: Number) {
-    this.requestService.change_status(refNo, status)
-      .subscribe(response => {
-        this.get_requests();
-      });
+  change_status(action: string, refNo: number, status: Number) {
+    if (confirm(`Are you sure to ${action} the request?`)) {
+      this.requestService.change_status(refNo, status)
+        .subscribe(response => {
+          this.get_requests();
+        });
+    }
   }
 
 }

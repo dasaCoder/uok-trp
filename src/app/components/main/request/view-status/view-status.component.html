@@ -1,321 +1,323 @@
-<div *ngIf="request && isPermited" class="container-fluid">
-  <div class="row">
+<div *ngIf="isPermited">
+  <div *ngIf="request" class="container-fluid">
+    <div class="row">
 
-    <div class="container-fluid">
-      <div class="row" >
-        <div class="col-lg-6" id="map_section">
-          <div
-            [ngClass]="{
+      <div class="container-fluid">
+        <div class="row" >
+          <div class="col-lg-6" id="map_section">
+            <div
+              [ngClass]="{
               'alert-danger': request.status == 3,
-              'alert-primay': request.status == 2,
+              'alert-primary': request.status == 2,
               'alert-success' : request.status == 1,
               'alert-warning': request.status == 0
             }"
-            class="alert " role="alert">
-            <div *ngIf="request.status == 0">
-              <i class="fa fa-info"></i>
-              Request is not being reviewed
+              class="alert " role="alert">
+              <div *ngIf="request.status == 0">
+                <i class="fa fa-info"></i>
+                Request is not being reviewed
+              </div>
+
+              <div *ngIf="request.status == 1">
+                <i class="fa fa-info"></i>
+                Request is Accepted. please supply futher information in more info section to proceed further
+              </div>
+
+              <div *ngIf="request.status == 2">
+                <i class="fa fa-info"></i>  Request is confirmed  <button class="btn btn-primary">Download Application</button>
+              </div>
+
             </div>
 
-            <div *ngIf="request.status == 1">
-              <i class="fa fa-info"></i>
-              Request is Accepted. please supply futher information in more info section to proceed further
-            </div>
-
-            <div *ngIf="request.status == 2">
-              <i class="fa fa-info"></i>Request is confirmed
-            </div>
           </div>
+          <div class="col-lg-6" id="details_section">
+            <!--        collapse div section stating   -->
 
-        </div>
-        <div class="col-lg-6" id="details_section">
-          <!--        collapse div section stating   -->
-
-          <div id="accordion">
-            <div class="card">
-              <div
-                class="card-header bg-dark text-white" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
-
-                [attr.aria-expanded]="request.status != 1"
-                aria-controls="collapseOne">
-                <h6 class="mb-0">
-                  <i class="fa fa-map"></i>
-                  Trip Section
-                </h6>
-              </div>
-
-              <div id="collapseOne" class="collapse"
-                   [class.show]="request.status != 1"
-                   aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body">
-                  <div>
-                    <h6>Departure</h6>
-                    <table class="table table-sm">
-
-                      <tr>
-
-                        <th scope="row">
-                          Date
-                        </th>
-                        <td>
-                          {{request.departure.pickupTime}}
-                        </td>
-                      </tr>
-
-                      <tr>
-
-                        <th scope="row">
-                          Time
-                        </th>
-                        <td>
-                          2017/12/8
-                        </td>
-                      </tr>
-
-                      <tr>
-
-                        <th scope="row">
-                          From
-                        </th>
-                        <td>
-                          {{request.departure.pickupPoint}}
-                        </td>
-                      </tr>
-
-                      <tr>
-
-                        <th scope="row">
-                          To
-                        </th>
-                        <td>
-                          {{request.departure.dropPoint}}
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-
-                  <div>
-                    <h6>Arrival</h6>
-                    <table class="table table-sm">
-
-                      <tr>
-
-                        <th scope="row">
-                          Date
-                        </th>
-                        <td>
-                          {{request.arrival.dropTime}}
-                        </td>
-                      </tr>
-
-                      <tr>
-
-                        <th scope="row">
-                          Time
-                        </th>
-                        <td>
-                          2017/12/8
-                        </td>
-                      </tr>
-
-                      <tr>
-
-                        <th scope="row">
-                          From
-                        </th>
-                        <td>
-                          {{request.arrival.dropPoint}}
-                        </td>
-                      </tr>
-
-                      <tr>
-
-                        <th scope="row">
-                          To
-                        </th>
-                        <td>
-                          {{request.arrival.pickupPoint}}
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-
-            <div class="card">
-              <div
-                [ngClass]="{'bg-danger':!request.vehicle, 'bg-success': request.vehicle}"
-                class="card-header text-white" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                <h6 class="mb-0">
-                  <i class="fa fa-car"></i>
-                  Vehicle Section
-                </h6>
-              </div>
-
-              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div id="accordion">
+              <div class="card">
                 <div
-                  [ngClass]="{'text-danger': !vehicle, 'text-success' : vehicle}"
-                  class="card-body">
-                  <div *ngIf="request.vehicle">
-                    Vehicle no: {{request.vehicle.vehicle_no}}
-                  </div>
-                  <div *ngIf="!request.vehicle">
-                    <p class="card-text">
-                      Vehicle is not assigned yet
-                    </p>
+                  class="card-header bg-dark text-white" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
+
+                  [attr.aria-expanded]="request.status != 1"
+                  aria-controls="collapseOne">
+                  <h6 class="mb-0">
+                    <i class="fa fa-map"></i>
+                    Trip Section
+                  </h6>
+                </div>
+
+                <div id="collapseOne" class="collapse"
+                     [class.show]="request.status != 1"
+                     aria-labelledby="headingOne" data-parent="#accordion">
+                  <div class="card-body">
+                    <div>
+                      <h6>Departure</h6>
+                      <table class="table table-sm">
+
+                        <tr>
+
+                          <th scope="row">
+                            Date
+                          </th>
+                          <td>
+                            {{request.departure.pickupTime}}
+                          </td>
+                        </tr>
+
+                        <tr>
+
+                          <th scope="row">
+                            Time
+                          </th>
+                          <td>
+                            2017/12/8
+                          </td>
+                        </tr>
+
+                        <tr>
+
+                          <th scope="row">
+                            From
+                          </th>
+                          <td>
+                            {{request.departure.pickupPoint}}
+                          </td>
+                        </tr>
+
+                        <tr>
+
+                          <th scope="row">
+                            To
+                          </th>
+                          <td>
+                            {{request.departure.dropPoint}}
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+
+                    <div>
+                      <h6>Arrival</h6>
+                      <table class="table table-sm">
+
+                        <tr>
+
+                          <th scope="row">
+                            Date
+                          </th>
+                          <td>
+                            {{request.arrival.dropTime}}
+                          </td>
+                        </tr>
+
+                        <tr>
+
+                          <th scope="row">
+                            Time
+                          </th>
+                          <td>
+                            2017/12/8
+                          </td>
+                        </tr>
+
+                        <tr>
+
+                          <th scope="row">
+                            From
+                          </th>
+                          <td>
+                            {{request.arrival.dropPoint}}
+                          </td>
+                        </tr>
+
+                        <tr>
+
+                          <th scope="row">
+                            To
+                          </th>
+                          <td>
+                            {{request.arrival.pickupPoint}}
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
 
                   </div>
-
                 </div>
               </div>
-            </div>
 
 
-            <div class="card">
-              <div
-                [ngClass]="{
+              <div class="card">
+                <div
+                  [ngClass]="{'bg-danger':!request.vehicle, 'bg-success': request.vehicle}"
+                  class="card-header text-white" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <h6 class="mb-0">
+                    <i class="fa fa-car"></i>
+                    Vehicle Section
+                  </h6>
+                </div>
+
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                  <div
+                    [ngClass]="{'text-danger': !vehicle, 'text-success' : vehicle}"
+                    class="card-body">
+                    <div *ngIf="request.vehicle">
+                      Vehicle no: {{request.vehicle.vehicle_no}}
+                    </div>
+                    <div *ngIf="!request.vehicle">
+                      <p class="card-text">
+                        Vehicle is not assigned yet
+                      </p>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="card">
+                <div
+                  [ngClass]="{
                       'bg-danger':!request.driver, 'bg-success': request.driver}"
-                class="card-header text-white" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                <h6 class="mb-0">
-                  <i class="fa fa-car"></i>
-                  Driver Section
-                </h6>
+                  class="card-header text-white" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  <h6 class="mb-0">
+                    <i class="fa fa-car"></i>
+                    Driver Section
+                  </h6>
+                </div>
+
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div
+                    [ngClass]="{'text-danger':!request.driver, 'text-success' : request.driver}"
+                    class="card-body">
+                    <div *ngIf="request.driver">
+                      Driver name: {{request.driver.name}}
+                    </div>
+                    <div *ngIf="!test">
+                      <p class="card-text">
+                        Driver is not set
+                      </p>
+
+                    </div>
+
+                  </div>
+                </div>
               </div>
 
-              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+
+              <div class="card">
                 <div
-                  [ngClass]="{'text-danger':!request.driver, 'text-success' : request.driver}"
-                  class="card-body">
-                  <div *ngIf="request.driver">
-                    Driver name: {{request.driver.name}}
-                  </div>
-                  <div *ngIf="!test">
-                    <p class="card-text">
-                      Driver is not set
-                    </p>
+                  class="bg-primary card-header text-white" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  <h6 class="mb-0">
+                    <i class="fa fa-info"></i>
+                    Details Section
+                  </h6>
+                </div>
+
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                  <div class="card-body">
+
+                    <div class="container-fluid">
+                      <table class="table table-sm">
+                        <tr>
+                          <th scope="row">
+                            Refferance No
+                          </th>
+                          <td>
+                            TRD-uok-{{request.refNo}}
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">
+                            Lecturer
+                          </th>
+                          <td>
+                            {{request.lecturer}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            Designation
+                          </th>
+                          <td>
+                            {{request.position}}
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">
+                            Department/ Unit
+                          </th>
+                          <td>
+                            {{request.dep_unit}}
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">
+                            Purpose
+                          </th>
+                          <td>
+                            {{request.purpose}}
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">
+                            Funding method
+                          </th>
+                          <td>
+                            {{request.fundingWay}}
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">
+                            Email
+                          </th>
+                          <td>
+                            {{request.email}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            Password
+                          </th>
+                          <td>
+                            {{request.password}}
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">
+                            Number of Passangers
+                          </th>
+                          <td>
+                            {{request.num_passangers}}
+                          </td>
+                        </tr>
+
+
+
+
+                      </table>
+                    </div>
 
                   </div>
-
                 </div>
               </div>
-            </div>
-
-
-            <div class="card">
-              <div
-                class="bg-primary card-header text-white" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                <h6 class="mb-0">
-                  <i class="fa fa-info"></i>
-                  Details Section
-                </h6>
-              </div>
-
-              <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                <div class="card-body">
-
-                  <div class="container-fluid">
-                    <table class="table table-sm">
-                      <tr>
-                        <th scope="row">
-                          Refferance No
-                        </th>
-                        <td>
-                          TRD-uok-{{request.refNo}}
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <th scope="row">
-                          Lecturer
-                        </th>
-                        <td>
-                          {{request.lecturer}}
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">
-                          Designation
-                        </th>
-                        <td>
-                          {{request.position}}
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <th scope="row">
-                          Department/ Unit
-                        </th>
-                        <td>
-                          {{request.dep_unit}}
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <th scope="row">
-                          Purpose
-                        </th>
-                        <td>
-                          {{request.purpose}}
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <th scope="row">
-                          Funding method
-                        </th>
-                        <td>
-                          {{request.fundingWay}}
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <th scope="row">
-                          Email
-                        </th>
-                        <td>
-                          {{request.email}}
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">
-                          Password
-                        </th>
-                        <td>
-                          {{request.password}}
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <th scope="row">
-                          Number of Passangers
-                        </th>
-                        <td>
-                          {{request.num_passangers}}
-                        </td>
-                      </tr>
-
-
-
-
-                    </table>
-                  </div>
+              <div class="card" id="more_info_form" *ngIf="request.status == 1 ">
+                <div class="card-header bg-secondary text-white" id="headingFive" data-toggle="collapse" data-target="#collapseFive"
+                     [attr.aria-expanded]="request.status == 1"
+                     aria-controls="collapseFive">
+                  <h6 class="md-0">
+                    <i class="fa fa-info-circle"></i>
+                    More Infomation
+                  </h6>
 
                 </div>
-              </div>
-            </div>
-            <div class="card" id="more_info_form" *ngIf="request.status == 1 ">
-              <div class="card-header bg-secondary text-white" id="headingFive" data-toggle="collapse" data-target="#collapseFive"
-                   [attr.aria-expanded]="request.status == 1"
-                   aria-controls="collapseFive">
-                <h6 class="md-0">
-                  <i class="fa fa-info-circle"></i>
-                  More Infomation
-                </h6>
-
-              </div>
                 <div class="collapse"
                      [class.show]="request.status == 1"
                      id="collapseFive" aria-labelledy="headingFive" data-parent="#accordion">
@@ -358,20 +360,28 @@
                   </div>
                 </div>
 
+              </div>
+
+
+
             </div>
 
 
-
           </div>
-
-
         </div>
+
+
+
+
       </div>
-
-
-
-
     </div>
+
   </div>
+</div>
+
+<div *ngIf="!isPermited">
+  you are not authorized to view this
 
 </div>
+
+
