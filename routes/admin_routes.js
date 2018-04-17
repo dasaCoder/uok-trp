@@ -66,6 +66,20 @@ router.get('/vehicle/set_vehicle',(req, res, next) => {
     }
   });
   // console.log(req.query.vehicle_no);
+});
+
+router.get('/get_request_list', (req, res, next) => {
+  Request.get_req_list(req.query.status,(err, callback) => {
+    if(err) {
+      res.json({
+        success: false, msg: 'error occured'
+      });
+    } else {
+      res.json({
+        msg: callback
+      })
+    }
+  })
 })
 
 module.exports = router;

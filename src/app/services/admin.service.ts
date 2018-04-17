@@ -19,4 +19,7 @@ export class AdminService {
   set_vehicle(refNo, vehicle_no) {
     return this.http.get(`http://localhost:3000/admin/vehicle/set_vehicle/?refNo=${refNo}&vehicle_no=${vehicle_no}`);
   }
+  get_vehicle_list(status) {
+    return this.http.get(`http://localhost:3000/admin/get_request_list/?status=${status}`);
+  }
 }

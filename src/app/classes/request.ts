@@ -27,9 +27,11 @@ export class Request {
 export class Trip {
   pickupPoint?: string;
   pickPointAddress?: string;
+  pickupDate?: string;
   pickupTime?: string;
   dropPoint?: string;
   dropPointAddress?: string;
   dropTime?: string;
+  dropDate?: string;
 }
 

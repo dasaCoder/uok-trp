@@ -156,11 +156,13 @@ export class RequestFormComponent implements OnInit {
   }
 
   formSubmit() {
+
     /*this.formData.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;*/
     /*this.formData.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;*/
     // const x = <Request> this.formData;
     // this.formData.refNo =
     this.formData.status = '0';
+
     this.formData.arrival = this.arrival;
     this.formData.departure = this.departure;
     this.formData.isPermited = false;

@@ -69,7 +69,9 @@ module.exports.add_request = function(newRequest, callback){
 
 
 }
-
+module.exports.get_req_list = function (refNo, callback) {
+  Request.find({'status': refNo},'refNo',callback);
+}
 module.exports.get_not_considered_requests = function (callback) {
   Request.find({'status.status':3},'refNo',callback);
 }

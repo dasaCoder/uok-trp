@@ -14,31 +14,41 @@
         </li>
 
         <li  data-toggle="collapse" data-target="#products" class="collapsed active">
-          <i class="fa fa-bullhorn fa-lg"></i> Requests <span class="arrow"></span>
+          <i class="fa fa-bullhorn fa-lg"></i> New Requests  ({{not_reviewed_requests.length}})<span class="arrow"></span>
         </li>
         <ul class="sub-menu collapse" id="products">
           <!--<li class="active"><a href="#">CSS3 Animation</a></li>-->
-          <li *ngFor="let n_c_req of not_considered_requests"><a href="/admin/request/{{n_c_req['refNo']}}">TRD/{{n_c_req['refNo']}}</a></li>
+          <li *ngFor="let n_r_req of not_reviewed_requests"><a href="/admin/request/{{n_r_req['refNo']}}">TRD/{{n_r_req['refNo']}}</a></li>
 
         </ul>
 
 
+        <li data-toggle="collapse" data-target="#accepted_reqs" class="collapsed">
+          <i class="fa fa-bell fa-lg"></i> Accepted Requests  ({{accepted_requests.length}}) <span class="arrow"></span>
+        </li>
+        <ul class="sub-menu collapse" id="accepted_reqs">
+          <a *ngFor="let accepted_req of accepted_requests" href="/admin/request/{{accepted_req['refNo']}}">
+            <li>TRD/{{accepted_req['refNo']}}</li>
+          </a>
+        </ul>
+
+
         <li data-toggle="collapse" data-target="#service" class="collapsed">
-          <i class="fa fa-bell fa-lg"></i> Confirmed Requests <span class="arrow"></span>
+          <i class="fa fa-bell fa-lg"></i> Confirmed Requests  ({{confirmed_requests.length}}) <span class="arrow"></span>
         </li>
         <ul class="sub-menu collapse" id="service">
-          <li>New Service 1</li>
-          <li>New Service 2</li>
-          <li>New Service 3</li>
+          <a *ngFor="let confirmed_req of confirmed_requests" href="/admin/request/{{confirmed_req['refNo']}}">
+            <li>TRD/{{confirmed_req['refNo']}}</li>
+          </a>
         </ul>
 
-        <li data-toggle="collapse" data-target="#service" class="collapsed">
-          <i class="fa fa-thumbs-up fa-lg"></i> Completed Requests <span class="arrow"></span>
+        <li data-toggle="collapse" data-target="#Doc_comp" class="collapsed">
+          <i class="fa fa-thumbs-up fa-lg"></i> Fully Detailed Requests  ({{detailed_requests.length}}) <span class="arrow"></span>
         </li>
-        <ul class="sub-menu collapse" id="servicse">
-          <li>New Service 1</li>
-          <li>New Service 2</li>
-          <li>New Service 3</li>
+        <ul class="sub-menu collapse" id="Doc_comp">
+          <a *ngFor="let det_comp_req of detailed_requests" href="/admin/request/{{det_comp_req['refNo']}}">
+            <li>TRD/{{det_comp_req['refNo']}}</li>
+          </a>
         </ul>
 
         <li data-toggle="collapse" data-target="#new" class="collapsed">

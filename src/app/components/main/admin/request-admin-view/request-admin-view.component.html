@@ -108,9 +108,16 @@
 
 
       <div class="row" >
+
+
         <div class="col-lg-4" *ngIf="request.status == '0'">
           <button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#acceptReqModal">Accept</button>
         </div>
+
+        <div class="col-lg-4" *ngIf="request.status == '2'">
+          <button type="button" class="btn btn-block btn-outline-success" data-toggle="modal" data-target="#makeDetailedReqModal">Mark as fully Detailed</button>
+        </div>
+
         <div class="col-lg-4">
           <button type="button" class="btn btn-block btn-danger">Reject</button>
         </div>
@@ -130,6 +137,28 @@
               <div class="modal-footer" ngClass="">
                 <button type="button"  class="btn btn-success" data-dismiss="modal" (click)="acceptReq()"><i class="fa fa-add"></i>Acept</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="makeDetailedReqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCentderTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" >Mark as fully Detailed</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you shure that this request is fully detailed?
+
+              </div>
+              <div class="modal-footer" ngClass="">
+                <button type="button"  class="btn btn-success" data-dismiss="modal" (click)="markDetailedReq()"><i class="fa fa-add"></i>Yes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
 
               </div>
             </div>
@@ -157,7 +186,13 @@
           </div>
         </div>
       </div>
+
+
     </div>
+
+
+
+
     <div class="col-md-5">
       <div id="accordion">
         <div class="card">

@@ -90,6 +90,13 @@ export class RequestAdminViewComponent implements OnInit {
         });
     }
   }
+  markDetailedReq() {
+    this.requestService.change_status(this.request['refNo'], 4)
+      .subscribe( response => {
+        alert('daon');
+        console.log(response['msg']);
+      });
+  }
   set_vehicle_no(value: any) {
     this.vehicle_no = value;
   }
