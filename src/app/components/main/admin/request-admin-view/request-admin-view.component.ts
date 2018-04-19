@@ -16,11 +16,13 @@ export class RequestAdminViewComponent implements OnInit {
   public data: Array<string>;
   public vehicleSource: string[] = [];
   public vehicleData: Array<string>;
-  test;
+  driver_name;
   public vehicle_no;
   public isSetVehicle = false;
+  public isSetDriver = false; // true when driver is set
   refNo;
   request: Request = new Request() ;
+  reqListOnVehicle; // this will hold the list of reqeust which belongs to vehicle when admin select vehicle
   constructor(private route: ActivatedRoute, private requestService: RequestService, private adminService: AdminService) {
     // get referance number as route parameter and equal it to refNo variable
     this.route.paramMap.subscribe(params => {
@@ -63,7 +65,14 @@ export class RequestAdminViewComponent implements OnInit {
     this.vehicleData = this.vehicleSource.filter((s) => s.toLowerCase().indexOf(value.toLowerCase()) !== -1);
   }
   addDriver() {
-
+    console.log(this.driver_name);
+    this.adminService.setDriver(this.request.refNo, this.driver_name)
+      .subscribe( response => {
+        console.log(response);
+        if ( response['success'] === true) {
+          this.isSetDriver = true;
+        }
+      })
   }
   acceptReq() {
     this.requestService.change_status(this.request['refNo'], 1)
@@ -99,6 +108,21 @@ export class RequestAdminViewComponent implements OnInit {
   }
   set_vehicle_no(value: any) {
     this.vehicle_no = value;
+  }
+  getRequestsList(vehicle_no) {
+    if (vehicle_no !== '' && vehicle_no !== null) {
+      this.set_vehicle_no(vehicle_no);
+      this.adminService.getRequestList(vehicle_no)
+        .subscribe( response => {
+          if (response['msg'][0]) {
+            this.reqListOnVehicle = response['msg'];
+          } else {
+            this.reqListOnVehicle = null;
+          }
+        });
+    } else {
+      this.reqListOnVehicle = null;
+    }
   }
 
 

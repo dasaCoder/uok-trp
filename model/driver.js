@@ -14,7 +14,10 @@ const DriverSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  duties: []
+  image_url: {
+    type: String
+  }
+  /*duties: []*/
 
 });
 

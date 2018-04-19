@@ -36,6 +36,9 @@ import {AdminService} from './services/admin.service';
 import { SheduleComponent } from './components/main/admin/shedule/shedule.component';
 import { StatusMsgComponent } from './components/main/home/request-btns/check-request/status-msg/status-msg.component';
 import {AuthService} from './services/auth.service';
+import { DriversComponent } from './components/main/admin/drivers/drivers.component';
+import { AddComponent } from './components/main/admin/drivers/add/add.component';
+import { ProfileComponent } from './components/main/admin/drivers/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,9 @@ import {AuthService} from './services/auth.service';
     RequestAdminViewComponent,
     SheduleComponent,
     StatusMsgComponent,
+    DriversComponent,
+    AddComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

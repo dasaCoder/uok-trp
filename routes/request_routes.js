@@ -179,6 +179,6 @@ router.get('/test',(req,res,next) => {
     if(err) console.log(err);
     console.log(request);
   });
-})
+});
 
 module.exports = router;

@@ -216,7 +216,7 @@
                       Date
                     </th>
                     <td>
-                      {{request.departure.pickupTime}}
+                      {{request.departure.pickupDate}}
                     </td>
                   </tr>
 
@@ -226,7 +226,7 @@
                       Time
                     </th>
                     <td>
-                      2017/12/8
+                      {{request.departure.pickupTime}}
                     </td>
                   </tr>
 
@@ -262,7 +262,7 @@
                       Date
                     </th>
                     <td>
-                      {{request.arrival.dropTime}}
+                      {{request.arrival.dropDate}}
                     </td>
                   </tr>
 
@@ -272,7 +272,7 @@
                       Time
                     </th>
                     <td>
-                      2017/12/8
+                      {{request.arrival.dropTime}}
                     </td>
                   </tr>
 
@@ -337,7 +337,7 @@
         <div class="card">
           <div
             [ngClass]="{
-                      'bg-danger':!test, 'bg-success': test}"
+                      'bg-danger':!request.driver, 'bg-success': request.driver}"
             class="card-header text-white" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
             <h6 class="mb-0">
               <i class="fa fa-car"></i>
@@ -347,20 +347,24 @@
 
           <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
             <div
-              [ngClass]="{'text-danger':!test, 'text-success' : test}"
+              [ngClass]="{'text-danger':!request.driver, 'text-success' : request.driver}"
               class="card-body">
-              <div *ngIf="test">
-                Driver name: {{test}}
+              <div *ngIf="request.driver">
+                Driver name: {{request.driver.name}}
               </div>
-              <div *ngIf="!test">
+              <div *ngIf="!request.driver">
                 <p class="card-text">
 
                 </p>
                 <button
                   class="btn"
-                  [ngClass]="{'btn-danger':!test, 'btn-success': test}"
+                  [ngClass]="{'btn-danger':!request.driver, 'btn-success': request.driver}"
                   data-toggle="modal" data-target="#addDriverModal">Add Driver</button>
               </div>
+              <button
+                *ngIf="request.driver"
+                class="btn btn-outline-warning"
+                data-toggle="modal" data-target="#addDriverModal">Change Driver</button>
 
             </div>
           </div>
@@ -389,7 +393,7 @@
                       [filterable]="true"
                       (filterChange)="handleFilter($event)"
                       class="trp-min-input trp-autocomplete"
-                      [(value)]="test"
+                      [(value)]="driver_name"
                     >
                     </kendo-autocomplete>
                   </div>
@@ -428,13 +432,37 @@
                     <kendo-autocomplete
                       [data]="vehicleData"
                       [filterable]="true"
-                      (valueChange)="set_vehicle_no($event)"
+                      (valueChange)="getRequestsList($event)"
                       (filterChange)="handleFilter2($event)"
                       class="trp-min-input trp-autocomplete"
                       [value]="vehicle_no"
                     >
                     </kendo-autocomplete>
                   </div>
+                    <div class="container-fluid">
+                      <div class="row">
+                        <table *ngIf="reqListOnVehicle && reqListOnVehicle !== '' && reqListOnVehicle !== null " class="table table-sm">
+                          <thead>
+                          <tr>
+                            <th scope="col">ref no</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Departure time</th>
+                            <th scope="col">Arrival time</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let request of reqListOnVehicle">
+                            <td>TRD/{{request['refNo']}}</td>
+                            <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['arrival']['dropPoint']}}</b></td>
+                            <td>{{request['departure']['pickupTime']}}</td>
+                            <td>{{request['arrival']['dropTime']}}</td>
+
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
 
                 </div>
               </div>
@@ -452,56 +480,7 @@
       </div>
       <div class="container">
 
-        <!--
-              <div
-                [ngClass]="{'border-danger':!test , 'border-success': test}"
-                class="card mb-3 text-center"
-                style="max-width: 18rem;">
-                <div class="card-header bg-transparent text-danger">
-                  <i class="fa fa-car"></i>
-                  Vehicle Section
-                </div>
-                <div class="card-body text-danger">
-                  <p class="card-text">Vehicle is not assigned yet</p>
-                  <button class="btn btn-danger">Add Vehicle</button>
-                </div>
-              </div>
 
-              <div
-                [ngClass]="{'border-danger':!test , 'border-success': test}"
-                class="card  mb-3 text-center" style="max-width: 18rem;">
-                <div
-                  [ngClass]="{'text-danger':!test, 'text-success' : test}"
-                  class="card-header bg-transparent text-danger">
-                  <i class="fa fa-car"></i>
-                  Driver Section
-                </div>
-                <div
-                  [ngClass]="{'text-danger':!test, 'text-success' : test}"
-                  class="card-body">
-                  <div *ngIf="test">
-                    Driver name: {{test}}
-                  </div>
-                  <div *ngIf="!test">
-                    <p class="card-text">
-
-                    </p>
-                    <button
-                      class="btn"
-                      [ngClass]="{'btn-danger':!test, 'btn-success': test}"
-                      data-toggle="modal" data-target="#addDriverModal">Add Driver</button>
-                  </div>
-
-                </div>
-
-
-                &lt;!&ndash;Add driver Modal &ndash;&gt;
-
-
-
-                &lt;!&ndash;///// Add driver Modal &ndash;&gt;
-
-              </div>-->
 
 
       </div>

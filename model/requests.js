@@ -53,11 +53,12 @@ const RequestSchema = mongoose.Schema({
     type: Schema.Types.ObjectId, ref: 'Vehicle'
   },
   driver:{
-    type: Object
+    type: Schema.Types.ObjectId, ref: 'Driver'
   }
 });
 
 const Vehicle = require('./vehicles');
+const Driver = require('./driver');
 
 RequestSchema.plugin(autoIncrement.plugin, {model: 'Request', field: 'refNo'});
 const Request = module.exports = mongoose.model('Request',RequestSchema);
@@ -77,11 +78,13 @@ module.exports.get_not_considered_requests = function (callback) {
 }
 
 module.exports.get_request = function (refNo, callback) {
-  Request.find({'refNo':refNo},callback).populate({path:'vehicle',select:'vehicle_no'});
+  Request.find({'refNo':refNo},callback).populate({path:'vehicle',select:'vehicle_no'}).populate({path: 'driver', select: 'name'});
 }
 
 module.exports.get_req_for_user = function (params, callback) {
-  Request.find({'refNo':params.refNo, 'password': params.password}, 'lecturer refNo' ,callback).populate({path:'vehicle',select:'vehicle_no'});
+  Request.find({'refNo':params.refNo, 'password': params.password}, 'lecturer refNo' ,callback)
+    .populate({path: 'driver', select: 'name'})
+    .populate({path:'vehicle',select:'vehicle_no'});
 }
 
 module.exports.change_status = function (refNo, status, callback) {
@@ -91,11 +94,18 @@ module.exports.change_status = function (refNo, status, callback) {
 }
 
 module.exports.setDriver = function(refNo, name, callback) {
-  vehicle = Vehicle.find({'vehicle_no':'CDD-46kkkk89'});
-  // console.log(vehicle);
-  let query = {'refNo': refNo};
-  // let options = { multi: true };
-  Request.update(query, {'vehicle': vehicle._id}, callback);
+  console.log(name);
+ Driver.find({'name': name}, '_id', function (err, data) {
+   if(err) {
+     // console.log(err);
+   }
+   if(data[0]) {
+     let driver = data[0];
+     console.log(data);
+     let query = {'refNo': refNo};
+     Request.findOneAndUpdate(query, {$set: {'driver': driver._id}}, { new: true}, callback);
+   }
+ })
 }
 
 module.exports.set_moredetails = function(params, callback) {
@@ -143,11 +153,22 @@ module.exports.set_vehicle = function (refNo, vehicle_no, callback) {
     let query = { 'refNo': refNo};
     Request.findOneAndUpdate(query, {$set: {'vehicle': vehicle._id} }, { new: true }, callback);
   });
-
-
-  //console.log(vehicle);
-
 }
 module.exports.authTest = function (id, callback ) {
   Request.find({'refNo':1},'refNo',callback)
+}
+module.exports.getReqOnDayForVehicle = function (vehicle_no, callback) {
+  //console.log(vehicle_no);
+  Vehicle.find({'vehicle_no':vehicle_no},'_id', function (err, data) {
+    if(data[0]) {
+      let date = new Date();
+      date = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()+1}`;
+      let nextDate = new Date();
+      nextDate = `${nextDate.getFullYear()}-${nextDate.getMonth()+1}-${nextDate.getDate()+2}`
+      let query = {'vehicle': data[0]['_id'],'departure.pickupDate':{$gte:date,$lt:nextDate}};
+      console.log(query);
+      Request.find(query,'refNo arrival departure',callback);
+    }
+
+  });
 }

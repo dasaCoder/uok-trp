@@ -38,6 +38,19 @@ router.get('/driver',(req,res,next)=>{
     }
   });
 });
+router.get('/driver/get/:_id',(req,res,next)=> {
+  Driver.getDriver(req.query._id,(err,callback) => {
+    if(err) {
+      res.json({
+        success: false, msg: 'error occured'
+      });
+    } else {
+      res.json({
+        data: callback
+      })
+    }
+  })
+})
 
 router.get('/vehicle/admin_to_request',(req,res,next)=>{
   Vehicle.get_admin_to_reqeust((err,callback)=>{
@@ -68,6 +81,21 @@ router.get('/vehicle/set_vehicle',(req, res, next) => {
   // console.log(req.query.vehicle_no);
 });
 
+router.post('/driver/set_driver', (req,res,next) => {
+  // console.log(req.body);
+  Request.setDriver(req.body.refNo, req.body.name, (err, callback) => {
+    if(err) {
+      res.json({
+        success: false
+      });
+    } else {
+      res.json({
+        success: true, msg: callback
+      })
+    }
+  })
+})
+
 router.get('/get_request_list', (req, res, next) => {
   Request.get_req_list(req.query.status,(err, callback) => {
     if(err) {
@@ -80,6 +108,20 @@ router.get('/get_request_list', (req, res, next) => {
       })
     }
   })
-})
+});
+router.get('/get_request_on_vehicle', (req,res,next) => {
+  // console.log(req.query.vehicle_no);
+  Request.getReqOnDayForVehicle(req.query.vehicle_no, (err, callback) => {
+    if(err) {
+      res.json({
+        success: false
+      });
+    } else {
+      res.json({
+        success: true, msg: callback
+      })
+    }
+  });
+});
 
 module.exports = router;

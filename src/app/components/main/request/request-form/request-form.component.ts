@@ -156,7 +156,13 @@ export class RequestFormComponent implements OnInit {
   }
 
   formSubmit() {
+    let arrival_temp = new Date(this.arrival.dropTime);
+    this.arrival.dropTime = `${arrival_temp.getHours()}:${arrival_temp.getMinutes()}`;
+    this.arrival.dropDate = `${arrival_temp.getFullYear()}-${arrival_temp.getMonth() + 1}-${arrival_temp.getDate()}`;
 
+    let departure_temp = new Date(this.departure.pickupTime);
+    this.departure.pickupTime = `${departure_temp.getHours()}:${departure_temp.getMinutes()}`;
+    this.departure.pickupDate = `${departure_temp.getFullYear()}-${departure_temp.getMonth() + 1}-${departure_temp.getDate()}`;
     /*this.formData.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;*/
     /*this.formData.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;*/
     // const x = <Request> this.formData;
