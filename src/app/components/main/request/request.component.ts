@@ -10,6 +10,8 @@ export class RequestComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    //let x = 2;
+
   }
 
 }

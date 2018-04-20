@@ -7,8 +7,15 @@ export class AdminService {
   constructor(private http: HttpClient) {
 
   }
+
+  // return list of drivers
   getDrivers() {
     return this.http.get('http://localhost:3000/admin/driver');
+  }
+
+  // return one driver
+  getDriver(_id: String) {
+    return this.http.get(`http://localhost:3000/admin/driver/get?_id=${_id}`);
   }
   getVehicle_to_req() {
     return this.http.get('http://localhost:3000/admin/vehicle/admin_to_request');

@@ -31,6 +31,10 @@ module.exports.getDrivers = function(callback){
   Driver.find({},{'_id' : 0,'name' : 1},callback);
 }
 
+module.exports.getDriver = function(_id,callback) {
+  Driver.find({'_id':_id},callback);
+}
+
 
 
 

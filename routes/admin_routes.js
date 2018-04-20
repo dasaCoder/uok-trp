@@ -38,7 +38,7 @@ router.get('/driver',(req,res,next)=>{
     }
   });
 });
-router.get('/driver/get/:_id',(req,res,next)=> {
+router.get('/driver/get',(req,res,next)=> {
   Driver.getDriver(req.query._id,(err,callback) => {
     if(err) {
       res.json({
