@@ -14,8 +14,16 @@ const DriverSchema = mongoose.Schema({
     type: String,
     require: true
   },
+  telephone: {
+    type: Number,
+    require: true
+  },
   image_url: {
     type: String
+  },
+  address: {
+    type: String,
+    require: true
   }
   /*duties: []*/
 
@@ -33,6 +41,10 @@ module.exports.getDrivers = function(callback){
 
 module.exports.getDriver = function(_id,callback) {
   Driver.find({'_id':_id},callback);
+}
+
+module.exports.getAllDriverDetails = function (callback) {
+  Driver.find({},callback);
 }
 
 

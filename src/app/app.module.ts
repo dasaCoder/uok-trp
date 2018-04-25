@@ -39,6 +39,7 @@ import {AuthService} from './services/auth.service';
 import { DriversComponent } from './components/main/admin/drivers/drivers.component';
 import { AddComponent } from './components/main/admin/drivers/add/add.component';
 import { ProfileComponent } from './components/main/admin/drivers/profile/profile.component';
+import { SetDriverComponent } from './components/main/admin/request-admin-view/set-driver/set-driver.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ProfileComponent } from './components/main/admin/drivers/profile/profil
     DriversComponent,
     AddComponent,
     ProfileComponent,
+    SetDriverComponent,
   ],
   imports: [
     BrowserModule,

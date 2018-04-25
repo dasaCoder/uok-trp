@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-md-4">
+
+    <div id="auto_complete_sec"></div>
+
+    <div id="driver_list">
+
+      <div class="trp-one-driver" *ngFor="let driver of driver_list" (click)="onclickDriver(driver)">
+        <img src="/assets/images/pattern/pattern.png" alt="" class="trp-driver-list-img">
+        <h6 style="display:inline">{{driver.name}}</h6>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="col-md-8">
+
+
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="">
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <img [src]="imageUrl" style="height: 150px; width: 150px" alt="" class="img-fluid" />
+            </div>
+            <div class="col-sm-6 col-md-8">
+              <h4>
+                {{selectedDriver.name | uppercase}}</h4>
+
+              <p>
+                <i class="glyphicon glyphicon-telephone">{{selectedDriver.telephone}}</i>
+                <!-- {{driver.telephone}} -->
+                <br />
+                <i class="glyphicon glyphicon-globe"></i>{{selectedDriver.driving_liecence_no}}
+                <br />
+                <i class="glyphicon glyphicon-gift"></i>{{selectedDriver.nic_no}}</p>
+              <!-- Split button -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="row">
+      <table *ngIf="reqListOnDriver && reqListOnDriver !== [] && reqListOnDriver !== null " class="table table-sm">
+        <thead>
+        <tr>
+          <th scope="col">Department/Unit</th>
+          <th scope="col">Description</th>
+          <th scope="col">Departure time</th>
+          <th scope="col">Arrival time</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let request of reqListOnDriver">
+          <td>TRD/{{request['dep_unit']}}</td>
+          <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['arrival']['dropPoint']}}</b></td>
+          <td>{{request['departure']['pickupTime']}}</td>
+          <td>{{request['arrival']['dropTime']}}</td>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal-footer" ngClass="">
+  <button type="button"  class="btn btn-primary" data-dismiss="modal" (click)="setDriver()"><i class="fa fa-add"></i>Add</button>
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+</div>

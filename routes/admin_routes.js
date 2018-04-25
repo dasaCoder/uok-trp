@@ -5,7 +5,10 @@ const jwt = require('jsonwebtoken');
 
 const Driver = require('../model/driver');
 const Vehicle = require('../model/vehicles');
-const Request = require('../model/requests')
+const Request = require('../model/requests');
+
+
+
 router.post('/driver',(req,res,next)=>{
   let newDriver = new Driver(req.body);
   Driver.addDriver(newDriver , (err,callback) => {
@@ -83,7 +86,7 @@ router.get('/vehicle/set_vehicle',(req, res, next) => {
 
 router.post('/driver/set_driver', (req,res,next) => {
   // console.log(req.body);
-  Request.setDriver(req.body.refNo, req.body.name, (err, callback) => {
+  Request.setDriver(req.body.refNo, req.body._id, (err, callback) => {
     if(err) {
       res.json({
         success: false
@@ -122,6 +125,38 @@ router.get('/get_request_on_vehicle', (req,res,next) => {
       })
     }
   });
+});
+
+router.get('/get_all_driver_details', (req,res,next) => {
+  Driver.getAllDriverDetails((err, callback) => {
+    if(err) {
+      res.json({
+        success: false
+      });
+    } else {
+      res.json({
+        success: true, msg: callback
+      })
+    }
+  });
+});
+
+// get list of request of a driver on a day
+
+router.get('/get_driver_request_on_day', (req,res,next) => {
+  if(req.query._id) {
+    Request.getRequetsOfDriverOnDay(req.query._id, (err,callback) => {
+      if(err) {
+        res.json({
+          success: false
+        });
+      } else {
+        res.json({
+          success: true, data: callback
+        })
+      }
+    });
+  }
 });
 
 module.exports = router;

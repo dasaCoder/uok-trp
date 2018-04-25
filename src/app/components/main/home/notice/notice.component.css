@@ -9,7 +9,7 @@
   height: 90%;
   width: 90%;
   background-color: aqua;
-  background: url("../../../../../assets/images/trasport.jpg");
+  /*background: url("../../../../../assets/images/trasport.jpg");*/
   bottom:0;
   position: absolute;
 }

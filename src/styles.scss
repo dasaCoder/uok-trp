@@ -61,11 +61,25 @@ body{
  .trp-btn:hover{
    background-color:#680000;
  }
+.trp-modal-lg {
+  max-width: 80% !important;
+}
+ .trp-one-driver{
+   margin: 5px;
+   padding: 1px;
+ }
+
+ .trp-one-driver :hover{
+   background-color: #cec9c9;
+ }
 
  .trp-sliderImg{
    max-height: 400px;
  }
 
+ .trp-driver-list-img{
+   max-height: 6vh;
+ }
  .trp-title{
    background-color: #000000;
    color: #FFFfff;

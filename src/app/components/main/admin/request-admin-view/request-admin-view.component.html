@@ -373,7 +373,7 @@
         <!--add driver model-->
 
         <div class="modal fade" id="addDriverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-dialog trp-modal-lg" role="document">
             <div class="row">
               <div class="modal-content">
               <div class="modal-header">
@@ -383,7 +383,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <div class="row">
+                <!--<div class="row">
                   <div class="col-md-4">
                     <label for="">Select a driver</label>
                   </div>
@@ -399,16 +399,16 @@
                     </kendo-autocomplete>
                   </div>
 
-                </div>
-              </div>
-              <div class="modal-footer" ngClass="">
-                <button type="button"  class="btn btn-primary" data-dismiss="modal" (click)="addDriver()"><i class="fa fa-add"></i>Add</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>-->
 
+                <app-set-driver
+                [refNo]="refNo"
+                ></app-set-driver>
               </div>
+
             </div>
             </div>
-            
+
           </div>
         </div>
 
