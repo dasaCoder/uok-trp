@@ -40,6 +40,7 @@ import { DriversComponent } from './components/main/admin/drivers/drivers.compon
 import { AddComponent } from './components/main/admin/drivers/add/add.component';
 import { ProfileComponent } from './components/main/admin/drivers/profile/profile.component';
 import { SetDriverComponent } from './components/main/admin/request-admin-view/set-driver/set-driver.component';
+import { SetVehicleComponent } from './components/main/admin/request-admin-view/set-vehicle/set-vehicle.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { SetDriverComponent } from './components/main/admin/request-admin-view/s
     AddComponent,
     ProfileComponent,
     SetDriverComponent,
+    SetVehicleComponent,
   ],
   imports: [
     BrowserModule,
