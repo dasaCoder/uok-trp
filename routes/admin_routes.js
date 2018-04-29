@@ -70,7 +70,7 @@ router.get('/vehicle/admin_to_request',(req,res,next)=>{
 });
 
 router.get('/vehicle/set_vehicle',(req, res, next) => {
-  Request.set_vehicle(req.query.refNo, req.query.vehicle_no, (err, callback)=> {
+  Request.set_vehicle(req.query.refNo, req.query._id, (err, callback)=> {
     if(err){
       res.json({
         success: false, msg: 'error occured'
@@ -157,6 +157,21 @@ router.get('/get_driver_request_on_day', (req,res,next) => {
       }
     });
   }
+});
+
+// get a list of drivers
+router.get('/get_driver_list', (req,res,next) => {
+  Vehicle.get_vehicle_list((err,callback) => {
+    if(err) {
+      res.json({
+        success: false
+      })
+    } else {
+      res.json({
+        success: true, data: callback
+      })
+    }
+  });
 });
 
 module.exports = router;

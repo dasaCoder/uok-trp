@@ -29,8 +29,8 @@ export class AdminService {
 
     return this.http.post('http://localhost:3000/admin/driver/set_driver', {refNo: refNo, _id: _id});
   }
-  set_vehicle(refNo, vehicle_no) {
-    return this.http.get(`http://localhost:3000/admin/vehicle/set_vehicle/?refNo=${refNo}&vehicle_no=${vehicle_no}`);
+  set_vehicle(refNo, _id) {
+    return this.http.get(`http://localhost:3000/admin/vehicle/set_vehicle/?refNo=${refNo}&_id=${_id}`);
   }
   get_vehicle_list(status) {
     return this.http.get(`http://localhost:3000/admin/get_request_list/?status=${status}`);
@@ -46,5 +46,10 @@ export class AdminService {
   /// add a new driver
   addDriver(driver: Driver) {
     return this.http.post(`${this.url}/driver`, driver);
+  }
+
+  /// get list of drivers
+  getListOfDrivers() {
+    return this.http.get(`${this.url}/get_driver_list`);
   }
 }

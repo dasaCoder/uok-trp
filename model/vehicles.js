@@ -4,15 +4,17 @@ const config = require('../config/database');
 
 const VehicleSchema = mongoose.Schema({
   vehicle_no: {
-    type: String
+    type: String,
+    required: true
   },
   vehicle_type:{
-    type: String
+    type: String,
+    required: true
   },
   image:{
     type: String // this type should be changed
   },
-  trips: [{
+  /*trips: [{
     ref_no: {
       type: Number
     },
@@ -22,7 +24,7 @@ const VehicleSchema = mongoose.Schema({
     arrival_time: {
       type: String
     }
-  }]
+  }]*/
 });
 
 const Vehicle = module.exports = mongoose.model('Vehicle', VehicleSchema);
@@ -55,6 +57,14 @@ module.exports.get_vehicle_list = function(callback){
 module.exports.get_admin_to_reqeust = function (callback) {
   Vehicle.find({},{'_id' : 0,'vehicle_no' : 1},callback);
 }
+
+// get a list of vehicle
+
+module.exports.getAllDriverDetails = function (callback) {
+  Vehicle.find({}, '')
+
+}
+
 // we used to set arrival time and departure time of trip
 module.exports.set_trip = function (trip_plan, callback) {
 

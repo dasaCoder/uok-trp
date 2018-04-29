@@ -9,13 +9,13 @@ import {Request} from '../../../../../classes/request';
   styleUrls: ['./set-driver.component.css']
 })
 export class SetDriverComponent implements OnInit {
-//@Input() driver_list;
+
 @Input() refNo;
 
 public driver_list: Driver[];
 public reqListOnDriver: Request[];
 
-public selectedDriver;
+public selectedDriver = {};
 public imageUrl = '/assets/images/pattern/pattern.png';
   constructor(private adminService: AdminService) { }
 
@@ -30,7 +30,7 @@ public imageUrl = '/assets/images/pattern/pattern.png';
     this.selectedDriver = driver;
     this.imageUrl = '/assets/images/pattern/pattern.png';
 
-    this.adminService.getRequestOfDriverOnDay(driver._id)
+    this.adminService.getRequestOfDriverOnDay(driver['_id'])
       .subscribe( response => {
         // console.log(response);
         if (response['data'][0] !== null ) {
@@ -41,7 +41,7 @@ public imageUrl = '/assets/images/pattern/pattern.png';
   }
   setDriver() {
     console.log(this.selectedDriver);
-    this.adminService.setDriver(this.refNo, this.selectedDriver._id)
+    this.adminService.setDriver(this.refNo, this.selectedDriver['_id'])
       .subscribe( response => {
         console.log(response);
         if ( response['success'] === true) {

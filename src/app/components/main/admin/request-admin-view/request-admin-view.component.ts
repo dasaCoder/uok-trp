@@ -88,7 +88,7 @@ export class RequestAdminViewComponent implements OnInit {
       });
     // alert('accepted');
   }
-  set_vehicle() {
+  /*set_vehicle() {
     if (this.vehicle_no != null) {
       this.adminService.set_vehicle(this.refNo, this.vehicle_no)
         .subscribe(response => {
@@ -98,7 +98,7 @@ export class RequestAdminViewComponent implements OnInit {
           }
         });
     }
-  }
+  }*/
   markDetailedReq() {
     this.requestService.change_status(this.request['refNo'], 4)
       .subscribe( response => {

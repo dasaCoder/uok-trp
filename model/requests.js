@@ -156,12 +156,18 @@ module.exports.getStatusReq = function (params, callback) {
   Request.find(query,'status lecturer refNo',callback);
 }
 
-module.exports.set_vehicle = function (refNo, vehicle_no, callback) {
-  Vehicle.find({'vehicle_no': vehicle_no}, '_id', function (err, data) {
+module.exports.set_vehicle = function (refNo, _id, callback) {
+  /*Vehicle.find({'vehicle_no': vehicle_no}, '_id', function (err, data) {
     let vehicle = data[0];
-    let query = { 'refNo': refNo};
+
     Request.findOneAndUpdate(query, {$set: {'vehicle': vehicle._id} }, { new: true }, callback);
-  });
+  });*/
+  console.log(refNo + _id);
+  if(refNo && _id) {
+    let query = { 'refNo': refNo};
+    Request.findOneAndUpdate(query, {$set: {'vehicle': _id} }, { new: true }, callback);
+  }
+
 }
 module.exports.authTest = function (id, callback ) {
   Request.find({'refNo':1},'refNo',callback)

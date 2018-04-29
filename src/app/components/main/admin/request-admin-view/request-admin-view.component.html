@@ -328,6 +328,12 @@
                   data-toggle="modal" data-target="#addVehicleModal">Add Vehicle</button>
               </div>
 
+              <button class="btn btn-outline-warning"
+                      data-toggle="modal" data-target="#addVehicleModal"
+              >
+                Change Vehicle
+              </button>
+
              </div>
           </div>
         </div>
@@ -417,64 +423,73 @@
         <!--add vehicle model-->
 
         <div class="modal fade" id="addVehicleModal" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="row modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="ModalLongTitle">Add Vehicle</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col-md-4">
-                    <label for="">Select a Vehicle</label>
-                  </div>
-                  <div class="col-md-8">
-
-                    <kendo-autocomplete
-                      [data]="vehicleData"
-                      [filterable]="true"
-                      (valueChange)="getRequestsList($event)"
-                      (filterChange)="handleFilter2($event)"
-                      class="trp-min-input trp-autocomplete"
-                      [value]="vehicle_no"
-                    >
-                    </kendo-autocomplete>
-                  </div>
-                    <div class="container-fluid">
-                      <div class="row">
-                        <table *ngIf="reqListOnVehicle && reqListOnVehicle !== '' && reqListOnVehicle !== null " class="table table-sm">
-                          <thead>
-                          <tr>
-                            <th scope="col">ref no</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Departure time</th>
-                            <th scope="col">Arrival time</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr *ngFor="let request of reqListOnVehicle">
-                            <td>TRD/{{request['refNo']}}</td>
-                            <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['arrival']['dropPoint']}}</b></td>
-                            <td>{{request['departure']['pickupTime']}}</td>
-                            <td>{{request['arrival']['dropTime']}}</td>
-
-                          </tr>
-                          </tbody>
-                        </table>
-                      </div>
+          <div class="modal-dialog trp-modal-lg" role="document">
+            <div class="row">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="ModalLongTitle">Add Vehicle</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <!--<div class="row">
+                    <div class="col-md-4">
+                      <label for="">Select a Vehicle</label>
                     </div>
+                    <div class="col-md-8">
+
+                      <kendo-autocomplete
+                        [data]="vehicleData"
+                        [filterable]="true"
+                        (valueChange)="getRequestsList($event)"
+                        (filterChange)="handleFilter2($event)"
+                        class="trp-min-input trp-autocomplete"
+                        [value]="vehicle_no"
+                      >
+                      </kendo-autocomplete>
+
+
+                    </div>
+                      <div class="container-fluid">
+                        <div class="row">
+                          <table *ngIf="reqListOnVehicle && reqListOnVehicle !== '' && reqListOnVehicle !== null " class="table table-sm">
+                            <thead>
+                            <tr>
+                              <th scope="col">ref no</th>
+                              <th scope="col">Description</th>
+                              <th scope="col">Departure time</th>
+                              <th scope="col">Arrival time</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let request of reqListOnVehicle">
+                              <td>TRD/{{request['refNo']}}</td>
+                              <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['arrival']['dropPoint']}}</b></td>
+                              <td>{{request['departure']['pickupTime']}}</td>
+                              <td>{{request['arrival']['dropTime']}}</td>
+
+                            </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+
+                  </div>-->
+
+                  <app-set-vehicle
+                    [refNo]="refNo"
+                  >
+
+                  </app-set-vehicle>
 
 
                 </div>
-              </div>
-              <div class="modal-footer" ngClass="">
-                <button type="button"  class="btn btn-primary" data-dismiss="modal" (click)="set_vehicle()"><i class="fa fa-add"></i>Add</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
               </div>
             </div>
+
           </div>
         </div>
 
