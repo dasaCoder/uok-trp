@@ -21,10 +21,32 @@
                           <br />
                           <i class="glyphicon glyphicon-gift"></i>{{driver.nic_no}}</p>
                       <!-- Split button -->
-                     
+
                   </div>
               </div>
           </div>
       </div>
+  </div>
+
+  <div class="row">
+    <table *ngIf="reqListOnDriver && reqListOnDriver !== [] && reqListOnDriver !== null " class="table table-sm">
+      <thead>
+      <tr>
+        <th scope="col">Department/Unit</th>
+        <th scope="col">Description</th>
+        <th scope="col">Departure time</th>
+        <th scope="col">Arrival time</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let request of reqListOnDriver">
+        <td>TRD/{{request['dep_unit']}}</td>
+        <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['arrival']['dropPoint']}}</b></td>
+        <td>{{request['departure']['pickupTime']}}</td>
+        <td>{{request['arrival']['dropTime']}}</td>
+
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>
