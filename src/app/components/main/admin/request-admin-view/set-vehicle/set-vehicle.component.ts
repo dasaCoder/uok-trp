@@ -12,6 +12,7 @@ export class SetVehicleComponent implements OnInit {
   @Input() refNo;
 
   public vehicle_lists = [];
+  reqListOnVehicle; // this will hold the list of reqeust which belongs to vehicle when admin select vehicle
   public selectedVehicle = {};
   public imageUrl = '/assets/images/pattern/pattern.png';
   constructor(private adminService: AdminService) { }
@@ -25,7 +26,7 @@ export class SetVehicleComponent implements OnInit {
 
   onclickVehicle(vehicle) {
     this.selectedVehicle = vehicle;
-    alert(this.selectedVehicle['_id']);
+    this.getRequestsList(vehicle.vehicle_no);
   }
 
   set_vehicle() {
@@ -37,6 +38,22 @@ export class SetVehicleComponent implements OnInit {
             // this.isSetVehicle = true;
           }
         });
+    }
+  }
+
+  getRequestsList(vehicle_no) {
+    if (vehicle_no !== '' && vehicle_no !== null) {
+      this.adminService.getRequestList(vehicle_no)
+        .subscribe( response => {
+          console.log(response);
+          if (response['msg'][0]) {
+            this.reqListOnVehicle = response['msg'];
+          } else {
+            this.reqListOnVehicle = null;
+          }
+        });
+    } else {
+      this.reqListOnVehicle = null;
     }
   }
 

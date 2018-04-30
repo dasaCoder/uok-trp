@@ -176,12 +176,12 @@ module.exports.getReqOnDayForVehicle = function (vehicle_no, callback) {
   //console.log(vehicle_no);
   Vehicle.find({'vehicle_no':vehicle_no},'_id', function (err, data) {
     if(data[0]) {
-      let date = new Date();
+      let date = new Date('2018-4-19');
       date = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-      let nextDate = new Date();
+      let nextDate = new Date('2018-4-19');
       nextDate = `${nextDate.getFullYear()}-${nextDate.getMonth()+1}-${nextDate.getDate()+1}`
       let query = {'vehicle': data[0]['_id'],'departure.pickupDate':{$gte:date,$lt:nextDate}};
-      console.log(query);
+     // console.log(query);
       Request.find(query,'refNo arrival departure',callback);
     }
 
@@ -191,12 +191,12 @@ module.exports.getReqOnDayForVehicle = function (vehicle_no, callback) {
 /// get list of requests of a driver on a specific day
 
 module.exports.getRequetsOfDriverOnDay = function (_id, callback){
-  let date = new Date('2018-4-18');
+  let date = new Date();
   date = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-  let nextDate = new Date('2018-4-18');
+  let nextDate = new Date();
   nextDate = `${nextDate.getFullYear()}-${nextDate.getMonth()+1}-${nextDate.getDate()+1}`;
 
   let query = {'driver':_id, 'departure.pickupDate':{$gte:date,$lt:nextDate}};
-  console.log(query);
+  // console.log(query);
   Request.find(query, 'arrival departure dep_unit', callback)
 }

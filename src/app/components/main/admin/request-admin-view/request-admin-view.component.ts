@@ -22,7 +22,7 @@ export class RequestAdminViewComponent implements OnInit {
   public isSetDriver = false; // true when driver is set
   refNo;
   request: Request = new Request() ;
-  reqListOnVehicle; // this will hold the list of reqeust which belongs to vehicle when admin select vehicle
+  //reqListOnVehicle; // this will hold the list of reqeust which belongs to vehicle when admin select vehicle
   constructor(private route: ActivatedRoute, private requestService: RequestService, private adminService: AdminService) {
     // get referance number as route parameter and equal it to refNo variable
     this.route.paramMap.subscribe(params => {
@@ -109,7 +109,7 @@ export class RequestAdminViewComponent implements OnInit {
   set_vehicle_no(value: any) {
     this.vehicle_no = value;
   }
-  getRequestsList(vehicle_no) {
+  /*getRequestsList(vehicle_no) {
     if (vehicle_no !== '' && vehicle_no !== null) {
       this.set_vehicle_no(vehicle_no);
       this.adminService.getRequestList(vehicle_no)
@@ -123,7 +123,7 @@ export class RequestAdminViewComponent implements OnInit {
     } else {
       this.reqListOnVehicle = null;
     }
-  }
+  }*/
 
 
 }

@@ -41,8 +41,8 @@
 
 
 
-   <!-- <div class="row">
-      <table *ngIf="reqListOnDriver && reqListOnDriver !== [] && reqListOnDriver !== null " class="table table-sm">
+    <div class="row">
+      <table *ngIf="reqListOnVehicle && reqListOnVehicle !== [] && reqListOnVehicle !== null " class="table table-sm">
         <thead>
         <tr>
           <th scope="col">Department/Unit</th>
@@ -52,7 +52,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let request of reqListOnDriver">
+        <tr *ngFor="let request of reqListOnVehicle">
           <td>TRD/{{request['dep_unit']}}</td>
           <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['arrival']['dropPoint']}}</b></td>
           <td>{{request['departure']['pickupTime']}}</td>
@@ -61,7 +61,7 @@
         </tr>
         </tbody>
       </table>
-    </div>-->
+    </div>
 
   </div>
 
