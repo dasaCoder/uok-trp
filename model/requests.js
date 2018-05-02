@@ -200,3 +200,24 @@ module.exports.getRequetsOfDriverOnDay = function (_id, callback){
   // console.log(query);
   Request.find(query, 'arrival departure dep_unit', callback)
 }
+
+/*
+* get list of request of a driver for a month
+*
+* */
+module.exports.getRequetsOfDriverOnMonth = function (_id, month_first_day, callback){
+  let date = new Date(month_first_day);
+  date = `${date.getFullYear()}-${date.getMonth()+1}-1`;
+  let nextDate = new Date(month_first_day);
+  nextDate = `${nextDate.getFullYear()}-${nextDate.getMonth()+2}-${nextDate.getDate()}`;
+
+  let query = {
+                'driver':_id,
+                'departure.pickupDate':{
+                                        $gte: date,
+                                        $lt:  nextDate
+                  }};
+  console.log(query);
+  Request.find(query, 'arrival departure dep_unit', callback);
+
+}

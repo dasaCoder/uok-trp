@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../../../../services/admin.service';
 import {ActivatedRoute } from '@angular/router';
 import {Request} from '../../../../../classes/request';
+import {Driver} from '../../../../../classes/driver';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +10,7 @@ import {Request} from '../../../../../classes/request';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  public driver = {}; // driver details
+  public driver: Driver; // driver details
   public _id: String; // holds the value of driver object id
   public reqListOnDriver: Request[] = [];
   constructor(private route: ActivatedRoute, private adminService: AdminService) {
@@ -19,7 +20,7 @@ export class ProfileComponent implements OnInit {
     */
     route.paramMap.subscribe( params => {
       this._id = params.get('driver_id');
-    })
+    });
    }
 
   ngOnInit() {
@@ -30,9 +31,25 @@ export class ProfileComponent implements OnInit {
       });
 
     this.adminService.getRequestOfDriverOnDay(this._id)
-      .subscribe( date => {
-        //this
-      })
+      .subscribe( data => {
+        // console.log(data);
+        this.reqListOnDriver = data['data'];
+        // console.log(this.reqListOnDriver);
+      });
+  }
+
+  onClickDay() {
+    this.adminService.getRequestOfDriverOnDay(this._id)
+      .subscribe( data => {
+        this.reqListOnDriver = data['data'];
+      });
+  }
+
+  onClickMonth() {
+    this.adminService.getRequestOfDriverOnMonth(this._id)
+      .subscribe(data => {
+        this.reqListOnDriver = data['data'];
+      });
   }
 
 }

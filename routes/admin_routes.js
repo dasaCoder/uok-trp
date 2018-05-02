@@ -159,6 +159,33 @@ router.get('/get_driver_request_on_day', (req,res,next) => {
   }
 });
 
+
+/*
+* get list of request of a driver on a month
+* */
+
+// get list of request of a driver on a day
+
+router.get('/get_driver_request_on_month', (req,res,next) => {
+  if(req.query._id && req.query.month_f_d) { // month_f_d ==>  first date of the month
+    Request.getRequetsOfDriverOnMonth(req.query._id, new Date(req.query.month_f_d), (err,callback) => {
+      if(err) {
+        res.json({
+          success: false
+        });
+      } else {
+        res.json({
+          success: true, data: callback
+        })
+      }
+    });
+  } else {
+    res.json({
+      success: 'false'
+    })
+  }
+});
+
 // get a list of drivers
 router.get('/get_driver_list', (req,res,next) => {
   Vehicle.get_vehicle_list((err,callback) => {

@@ -1,6 +1,6 @@
 
 
-<div class="container">
+<div class="container" *ngIf="driver">
   <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="">
@@ -27,9 +27,21 @@
           </div>
       </div>
   </div>
+  <br>
+
+  <h4>Shedule</h4>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-secondary" (click)="onClickDay()">Day</button>
+    <button type="button" class="btn btn-secondary" (click)="onClickMonth()">Month</button>
+  </div>
+  <br>
+  <br>
 
   <div class="row">
-    <table *ngIf="reqListOnDriver && reqListOnDriver !== [] && reqListOnDriver !== null " class="table table-sm">
+
+
+
+    <table *ngIf="reqListOnDriver[0] && reqListOnDriver !== [] && reqListOnDriver !== null " class="table table-sm table-hover">
       <thead>
       <tr>
         <th scope="col">Department/Unit</th>
@@ -39,14 +51,32 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let request of reqListOnDriver">
-        <td>TRD/{{request['dep_unit']}}</td>
-        <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['arrival']['dropPoint']}}</b></td>
+      <tr *ngFor="let request of reqListOnDriver" data-toggle="modal" data-target=".bd-example-modal-lg">
+        <td>{{request['dep_unit']}}</td>
+        <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['arrival']['pickupPoint']}}</b></td>
         <td>{{request['departure']['pickupTime']}}</td>
         <td>{{request['arrival']['dropTime']}}</td>
 
       </tr>
       </tbody>
+
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+
+
+
+
+          </div>
+        </div>
+      </div>
+
     </table>
+    <div class="row" *ngIf="!reqListOnDriver[0]">
+      <div  class="alert alert-warning text-center ">
+        no duties
+      </div>
+    </div>
+
   </div>
 </div>

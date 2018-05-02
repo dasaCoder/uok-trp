@@ -43,6 +43,16 @@ export class AdminService {
     return this.http.get(`${this.url}/get_driver_request_on_day?_id=${_id}`);
   }
 
+  /*
+  * get list of reqeust of a driver for a given month
+  * */
+  getRequestOfDriverOnMonth(_id) {
+    let date = new Date();
+    let real_date = `${date.getFullYear()}-${date.getMonth() + 1}-1`;
+    console.log(date);
+    return this.http.get(`${this.url}/get_driver_request_on_month?_id=${_id}&month_f_d=${real_date}`);
+  }
+
   /// add a new driver
   addDriver(driver: Driver) {
     return this.http.post(`${this.url}/driver`, driver);
