@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
   public driver: Driver; // driver details
   public _id: String; // holds the value of driver object id
   public reqListOnDriver: Request[] = [];
+  public selectedReq = {};
   constructor(private route: ActivatedRoute, private adminService: AdminService) {
 
     /*
@@ -50,6 +51,10 @@ export class ProfileComponent implements OnInit {
       .subscribe(data => {
         this.reqListOnDriver = data['data'];
       });
+  }
+
+  selectRequest(request: Request) {
+    this.selectedReq = request;
   }
 
 }

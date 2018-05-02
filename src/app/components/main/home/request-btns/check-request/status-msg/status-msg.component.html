@@ -7,7 +7,7 @@
       <img src="../../../../../../../assets/images/logo/logo.png" alt="" style="height: 20vh;padding-top: 20px;">
     </div>
 
-    <div class="col-md-8" [ngSwitch]="status">
+    <div class="col-md-8" [ngSwitch]="status"> {{status}}
       <div *ngSwitchCase="0" class="text-center">
         <div class="alert alert-warning" role="alert">
           <strong>Sorry !</strong> Your request in not being review yet.
@@ -24,7 +24,7 @@
       </div>
       <div *ngSwitchCase="2" class="text-center">
         <div class="alert alert-success" role="alert">
-          <strong>Congratulations!</strong>  Your request is confirmed
+          <strong>Confirmed</strong>  Your request is confirmed
         </div>
         <button class="btn btn-success" [routerLink]="['/request/view_req/'+refNo]" data-dismiss="modal" aria-label="Close">View more</button>
       </div>

@@ -31,8 +31,6 @@ export class StatusMsgComponent implements OnInit {
 
         } else {
           this.status = 5;
-          if (3==3)
-          console.log('erro');
         }
         console.log(response);
       });
