@@ -198,7 +198,7 @@ module.exports.getRequetsOfDriverOnDay = function (_id, callback){
 
   let query = {'driver':_id, 'departure.pickupDate':{$gte:date,$lt:nextDate}};
   // console.log(query);
-  Request.find(query, 'arrival departure dep_unit', callback)
+  Request.find(query, 'arrival departure dep_unit purpose', callback).populate('vehicle');
 }
 
 /*
@@ -218,6 +218,6 @@ module.exports.getRequetsOfDriverOnMonth = function (_id, month_first_day, callb
                                         $lt:  nextDate
                   }};
   console.log(query);
-  Request.find(query, 'arrival departure dep_unit', callback);
+  Request.find(query, 'arrival departure dep_unit purpose', callback).populate('vehicle');
 
 }
