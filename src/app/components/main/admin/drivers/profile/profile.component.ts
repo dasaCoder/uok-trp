@@ -3,6 +3,7 @@ import { AdminService } from '../../../../../services/admin.service';
 import {ActivatedRoute } from '@angular/router';
 import {Request} from '../../../../../classes/request';
 import {Driver} from '../../../../../classes/driver';
+import * as html2canvas from 'html2canvas';
 import * as jsPDF from 'jspdf';
 
 @Component({
@@ -61,28 +62,16 @@ export class ProfileComponent implements OnInit {
   printPdf(value) {
     console.log(value);
 
+    html2canvas(value).then( canvas => {
+      let imgData = canvas.toDataURL('image/png');
+      //document.body.appendChild(canvas);
 
-    let options = {
-      orientation: 'l',
-      unit: 'pt',
-      format: 'a6'
-    };
-
-    let doc = new jsPDF(options, '' , '', '' );
-
-
-    doc.fromHTML(
-      value,
-      15,
-      15,
-      {
-        width: 415
-      }
-      );
-    doc.setFontSize(9);
-
-    // Save the PDF
-    doc.save();
+      let doc = new jsPDF('l', 'pt' , 'a5');
+      let width = doc.internal.pageSize.width;
+      let height = doc.internal.pageSize.height;
+      doc.addImage(imgData, 'JPEG', 0 , 0, width, height);
+      doc.save('img.pdf');
+    })
   }
 
 }
