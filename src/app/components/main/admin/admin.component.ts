@@ -42,6 +42,8 @@ export class AdminComponent implements OnInit {
     adminService.get_vehicle_list(4)
       .subscribe( response => {
         this.detailed_requests = response['msg'];
+
+        console.log(this.detailed_requests);
       });
   }
 

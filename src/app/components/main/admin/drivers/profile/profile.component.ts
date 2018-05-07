@@ -3,6 +3,7 @@ import { AdminService } from '../../../../../services/admin.service';
 import {ActivatedRoute } from '@angular/router';
 import {Request} from '../../../../../classes/request';
 import {Driver} from '../../../../../classes/driver';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-profile',
@@ -55,6 +56,33 @@ export class ProfileComponent implements OnInit {
 
   selectRequest(request: Request) {
     this.selectedReq = request;
+  }
+
+  printPdf(value) {
+    console.log(value);
+
+
+    let options = {
+      orientation: 'l',
+      unit: 'pt',
+      format: 'a6'
+    };
+
+    let doc = new jsPDF(options, '' , '', '' );
+
+
+    doc.fromHTML(
+      value,
+      15,
+      15,
+      {
+        width: 415
+      }
+      );
+    doc.setFontSize(9);
+
+    // Save the PDF
+    doc.save();
   }
 
 }

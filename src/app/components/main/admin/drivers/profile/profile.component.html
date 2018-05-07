@@ -70,6 +70,7 @@
 
             <div class="modal-header">
               <h5 class="modal-title">TRD/{{selectedReq['refNo']}} - Details</h5>
+              <button (click)="printPdf(pdf)">print</button>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -418,4 +419,18 @@
     </div>
 
   </div>
+</div>
+
+
+<div #pdf style="height: 298pt; width: 420pt;">
+  <h2 style="text-align: center;"><span style="text-decoration: underline;">Vehicle Driving Pass</span></h2>
+  <p>Security Officer,</p>
+  <p><strong>Vehicle No</strong> :- XXX-4545 </p>
+  <p><strong>Drivers Name</strong>: Mrs. rusiru ekanayaka</p>
+  <p><strong>Dep/fac</strong>   :- faculty of science</p>
+  <p><br />Please give permision to above vehicle to leave the university premises for official purposes.</p>
+  <p>Click the Clean button to clean your source code.</p>
+  <h2>&nbsp;</h2>
+  <p><strong>Save this link into your bookmarks and share it with your friends. It is all FREE! </strong><br /><strong>Enjoy!</strong></p>
+  <p>&nbsp;</p>
 </div>
