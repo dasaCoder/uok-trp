@@ -12,6 +12,7 @@ import {SheduleComponent} from './components/main/admin/shedule/shedule.componen
 import {DriversComponent} from './components/main/admin/drivers/drivers.component';
 import {ProfileComponent} from './components/main/admin/drivers/profile/profile.component';
 import {AddComponent} from './components/main/admin/drivers/add/add.component';
+import {AddVehicleComponent} from './components/main/admin/vehicle/add-vehicle/add-vehicle.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,12 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: [
-      { path: 'vehicle/:vehicle_no' , component: VehicleComponent },
+      { path: 'vehicle/view/:vehicle_no',
+        component: VehicleComponent
+      },
+      {
+        path: 'vehicle/add', component: AddVehicleComponent
+      },
       { path: 'request/:refNO' , component: RequestAdminViewComponent },
       {
         path: 'drivers',

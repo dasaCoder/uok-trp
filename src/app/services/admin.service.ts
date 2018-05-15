@@ -9,7 +9,7 @@ export class AdminService {
     this.url = 'http://localhost:3000/admin';
   }
 
-  // return list of drivers
+  // return list of drivers (just names)
   getDrivers() {
     return this.http.get('http://localhost:3000/admin/driver');
   }

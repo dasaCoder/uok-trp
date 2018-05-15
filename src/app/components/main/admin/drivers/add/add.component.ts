@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../../../../../services/admin.service';
+import {Driver} from '../../../../../classes/driver';
 
 @Component({
   selector: 'app-add',
@@ -8,9 +9,11 @@ import {AdminService} from '../../../../../services/admin.service';
 })
 export class AddComponent implements OnInit {
   isSubmited: boolean = false;
+
   constructor(private adminService: AdminService) { }
 
   ngOnInit() {
+
   }
   addDriver(driver) {
     this.isSubmited = true;

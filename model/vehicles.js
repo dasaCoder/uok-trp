@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const config = require('../config/database');
+const Schema = mongoose.Schema;
 
 const VehicleSchema = mongoose.Schema({
   vehicle_no: {
@@ -14,6 +15,9 @@ const VehicleSchema = mongoose.Schema({
   image:{
     type: String // this type should be changed
   },
+  driver: {
+    type: Schema.Types.ObjectId, ref: 'Driver'
+  }
   /*trips: [{
     ref_no: {
       type: Number
