@@ -17,7 +17,8 @@ const VehicleSchema = mongoose.Schema({
   },
   driver: {
     type: Schema.Types.ObjectId, ref: 'Driver'
-  }
+  },
+  chassi_no: String
   /*trips: [{
     ref_no: {
       type: Number
@@ -73,3 +74,5 @@ module.exports.getAllDriverDetails = function (callback) {
 module.exports.set_trip = function (trip_plan, callback) {
 
 }
+
+

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Driver} from '../classes/driver';
+import {Vehicle} from '../classes/vehicle';
 
 @Injectable()
 export class AdminService {
@@ -61,5 +62,12 @@ export class AdminService {
   /// get list of drivers
   getListOfDrivers() {
     return this.http.get(`${this.url}/get_driver_list`);
+  }
+
+  // add vehicle
+
+  addVehicle(vehicle: Vehicle) {
+    // console.log(vehicle);
+    return this.http.post(`${this.url}/addVehicle`, vehicle);
   }
 }

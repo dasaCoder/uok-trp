@@ -201,4 +201,21 @@ router.get('/get_driver_list', (req,res,next) => {
   });
 });
 
+// add new vehicle to list
+
+router.post('/addVehicle',(req,res,next)=>{
+  let newVehicle = new Vehicle(req.body);
+  console.log(req);
+Vehicle.addVehicle(newVehicle,(err, callback) =>{
+  if(err){
+    res.json({
+      success:false, msg: err
+    });
+  }else{
+    res.json({
+    success: true, msg: 'vehicle added succesfully'
+  });
+}
+})
+});
 module.exports = router;

@@ -11,10 +11,7 @@ router.get('/day', (req,res,next)=>{
 });
 
 router.post('/add',(req,res,next)=>{
-  let newVehicle = new Vehicle({
-    vehicle_no: req.body.vehicle_no,
-    trips: req.body.trips
-  });
+  let newVehicle = new Vehicle(req.body);
   Vehicle.addVehicle(newVehicle,(err, callback) =>{
     if(err){
       res.json({
