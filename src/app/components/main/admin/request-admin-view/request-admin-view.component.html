@@ -409,6 +409,7 @@
 
                 <app-set-driver
                 [refNo]="refNo"
+                (setDriver_)="setDriver($event)"
                 ></app-set-driver>
               </div>
 
@@ -480,6 +481,8 @@
 
                   <app-set-vehicle
                     [refNo]="refNo"
+                    (setVehicle)="setVehicle($event)"
+                    (setDriver)="setDriver($event)"
                   >
 
                   </app-set-vehicle>

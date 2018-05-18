@@ -5,6 +5,8 @@ import {Request} from '../../../../classes/request';
 import {ActivatedRoute} from '@angular/router';
 import { ParamMap } from '@angular/router';
 import {StatusEnum} from '../../../../classes/status';
+import {Vehicle} from '../../../../classes/vehicle';
+import {Driver} from '../../../../classes/driver';
 
 @Component({
   selector: 'app-request-admin-view',
@@ -125,5 +127,12 @@ export class RequestAdminViewComponent implements OnInit {
     }
   }*/
 
+  setVehicle(vehicle: Vehicle) {
+    this.request.vehicle = vehicle;
+  }
 
+  setDriver(driver: Driver) {
+    console.log(driver);
+    this.request.driver = driver;
+  }
 }

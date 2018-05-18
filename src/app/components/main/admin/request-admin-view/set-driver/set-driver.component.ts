@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AdminService} from '../../../../../services/admin.service';
 import {Driver} from '../../../../../classes/driver';
 import {Request} from '../../../../../classes/request';
@@ -11,11 +11,12 @@ import {Request} from '../../../../../classes/request';
 export class SetDriverComponent implements OnInit {
 
 @Input() refNo;
+@Output() setDriver_ = new EventEmitter<Driver>();
 
 public driver_list: Driver[];
 public reqListOnDriver: Request[];
 
-public selectedDriver = {};
+public selectedDriver: Driver;
 public imageUrl = '/assets/images/pattern/pattern.png';
   constructor(private adminService: AdminService) { }
 
@@ -45,7 +46,7 @@ public imageUrl = '/assets/images/pattern/pattern.png';
       .subscribe( response => {
         console.log(response);
         if ( response['success'] === true) {
-          // this.isSetDriver = true;
+          this.setDriver_.emit(this.selectedDriver);
         }
       });
   }
