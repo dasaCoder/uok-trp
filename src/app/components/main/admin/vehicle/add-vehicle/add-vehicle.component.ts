@@ -45,7 +45,7 @@ export class AddVehicleComponent implements OnInit {
           this.router.navigate(['/admin']);
 
         }
-      })
+      });
     // alert('added');
   }
 
