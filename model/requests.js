@@ -162,7 +162,7 @@ module.exports.set_vehicle = function (refNo, _id, callback) {
 
     Request.findOneAndUpdate(query, {$set: {'vehicle': vehicle._id} }, { new: true }, callback);
   });*/
-  console.log(refNo + _id);
+  // console.log('SET_VEHICLE');
   if(refNo && _id) {
     let query = { 'refNo': refNo};
     Request.findOneAndUpdate(query, {$set: {'vehicle': _id} }, { new: true }, callback);

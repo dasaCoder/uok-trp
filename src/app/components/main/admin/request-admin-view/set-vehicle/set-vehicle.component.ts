@@ -21,10 +21,12 @@ export class SetVehicleComponent implements OnInit {
     this.adminService.getListOfDrivers()
       .subscribe( response => {
         this.vehicle_lists = response['data'];
+        console.log(this.vehicle_lists);
       });
   }
 
   onclickVehicle(vehicle) {
+    console.log(vehicle);
     this.selectedVehicle = vehicle;
     this.getRequestsList(vehicle.vehicle_no);
   }
@@ -34,8 +36,13 @@ export class SetVehicleComponent implements OnInit {
       this.adminService.set_vehicle(this.refNo, this.selectedVehicle['_id'])
         .subscribe(response => {
           console.log(response);
-          if (response['msg']){
-            // this.isSetVehicle = true;
+          if (response['msg']['refNo']){
+            if(this.selectedVehicle['driver']){
+              this.adminService.setDriver(this.refNo, this.selectedVehicle['driver']['_id'])
+                .subscribe( resp => {
+                  console.log(response);
+                });
+            }
           }
         });
     }
