@@ -34,7 +34,7 @@
 
 
         <li data-toggle="collapse" data-target="#service" class="collapsed">
-          <i class="fa fa-bell fa-lg"></i> Confirmed Requests  ({{confirmed_requests.length}}) <span class="arrow"></span>
+          <i class="fa fa-bell fa-lg"></i> Confirmed Requests  ({{confirmed_requests.length}})  <span class="arrow"></span>
         </li>
         <ul class="sub-menu collapse" id="service">
           <a *ngFor="let confirmed_req of confirmed_requests" href="/admin/request/{{confirmed_req['refNo']}}">
@@ -43,7 +43,7 @@
         </ul>
 
         <li data-toggle="collapse" data-target="#Doc_comp" class="collapsed">
-          <i class="fa fa-thumbs-up fa-lg"></i> Fully Detailed Requests  ({{detailed_requests.length}}) <span class="arrow"></span>
+          <i class="fa fa-thumbs-up fa-lg"></i> Fully Detailed Requests  ({{d}}) <span class="arrow"></span>
         </li>
         <ul class="sub-menu collapse" id="Doc_comp">
           <a *ngFor="let det_comp_req of detailed_requests" href="/admin/request/{{det_comp_req['refNo']}}">

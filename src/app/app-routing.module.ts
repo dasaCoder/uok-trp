@@ -8,11 +8,11 @@ import {ViewStatusComponent} from './components/main/request/view-status/view-st
 import {AdminComponent} from './components/main/admin/admin.component';
 import {VehicleComponent} from './components/main/admin/vehicle/vehicle.component';
 import {RequestAdminViewComponent} from './components/main/admin/request-admin-view/request-admin-view.component';
-import {SheduleComponent} from './components/main/admin/shedule/shedule.component';
 import {DriversComponent} from './components/main/admin/drivers/drivers.component';
 import {ProfileComponent} from './components/main/admin/drivers/profile/profile.component';
 import {AddComponent} from './components/main/admin/drivers/add/add.component';
 import {AddVehicleComponent} from './components/main/admin/vehicle/add-vehicle/add-vehicle.component';
+import {AdminHomeComponent} from './components/main/admin/admin-home/admin-home.component';
 
 
 const routes: Routes = [
@@ -45,7 +45,7 @@ const routes: Routes = [
           {path: 'add', component: AddComponent}
         ]
       },
-      { path: '', component: SheduleComponent }
+      { path: '', component: AdminHomeComponent }
     ]
   }
 ];

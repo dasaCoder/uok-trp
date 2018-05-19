@@ -9,7 +9,7 @@ import {AdminService} from '../../../services/admin.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
+d = 'diush';
   vehicle_list: Object[];
   not_considered_requests: Object[];
   not_reviewed_requests = [];
@@ -17,17 +17,22 @@ export class AdminComponent implements OnInit {
   confirmed_requests = [];
   detailed_requests = [];
   constructor(private vehicleService: VehicleService, private requestService: RequestService, private adminService: AdminService) {
-    vehicleService.get_vehicle_list()
+
+  }
+
+  ngOnInit() {
+    this.vehicleService.get_vehicle_list()
       .subscribe(response => {
         this.vehicle_list = response['msg'];
         // console.log(response['msg']);
       });
-    requestService.get_not_considered_requests()
+    this.requestService.get_not_considered_requests()
       .subscribe(response => {
         // console.log(response['msg']);
         this.not_considered_requests = response['msg'];
+        console.log('not considerd' + this.not_considered_requests.length);
       });
-    adminService.get_vehicle_list(0)
+    this.adminService.get_vehicle_list(0)
       .subscribe(response => {
         this.not_reviewed_requests = response['msg'];
       });
@@ -35,19 +40,16 @@ export class AdminComponent implements OnInit {
       .subscribe( response => {
         this.accepted_requests = response['msg'];
       })
-    adminService.get_vehicle_list(2)
+    this.adminService.get_vehicle_list(2)
       .subscribe( response => {
         this.confirmed_requests = response['msg'];
       });
-    adminService.get_vehicle_list(4)
+    this.adminService.get_vehicle_list(4)
       .subscribe( response => {
         this.detailed_requests = response['msg'];
 
         console.log(this.detailed_requests);
       });
-  }
-
-  ngOnInit() {
   }
 
 }

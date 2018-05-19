@@ -42,6 +42,8 @@ import { ProfileComponent } from './components/main/admin/drivers/profile/profil
 import { SetDriverComponent } from './components/main/admin/request-admin-view/set-driver/set-driver.component';
 import { SetVehicleComponent } from './components/main/admin/request-admin-view/set-vehicle/set-vehicle.component';
 import { AddVehicleComponent } from './components/main/admin/vehicle/add-vehicle/add-vehicle.component';
+import { AdminHomeComponent } from './components/main/admin/admin-home/admin-home.component';
+import { MapComponent } from './components/main/admin/admin-home/map/map.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,8 @@ import { AddVehicleComponent } from './components/main/admin/vehicle/add-vehicle
     SetDriverComponent,
     SetVehicleComponent,
     AddVehicleComponent,
+    AdminHomeComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
