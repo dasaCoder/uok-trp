@@ -1,10 +1,11 @@
 <div class="row">
+  <input type="text" [(ngModel)]="email">
+
   <div class="col-md-4" style="position: relative">
 
     <div id=""></div>
 
-    <!--<div id="vehicle_list" data-spy="scroll" data-target="drivers">
-      {{vehicle_lists | json}}
+    <div id="vehicle_list" data-spy="scroll" data-target="drivers">
       <div id="drivers" style="max-height: 400px;overflow-y: scroll;">
         <div role="tablist" class="trp-one-driver" *ngFor="let vehicle of vehicle_lists" (click)="onclickVehicle(vehicle)">
           <img src="/assets/images/pattern/pattern.png" alt="" class="trp-driver-list-img">
@@ -12,9 +13,9 @@
         </div>
       </div>
 
-    </div>-->
+    </div>
 
-    <div id="vehicle_list" >
+    <!--<div id="vehicle_list" >
 
       <div id="drivers" >
         <div  class="trp-one-driver" *ngFor="let vehicle of vehicle_lists" (click)="onclickVehicle(vehicle)">
@@ -23,7 +24,7 @@
         </div>
       </div>
 
-    </div>
+    </div>-->
 
   </div>
   <div class="col-md-8">

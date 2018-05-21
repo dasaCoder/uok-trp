@@ -18,6 +18,7 @@ export class SetVehicleComponent implements OnInit {
   reqListOnVehicle; // this will hold the list of reqeust which belongs to vehicle when admin select vehicle
   public selectedVehicle: Vehicle;
   public imageUrl = '/assets/images/pattern/pattern.png';
+
   constructor(private adminService: AdminService) { }
 
   ngOnInit() {
