@@ -3,12 +3,23 @@
 
     <div id=""></div>
 
-    <div id="vehicle_list" data-spy="scroll" data-target="drivers">
-
+    <!--<div id="vehicle_list" data-spy="scroll" data-target="drivers">
+      {{vehicle_lists | json}}
       <div id="drivers" style="max-height: 400px;overflow-y: scroll;">
         <div role="tablist" class="trp-one-driver" *ngFor="let vehicle of vehicle_lists" (click)="onclickVehicle(vehicle)">
           <img src="/assets/images/pattern/pattern.png" alt="" class="trp-driver-list-img">
-          <h6 style="display:inline">{{vehicle.vehicle_no}}j</h6>
+          <h6 style="display:inline">{{vehicle.vehicle_no}}</h6>
+        </div>
+      </div>
+
+    </div>-->
+
+    <div id="vehicle_list" >
+
+      <div id="drivers" >
+        <div  class="trp-one-driver" *ngFor="let vehicle of vehicle_lists" (click)="onclickVehicle(vehicle)">
+          <img src="/assets/images/pattern/pattern.png" alt="" class="trp-driver-list-img">
+          <h6 style="display:inline">{{vehicle.vehicle_no}}</h6>
         </div>
       </div>
 
@@ -18,22 +29,22 @@
   <div class="col-md-8">
 
 
-    <div class="row">
+    <div class="row" *ngIf="selectedVehicle">
       <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="">
           <div class="row">
             <div class="col-sm-6 col-md-4">
               <img [src]="imageUrl" style="height: 150px; width: 150px" alt="" class="img-fluid" />
             </div>
-            <div class="col-sm-6 col-md-8">
-              <h4>
+            <div class="col-sm-6 col-md-8" >
+              <h4 >
                 {{selectedVehicle.vehicle_no | uppercase}}</h4>
 
               <p>
-                <i class="glyphicon glyphicon-telephone">{{selectedVehicle.vehicle_type}}</i> </p>
+                <i class="glyphicon glyphicon-telephone">{{selectedVehicle['vehicle_type']}}</i> </p>
                 <!-- {{driver.telephone}} -->
                 <br />
-              <p>{{selectedVehicle.driver.name}}</p>
+              <p *ngIf="selectedVehicle['driver']">{{selectedVehicle['driver']['name']}}</p>
 
 
             </div>

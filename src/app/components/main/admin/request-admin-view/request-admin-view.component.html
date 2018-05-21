@@ -204,11 +204,11 @@
             </h6>
           </div>
 
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion" *ngIf="request">
             <div class="card-body">
               <div>
                 <h6>Departure</h6>
-                <table class="table table-sm">
+                <table class="table table-sm" *ngIf="request['departure']">
 
                   <tr>
 
@@ -254,7 +254,7 @@
 
               <div>
                 <h6>Arrival</h6>
-                <table class="table table-sm">
+                <table class="table table-sm" *ngIf="request.arrival">
 
                   <tr>
 

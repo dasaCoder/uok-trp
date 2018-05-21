@@ -96,8 +96,8 @@ router.post('/driver/set_driver', (req,res,next) => {
         success: true, msg: callback
       })
     }
-  })
-})
+  });
+});
 
 router.get('/get_request_list', (req, res, next) => {
   Request.get_req_list(req.query.status,(err, callback) => {
@@ -187,7 +187,7 @@ router.get('/get_driver_request_on_month', (req,res,next) => {
 });
 
 // get a list of drivers
-router.get('/get_driver_list', (req,res,next) => {
+router.get('/get_vehicle_list', (req,res,next) => {
   Vehicle.get_vehicle_list((err,callback) => {
     if(err) {
       res.json({

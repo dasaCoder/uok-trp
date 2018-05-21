@@ -21,11 +21,13 @@ export class SetVehicleComponent implements OnInit {
   constructor(private adminService: AdminService) { }
 
   ngOnInit() {
-    this.adminService.getListOfDrivers()
+    this.adminService.getListOfVehicles()
       .subscribe( response => {
         this.vehicle_lists = response['data'];
         console.log(this.vehicle_lists);
       });
+
+
   }
 
   onclickVehicle(vehicle) {
@@ -38,7 +40,7 @@ export class SetVehicleComponent implements OnInit {
     if (this.selectedVehicle != null) {
       this.adminService.set_vehicle(this.refNo, this.selectedVehicle['_id'])
         .subscribe(response => {
-          //console.log(response);
+          // console.log(response);
           if (response['msg']['refNo']){
             this.setVehicle.emit(this.selectedVehicle);
 

@@ -60,8 +60,8 @@ export class AdminService {
   }
 
   /// get list of drivers
-  getListOfDrivers() {
-    return this.http.get(`${this.url}/get_driver_list`);
+  getListOfVehicles() {
+    return this.http.get(`${this.url}/get_vehicle_list`);
   }
 
   // add vehicle
