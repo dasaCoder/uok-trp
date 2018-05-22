@@ -29,7 +29,7 @@ export class RequestAdminViewComponent implements OnInit {
     // get referance number as route parameter and equal it to refNo variable
     this.route.paramMap.subscribe(params => {
       this.refNo = params.get('refNO');
-      console.log(this.refNo);
+      // console.log(this.refNo);
     });
 
     requestService.getOneRequest(this.refNo)

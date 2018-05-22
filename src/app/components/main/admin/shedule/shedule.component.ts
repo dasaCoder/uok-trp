@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {RequestService} from '../../../../services/request.service';
 
 @Component({
@@ -7,18 +7,24 @@ import {RequestService} from '../../../../services/request.service';
   styleUrls: ['./shedule.component.css']
 })
 export class SheduleComponent implements OnInit {
+  @Input() reqeustList;
   requests: Request[];
+
   constructor(private requestService: RequestService) {
-    this.get_requests();
-  }
+        }
 
   ngOnInit() {
+    if (!this.reqeustList) {
+      this.get_requests();
+    } else {
+      this.requests = this.reqeustList;
+    }
   }
   get_requests(){
     this.requestService.get_active_req()
       .subscribe(response => {
         this.requests = response['msg'];
-        console.log(this.requests[0]);
+        console.log(response['msg']);
       });
   }
   change_status(action: string, refNo: number, status: Number) {
