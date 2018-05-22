@@ -186,6 +186,25 @@ router.get('/get_driver_request_on_month', (req,res,next) => {
   }
 });
 
+// get list of requests on a day
+
+router.get('/get_requests_on_date', (req,res,next) => {
+  //console.log(req.query.date);
+  let date = req.query.date;
+  Request.getRequestOnDay(date, (err, callback ) => {
+    if(err) {
+      res.json({
+        success: false
+      })
+    } else {
+      res.json({
+      success: true,
+      data: callback
+    })
+    }
+});
+});
+
 // get a list of drivers
 router.get('/get_vehicle_list', (req,res,next) => {
   Vehicle.get_vehicle_list((err,callback) => {

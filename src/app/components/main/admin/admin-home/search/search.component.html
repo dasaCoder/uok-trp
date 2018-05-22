@@ -1,0 +1,31 @@
+<div class="row">
+
+  <div class="col-md-6">
+
+    <div class="trp-check-date-div">
+      <label class="trp-check-date">Check date:</label>
+      <input [(ngModel)]="selectedDate"
+             [owlDateTimeTrigger]="dtPicker1"
+             [owlDateTime]="dtPicker1"
+             class="trp-min-input"
+      >
+      <fa name="calendar" class="errspan"></fa>
+      <owl-date-time
+        (afterPickerClosed)="picker()"
+        [pickerType]="'calendar'"
+        #dtPicker1></owl-date-time>
+
+      <!--<div class="card">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let vehicle of availableVehicles">{{vehicle.type}}{{vehicle.left}}</li>
+        </ul>
+      </div>-->
+    </div>
+
+  </div>
+
+  <div class="col-md-6">
+
+  </div>
+
+</div>

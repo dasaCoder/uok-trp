@@ -169,9 +169,11 @@ module.exports.set_vehicle = function (refNo, _id, callback) {
   }
 
 }
+
 module.exports.authTest = function (id, callback ) {
   Request.find({'refNo':1},'refNo',callback)
 }
+
 module.exports.getReqOnDayForVehicle = function (vehicle_no, callback) {
   //console.log(vehicle_no);
   Vehicle.find({'vehicle_no':vehicle_no},'_id', function (err, data) {
@@ -179,7 +181,7 @@ module.exports.getReqOnDayForVehicle = function (vehicle_no, callback) {
       let date = new Date('2018-4-19');
       date = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
       let nextDate = new Date('2018-4-19');
-      nextDate = `${nextDate.getFullYear()}-${nextDate.getMonth()+1}-${nextDate.getDate()+1}`
+      nextDate = `${nextDate.getFullYear()}-${nextDate.getMonth()+1}-${nextDate.getDate()+1}`;
       let query = {'vehicle': data[0]['_id'],'departure.pickupDate':{$gte:date,$lt:nextDate}};
      // console.log(query);
       Request.find(query,'refNo arrival departure',callback);
@@ -220,4 +222,15 @@ module.exports.getRequetsOfDriverOnMonth = function (_id, month_first_day, callb
   console.log(query);
   Request.find(query, 'arrival departure dep_unit purpose', callback).populate('vehicle');
 
+}
+
+module.exports.getRequestOnDay = function (date1, callback ) {
+  let date_ = new Date(date1);
+  date_ = `${date_.getFullYear()}-${date_.getMonth()+1}-${date_.getDate()}`;
+  let nextDate = new Date(date_);
+  nextDate = `${nextDate.getFullYear()}-${nextDate.getMonth()+1}-${nextDate.getDate()+1}`;
+
+  let query = {'departure.pickupDate':{$gte:date_,$lt:nextDate}};
+  console.log(query);
+  Request.find(query, callback);
 }

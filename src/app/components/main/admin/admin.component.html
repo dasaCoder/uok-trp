@@ -66,13 +66,17 @@
         </ul>
 
 
-        <li data-toggle="collapse" data-target="#driversList" class="collapsed">
-          <a href="#">
+        <li data-toggle="collapse" data-target="#newD" class="collapsed">
             <i class="fa fa-user fa-lg"></i> Drivers <span class="arrow"></span>
-          </a>
         </li>
-        <ul class="sub-menu collapse" id="driversList">
+        <ul *ngIf="driverList" class="sub-menu collapse" id="newD">
+          <a *ngFor="let driver of driverList" href="/admin/drivers/profile/{{driver['_id']}}">
+            <li>{{driver['name']}}</li>
+          </a>
 
+          <a href="/admin/drivers/add">
+            <li>Add Driver</li>
+          </a>
         </ul>
 
         <li>
