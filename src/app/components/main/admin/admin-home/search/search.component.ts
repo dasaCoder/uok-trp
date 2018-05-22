@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DateModel} from '../../../home/notice/notice.component';
+import {AdminService} from '../../../../../services/admin.service';
 
 @Component({
   selector: 'app-search',
@@ -11,15 +12,18 @@ export class SearchComponent implements OnInit {
   selectedDate = new Date();
   formatedDate;
 
-  constructor() { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit() {
   }
 
   picker() {
     this.formatedDate = `${this.selectedDate.getFullYear()}-${this.selectedDate.getMonth() + 1}-${this.selectedDate.getDate()}`;
-
-    console.log(this.formatedDate);
+    this.adminService.getRequestListOnDay(this.formatedDate)
+      .subscribe(response => {
+        console.log(response['data']);
+      })
+    //console.log(this.formatedDate);
   }
 
 

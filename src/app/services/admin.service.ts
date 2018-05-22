@@ -70,4 +70,11 @@ export class AdminService {
     // console.log(vehicle);
     return this.http.post(`${this.url}/addVehicle`, vehicle);
   }
+
+
+  // get list of requests
+
+  getRequestListOnDay(date){
+    return this.http.get(`${this.url}/get_requests_on_date?date=${date}`);
+  }
 }
