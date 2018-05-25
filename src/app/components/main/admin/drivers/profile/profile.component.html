@@ -51,7 +51,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let request of reqListOnDriver" data-toggle="modal" data-target=".bd-example-modal-lg" (click)="selectRequest(request)">
+      <tr style="cursor: pointer" *ngFor="let request of reqListOnDriver" data-toggle="modal" data-target=".bd-example-modal-lg" (click)="selectRequest(request)">
         <td>{{request['dep_unit']}}</td>
         <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['arrival']['pickupPoint']}}</b></td>
         <td>{{request['departure']['pickupTime']}}</td>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AdminService} from '../../../../services/admin.service';
 import {RequestService} from '../../../../services/request.service';
 import {Request} from '../../../../classes/request';
@@ -14,6 +14,7 @@ import {Driver} from '../../../../classes/driver';
   styleUrls: ['./request-admin-view.component.css']
 })
 export class RequestAdminViewComponent implements OnInit {
+  @Input() selectedRequest;
   public source: string[] = [];
   public data: Array<string>;
   public vehicleSource: string[] = [];
@@ -24,40 +25,45 @@ export class RequestAdminViewComponent implements OnInit {
   public isSetDriver = false; // true when driver is set
   refNo;
   request: Request = new Request() ;
-  //reqListOnVehicle; // this will hold the list of reqeust which belongs to vehicle when admin select vehicle
+  // reqListOnVehicle; // this will hold the list of reqeust which belongs to vehicle when admin select vehicle
   constructor(private route: ActivatedRoute, private requestService: RequestService, private adminService: AdminService) {
-    // get referance number as route parameter and equal it to refNo variable
-    this.route.paramMap.subscribe(params => {
-      this.refNo = params.get('refNO');
-      // console.log(this.refNo);
-    });
+  }
 
-    requestService.getOneRequest(this.refNo)
-      .subscribe(response => {
-        this.request = response['msg'][0];
-        console.log(response);
+  ngOnInit() {
+    console.log(this.selectedRequest);
+    if (!this.selectedRequest) {
+      // get referance number as route parameter and equal it to refNo variable
+      this.route.paramMap.subscribe(params => {
+        this.refNo = params.get('refNO');
+        // console.log(this.refNo);
       });
 
-    adminService.getDrivers()
+      this.requestService.getOneRequest(this.refNo)
+        .subscribe(response => {
+          this.request = response['msg'][0];
+          console.log(response);
+        });
+    } else {
+      this.request = this.selectedRequest;
+      alert(this.request['refNo']);
+    }
+
+    this.adminService.getDrivers()
       .subscribe( response => {
         for (let x = 0; x < response['msg'].length; x++) {
           this.source[x] = (response['msg'][x]['name']);
         }
-       // this.source = response['msg'];
+        // this.source = response['msg'];
         // console.log(this.source);
         this.data = this.source.slice();
       });
-    adminService.getVehicle_to_req()
+    this.adminService.getVehicle_to_req()
       .subscribe((response => {
         for (let y = 0; y < response['msg'].length; y++) {
           this.vehicleSource[y] = response['msg'][y]['vehicle_no'];
         }
         this.vehicleData = this.vehicleSource.slice();
       }));
-
-  }
-
-  ngOnInit() {
   }
   handleFilter(value) {
     this.data = this.source.filter((s) => s.toLowerCase().indexOf(value.toLowerCase()) !== -1);

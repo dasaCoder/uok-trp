@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
 
   selectRequest(request: Request) {
     this.selectedReq = request;
-    console.log(this.selectedReq);
+    //console.log(this.selectedReq);
   }
 
   printPdf() {

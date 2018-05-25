@@ -5,23 +5,28 @@
       <tr>
         <th scope="col">ref no</th>
         <th scope="col">Description</th>
-        <th scope="col">Departure time</th>
-        <th scope="col">Arrival time</th>
+        <th scope="col">Departure </th>
+        <th scope="col">Arrival </th>
         <th scope="col">Dep / Unit</th>
-        <th scope="col">Driver</th>
+        <th scope="col" >Driver</th>
         <th scope="col">Vehicle</th>
         <th scope="col">Status</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let request of requests">
+      <tr *ngFor="let request of requests" style="cursor: pointer" (click)="isSelect(request)"  data-toggle="modal" data-target=".bd-example-modal-lg" >
         <td>TRD/{{request['refNo']}}</td>
         <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['arrival']['dropPoint']}}</b></td>
-        <td>{{request['departure']['pickupTime']}}</td>
-        <td>{{request['arrival']['dropTime']}}</td>
+        <td>{{request['departure']['pickupDate']}} {{request['departure']['pickupTime']}}</td>
+        <td>{{request['arrival']['dropDate']}} {{request['arrival']['dropTime']}}</td>
         <td>{{request['dep_unit']}}</td>
-        <td><!--{{request['driver']['name']}}--></td>
-        <td><!--{{request['vehicle']['vehicle_no']}}--></td>
+
+        <td *ngIf="request['driver']">{{request['driver']['name']}}</td>
+        <td *ngIf="!request['driver']">not set</td>
+
+
+        <td *ngIf="request['vehicle']">{{request['vehicle']['vehicle_no']}}</td>
+        <td *ngIf="!request['vehicle']">not set</td>
         <td>
           <button class="btn btn-success btn-sm" (click)="change_status('complete', request['refNo'], 6)">Done</button>
           <button class="btn btn-danger btn-sm" (click)="change_status('reject', request['refNo'], 3)">Cancel</button>
@@ -32,3 +37,52 @@
   </div>
 
 </div>
+
+<!-- request modal -->
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog trp-modal-lg" *ngIf="selectedRequest">
+    <div class="modal-content">
+
+      <div class="modal-header" >
+        <h5 class="modal-title">TRD/{{selectedRequest['refNo']}} - Details</h5>
+        <button *ngIf="selectedRequest['vehicle']" >print</button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="container-fluid">
+            <div class="row" >
+
+              <div class="col-lg-12" id="details_section">
+                <!--        collapse div section stating   -->
+
+                <app-request-admin-view
+                  [selectedRequest]="selectedRequest"
+                >
+
+                </app-request-admin-view>
+
+              </div>
+            </div>
+
+
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<!--end of request modal -->

@@ -9,6 +9,7 @@ import {RequestService} from '../../../../services/request.service';
 export class SheduleComponent implements OnInit {
   @Input() reqeustList;
   requests: Request[];
+  selectedRequest: Request;
 
   constructor(private requestService: RequestService) {
         }
@@ -33,6 +34,13 @@ export class SheduleComponent implements OnInit {
         .subscribe(response => {
           this.get_requests();
         });
+    }
+  }
+
+  isSelect(request) {
+    this.selectedRequest = request;
+    if (!this.selectedRequest) {
+      alert(request['refNo']);
     }
   }
 
