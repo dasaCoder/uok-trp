@@ -237,4 +237,21 @@ Vehicle.addVehicle(newVehicle,(err, callback) =>{
 }
 })
 });
+
+// get request on day which have assinged a vehicle
+router.get('/get_request_has_vehicle', (req,res,next)=>{
+  let date = req.query.date;
+  Request.getRequestsHasVehicleOnDay(date, (err,callback) =>{
+    if(err){
+      res.json({
+        success: false
+      });
+    } else {
+      res.json({
+        success: true,
+        date: callback
+      })
+    }
+  })
+})
 module.exports = router;
