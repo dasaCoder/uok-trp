@@ -75,6 +75,6 @@ export class AdminService {
   // get list of requests
 
   getRequestListOnDay(date){
-    return this.http.get(`${this.url}/get_requests_on_date?date=${date}`);
+    return this.http.get(`${this.url}/get_request_has_vehicle?date=${date}`);
   }
 }

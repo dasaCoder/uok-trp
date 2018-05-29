@@ -249,7 +249,7 @@ router.get('/get_request_has_vehicle', (req,res,next)=>{
     } else {
       res.json({
         success: true,
-        date: callback
+        data: callback
       })
     }
   })

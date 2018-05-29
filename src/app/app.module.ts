@@ -45,6 +45,7 @@ import { AddVehicleComponent } from './components/main/admin/vehicle/add-vehicle
 import { AdminHomeComponent } from './components/main/admin/admin-home/admin-home.component';
 import { MapComponent } from './components/main/admin/admin-home/map/map.component';
 import { SearchComponent } from './components/main/admin/admin-home/search/search.component';
+import { VehicleTableComponent } from './components/main/admin/admin-home/vehicle-table/vehicle-table.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { SearchComponent } from './components/main/admin/admin-home/search/searc
     AdminHomeComponent,
     MapComponent,
     SearchComponent,
+    VehicleTableComponent,
   ],
   imports: [
     BrowserModule,
