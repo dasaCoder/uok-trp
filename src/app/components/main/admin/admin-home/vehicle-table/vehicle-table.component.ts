@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../../../../../services/admin.service';
+import {Vehicle} from '../../../../../classes/vehicle';
 
 @Component({
   selector: 'app-vehicle-table',
@@ -8,6 +9,7 @@ import {AdminService} from '../../../../../services/admin.service';
 })
 export class VehicleTableComponent implements OnInit {
   public requestList: Request[];
+  public vehicleList: Vehicle[];
   constructor(private adminService: AdminService) {
   }
 
@@ -18,6 +20,13 @@ export class VehicleTableComponent implements OnInit {
           this.requestList = resp['data'];
         }
         console.log(this.requestList);
+      });
+
+    this.adminService.getListOfVehicles()
+      .subscribe( resp => {
+        if (resp['success'] === true) {
+          this.vehicleList = resp['data'];
+        }
       });
   }
 

@@ -1,3 +1,30 @@
-<p>
-  vehicle-table works!
-</p>
+<div class="container-fluid">
+  <div class="row" *ngFor="let vehicle of vehicleList">
+
+    <div class="col-md-2">
+      {{vehicle['vehicle_no']}}
+    </div>
+
+    <div *ngFor="let request of requestList" class="col-md-2">
+      <div *ngIf="request['vehicle']['vehicle_no'] == vehicle['vehicle_no']">
+        <div>
+          <span>
+            {{request['departure']['pickupTime']}}
+          </span>
+          <span>
+            {{request['departure']['dropTime']}}
+          </span>
+        </div>
+
+        <div>
+          <span>{{request['departure']['pickupPoint']}}</span> To
+          <span>{{request['departure']['dropPoint']}}</span>
+        </div>
+
+        {{request['refNo']}}
+
+      </div>
+    </div>
+
+  </div>
+</div>
