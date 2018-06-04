@@ -46,6 +46,7 @@ import { AdminHomeComponent } from './components/main/admin/admin-home/admin-hom
 import { MapComponent } from './components/main/admin/admin-home/map/map.component';
 import { SearchComponent } from './components/main/admin/admin-home/search/search.component';
 import { VehicleTableComponent } from './components/main/admin/admin-home/vehicle-table/vehicle-table.component';
+import {LayoutModule} from '@progress/kendo-angular-layout';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { VehicleTableComponent } from './components/main/admin/admin-home/vehicl
     OwlNativeDateTimeModule,
     /*MDBBootstrapModule.forRoot()*/
     DropDownsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    LayoutModule
   ],
   providers: [
     AvailableVehicleService,

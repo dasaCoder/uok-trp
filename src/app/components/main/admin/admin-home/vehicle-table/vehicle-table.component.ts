@@ -13,6 +13,21 @@ export class VehicleTableComponent implements OnInit {
   constructor(private adminService: AdminService) {
   }
 
+  public selected = 1;
+  public vehicle_types: any = [{
+    disabled: false,
+    type: 'Car',
+  }, {
+    disabled: false,
+    type: 'Van'
+  }, {
+    disabled: false,
+    type: 'Bus'
+  }, {
+    disabled: false,
+    type: 'Three Wheel'
+  }];
+
   ngOnInit() {
     this.adminService.getRequestListOnDay('2018-4-19')
       .subscribe(resp => {

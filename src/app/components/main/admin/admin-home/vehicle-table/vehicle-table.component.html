@@ -1,7 +1,25 @@
 <div class="container-fluid">
+
+  <kendo-tabstrip [ngStyle]="{'width': '400px'}">
+    <kendo-tabstrip-tab
+      *ngFor="let vehicle_type of vehicle_types let i=index"
+      [title]="vehicle_type.type"
+      [selected]="i == selected"
+      [disabled]="vehicle_type.disabled"
+    >
+      <ng-template kendoTabContent>
+        <div class="weather">
+          <p>eee</p>
+        </div>
+      </ng-template>
+    </kendo-tabstrip-tab>
+
+
+  </kendo-tabstrip>
+
   <div class="row" *ngFor="let vehicle of vehicleList">
 
-    <div class="col-md-2">
+    <div class="col-md-2 vehicle_no_div">
       {{vehicle['vehicle_no']}}
     </div>
 
