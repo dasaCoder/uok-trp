@@ -40,10 +40,13 @@ export class VehicleTableComponent implements OnInit {
       .subscribe(resp => {
         if (resp['success']) {
           this.requestList = resp['data'];
+          //console.log(this.requestList);
+          this.requestList.sort(this.sortFunction);
+          console.log(this.requestList);
           for (let x = 0; x < this.requestList.length; x++ ) {
             this.vehicleJobs[this.requestList[x]['vehicle']['vehicle_type']].push(this.requestList[x]);
           }
-          console.log(this.vehicleJobs);
+          // console.log(this.vehicleJobs);
         }
       });
 
@@ -53,6 +56,14 @@ export class VehicleTableComponent implements OnInit {
           this.vehicleList = resp['data'];
         }
       });
+  }
+  sortFunction(a, b) {
+    if (a['departure']['pickupTime'] === b['departure']['pickupTime']) {
+      return 0;
+    }
+    else {
+      return (a['departure']['pickupTime'] < b['departure']['pickupTime']) ? -1 : 1;
+    }
   }
 
 }

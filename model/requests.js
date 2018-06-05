@@ -237,5 +237,6 @@ module.exports.getRequestOnDay = function (date1, callback ) {
 
 module.exports.getRequestsHasVehicleOnDay = function (date,callback) {
   let query = {$and:[{'vehicle':{$exists:true}}, {'departure.pickupDate':date}]};
-  Request.find(query, 'refNo departure.dropPoint departure.pickupPoint departure.dropTime departure.pickupTime',callback).populate('vehicle');
+  Request.find(query, 'refNo departure.dropPoint departure.pickupPoint departure.dropTime departure.pickupTime',callback)
+    .populate('vehicle');
 }

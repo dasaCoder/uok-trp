@@ -4,7 +4,7 @@
   <div>
 
 
-    <nav>
+    <nav style="margin-left: -16px; padding-bottom: 5px">
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a *ngFor="let vehicle_type of vehicle_types let index = index"
            class="nav-item nav-link vehicle_nav"
@@ -38,9 +38,25 @@
 
            <div *ngFor="let job of vehicleJobs[vehicle_type.type]">
 
-             <div *ngIf="job['vehicle']['vehicle_no'] == vehicle['vehicle_no']" class="vehicle_no_div">
+             <div *ngIf="job['vehicle']['vehicle_no'] == vehicle['vehicle_no']" class="vehicle_job_div">
 
-               {{job['refNo']}}
+               <span class="vehicle_time">
+
+                 <img src="/assets/images/vehicle_nav/clock.png" alt="" class="vehicle_job_icon">
+
+                 {{job['departure']['pickupTime']}} To 12.30
+                 {{job['departure']['dropTime']}}
+               </span>
+
+               <div class="vehicle_place">
+                 <img src="/assets/images/vehicle_nav/start.png" alt="" class="vehicle_job_icon">
+                 {{job['departure']['pickupPoint']}}
+               </div>
+
+               <div class="vehicle_place">
+                 <img src="/assets/images/vehicle_nav/finish.png" alt="" class="vehicle_job_icon">
+                 {{job['departure']['dropPoint']}}
+               </div>
 
              </div>
 
