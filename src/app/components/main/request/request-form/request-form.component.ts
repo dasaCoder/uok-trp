@@ -157,11 +157,31 @@ export class RequestFormComponent implements OnInit {
 
   formSubmit() {
     let arrival_temp = new Date(this.arrival.dropTime);
-    this.arrival.dropTime = `${arrival_temp.getHours()}:${arrival_temp.getMinutes()}`;
+    let arrival_hour = arrival_temp.getHours();
+      if (arrival_hour < 10) {
+        arrival_hour = '0' + arrival_hour;
+      }
+
+      let arrival_minute = arrival_temp.getMinutes();
+        if (arrival_minute < 10 ) {
+          arrival_minute = '0' + arrival_minute;
+        }
+    this.arrival.dropTime = `${arrival_hour}:${arrival_minute}`;
     this.arrival.dropDate = `${arrival_temp.getFullYear()}-${arrival_temp.getMonth() + 1}-${arrival_temp.getDate()}`;
 
     let departure_temp = new Date(this.departure.pickupTime);
-    this.departure.pickupTime = `${departure_temp.getHours()}:${departure_temp.getMinutes()}`;
+
+    let departure_hour = departure_temp.getHours();
+    if (departure_hour < 10) {
+      departure_hour = '0' + departure_hour;
+    }
+
+    let departure_minute = departure_temp.getMinutes();
+    if (departure_minute < 10 ) {
+      departure_minute = '0' + departure_minute;
+    }
+
+    this.departure.pickupTime = `${departure_hour}:${departure_minute}`;
     this.departure.pickupDate = `${departure_temp.getFullYear()}-${departure_temp.getMonth() + 1}-${departure_temp.getDate()}`;
     /*this.formData.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;*/
     /*this.formData.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;*/
