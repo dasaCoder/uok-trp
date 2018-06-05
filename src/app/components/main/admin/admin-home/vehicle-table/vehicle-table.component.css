@@ -1,7 +1,7 @@
 .vehicle_no_div {
   font-family: fantasy;
   color: white;
-  background-color: #b5172d;
+  background-color: #BD4545;
   font-size: 2vh;
   width: 10vh;
   text-align: center;
@@ -15,9 +15,19 @@
   height: 80px;
   font-size: 3vh;
   color: white;
-  background-color: red;
+  background-color: #680000;
   text-align: center;
 }
+
+.vehicle_nav:hover {
+  background-color: #c82333;
+  color: white;
+}
+.vehicle_nav.active {
+  background-color: black;
+  color: white;
+}
+
 
 .vehicle_img {
   width: 50px;
