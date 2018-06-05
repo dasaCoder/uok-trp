@@ -1,48 +1,87 @@
 <div class="container-fluid">
 
-  <kendo-tabstrip [ngStyle]="{'width': '400px'}">
-    <kendo-tabstrip-tab
-      *ngFor="let vehicle_type of vehicle_types let i=index"
-      [title]="vehicle_type.type"
-      [selected]="i == selected"
-      [disabled]="vehicle_type.disabled"
-    >
-      <ng-template kendoTabContent>
-        <div class="weather">
-          <p>eee</p>
-        </div>
-      </ng-template>
-    </kendo-tabstrip-tab>
+<div class="container-fluid">
+  <div class="container">
 
 
-  </kendo-tabstrip>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a *ngFor="let vehicle_type of vehicle_types let index = index"
+           class="nav-item nav-link"
+           [ngClass]="{active: index ==0}"
+           id="nav-{{vehicle_type.type}}-tab" data-toggle="tab"
+           href="#nav-{{vehicle_type.type}}" role="tab"
+           attr.aria-controls="nav-{{vehicle_type.type}}"
+           aria-selected="true">{{vehicle_type.type}}</a>
+      </div>
+    </nav>
 
-  <div class="row" *ngFor="let vehicle of vehicleList">
 
-    <div class="col-md-2 vehicle_no_div">
-      {{vehicle['vehicle_no']}}
-    </div>
+    <div class="tab-content" id="nav-tabContent">
+      <div  *ngFor="let vehicle_type of vehicle_types let index = index"
+            class="tab-pane fade show"
+            [ngClass]="{active: index ==0}"
+            id="nav-{{vehicle_type.type}}"
+            role="tabpanel"
+            attr.aria-labelledby="nav-{{vehicle_type.type}}-tab">
 
-    <div *ngFor="let request of requestList" class="col-md-2">
-      <div *ngIf="request['vehicle']['vehicle_no'] == vehicle['vehicle_no']">
-        <div>
-          <span>
-            {{request['departure']['pickupTime']}}
-          </span>
-          <span>
-            {{request['departure']['dropTime']}}
-          </span>
-        </div>
+       <div *ngFor="let vehicle of vehicleList" class="row">
 
-        <div>
-          <span>{{request['departure']['pickupPoint']}}</span> To
-          <span>{{request['departure']['dropPoint']}}</span>
-        </div>
+         <div *ngIf="vehicle['vehicle_type'] == vehicle_type.type" style="display: inherit;">
 
-        {{request['refNo']}}
+           <div class="vehicle_no_div">
+
+             {{vehicle.vehicle_no}}
+           </div>
+
+           <div *ngFor="let job of vehicleJobs[vehicle_type.type]">
+
+             <div *ngIf="job['vehicle']['vehicle_no'] == vehicle['vehicle_no']" class="vehicle_no_div">
+
+               {{job['refNo']}}
+
+             </div>
+
+           </div>
+         </div>
+
+
+       </div>
 
       </div>
+
     </div>
 
+
   </div>
+</div>
+
+
+  <!--<div class="row" *ngFor="let vehicle of vehicleList">-->
+
+    <!--<div class="vehicle_no_div">-->
+      <!--{{vehicle['vehicle_no']}}-->
+    <!--</div>-->
+
+    <!--<div *ngFor="let request of requestList" class="col-md-2">-->
+      <!--<div *ngIf="request['vehicle']['vehicle_no'] == vehicle['vehicle_no']">-->
+        <!--<div>-->
+          <!--<span>-->
+            <!--{{request['departure']['pickupTime']}}-->
+          <!--</span>-->
+          <!--<span>-->
+            <!--{{request['departure']['dropTime']}}-->
+          <!--</span>-->
+        <!--</div>-->
+
+        <!--<div>-->
+          <!--<span>{{request['departure']['pickupPoint']}}</span> To-->
+          <!--<span>{{request['departure']['dropPoint']}}</span>-->
+        <!--</div>-->
+
+
+      <!--</div>-->
+    <!--</div>-->
+
+  <!--</div>-->
 </div>

@@ -2,9 +2,12 @@
   font-family: fantasy;
   color: white;
   background-color: #b5172d;
-  font-size: 3vh;
+  font-size: 2vh;
+  width: 10vh;
   text-align: center;
   padding-top: 2.5vh;
   padding-bottom: 2.5vh;
   border: solid 2px black;
 }
+
+
