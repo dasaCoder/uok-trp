@@ -1,18 +1,20 @@
 <div class="container-fluid">
 
 <div class="container-fluid">
-  <div class="container">
+  <div>
 
 
     <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a *ngFor="let vehicle_type of vehicle_types let index = index"
-           class="nav-item nav-link"
+           class="nav-item nav-link vehicle_nav"
            [ngClass]="{active: index ==0}"
            id="nav-{{vehicle_type.type}}-tab" data-toggle="tab"
            href="#nav-{{vehicle_type.type}}" role="tab"
            attr.aria-controls="nav-{{vehicle_type.type}}"
-           aria-selected="true">{{vehicle_type.type}}</a>
+           aria-selected="true">
+          <img src="/assets/images/vehicle_nav/{{vehicle_type.type}}.png" alt="" class="vehicle_img">
+          {{vehicle_type.type}}</a>
       </div>
     </nav>
 

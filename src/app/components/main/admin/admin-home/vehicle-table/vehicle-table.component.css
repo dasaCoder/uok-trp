@@ -10,4 +10,15 @@
   border: solid 2px black;
 }
 
+.vehicle_nav {
+  min-width: 100px;
+  height: 80px;
+  font-size: 3vh;
+  color: white;
+  background-color: red;
+  text-align: center;
+}
 
+.vehicle_img {
+  width: 50px;
+}
