@@ -27,7 +27,7 @@
             role="tabpanel"
             attr.aria-labelledby="nav-{{vehicle_type.type}}-tab">
 
-       <div *ngFor="let vehicle of vehicleList" class="row">
+       <div *ngFor="let vehicle of vehicleList" class="row scroll-horizontal">
 
          <div *ngIf="vehicle['vehicle_type'] == vehicle_type.type" style="display: inherit;">
 
@@ -36,7 +36,7 @@
              {{vehicle.vehicle_no}}
            </div>
 
-           <div *ngFor="let job of vehicleJobs[vehicle_type.type]">
+           <div *ngFor="let job of vehicleJobs[vehicle_type.type]" >
 
              <div *ngIf="job['vehicle']['vehicle_no'] == vehicle['vehicle_no']" class="vehicle_job_div">
 

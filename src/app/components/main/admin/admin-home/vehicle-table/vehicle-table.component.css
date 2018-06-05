@@ -20,6 +20,7 @@
   padding-bottom: 2.5vh;
   border: solid 1px black;
   height: 150px;
+  overflow: hidden;
 }
 
 .vehicle_nav {
@@ -61,4 +62,9 @@
 
 .vehicle_job_icon{
   height: 15px;
+}
+
+.scroll-horizontal {
+  overflow: auto;
+  white-space: nowrap;
 }
