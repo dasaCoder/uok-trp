@@ -384,12 +384,22 @@ body{
     padding-left: 20px;
     line-height: 50px !important;
   }
+  .nav-logo {
+    width: 225px;
+  }
 }
 @media (min-width: 767px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .nav-logo {
+    width: 225px;
+  }
+}
+
 body {
   margin: 0px;
   padding: 0px;
@@ -406,3 +416,9 @@ body {
 .btn-disabled{
   background-color: #f7b3bd !important;
   }
+
+.notice-page-background {
+  background-image: url("/assets/images/background/background.svg");
+  background-size: cover;
+}
+

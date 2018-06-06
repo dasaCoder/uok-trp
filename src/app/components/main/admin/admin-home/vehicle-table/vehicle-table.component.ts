@@ -16,6 +16,10 @@ export class VehicleTableComponent implements OnInit {
     'van': [],
     'three_wheel': []
   };
+
+  selectedDate = new Date();
+  formatedDate;
+
   constructor(private adminService: AdminService) {
   }
 
@@ -64,6 +68,10 @@ export class VehicleTableComponent implements OnInit {
     else {
       return (a['departure']['pickupTime'] < b['departure']['pickupTime']) ? -1 : 1;
     }
+  }
+
+  picker() {
+    this.formatedDate = `${this.selectedDate.getFullYear()}-${this.selectedDate.getMonth() + 1}-${this.selectedDate.getDate()}`;
   }
 
 }

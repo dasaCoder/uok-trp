@@ -157,12 +157,12 @@ export class RequestFormComponent implements OnInit {
 
   formSubmit() {
     let arrival_temp = new Date(this.arrival.dropTime);
-    let arrival_hour = arrival_temp.getHours();
+    let arrival_hour: any = arrival_temp.getHours();
       if (arrival_hour < 10) {
         arrival_hour = '0' + arrival_hour;
       }
 
-      let arrival_minute = arrival_temp.getMinutes();
+      let arrival_minute: any = arrival_temp.getMinutes();
         if (arrival_minute < 10 ) {
           arrival_minute = '0' + arrival_minute;
         }
@@ -171,12 +171,12 @@ export class RequestFormComponent implements OnInit {
 
     let departure_temp = new Date(this.departure.pickupTime);
 
-    let departure_hour = departure_temp.getHours();
+    let departure_hour: any = departure_temp.getHours();
     if (departure_hour < 10) {
       departure_hour = '0' + departure_hour;
     }
 
-    let departure_minute = departure_temp.getMinutes();
+    let departure_minute: any = departure_temp.getMinutes();
     if (departure_minute < 10 ) {
       departure_minute = '0' + departure_minute;
     }
