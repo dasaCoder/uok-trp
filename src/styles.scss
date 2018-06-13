@@ -422,6 +422,10 @@ NEW modification to landing page*/
   width: 300px;
   margin-top: 10px;
 }
+.trp-home-btn:hover{
+  background-color: #ffcc00;
+  color:white;
+}
 .trp-home-hr{
   border-width: 3px;
   border-color: black;
@@ -431,11 +435,11 @@ NEW modification to landing page*/
   margin-bottom: 4vh;
 }
 .trp-home-main-img{
-  width: 100%;
-  min-height: 200px;
+  /*width: 100%;
+  min-height: 200px;*/
 }
 .trp-home-main-div{
-  width: 95%;
+  width: 98%;
   background-color: white;
 }
 .trd-nav-link-coner{
@@ -466,6 +470,9 @@ NEW modification to landing page*/
   }
   .trd-nav-link-coner{
     background-color: inherit;
+  }
+  .trp-home-main-img{
+    max-height: 300px;
   }
 }
 
@@ -507,12 +514,18 @@ NEW modification to landing page*/
     padding-left: 20px;
     line-height: 50px !important;
   }
+  .trp-home-main-img{
+    max-height: 400px;
+  }
 
 
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
+  .trp-home-main-img{
+    max-height: 500px;
+  }
   .item-gold{
     background-color: #ffcc00;
   }
@@ -526,6 +539,9 @@ NEW modification to landing page*/
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
+  .trp-home-main-img{
+    max-height: 600px;
+  }
   .item-gold{
     background-color: #ffcc00;
   }
@@ -539,6 +555,9 @@ NEW modification to landing page*/
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
+  .trp-home-main-img{
+    max-height: 700px;
+  }
   .item-gold{
     background-color: #ffcc00;
   }
