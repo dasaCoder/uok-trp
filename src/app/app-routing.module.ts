@@ -13,6 +13,7 @@ import {ProfileComponent} from './components/main/admin/drivers/profile/profile.
 import {AddComponent} from './components/main/admin/drivers/add/add.component';
 import {AddVehicleComponent} from './components/main/admin/vehicle/add-vehicle/add-vehicle.component';
 import {AdminHomeComponent} from './components/main/admin/admin-home/admin-home.component';
+import {DriverProfileComponent} from './components/main/driver-profile/driver-profile.component';
 
 
 const routes: Routes = [
@@ -47,7 +48,8 @@ const routes: Routes = [
       },
       { path: '', component: AdminHomeComponent }
     ]
-  }
+  },
+  { path: 'driver', component: DriverProfileComponent }
 ];
 
 @NgModule({

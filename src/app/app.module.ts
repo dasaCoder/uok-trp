@@ -47,6 +47,7 @@ import { MapComponent } from './components/main/admin/admin-home/map/map.compone
 import { SearchComponent } from './components/main/admin/admin-home/search/search.component';
 import { VehicleTableComponent } from './components/main/admin/admin-home/vehicle-table/vehicle-table.component';
 import {LayoutModule} from '@progress/kendo-angular-layout';
+import { DriverProfileComponent } from './components/main/driver-profile/driver-profile.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import {LayoutModule} from '@progress/kendo-angular-layout';
     MapComponent,
     SearchComponent,
     VehicleTableComponent,
+    DriverProfileComponent
   ],
   imports: [
     BrowserModule,
