@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AdminService} from '../../../../services/admin.service';
 import {RequestService} from '../../../../services/request.service';
 import {Request} from '../../../../classes/request';
@@ -13,7 +13,8 @@ import {Driver} from '../../../../classes/driver';
   templateUrl: './request-admin-view.component.html',
   styleUrls: ['./request-admin-view.component.css']
 })
-export class RequestAdminViewComponent implements OnInit {
+export class RequestAdminViewComponent implements OnInit, OnDestroy {
+
   @Input() selectedRequest;
   public source: string[] = [];
   public data: Array<string>;
@@ -140,5 +141,10 @@ export class RequestAdminViewComponent implements OnInit {
   setDriver(driver: Driver) {
     console.log(driver);
     this.request.driver = driver;
+  }
+
+  ngOnDestroy(): void {
+    // LocalStorage.
+    // alert('going away');
   }
 }

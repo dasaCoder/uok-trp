@@ -6,6 +6,7 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
+const jwt = require('jsonwebtoken');
 const app = express();
 
 mongoose.connect(config.database);
@@ -32,11 +33,33 @@ app.use(bodyParser.json());
 
 app.use('/vehicles',vehicles);
 app.use('/requests',requests);
-app.use('/admin',admin);
+app.use('/admin',authAdmin,admin);
 
 app.get('/', (req,res)=>{
   res.send("home page");
 })
 app.listen(port, ()=>{
   console.log('server start on port '+ port);
-})
+});
+
+function authAdmin(req,res,next){
+  // Get auth header value
+  const bearerHeader = req.headers['authorization'];
+  // Check if bearer is undefined
+  if(typeof bearerHeader !== 'undefined') {
+    // Split at the space
+    const bearer = bearerHeader.split(' ');
+    // Get token from array
+    const bearerToken = bearer[1];
+    // Set the token
+    const token = jwt.verify(bearerToken,'uok-trp');
+
+    console.log(token);
+
+    // Next middleware
+    next();
+  } else {
+    // Forbidden
+    res.sendStatus(403);
+  }
+}

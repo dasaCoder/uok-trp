@@ -1,9 +1,421 @@
-<div class="container">
-  <div class="container-fluid">
-    <div class="row">
+<!--
+<div class="container" *ngIf="driver">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6">
+      <div class="">
+        <div class="row">
+          <div class="col-sm-6 col-md-4">
+            <img src="http://placehold.it/150x150" alt="" class="img-fluid" />
+          </div>
+          <div class="col-sm-6 col-md-8">
+            <h4>
+              {{driver.name | uppercase}}</h4>
+            <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
+            </i></cite></small>
+            <p>
+              <i class="glyphicon glyphicon-telephone"></i>
+              &lt;!&ndash; {{driver.telephone}} &ndash;&gt;
+              <br />
+              <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">{{driver.driving_liecence_no}}</a>
+              <br />
+              <i class="glyphicon glyphicon-gift"></i>{{driver.nic_no}}</p>
+            &lt;!&ndash; Split button &ndash;&gt;
 
-
-
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <br>
+
+  <h4>Shedule</h4>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-secondary" (click)="onClickDay()">Day</button>
+    <button type="button" class="btn btn-secondary" (click)="onClickMonth()">Month</button>
+  </div>
+  <br>
+  <br>
+
+  <div class="row">
+
+
+
+    <table *ngIf="reqListOnDriver[0] && reqListOnDriver !== [] && reqListOnDriver !== null " class="table table-sm table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Department/Unit</th>
+        <th scope="col">Description</th>
+        <th scope="col">Departure time</th>
+        <th scope="col">Arrival time</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr style="cursor: pointer" *ngFor="let request of reqListOnDriver" data-toggle="modal" data-target=".bd-example-modal-lg" (click)="selectRequest(request)">
+        <td>{{request['dep_unit']}}</td>
+        <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['arrival']['pickupPoint']}}</b></td>
+        <td>{{request['departure']['pickupTime']}}</td>
+        <td>{{request['arrival']['dropTime']}}</td>
+
+      </tr>
+      </tbody>
+
+
+
+      &lt;!&ndash; request modal &ndash;&gt;
+
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5 class="modal-title">TRD/{{selectedReq['refNo']}} - Details</h5>
+              <button *ngIf="selectedReq['vehicle']" (click)="printPdf()">print</button>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="container-fluid">
+              <div class="row">
+
+                <div class="container-fluid">
+                  <div class="row" >
+
+                    <div class="col-lg-12" id="details_section">
+                      &lt;!&ndash;        collapse div section stating   &ndash;&gt;
+
+                      <div
+                        [ngClass]="{
+              'alert-danger': selectedReq.status == 3,
+              'alert-primary': selectedReq.status == 2,
+              'alert-success' : selectedReq.status == 1,
+              'alert-warning': selectedReq.status == 0
+            }"
+                        class="alert" role="alert">
+                        <div *ngIf="selectedReq.status == '0'">
+                          <i class="fa fa-info"></i>
+                          selectedReq is not being reviewed
+                        </div>
+
+                        <div *ngIf="selectedReq.status == '1'">
+                          <i class="fa fa-info"></i>
+                          Request is Accepted. please supply futher information in more info section to proceed further
+                        </div>
+
+                        <div *ngIf="selectedReq.status == '2'">
+                          <i class="fa fa-info"></i>  Request is confirmed  <button class="btn btn-primary">Download Application</button>
+                        </div>
+
+                      </div>
+
+                      <div id="accordion">
+                        <div class="card">
+                          <div
+                            class="card-header bg-dark text-white" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
+
+                            [attr.aria-expanded]="selectedReq.status != '1'"
+                            aria-controls="collapseOne">
+                            <h6 class="mb-0">
+                              <i class="fa fa-map"></i>
+                              Trip Section
+                            </h6>
+                          </div>
+
+                          <div id="collapseOne" class="collapse"
+                               [class.show]="selectedReq.status != '1'"
+                               aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                              <div>
+                                <h6>Departure</h6>
+                                <table class="table table-sm">
+
+                                  <tr>
+
+                                    <th scope="row">
+                                      Date
+                                    </th>
+                                    <td>
+                                      {{selectedReq.departure.pickupDate}}
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+
+                                    <th scope="row">
+                                      Time
+                                    </th>
+                                    <td>
+                                      {{selectedReq.departure.pickupTime}}
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+
+                                    <th scope="row">
+                                      From
+                                    </th>
+                                    <td>
+                                      {{selectedReq.departure.pickupPoint}}
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+
+                                    <th scope="row">
+                                      To
+                                    </th>
+                                    <td>
+                                      {{selectedReq.departure.dropPoint}}
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+
+                              <div>
+                                <h6>Arrival</h6>
+                                <table class="table table-sm">
+
+                                  <tr>
+
+                                    <th scope="row">
+                                      Date
+                                    </th>
+                                    <td>
+                                      {{selectedReq.arrival.dropDate}}
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+
+                                    <th scope="row">
+                                      Time
+                                    </th>
+                                    <td>
+                                      {{selectedReq.arrival.dropTime}}
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+
+                                    <th scope="row">
+                                      From
+                                    </th>
+                                    <td>
+                                      {{selectedReq.arrival.dropPoint}}
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+
+                                    <th scope="row">
+                                      To
+                                    </th>
+                                    <td>
+                                      {{selectedReq.arrival.pickupPoint}}
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="card">
+                          <div
+                            [ngClass]="{'bg-danger':!selectedReq.vehicle, 'bg-success': selectedReq.vehicle}"
+                            class="card-header text-white" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h6 class="mb-0">
+                              <i class="fa fa-car"></i>
+                              Vehicle Section
+                            </h6>
+                          </div>
+
+                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div
+                              [ngClass]="{'text-danger': !vehicle, 'text-success' : vehicle}"
+                              class="card-body">
+                              <div *ngIf="selectedReq.vehicle">
+                                Vehicle no: {{selectedReq.vehicle.vehicle_no}}
+                              </div>
+                              <div *ngIf="!selectedReq.vehicle">
+                                <p class="card-text">
+                                  Vehicle is not assigned yet
+                                </p>
+
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+
+                        &lt;!&ndash;<div class="card">
+                          <div
+                            [ngClass]="{
+                      'bg-danger':!selectedReq.driver, 'bg-success': selectedReq.driver}"
+                            class="card-header text-white" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <h6 class="mb-0">
+                              <i class="fa fa-car"></i>
+                              Driver Section
+                            </h6>
+                          </div>
+
+                          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div
+                              [ngClass]="{'text-danger':!selectedReq.driver, 'text-success' : selectedReq.driver}"
+                              class="card-body">
+                              <div *ngIf="selectedReq.driver">
+                                Driver name: {{selectedReq.driver.name}}
+                              </div>
+                              <div *ngIf="!test">
+                                <p class="card-text">
+                                  Driver is not set
+                                </p>
+
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>&ndash;&gt;
+
+
+                        <div class="card">
+                          <div
+                            class="bg-primary card-header text-white" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <h6 class="mb-0">
+                              <i class="fa fa-info"></i>
+                              Details Section
+                            </h6>
+                          </div>
+
+                          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                            <div class="card-body">
+
+                              <div class="container-fluid">
+                                <table class="table table-sm">
+                                  <tr>
+                                    <th scope="row">
+                                      Refferance No
+                                    </th>
+                                    <td>
+                                      TRD/{{selectedReq.refNo}}
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <th scope="row">
+                                      Lecturer
+                                    </th>
+                                    <td>
+                                      {{selectedReq.lecturer}}
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">
+                                      Designation
+                                    </th>
+                                    <td>
+                                      {{selectedReq.position}}
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <th scope="row">
+                                      Department/ Unit
+                                    </th>
+                                    <td>
+                                      {{selectedReq.dep_unit}}
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <th scope="row">
+                                      Purpose
+                                    </th>
+                                    <td>
+                                      {{selectedReq.purpose}}
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <th scope="row">
+                                      Funding method
+                                    </th>
+                                    <td>
+                                      {{selectedReq.fundingWay}}
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <th scope="row">
+                                      Email
+                                    </th>
+                                    <td>
+                                      {{selectedReq.email}}
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">
+                                      Password
+                                    </th>
+                                    <td>
+                                      {{selectedReq.password}}
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <th scope="row">
+                                      Number of Passangers
+                                    </th>
+                                    <td>
+                                      {{selectedReq.num_passangers}}
+                                    </td>
+                                  </tr>
+
+
+
+
+                                </table>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                    </div>
+                  </div>
+
+
+
+
+                </div>
+
+
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      &lt;!&ndash;end of request modal &ndash;&gt;
+
+
+
+    </table>
+    <div class="row" *ngIf="!reqListOnDriver[0]">
+      <div  class="alert alert-warning text-center ">
+        no duties
+      </div>
+    </div>
+
+  </div>
 </div>
+-->

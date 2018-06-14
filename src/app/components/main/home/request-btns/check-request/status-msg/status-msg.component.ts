@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RequestService} from '../../../../../../services/request.service';
 import {AuthService} from '../../../../../../services/auth.service';
 
@@ -7,7 +7,7 @@ import {AuthService} from '../../../../../../services/auth.service';
   templateUrl: './status-msg.component.html',
   styleUrls: ['./status-msg.component.css']
 })
-export class StatusMsgComponent implements OnInit {
+export class StatusMsgComponent implements OnInit, OnDestroy {
   status;
   refNo: number;
   password: string;
@@ -51,4 +51,9 @@ export class StatusMsgComponent implements OnInit {
         }
       });
   }*/
+
+  ngOnDestroy() {
+    //alert('dilusha');
+  }
+
 }
