@@ -1,8 +1,10 @@
 <div class="container">
 
-  <form #loginForm (submit)="login(loginForm)">
+  <form #loginForm (submit)="login()">
 
-    <input type="text" ngModel>
+    <input type="text" [(ngModel)]="username" name="username">
+    <input type="text" [(ngModel)]="password" name="password">
+    <input type="submit" value="login" class="trp-home-btn">
   </form>
 
 </div>
