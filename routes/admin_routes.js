@@ -7,8 +7,6 @@ const Driver = require('../model/driver');
 const Vehicle = require('../model/vehicles');
 const Request = require('../model/requests');
 
-
-
 router.post('/driver',(req,res,next)=>{
   let newDriver = new Driver(req.body);
   Driver.addDriver(newDriver , (err,callback) => {

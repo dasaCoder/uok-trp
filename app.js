@@ -37,7 +37,27 @@ app.use('/admin',authAdmin,admin);
 
 app.get('/', (req,res)=>{
   res.send("home page");
-})
+});
+app.post('/login', (req,res) => {
+  const user = {
+    username: 'trp-admin',
+    password: 'trp-admin'
+  };
+
+  // match username and password
+  if(req.body.username == user.username && req.body.password == user.password){
+    let token = jwt.sign({user, isAdmin:true},'uok-trp',{ expiresIn: 60 * 60 });
+    res.send({
+      token: token
+    });
+  } else {
+    res.send({
+      msg: 'error in loggin',
+      status: 403
+    });
+  }
+
+});
 app.listen(port, ()=>{
   console.log('server start on port '+ port);
 });
@@ -52,12 +72,23 @@ function authAdmin(req,res,next){
     // Get token from array
     const bearerToken = bearer[1];
     // Set the token
-    const token = jwt.verify(bearerToken,'uok-trp');
+    let token;
+    jwt.verify(bearerToken,'uok-trp',(err, decode)=>{
+       token = decode;
 
-    console.log(token);
+       if(err){
+         res.send({
+           msg: 'unauthorized token',
+           status: 403
+         })
+       } else{
+         // Next middleware
+         next();
+       }
+    });
 
-    // Next middleware
-    next();
+
+
   } else {
     // Forbidden
     res.sendStatus(403);
