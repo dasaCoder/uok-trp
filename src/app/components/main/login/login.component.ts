@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AdminService} from '../../../services/admin.service';
 
 @Component({
   selector: 'app-login',
@@ -6,19 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  //@Input() login_type;
   public username: string;
   public password: string;
 
-  constructor() { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit() {
   }
 
 
-  login() {
+  login(loginform) {
     alert('ok');
     if (this.username !== null && this.password !== null) {
-      alert(this.username);
+      this.adminService.adminLogin(this.username, this.password)
+        .subscribe(resp => {
+          if (resp['status'] === 200)
+          {
+            localStorage.setItem('token', resp['token']);
+          } else {
+            alert('username or password is incorrect');
+              loginform.reset();
+          }
+        });
     }
   }
 

@@ -10,9 +10,20 @@ export class AdminService {
     this.url = 'http://localhost:3000/admin';
   }
 
+  adminLogin(username, password){
+    let user = {
+      username: username,
+      password: password
+    };
+    return this.http.post(`http://localhost:3000/login`, user);
+  }
+
   // return list of drivers (just names)
   getDrivers() {
-    return this.http.get('http://localhost:3000/admin/driver');
+    let headers = new HttpHeaders();
+    let token = 'Bearer ' + localStorage.getItem('token');
+    headers.append('Authentication', token);
+    return this.http.get('http://localhost:3000/admin/driver', headers );
   }
 
   // return one driver
