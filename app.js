@@ -67,19 +67,20 @@ function authAdmin(req,res,next){
   // Get auth header value
   const bearerHeader = req.headers['authorization'];
   // Check if bearer is undefined
+
   if(typeof bearerHeader !== 'undefined') {
     // Split at the space
     const bearer = bearerHeader.split(' ');
     // Get token from array
-    const bearerToken = bearer[1];
+    const bearerToken = bearer[2];
     // Set the token
+    console.log(bearerToken);
     let token;
     jwt.verify(bearerToken,'uok-trp',(err, decode)=>{
        token = decode;
 
        if(err){
          res.send({
-           msg: 'unauthorized token',
            status: 403
          })
        } else{
