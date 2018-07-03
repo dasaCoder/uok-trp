@@ -14,6 +14,7 @@ import {AddComponent} from './components/main/admin/drivers/add/add.component';
 import {AddVehicleComponent} from './components/main/admin/vehicle/add-vehicle/add-vehicle.component';
 import {AdminHomeComponent} from './components/main/admin/admin-home/admin-home.component';
 import {DriverProfileComponent} from './components/main/driver-profile/driver-profile.component';
+import {LoginComponent} from './components/main/login/login.component';
 
 
 const routes: Routes = [
@@ -45,6 +46,9 @@ const routes: Routes = [
           {path: 'profile/:driver_id', component: ProfileComponent},
           {path: 'add', component: AddComponent}
         ]
+      },
+      {
+        path: 'login', component: LoginComponent
       },
       { path: '', component: AdminHomeComponent }
     ]

@@ -16,9 +16,10 @@
       <tbody>
       <tr *ngFor="let request of requests" style="cursor: pointer" (click)="isSelect(request)"  data-toggle="modal" data-target=".bd-example-modal-lg" >
         <td>TRD/{{request['refNo']}}</td>
-        <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['arrival']['dropPoint']}}</b></td>
+        <td><b>{{request['departure']['pickupPoint']}}</b> to <b>{{request['departure']['dropPoint']}}</b></td>
         <td>{{request['departure']['pickupDate']}} {{request['departure']['pickupTime']}}</td>
-        <td>{{request['arrival']['dropDate']}} {{request['arrival']['dropTime']}}</td>
+        <!--<td>{{request['arrival']['dropDate']}} {{request['arrival']['dropTime']}}</td>-->
+        <td>{{request['departure']['dropDate']}} {{request['departure']['dropTime']}}</td>
         <td>{{request['dep_unit']}}</td>
 
         <td *ngIf="request['driver']">{{request['driver']['name']}}</td>
