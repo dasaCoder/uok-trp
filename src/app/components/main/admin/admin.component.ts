@@ -57,4 +57,13 @@ export class AdminComponent implements OnInit {
       })
   }
 
+
+  logout(){
+    if(confirm("Confirm Logout.....")){
+      this.authservice.logout();
+      window.location.reload();
+    }
+
+  }
+
 }

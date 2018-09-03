@@ -23,6 +23,10 @@ export class AdminService {
     return this.http.post(`http://localhost:3000/login`, user);
   }
 
+  adminLogOut(){
+
+  }
+
   // return list of drivers (just names)
   getDrivers() {
     //let headers = new HttpHeaders();
