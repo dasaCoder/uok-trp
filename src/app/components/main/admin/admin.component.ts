@@ -3,6 +3,7 @@ import {VehicleService} from '../../../services/vehicle.service';
 import {RequestService} from '../../../services/request.service';
 import {AdminService} from '../../../services/admin.service';
 import {Driver} from '../../../classes/driver';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -18,7 +19,7 @@ export class AdminComponent implements OnInit {
   confirmed_requests = [];
   detailed_requests = [];
   driverList: Driver[];
-  constructor(private vehicleService: VehicleService, private requestService: RequestService, private adminService: AdminService) {
+  constructor(private vehicleService: VehicleService, private requestService: RequestService, private adminService: AdminService, private authservice: AuthService) {
 
   }
 

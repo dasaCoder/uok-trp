@@ -15,6 +15,7 @@ import {AddVehicleComponent} from './components/main/admin/vehicle/add-vehicle/a
 import {AdminHomeComponent} from './components/main/admin/admin-home/admin-home.component';
 import {DriverProfileComponent} from './components/main/driver-profile/driver-profile.component';
 import {LoginComponent} from './components/main/login/login.component';
+import {AuthGuardService} from './services/auth-guard.service';
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AuthGuardService],
     children: [
       { path: 'vehicle/view/:vehicle_no',
         component: VehicleComponent
@@ -47,10 +49,17 @@ const routes: Routes = [
           {path: 'add', component: AddComponent}
         ]
       },
+
+      { path: '', component: AdminHomeComponent }
+    ]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    children: [
       {
         path: 'login', component: LoginComponent
-      },
-      { path: '', component: AdminHomeComponent }
+      }
     ]
   },
   { path: 'driver', component: DriverProfileComponent }

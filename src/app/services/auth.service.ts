@@ -11,14 +11,20 @@ export class AuthService {
     return this.http.post('http://localhost:3000/requests/getStatus', body);
   }
   isLoggedIn(): boolean {
-    let jwtHelper = new JwtHelper();
-    let token = localStorage.getItem('token');
-    let token_decoded = jwtHelper.decodeToken(token);
-        if ( token_decoded) {
-          console.log('true');
-          return true;
-        }
-        return false;
+    if(localStorage.getItem('token') === null){
+      //alert('not logged in');
+      return false;
+    } else{
+      let jwtHelper = new JwtHelper();
+      let token = localStorage.getItem('token');
+      let token_decoded = jwtHelper.decodeToken(token);
+      if ( token_decoded) {
+        console.log('true');
+        return true;
+      }
+      return false;
+    }
+
   }
   isLoggedInWithRefno(refNo): boolean {
     let jwtHelper = new JwtHelper();

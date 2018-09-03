@@ -49,6 +49,7 @@ import { VehicleTableComponent } from './components/main/admin/admin-home/vehicl
 import {LayoutModule} from '@progress/kendo-angular-layout';
 import { DriverProfileComponent } from './components/main/driver-profile/driver-profile.component';
 import { LoginComponent } from './components/main/login/login.component';
+import {AuthGuardService} from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { LoginComponent } from './components/main/login/login.component';
     RequestService,
     VehicleService,
     AdminService,
-    AuthService
+    AuthService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
