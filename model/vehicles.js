@@ -35,7 +35,7 @@ const VehicleSchema = mongoose.Schema({
 const Vehicle = module.exports = mongoose.model('Vehicle', VehicleSchema);
 
 module.exports.getVehicleByNo = function(vehicle_no, callback) {
-  Vehicle.findById(id,callback);
+  Vehicle.find({'vehicle_no':vehicle_no},callback);
 }
 
 module.exports.get_vehicle_on_day = function(date, callback){

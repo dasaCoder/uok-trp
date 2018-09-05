@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="vehicle">
   <div class="col-md-6">
     <table class="table table-sm">
       <tr>
@@ -6,7 +6,7 @@
           Vehicle Number
         </th>
         <td>
-          CSD-3456
+          {{vehicle['vehicle_no']}}
         </td>
       </tr>
 
@@ -15,7 +15,7 @@
           Chassy Number
         </th>
         <td>
-          XXXXXXXXXXXXXX
+          {{vehicle['chassi_no']}}
         </td>
       </tr>
 
@@ -24,7 +24,7 @@
           Vehicle Type
         </th>
         <td>
-          Car
+          {{vehicle['vehicle_type']}}
         </td>
       </tr>
 
@@ -38,6 +38,8 @@
       </tr>
 
     </table>
+
+    <button class="btn purple" (click)="addMaintenance()">Add Maintenance</button>
   </div>
   <div class="col-md-6">
     <img src="http://www.hdcarwallpapers.com/walls/renault_alpine_a110_50_concept-wide.jpg" alt="" class="img-responsive trp-img-vehicle">

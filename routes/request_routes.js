@@ -37,7 +37,7 @@ router.get('/get_not_considered_requests',(req,res,next) => {
     }else{
       res.json({
         success: true,
-        msg: callback
+        msg: callback['data']
       })
     }
   })

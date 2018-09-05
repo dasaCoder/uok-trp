@@ -125,4 +125,12 @@ export class AdminService {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
+
+  // get details of a vehicle by vehicle number
+
+  getVehicle(vehicle_no){
+    return this.http.get(`${this.url}/getVehicle?vehicle_no=${vehicle_no}`,{
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    });
+  }
 }

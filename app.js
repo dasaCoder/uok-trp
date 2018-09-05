@@ -65,6 +65,7 @@ app.listen(port, ()=>{
 
 function authAdmin(req,res,next){
   // Get auth header value
+  //console.log(req.headers['authorization']);
   const bearerHeader = req.headers['authorization'];
   // Check if bearer is undefined
 
@@ -74,15 +75,13 @@ function authAdmin(req,res,next){
     // Get token from array
     const bearerToken = bearer[2];
     // Set the token
-    console.log(bearerToken);
+    //console.log(bearerToken);
     let token;
     jwt.verify(bearerToken,'uok-trp',(err, decode)=>{
        token = decode;
 
        if(err){
-         res.send({
-           status: 403
-         })
+         res.sendStatus(403);
        } else{
          // Next middleware
          next();
@@ -93,6 +92,6 @@ function authAdmin(req,res,next){
 
   } else {
     // Forbidden
-    res.sendStatus(403);
+    res.sendStatus(404);
   }
 }

@@ -221,19 +221,36 @@ router.get('/get_vehicle_list', (req,res,next) => {
 // add new vehicle to list
 
 router.post('/addVehicle',(req,res,next)=>{
-  let newVehicle = new Vehicle(req.body);
-  console.log(req);
-Vehicle.addVehicle(newVehicle,(err, callback) =>{
-  if(err){
-    res.json({
-      success:false, msg: err
+    let newVehicle = new Vehicle(req.body);
+    console.log(req);
+  Vehicle.addVehicle(newVehicle,(err, callback) =>{
+    if(err){
+      res.json({
+        success:false, msg: err
+      });
+    }else{
+      res.json({
+      success: true, msg: 'vehicle added succesfully'
     });
-  }else{
-    res.json({
-    success: true, msg: 'vehicle added succesfully'
-  });
-}
-})
+  }
+  })
+});
+
+router.get('/getVehicle',(req,res,next)=>{
+  let vehicle_no = req.query.vehicle_no;
+
+  Vehicle.getVehicleByNo(vehicle_no,(err,callback)=>{
+    if(err){
+      console.log(err);
+      res.json({
+        success: false
+      });
+    } else{
+      res.json({
+        success: true, data: callback
+      })
+    }
+  })
 });
 
 // get request on day which have assinged a vehicle
