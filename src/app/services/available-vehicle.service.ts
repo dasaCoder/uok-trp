@@ -38,7 +38,7 @@ export class AvailableVehicleService {
   }
 
   find_free_vehicle_on_day( vehicle_arr , key , value) {
-    this.http.get('http://localhost:3000/vehicles/all_vehicles')
+    this.http.get('https://uok-transport-division.herokuapp.com/vehicles/all_vehicles')
       .subscribe(response => {
         console.log(response['msg']);
       });

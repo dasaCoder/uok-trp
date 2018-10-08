@@ -20,9 +20,10 @@ export class StatusMsgComponent implements OnInit, OnDestroy {
     this.status = 10;
   }
   login(body) {
+    this.status = 6;
     this.authService.login(body)
       .subscribe( response => {
-        console.log(response['isLogged']);
+        //console.log(response['isLogged']);
         if (response['isLogged'] === 1) {
           this.isLogged = true;
           localStorage.setItem('token', response['token']);

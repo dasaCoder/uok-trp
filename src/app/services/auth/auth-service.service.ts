@@ -11,7 +11,7 @@ export class AuthServiceService {
       username: username,
       password: password
     };
-    return this.http.post(`http://localhost:3000/login`, user);
+    return this.http.post(`https://uok-transport-division.herokuapp.com/login`, user);
   }
 
 }

@@ -8,7 +8,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
   login(body) {
     // console.log(body);
-    return this.http.post('http://localhost:3000/requests/getStatus', body);
+    return this.http.post('https://uok-transport-division.herokuapp.com/requests/getStatus', body);
   }
   isLoggedIn(): boolean {
     if(localStorage.getItem('token') === null){

@@ -49,6 +49,8 @@ export class RequestFormComponent implements OnInit {
      errMsg: 'no Error'
    };
 
+   isLoading = false;
+
 
   @ViewChild('search') public searchElement: ElementRef;
   @ViewChild('search2') public searchElement2: ElementRef;
@@ -156,6 +158,9 @@ export class RequestFormComponent implements OnInit {
   }
 
   formSubmit() {
+
+    this.isLoading = true;
+
     let arrival_temp = new Date(this.arrival.dropTime);
     let arrival_hour: any = arrival_temp.getHours();
       if (arrival_hour < 10) {
@@ -163,9 +168,11 @@ export class RequestFormComponent implements OnInit {
       }
 
       let arrival_minute: any = arrival_temp.getMinutes();
+
         if (arrival_minute < 10 ) {
           arrival_minute = '0' + arrival_minute;
         }
+
     this.arrival.dropTime = `${arrival_hour}:${arrival_minute}`;
     this.arrival.dropDate = `${arrival_temp.getFullYear()}-${arrival_temp.getMonth() + 1}-${arrival_temp.getDate()}`;
 
@@ -192,7 +199,7 @@ export class RequestFormComponent implements OnInit {
     this.formData.arrival = this.arrival;
     this.formData.departure = this.departure;
     this.formData.isPermited = false;
-     console.log(this.formData);
+    // console.log(this.formData);
     // add data to the database
     this.requestService.addRequest(this.formData)
       .subscribe(response => {

@@ -9,7 +9,7 @@ export class AdminService {
   public token: string;
   public headers;
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:3000/admin';
+    this.url = 'https://uok-transport-division.herokuapp.com/admin';
     this.token = 'Bearer ' + localStorage.getItem('token');
     this.headers = new HttpHeaders();
     this.headers.set('authorization', this.token);
@@ -20,7 +20,7 @@ export class AdminService {
       username: username,
       password: password
     };
-    return this.http.post(`http://localhost:3000/login`, user);
+    return this.http.post(`https://uok-transport-division.herokuapp.com/login`, user);
   }
 
   adminLogOut(){
@@ -32,46 +32,46 @@ export class AdminService {
     //let headers = new HttpHeaders();
     //let token = 'Bearer ' + localStorage.getItem('token');
     //this.headers.append('Authentication', token);
-    return this.http.get('http://localhost:3000/admin/driver', {
+    return this.http.get('https://uok-transport-division.herokuapp.com/admin/driver', {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
 
   // return one driver
   getDriver(_id: String) {
-    return this.http.get(`http://localhost:3000/admin/driver/get?_id=${_id}`, {
+    return this.http.get(`https://uok-transport-division.herokuapp.com/admin/driver/get?_id=${_id}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
   getAllDriversDetails() {
-    return this.http.get('http://localhost:3000/admin/get_all_driver_details', {
+    return this.http.get('https://uok-transport-division.herokuapp.com/admin/get_all_driver_details', {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
   getVehicle_to_req() {
-    return this.http.get('http://localhost:3000/admin/vehicle/admin_to_request', {
+    return this.http.get('https://uok-transport-division.herokuapp.com/admin/vehicle/admin_to_request', {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
   setDriver(refNo, _id) {
     // console.log(refNo + name);
 
-    return this.http.post('http://localhost:3000/admin/driver/set_driver', {refNo: refNo, _id: _id}, {
+    return this.http.post('https://uok-transport-division.herokuapp.com/admin/driver/set_driver', {refNo: refNo, _id: _id}, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
   set_vehicle(refNo, _id) {
-    return this.http.get(`http://localhost:3000/admin/vehicle/set_vehicle/?refNo=${refNo}&_id=${_id}`, {
+    return this.http.get(`https://uok-transport-division.herokuapp.com/admin/vehicle/set_vehicle/?refNo=${refNo}&_id=${_id}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
   get_request_list(status) {
-    return this.http.get(`http://localhost:3000/admin/get_request_list/?status=${status}`, {
+    return this.http.get(`https://uok-transport-division.herokuapp.com/admin/get_request_list/?status=${status}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
   getRequestList(vehicle_no) {
-    return this.http.get(`http://localhost:3000/admin/get_request_on_vehicle?vehicle_no=${vehicle_no}`, {
+    return this.http.get(`https://uok-transport-division.herokuapp.com/admin/get_request_on_vehicle?vehicle_no=${vehicle_no}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
