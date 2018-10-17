@@ -76,11 +76,12 @@
 -->
 
 
-<header class="navbar navbar-light navbar-static-top">
-  <nav class="navbar navbar-toggleable-md bg-faded">
+<header class="navbar navbar-dark bg-dark navbar-static-top" style="background-color: black;">
+  <nav class="navbar navbar-toggleable-md navbar-dark bg-dark ">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
             data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <!--<span class="navbar-toggler-icon"></span>-->
+      <i class="fa fa-bars fa-2x" style="color: #ffcc00"></i>
     </button>
 
 
@@ -103,11 +104,13 @@
         <ul class="navbar-nav">
 
           <li class="">
-            <a class="trd-nav-link trd-nav" [routerLink]="['']">Home <span class="sr-only">(current)</span></a>
+            <a class="trd-nav-link trd-nav" [routerLink]="['']" style="float: right;">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="">
-            <a class="trd-nav-link trd-nav item-gold" [routerLink]="['login']" >Admin Login</a>
+            <a class="trd-nav-link trd-nav" [routerLink]="['login']"  style="float: right;">Admin Login</a><!-- item-gold-->
           </li>
+
+
         </ul>
       </div>
 

@@ -402,6 +402,11 @@ NEW modification to landing page*/
   border: #ffcc00 solid;
 }
 
+.trd-nav:focus{
+  text-decoration: none;
+  color: white;
+}
+
 .item-gold{
   background-color: #ffcc00;
 }
