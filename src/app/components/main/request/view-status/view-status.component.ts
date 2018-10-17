@@ -158,7 +158,7 @@ export class ViewStatusComponent implements OnInit {
       doc.setFont("helvetica");
       doc.setFontType("bold");
       doc.setFontSize(10);
-      let width = 470mm;
+      var width = 470;
       let height = doc.internal.pageSize.height;
       doc.addImage(imgData, 'JPEG', 0 , 0, width, height);
       doc.save('request.pdf');
