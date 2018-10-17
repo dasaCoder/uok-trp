@@ -1,8 +1,8 @@
 <div *ngIf="isPermited">
-  <div *ngIf="request" class="container-fluid">
-    <div class="row">
+  <div *ngIf="request" class="container">
+    <div class="">
 
-      <div class="container-fluid">
+      <div class="">
         <div class="row" >
           <div class="col-lg-6" id="map_section">
             <div
@@ -23,10 +23,16 @@
                 Request is Accepted. please supply futher information in more info section to proceed further
               </div>
 
-              <div *ngIf="request.status == 2">
-                <i class="fa fa-info"></i>  Request is confirmed  <button class="btn btn-primary">Download Application</button> and
+              <div *ngIf="request.status == 2" class="alert alert-info">
+                <i class="fa fa-info-circle"></i>  Your request is confirmed! Download Application and
                 <b> Handover to Transport Division </b>
+                <br> <br>
+                <button class="btn btn-primary" (click)="printPdf()">Download Application</button>
               </div>
+
+
+
+
 
             </div>
 
@@ -37,7 +43,7 @@
             <div id="accordion">
               <div class="card">
                 <div
-                  class="card-header bg-dark text-white" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
+                  class="card-header bg-inverse text-white" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
 
                   [attr.aria-expanded]="request.status != 1"
                   aria-controls="collapseOne">
@@ -195,7 +201,7 @@
                     <div *ngIf="request.driver">
                       Driver name: {{request.driver.name}}
                     </div>
-                    <div *ngIf="!test">
+                    <div *ngIf="!request.driver">
                       <p class="card-text">
                         Driver is not set
                       </p>
@@ -310,7 +316,7 @@
                 </div>
               </div>
               <div class="card" id="more_info_form" *ngIf="request.status == 1 ">
-                <div class="card-header bg-secondary text-white" id="headingFive" data-toggle="collapse" data-target="#collapseFive"
+                <div class="card-header bg-warning text-white" id="headingFive" data-toggle="collapse" data-target="#collapseFive"
                      [attr.aria-expanded]="request.status == 1"
                      aria-controls="collapseFive">
                   <h6 class="md-0">
@@ -384,5 +390,6 @@
   you are not authorized to view this
 
 </div>
+
 
 

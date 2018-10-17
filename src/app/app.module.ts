@@ -50,6 +50,7 @@ import {LayoutModule} from '@progress/kendo-angular-layout';
 import { DriverProfileComponent } from './components/main/driver-profile/driver-profile.component';
 import { LoginComponent } from './components/main/login/login.component';
 import {AuthGuardService} from './services/auth-guard.service';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import {AuthGuardService} from './services/auth-guard.service';
     /*MDBBootstrapModule.forRoot()*/
     DropDownsModule,
     AngularFontAwesomeModule,
-    LayoutModule
+    LayoutModule,
+    NgxQRCodeModule
   ],
   providers: [
     AvailableVehicleService,

@@ -48,6 +48,7 @@
     "jspdf": "^1.3.5",
     "ng-pick-datetime": "^5.2.4",
     "ng2-eonasdan-datetimepicker": "0.0.10",
+    "ngx-qrcode2": "0.0.9",
     "passport": "*",
     "passport-jwt": "^4.0.0",
     "path": "^0.12.7",
