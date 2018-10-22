@@ -20,12 +20,17 @@ export class AddComponent implements OnInit {
 
     // calling addDriver method in admin service
     if (driver.name !== '' || driver.nic_no !== '' || driver.driving_liecence_no !== '' || driver.telephone !== '' || driver.address !== '') {
-      alert('ok');
+      //alert('ok');
       this.adminService.addDriver(driver)
         .subscribe(response => {
           console.log(response);
+
+          if(response['success']){
+            alert('driver added succesfully');
+            location.reload();
+          }
         });
     }
-    console.log(driver);
+    //console.log(driver);
   }
 }

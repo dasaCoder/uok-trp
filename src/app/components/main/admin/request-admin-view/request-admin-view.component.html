@@ -1,5 +1,7 @@
 
 <div *ngIf="request" class="container-fluid">
+
+
   <div class="row">
     <div class="col-md-7">
 
@@ -174,7 +176,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-   2           <div class="modal-body">
+              <div class="modal-body">
                 Are you shure to reject this request?
               </div>
               <div class="modal-footer" ngClass="">
@@ -197,7 +199,7 @@
       <div id="accordion">
         <div class="card">
           <div
-            class="card-header bg-dark text-white" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            class="card-header bg-inverse text-white" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             <h6 class="mb-0">
               <i class="fa fa-map"></i>
               Trip Section
@@ -311,12 +313,19 @@
             </h6>
           </div>
 
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordion">
             <div
               [ngClass]="{'text-danger': !request.vehicle, 'text-success' : request.vehicle}"
               class="card-body">
               <div *ngIf="request.vehicle">
                 Vehicle no: {{request.vehicle.vehicle_no}}
+
+                <br>
+
+                <button class="btn btn-outline-warning"
+                        data-toggle="modal" data-target="#addVehicleModal" >
+                Change Vehicle
+              </button>
               </div>
               <div *ngIf="!request.vehicle">
                 <p class="card-text">
@@ -328,11 +337,9 @@
                   data-toggle="modal" data-target="#addVehicleModal">Add Vehicle</button>
               </div>
 
-              <button class="btn btn-outline-warning"
-                      data-toggle="modal" data-target="#addVehicleModal"
-              >
-                Change Vehicle
-              </button>
+
+
+
 
              </div>
           </div>
@@ -381,7 +388,7 @@
         <div class="modal fade" id="addDriverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog trp-modal-lg" role="document">
             <div class="row">
-              <div class="modal-content">
+              <div class="modal-content" style="min-width: 60%">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Add Driver</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -426,7 +433,7 @@
         <div class="modal fade" id="addVehicleModal" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog trp-modal-lg" role="document">
             <div class="row">
-              <div class="modal-content">
+              <div class="modal-content" style="min-width: 60%">
                 <div class="modal-header">
                   <h5 class="modal-title" id="ModalLongTitle">Add Vehicle</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">

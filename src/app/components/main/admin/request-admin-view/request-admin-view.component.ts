@@ -87,13 +87,17 @@ export class RequestAdminViewComponent implements OnInit, OnDestroy {
     this.requestService.change_status(this.request['refNo'], 1)
       .subscribe( (response) => {
         console.log(response['msg']);
+        location.reload();
       });
+
+
     // alert('accepted');
   }
   rejectReq() {
     this.requestService.change_status(this.request['refNo'], 3)
       .subscribe( (response) => {
         console.log(response['msg']);
+        location.reload();
       });
     // alert('accepted');
   }
@@ -111,8 +115,9 @@ export class RequestAdminViewComponent implements OnInit, OnDestroy {
   markDetailedReq() {
     this.requestService.change_status(this.request['refNo'], 4)
       .subscribe( response => {
-        alert('daon');
+        //alert('daon');
         console.log(response['msg']);
+        location.reload();
       });
   }
   set_vehicle_no(value: any) {
