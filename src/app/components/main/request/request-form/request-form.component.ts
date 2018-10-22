@@ -19,9 +19,77 @@ import {Route, Router} from '@angular/router';
 })
 export class RequestFormComponent implements OnInit {
   public source: Array<string> = [
-    'software engineering',
-    'department of chemistry',
-    'department of mathemetics'
+    'Department of Accountancy',
+    'Department of Anatomy',
+    'Department of Archaeology',
+    'Department of Bio-Chemistry & Clinical Chemistry',
+    'Department of Botany',
+    'Department of Chemistry',
+    'Department of Commerce and Financial Management (DCFM)',
+    'Department of Disability Studies',
+    'Department of Economics',
+    'Department of English',
+    'Department of Family Medicine',
+    'Department of Finance',
+    'Department of Fine Arts',
+    'Department of Forensic Medicine',
+    'Department of Geography',
+    'Department of Hindi Studies',
+    'Department of History',
+    'Department of Industrial Management',
+    'Department of Library and Information Science',
+    'Department of Linguistics',
+    'Department of Marketing Management',
+    'Department of Mass Communication',
+    'Department of Mathematics',
+    'Department of Medical Microbiology',
+    'Department of Medicine',
+    'Department of Microbiology',
+    'Department of Modern Languages',
+    'Department of Obstetrics & Gynecology',
+    'Department of Paediatrics',
+    'Department of Pali & Buddhist Studies',
+    'Department of Parasitology',
+    'Department of Pathology',
+    'Department of Pharmacology',
+    'Department of Philosophy',
+    'Department of Physics',
+    'Department of Physiology',
+    'Department of Public Health',
+    'Department of Sanskrit',
+    'Department of Sinhala',
+    'Department of Sociology',
+    'Department of Statistics & Computer Science',
+    'Department of Surgery',
+    'Department of Western Classical Culture & Christian Culture',
+    'Department of Zoology',
+    'Arts Council',
+    'Career Guidance Unit',
+    'Centre for Heritage Studies',
+    'Center for Chinese Studies',
+    'Centre of Excellence for Strategic Brand Identity Development (CESBID)',
+    'Centre for Gender Studies',
+    'Centre for Japanese Studies',
+    'Centre for Korean Studies',
+    'Center for Students with Disabilities (CCSD)',
+    'Center for Sustainability Solutions (CSS)',
+    'Confucius Institute',
+    'EDCON',
+    'Extracurricular Unit',
+    'ICCMS',
+    'ICT Centre',
+    'Media Unit',
+    'Quality Assurance Centre',
+    'Regional Centre for Ant Research',
+    'Research Council',
+    'Staff Development Centre',
+    'Statistics & Data Monitoring Unit',
+    'Technology and Innovation Support Centre',
+    'The Samkathana Research Centre',
+    'Administration',
+    'Other',
+    'Software Engineering Teaching Unit'
+
   ];
 
 
@@ -51,6 +119,7 @@ export class RequestFormComponent implements OnInit {
 
    isLoading = false;
 
+    refNoOfCreated:number = -1;
 
   @ViewChild('search') public searchElement: ElementRef;
   @ViewChild('search2') public searchElement2: ElementRef;
@@ -130,9 +199,9 @@ export class RequestFormComponent implements OnInit {
         // check whether the password is matchin
         if ( this.formData.password === this.rePassword) {
           // check the size of the password in healthy
-          if ( this.formData.password.length < 5 ) {
+          if ( this.formData.password.length < 4 ) {
             this.formD.isError = true;
-            this.formD.errMsg = 'Password is too short';
+            this.formD.errMsg = 'Password should be more than 4 letters';
             // alert('password is too short');
             this.formData.password = '';
             this.rePassword = '';
@@ -201,13 +270,20 @@ export class RequestFormComponent implements OnInit {
     this.formData.isPermited = false;
     // console.log(this.formData);
     // add data to the database
+    console.log(this.formData);
     this.requestService.addRequest(this.formData)
       .subscribe(response => {
         if (!response['success']) {
           alert('Error occured');
         } else {
-          alert('Requested!');
-          this.router.navigate(['']);
+          console.log(response);
+          //alert('Requested!');
+
+          this.refNoOfCreated = response['msg']['refNo'];
+          this.formData.password = response['msg']['password'];
+          this.step = 4;
+          this.isLoading = false;
+          //this.router.navigate(['']);
         }
       });
   }

@@ -35,9 +35,12 @@ export class AddVehicleComponent implements OnInit {
 
     this.adminService.addVehicle(vehicle)
       .subscribe(response => {
+
         if(response['success'] === false) {
+
           alert('error occured. please try again');
           this.isSubmited = false;
+
         } else if( response['success'] === true) {
           alert(response['msg']);
           this.isSubmited = false;
