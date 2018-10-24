@@ -53,6 +53,8 @@
                   </div>
                   <div id="step1"  *ngSwitchCase="1"  >
 
+
+
                     <div class="">
                       <label for="pickupPoint">Pickup Point</label>
                       <input type="text"  autocomplete="off" placeholder="search for pickup location" autocapitalize="off" id="pickupPoint" name="pickupPoint" class="trp-min-input" #search required>
@@ -69,7 +71,7 @@
                     </div>
 
 
-
+                  <!--  <input atp-time-picker value="19:00"/>-->
                     <div style="text-align: center; padding:0 10px 0 10px ">
                       <Button type="button"
                               [disabled]="!arrival.pickPointAddress || !departure.pickPointAddress || !formData.num_passangers"
