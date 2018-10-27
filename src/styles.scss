@@ -4,6 +4,8 @@
 @import "~@progress/kendo-theme-default/scss/all";
 @import 'variables';
 @import '../node_modules/font-awesome/scss/font-awesome';
+
+
 body{
   font: 15px/1.5;
   font-family:'Raleway', sans-serif;;
@@ -144,6 +146,16 @@ body{
 
 .trp-autocomplete{
   padding: 0 4px 0 0!important;
+  ackground-color: transparent;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: none;
+  height: 3rem;
+  width: 100%;
+  font-size: 16px;
+  margin: 0 0 8px 0;
+  padding: 0;
 
 }
 
@@ -468,8 +480,8 @@ NEW modification to landing page*/
     border: #ffcc00 solid 2px;
     text-decoration: none;
     color:#ffffff;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 2vh;
     padding-right: 2vh;
   }
@@ -489,7 +501,7 @@ NEW modification to landing page*/
   }
   .trd-nav-link {
     padding-bottom: 10px;
-    padding-top: 8px;
+    padding-top: 10px;
     color: white;
     /* padding-top: 10px; */
     /* margin-top: 10px; */
@@ -535,8 +547,8 @@ NEW modification to landing page*/
     background-color: #ffcc00;
   }
   .trd-nav-link{
-    padding-top: 30px;
-    padding-bottom: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 2vh;
     padding-right: 2vh;
   }
@@ -551,8 +563,8 @@ NEW modification to landing page*/
     background-color: #ffcc00;
   }
   .trd-nav-link{
-    padding-top: 50px;
-    padding-bottom: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 2vh;
     padding-right: 2vh;
   }
@@ -567,8 +579,8 @@ NEW modification to landing page*/
     background-color: #ffcc00;
   }
   .trd-nav-link{
-    padding-top: 50px;
-    padding-bottom: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 2vh;
     padding-right: 2vh;
   }
