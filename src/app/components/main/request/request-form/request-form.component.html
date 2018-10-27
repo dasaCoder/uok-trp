@@ -51,7 +51,7 @@
                   <div class="alert alert-danger" role="alert" style="margin-top: 8px" [hidden]="!formD.isError">
                     <strong>Error! </strong> {{formD.errMsg.toString()}}
                   </div>
-                  <div id="step1"  *ngSwitchCase="2"  >
+                  <div id="step1"  *ngSwitchCase="1"  >
 
 
 
@@ -87,7 +87,7 @@
 
 
 
-                  <div id="step2" *ngSwitchCase="1" >
+                  <div id="step2" *ngSwitchCase="2" >
 
                     <div class="input-wrapper">
                       <label>Date to pick you :</label>
@@ -115,7 +115,7 @@
                              [owlDateTimeTrigger]="dtPicker2"
                              [owlDateTime]="dtPicker2"
                              class="trp-min-input"
-                             [min]="departure.pickupTime"
+                             [min]="departure.pickupDate"
                       >
                       <owl-date-time
                         #dtPicker2

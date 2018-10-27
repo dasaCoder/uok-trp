@@ -233,7 +233,7 @@ export class RequestFormComponent implements OnInit {
 
     this.isLoading = true;
 
-    let arrival_temp = new Date(this.arrival.dropTime);
+    let arrival_temp = new Date(this.arrival.dropDate);
     /*let arrival_hour: any = arrival_temp.getHours();
       if (arrival_hour < 10) {
         arrival_hour = '0' + arrival_hour;
@@ -248,7 +248,7 @@ export class RequestFormComponent implements OnInit {
    // this.arrival.dropTime = `${arrival_hour}:${arrival_minute}`;
     this.arrival.dropDate = `${arrival_temp.getFullYear()}-${arrival_temp.getMonth() + 1}-${arrival_temp.getDate()}`;
 
-    let departure_temp = new Date(this.departure.pickupTime);
+    let departure_temp = new Date(this.departure.pickupDate);
 
     /*let departure_hour: any = departure_temp.getHours();
     if (departure_hour < 10) {
