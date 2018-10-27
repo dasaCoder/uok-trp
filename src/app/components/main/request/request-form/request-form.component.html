@@ -51,7 +51,7 @@
                   <div class="alert alert-danger" role="alert" style="margin-top: 8px" [hidden]="!formD.isError">
                     <strong>Error! </strong> {{formD.errMsg.toString()}}
                   </div>
-                  <div id="step1"  *ngSwitchCase="1"  >
+                  <div id="step1"  *ngSwitchCase="2"  >
 
 
 
@@ -87,11 +87,11 @@
 
 
 
-                  <div id="step2" *ngSwitchCase="2" >
+                  <div id="step2" *ngSwitchCase="1" >
 
                     <div class="input-wrapper">
-                      <label>Time to pick you up :</label>
-                      <input [(ngModel)]="departure.pickupTime"
+                      <label>Date to pick you :</label>
+                      <input [(ngModel)]="departure.pickupDate"
                              [owlDateTimeTrigger]="dtPicker1"
                              [owlDateTime]="dtPicker1"
                              class="trp-min-input"
@@ -101,9 +101,17 @@
                         #dtPicker1></owl-date-time>
                     </div>
 
+                    <div class="input-wrapper">
+                      <label>Time to pick you :</label>
+
+                      <input class="trp-min-input" atp-time-picker value="" [(ngModel)] = "this.departure.pickupTime" />
+
+                    </div>
+
+
                     <div class="  ">
-                      <label>End date & time:</label>
-                      <input [(ngModel)]="arrival.dropTime"
+                      <label>Returning date:</label>
+                      <input [(ngModel)]="arrival.dropDate"
                              [owlDateTimeTrigger]="dtPicker2"
                              [owlDateTime]="dtPicker2"
                              class="trp-min-input"
@@ -112,6 +120,15 @@
                       <owl-date-time
                         #dtPicker2
                       ></owl-date-time>
+
+
+
+                    </div>
+
+                    <div class="input-wrapper">
+                      <label>Returning time :</label>
+
+                      <input class="trp-min-input" atp-time-picker value="" [(ngModel)] = "this.arrival.dropTime" />
 
                     </div>
 
