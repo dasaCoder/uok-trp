@@ -51,6 +51,7 @@ import { DriverProfileComponent } from './components/main/driver-profile/driver-
 import { LoginComponent } from './components/main/login/login.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import {AmazingTimePickerModule} from 'amazing-time-picker';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     DropDownsModule,
     AngularFontAwesomeModule,
     LayoutModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    AmazingTimePickerModule
   ],
   providers: [
     AvailableVehicleService,
