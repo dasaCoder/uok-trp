@@ -139,8 +139,8 @@
 
                       <Button type="button"
                               class="trp-btn"
-                              [disabled]="!departure.pickupTime || !arrival.dropTime || !arrival.dropDate || !departure.dropDate"
-                              [class.btn-disabled]="!departure.pickupTime || !arrival.dropTime || !arrival.dropDate || !departure.dropDate"
+                              [disabled]="!departure.pickupTime || !arrival.dropTime || !arrival.dropDate || !departure.pickupDate"
+                              [class.btn-disabled]="!departure.pickupTime || !arrival.dropTime || !arrival.dropDate || !departure.pickupDate"
                               (click)="nextStep(3)"
                               style="margin-top: 20px;"
                       >
