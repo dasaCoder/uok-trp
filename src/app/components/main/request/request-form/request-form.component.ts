@@ -121,6 +121,8 @@ export class RequestFormComponent implements OnInit {
 
    isLoading = false;
 
+  isOneDaytrip = false;
+
     refNoOfCreated:number = -1;
 
   @ViewChild('search') public searchElement: ElementRef;
@@ -238,7 +240,14 @@ export class RequestFormComponent implements OnInit {
 
     this.isLoading = true;
 
-    let arrival_temp = new Date(this.arrival.dropDate);
+    let arrival_temp;
+    if ( this.isOneDaytrip ) {
+      arrival_temp = new Date(this.departure.pickupDate);
+    } else
+    {
+      arrival_temp = new Date(this.arrival.dropDate);
+    }
+
     /*let arrival_hour: any = arrival_temp.getHours();
       if (arrival_hour < 10) {
         arrival_hour = '0' + arrival_hour;
