@@ -5,6 +5,8 @@
   <div class="row">
     <div class="col-md-7">
 
+
+
         <div
           [ngClass]="{
               'alert-danger': request.status == 3,
@@ -385,10 +387,10 @@
 
         <!--add driver model-->
 
-        <div class="modal fade" id="addDriverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog trp-modal-lg" role="document">
-            <div class="row">
-              <div class="modal-content" style="min-width: 60%">
+        <div class="modal" id="addDriverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="" role="document">
+            <div class="">
+              <div class="modal-content" style="">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Add Driver</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -419,6 +421,12 @@
                 (setDriver_)="setDriver($event)"
                 ></app-set-driver>
               </div>
+
+                <div class="modal-footer" ngClass="">
+                  <button type="button"  class="btn btn-primary" data-dismiss="modal" (click)="setDriver()"><i class="fa fa-add"></i>Add</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
 
             </div>
             </div>

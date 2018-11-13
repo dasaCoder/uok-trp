@@ -1,9 +1,97 @@
 <div class="container-fluid">
 
 <div class="container-fluid">
+
+
+  <mat-tab-group>
+
+
+    <mat-tab *ngFor="let vehicle_type of vehicle_types let index=index">
+      <ng-template mat-tab-label>
+        <img src="/assets/images/vehicle_nav/{{vehicle_type.type}}.png" alt="" class="vehicle_img">
+        {{vehicle_type.type}}
+      </ng-template>
+
+
+      <div *ngFor="let vehicle of vehicleList" class="row scroll-horizontal" style="margin: 0">
+
+        <ul *ngIf="vehicle['vehicle_type'] == vehicle_type.type" class="collection with-header" style="display: inherit;">
+
+
+
+            <li class="collection-header"><h4>{{vehicle.vehicle_no}}</h4></li>
+
+
+
+
+          <div *ngFor="let job of vehicleJobs[vehicle_type.type]" >
+
+            <div *ngIf="job['vehicle']['vehicle_no'] == vehicle['vehicle_no']" class="vehicle_job_div">
+
+              <ul class="collection">
+
+                <li class="collection-item avatar">
+                  <i class="material-icons circle"></i>
+
+                  <span class="title">
+
+                    {{job['departure']['pickupTime']}} To
+                         {{job['departure']['dropTime']}} 12.30
+
+                  </span>
+                  <p>{{job['departure']['pickupPoint']}} <br>
+                    {{job['departure']['dropPoint']}} test
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
+                </li>
+
+              </ul>
+              <!--<div class="row">
+                <div class="col s12 m6">
+                  <div class="card ">
+                    <div class="card-content ">
+                    <span class="card-title">
+
+                       <img src="/assets/images/vehicle_nav/clock.png" alt="" class="">
+
+
+
+                    </span>
+                      <div class="">
+                        <img src="/assets/images/vehicle_nav/start.png" alt="" class="">
+                        {{job['departure']['pickupPoint']}}
+                      </div>
+
+                      <div class="">
+                        <img src="/assets/images/vehicle_nav/finish.png" alt="" class="">
+                        {{job['departure']['dropPoint']}} test
+                      </div>
+                    </div>
+                    <div class="card-action">
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>-->
+
+            </div>
+
+
+        </div>
+
+
+      </ul>
+      </div>
+
+    </mat-tab>
+  </mat-tab-group>
+
+
+
   <div>
 
-
+<!--
     <nav style="margin-left: -16px; padding-bottom: 5px">
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a *ngFor="let vehicle_type of vehicle_types let index = index"
@@ -68,7 +156,7 @@
 
       </div>
 
-    </div>
+    </div>-->
 
 
   </div>

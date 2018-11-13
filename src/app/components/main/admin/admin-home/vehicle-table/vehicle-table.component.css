@@ -11,16 +11,17 @@
 }
 
 .vehicle_job_div {
-  color: black;
+  text-align: center;
+  /*color: black;
   background-color: white;
   font-size: 2.3vh;
   width: 220px;
-  text-align: center;
+
   padding-top: 2.5vh;
   padding-bottom: 2.5vh;
   border: solid 1px black;
   height: 150px;
-  overflow: hidden;
+  overflow: hidden;*/
 }
 
 .vehicle_nav {
@@ -67,4 +68,9 @@
 .scroll-horizontal {
   overflow: auto;
   white-space: nowrap;
+}
+
+
+.mat-tab-label{
+  background-color: #680000 ;
 }
