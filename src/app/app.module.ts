@@ -53,7 +53,7 @@ import {AuthGuardService} from './services/auth-guard.service';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import {AmazingTimePickerModule} from 'amazing-time-picker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material';
+import {MatNativeDateModule, MatTabsModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -108,7 +108,8 @@ import {MatNativeDateModule} from '@angular/material';
     NgxQRCodeModule,
     AmazingTimePickerModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatTabsModule
   ],
   providers: [
     AvailableVehicleService,
