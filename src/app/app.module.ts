@@ -52,6 +52,8 @@ import { LoginComponent } from './components/main/login/login.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { DashboardComponent } from './components/main/admin/dashboard/dashboard.component';
+import { DemoMaterialModule } from './material.module';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -104,7 +106,9 @@ import { DashboardComponent } from './components/main/admin/dashboard/dashboard.
     DropDownsModule,
     AngularFontAwesomeModule,
     LayoutModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    DemoMaterialModule,
+    MatTableModule
   ],
   providers: [
     AvailableVehicleService,
