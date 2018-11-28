@@ -55,6 +55,10 @@ import { DashboardComponent } from './components/main/admin/dashboard/dashboard.
 import { DemoMaterialModule } from './material.module';
 import { MatTableModule } from '@angular/material/table';
 
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -121,3 +125,4 @@ import { MatTableModule } from '@angular/material/table';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+platformBrowserDynamic().bootstrapModule(AppModule);

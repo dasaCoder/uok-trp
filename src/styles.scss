@@ -4,6 +4,20 @@
 @import "~@progress/kendo-theme-default/scss/all";
 @import 'variables';
 @import '../node_modules/font-awesome/scss/font-awesome';
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+.basic-container {
+  padding: 5px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+
+
 body{
   font: 15px/1.5;
   font-family:'Raleway', sans-serif;;
