@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {FullCalendarModule} from 'primeng/fullcalendar';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,10 +12,37 @@ export class DashboardComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
+  events: any[];
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+
+    this.events = [
+      {
+          "title": "All Day Event",
+          "start": "2016-01-01"
+      },
+      {
+          "title": "Long Event",
+          "start": "2016-01-07",
+          "end": "2016-01-10"
+      },
+      {
+          "title": "Repeating Event",
+          "start": "2016-01-09T16:00:00"
+      },
+      {
+          "title": "Repeating Event",
+          "start": "2016-01-16T16:00:00"
+      },
+      {
+          "title": "Conference",
+          "start": "2016-01-11",
+          "end": "2016-01-13"
+      }
+  ];
   }
 
 }

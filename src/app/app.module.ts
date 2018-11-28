@@ -55,9 +55,8 @@ import { DashboardComponent } from './components/main/admin/dashboard/dashboard.
 import { DemoMaterialModule } from './material.module';
 import { MatTableModule } from '@angular/material/table';
 
-import {BrowserModule} from '@angular/platform-browser';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FullCalendarModule } from 'primeng/fullcalendar';
 
 @NgModule({
   declarations: [
@@ -112,7 +111,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     LayoutModule,
     NgxQRCodeModule,
     DemoMaterialModule,
-    MatTableModule
+    MatTableModule,
+    FullCalendarModule
   ],
   providers: [
     AvailableVehicleService,
