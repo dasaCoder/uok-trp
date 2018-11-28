@@ -16,6 +16,7 @@ import {AdminHomeComponent} from './components/main/admin/admin-home/admin-home.
 import {DriverProfileComponent} from './components/main/driver-profile/driver-profile.component';
 import {LoginComponent} from './components/main/login/login.component';
 import {AuthGuardService} from './services/auth-guard.service';
+import { DashboardComponent } from './components/main/admin/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,10 @@ const routes: Routes = [
       {path : 'check_req' , component : CheckReqStatusComponent},
       {path : 'view_req/:refNo' , component : ViewStatusComponent}
     ]
+  },
+  {
+    path: 'admin/dashboard',
+    component: DashboardComponent
   },
   {
     path: 'admin',

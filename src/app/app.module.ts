@@ -51,6 +51,7 @@ import { DriverProfileComponent } from './components/main/driver-profile/driver-
 import { LoginComponent } from './components/main/login/login.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { DashboardComponent } from './components/main/admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     SearchComponent,
     VehicleTableComponent,
     DriverProfileComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
