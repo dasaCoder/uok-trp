@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {FullCalendarModule} from 'primeng/fullcalendar';
+import { AdminService } from '../../../../services/admin.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,8 +17,13 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  constructor(private adminService: AdminService) {
+      this.getNewReqeusts();
+  }
+
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+
 
     this.events = [
       {
@@ -43,6 +49,13 @@ export class DashboardComponent implements OnInit {
           "end": "2016-01-13"
       }
   ];
+  }
+
+  getNewReqeusts(){
+    this.adminService.get_request_list(1)
+        .subscribe(data=>{
+          console.log('new',data);
+        });
   }
 
 }
