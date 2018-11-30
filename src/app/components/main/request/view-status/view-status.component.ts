@@ -93,6 +93,7 @@ export class ViewStatusComponent implements OnInit {
                 
                     <div class="col-12">අංකය	:&nbsp;	TRD/${this.request.refNo}</div>
                     <div class="col-12">පීඨය	:	&nbsp;${this.request.dep_unit}</div>
+                    <div class="col-12">ඉල්ලුම්කරුගේ නම  :  ${this.request.name}</div>
                     <div class="col-12">ඉල්ලුම්කරුගේ තනතුර	:&nbsp;	${this.request.position}</div>
                     
                     <br><br>
