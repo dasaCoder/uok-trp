@@ -73,8 +73,9 @@ export class AdminService {
   }
 
   // return list of reqeust on given status/s
+  // formatted for sheduler in admin dasboard
   // param array of status eg:- status[0] = "1"
-  getRequestOnStatus(status) {
+  getRequestOnStatusForCalender(status) {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/requests/status?${status}`, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     } )
@@ -101,6 +102,13 @@ export class AdminService {
 
                         return dataM;
                       });
+  }
+
+  // return array of requests
+  getRequestsOnStatus(status) {
+    return this.http.get(`https://uok-transport-division.herokuapp.com/admin/requests/status?${status}`, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    } );
   }
 
   getRequestList(vehicle_no) {

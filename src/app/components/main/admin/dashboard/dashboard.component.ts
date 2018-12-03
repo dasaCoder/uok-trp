@@ -10,8 +10,10 @@ import { AdminService } from '../../../../services/admin.service';
 })
 export class DashboardComponent implements OnInit {
 
+  requestData: RequestElement = [];
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<RequestElement>(requestData);
   requests: any = [];
 
   events: any = [];
@@ -26,20 +28,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
 
-    // this.getRequestOnStatus();
-
-    // console.log("retuqs", this.requests.length);
-
-    // if ( this.requests !== false) {
-
-    //     this.requests.forEach(element => {
-    //       console.log(element);
-    //     });
-    // } else {
-    //   console.log("error occured "+ this.requests);
-    // }
-
-    this.adminService.getRequestOnStatus(`status[0]=1&statsu[1]=2&status[2]=3&statsu[3]=4&status[4]=0`)
+    this.adminService.getRequestOnStatusForCalender(`status[0]=1&statsu[1]=2&status[2]=3&status[3]=4&status[4]=0`)
         .then( events => {this.events = events; } );
 
         this.options = {
@@ -50,32 +39,16 @@ export class DashboardComponent implements OnInit {
               right: 'month,agendaWeek,agendaDay'
           }
         };
-console.log(this.events);
+    console.log(this.events);
 
    }
 
   getRequestOnStatus(): any {
-    this.adminService.getRequestOnStatus(`status[0]=1&statsu[1]=2`)
-        .then(data => {
+    this.adminService.getRequestsOnStatus(`status[0]=1&statsu[1]=2&status[3]=4&status[4]=0`)
+        .subscribe(data => {
           console.log('status ', data['msg'].length);
-
           this.requests = data['msg'];
-
-          this.requests.forEach(element => {
-
-            this.events.push(
-              {
-                'title': 'TRP/'+ element['refNo'],
-                'start': element['departure']['pickupDate'],
-                'end' : element['arrival']['dropDate']
-              }
-            );
-            console.log(this.events);
-          });
-
-          //return data;
         } );
-        //return false;
   }
 
   getNewReqeusts() {
@@ -87,6 +60,16 @@ console.log(this.events);
 
   }
 
+}
+
+export interface RequestElement {
+  refNo: string;
+  startDate: string;
+  endDate: string;
+  to: string;
+  from: string;
+  driver: string;
+  vehicle: string;
 }
 
 export interface PeriodicElement {
