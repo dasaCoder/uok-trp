@@ -12,43 +12,93 @@ export class DashboardComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  requests: any = [];
 
-  events: any[];
+  events: any = [];
+  options: any = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private adminService: AdminService) {
-      this.getNewReqeusts();
+      //this.getNewReqeusts();
   }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
 
+    // this.getRequestOnStatus();
 
-    this.events = [
-      {
-          "title": "All Day Event",
-          "start": "2016-01-01"
-      },
-      {
-          "title": "Long Event",
-          "start": "2016-01-07",
-          "end": "2016-01-10"
-      },
-      {
-          "title": "Repeating Event",
-          "start": "2016-01-09T16:00:00"
-      },
-      {
-          "title": "Repeating Event",
-          "start": "2016-01-16T16:00:00"
-      },
-      {
-          "title": "Conference",
-          "start": "2016-01-11",
-          "end": "2016-01-13"
-      }
-  ];
+    // console.log("retuqs", this.requests.length);
+
+    // if ( this.requests !== false) {
+
+    //     this.requests.forEach(element => {
+    //       console.log(element);
+    //     });
+    // } else {
+    //   console.log("error occured "+ this.requests);
+    // }
+
+    this.adminService.getRequestOnStatus(`status[0]=1&statsu[1]=2&status[2]=3&statsu[3]=4`)
+        .then( events => {this.events = events; } );
+
+        this.options = {
+          weekends: true,
+          header: {
+              left: 'prev,next',
+              center: 'title',
+              right: 'month,agendaWeek,agendaDay'
+          }
+        };
+console.log(this.events);
+  //   this.events = [
+  //     {
+  //         "title": "All Day Event",
+  //         "start": "2016-01-01"
+  //     },
+  //     {
+  //         "title": "Long Event",
+  //         "start": "2016-01-07",
+  //         "end": "2016-01-10"
+  //     },
+  //     {
+  //         "title": "Repeating Event",
+  //         "start": "2016-01-09T16:00:00"
+  //     },
+  //     {
+  //         "title": "Repeating Event",
+  //         "start": "2016-01-16T16:00:00"
+  //     },
+  //     {
+  //         "title": "Conference",
+  //         "start": "2016-01-11",
+  //         "end": "2016-01-13"
+  //     }
+  // ];
+   }
+
+  getRequestOnStatus(): any {
+    this.adminService.getRequestOnStatus(`status[0]=1&statsu[1]=2`)
+        .then(data => {
+          console.log('status ', data['msg'].length);
+
+          this.requests = data['msg'];
+
+          this.requests.forEach(element => {
+
+            this.events.push(
+              {
+                'title': 'TRP/'+ element['refNo'],
+                'start': element['departure']['pickupDate'],
+                'end' : element['arrival']['dropDate']
+              }
+            );
+            console.log(this.events);
+          });
+
+          //return data;
+        } );
+        //return false;
   }
 
   getNewReqeusts() {
@@ -57,10 +107,7 @@ export class DashboardComponent implements OnInit {
           console.log('new', data);
         });
 
-    this.adminService.getRequestOnStatus(`status[0]=1&statsu[1]=2`)
-        .subscribe(data => {
-          console.log('status ', data);
-        } );
+
   }
 
 }

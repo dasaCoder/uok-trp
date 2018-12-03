@@ -77,7 +77,30 @@ export class AdminService {
   getRequestOnStatus(status) {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/requests/status?${status}`, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
-    } );
+    } )
+      .toPromise()
+                      .then(res => <any[]> res)
+                      .then(data => {
+
+                        var dataM = [];
+
+                        data['msg'].forEach(element => {
+
+                          dataM.push(
+                            {
+                              'title': 'TRP/' + element['refNo'],
+                              'start': element['departure']['pickupDate'],
+                              'end' : element['arrival']['dropDate'],
+                              'weekends': 'true'
+                            }
+                          );
+
+                        });
+
+                        //let x = [];
+
+                        return dataM;
+                      });
   }
 
   getRequestList(vehicle_no) {
