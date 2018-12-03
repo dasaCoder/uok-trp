@@ -51,11 +51,16 @@ export class DashboardComponent implements OnInit {
   ];
   }
 
-  getNewReqeusts(){
+  getNewReqeusts() {
     this.adminService.get_request_list(1)
-        .subscribe(data=>{
-          console.log('new',data);
+        .subscribe(data => {
+          console.log('new', data);
         });
+
+    this.adminService.getRequestOnStatus(`status[0]=1&statsu[1]=2`)
+        .subscribe(data => {
+          console.log('status ', data);
+        } );
   }
 
 }

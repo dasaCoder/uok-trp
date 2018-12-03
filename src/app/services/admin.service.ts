@@ -65,11 +65,21 @@ export class AdminService {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
+
   get_request_list(status) {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/get_request_list/?status=${status}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
+
+  // return list of reqeust on given status/s
+  // param array of status eg:- status[0] = "1"
+  getRequestOnStatus(status) {
+    return this.http.get(`https://uok-transport-division.herokuapp.com/admin/requests/status?${status}`, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    } );
+  }
+
   getRequestList(vehicle_no) {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/get_request_on_vehicle?vehicle_no=${vehicle_no}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
