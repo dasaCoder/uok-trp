@@ -44,9 +44,17 @@ export class DashboardComponent implements OnInit {
         };
 
         this.adminService.getRequestsOnStatusForTable(`status[0]=1&statsu[1]=2&status[3]=4&status[4]=0`)
-          .then(data => { this.requestData = data; });
+          .then(data => {
+            this.requestData = data;
 
-          console.log(this.requestData);
+           // const y = this.dataSource.data;
+           // y = this.requestData;
+
+            this.dataSource.data = this.requestData;
+            console.log(this.requestData);
+
+          });
+
 
    }
 

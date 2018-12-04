@@ -133,12 +133,13 @@ export class AdminService {
 
                         data['msg'].forEach(element => {
 
+
                           dataT.push({
                             'refNo'   : element['refNo'],
-                            'to'      : element['departure']['picupPoint'],
+                            'to'      : element['departure']['pickupPoint'],
                             'from'    : element['departure']['dropPoint'],
-                            'driver'  : element['driver']['name'],
-                            'vehicle' : element['vehicle']['vehicle_no']
+                            'driver'  : (element['driver'] !== undefined )? element['driver']['name'] : 'Not assigned',
+                            'vehicle' : (element['vehicle'] !== undefined)? element['vehicle']['vehicle_no'] : 'Not assigned'
                           } );
 
                         });
