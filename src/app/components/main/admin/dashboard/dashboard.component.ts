@@ -88,6 +88,10 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  loadRequest(refNo) {
+    alert(refNo);
+  }
+
 }
 
 export interface RequestElement {
