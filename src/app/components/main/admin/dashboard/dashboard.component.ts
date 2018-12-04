@@ -10,10 +10,13 @@ import { AdminService } from '../../../../services/admin.service';
 })
 export class DashboardComponent implements OnInit {
 
-  //requestData: RequestElement = [];
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  //dataSource = new MatTableDataSource<RequestElement>(requestData);
+  requestData: RequestElement[] = [];
+  //displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
+  displayedColumns: string[] = ['refNo', 'to', 'from', 'driver','vehicle'];
+  dataSource = new MatTableDataSource<RequestElement>(this.requestData);
+
   requests: any = [];
 
   events: any = [];
@@ -39,16 +42,20 @@ export class DashboardComponent implements OnInit {
               right: 'month,agendaWeek,agendaDay'
           }
         };
-    console.log(this.events);
+
+        this.adminService.getRequestsOnStatusForTable(`status[0]=1&statsu[1]=2&status[3]=4&status[4]=0`)
+          .then(data => { this.requestData = data; });
+
+          console.log(this.requestData);
 
    }
 
   getRequestOnStatus(): any {
-    this.adminService.getRequestsOnStatus(`status[0]=1&statsu[1]=2&status[3]=4&status[4]=0`)
-        .subscribe(data => {
-          console.log('status ', data['msg'].length);
-          this.requests = data['msg'];
-        } );
+    // this.adminService.getRequestsOnStatusForTable(`status[0]=1&statsu[1]=2&status[3]=4&status[4]=0`)
+    //     .subscribe(data => {
+    //       console.log('status ', data['msg'].length);
+    //       this.requests = data['msg'];
+    //     } );
   }
 
   getNewReqeusts() {

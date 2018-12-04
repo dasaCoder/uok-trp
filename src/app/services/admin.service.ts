@@ -79,7 +79,7 @@ export class AdminService {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/requests/status?${status}`, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     } )
-      .toPromise()
+                      .toPromise()
                       .then(res => <any[]> res)
                       .then(data => {
 
@@ -122,10 +122,29 @@ export class AdminService {
   }
 
   // return array of requests
-  getRequestsOnStatus(status) {
+  getRequestsOnStatusForTable(status) {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/requests/status?${status}`, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
-    } );
+    } )
+                      .toPromise()
+                      .then(res => <any[]> res)
+                      .then(data => {
+                        var dataT = [];
+
+                        data['msg'].forEach(element => {
+
+                          dataT.push({
+                            'refNo'   : element['refNo'],
+                            'to'      : element['departure']['picupPoint'],
+                            'from'    : element['departure']['dropPoint'],
+                            'driver'  : element['driver']['name'],
+                            'vehicle' : element['vehicle']['vehicle_no']
+                          } );
+
+                        });
+
+                        return dataT;
+                      });
   }
 
   getRequestList(vehicle_no) {
