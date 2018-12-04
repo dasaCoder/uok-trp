@@ -10,10 +10,10 @@ import { AdminService } from '../../../../services/admin.service';
 })
 export class DashboardComponent implements OnInit {
 
-  requestData: RequestElement = [];
+  //requestData: RequestElement = [];
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  dataSource = new MatTableDataSource<RequestElement>(requestData);
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  //dataSource = new MatTableDataSource<RequestElement>(requestData);
   requests: any = [];
 
   events: any = [];

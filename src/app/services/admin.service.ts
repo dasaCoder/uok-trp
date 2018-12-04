@@ -87,11 +87,28 @@ export class AdminService {
 
                         data['msg'].forEach(element => {
 
+                          let color = '';
+                          switch ( element['status']) {
+                            case '0':
+                              color = '#1A73E8';
+                              break;
+                            case '1':
+                              color = '#1E8E3E';
+                              break;
+                            case '2':
+                              color = '#FA7B17';
+                              break;
+                            case '3':
+                              color = '#A142F4';
+                              break;
+                          }
+
                           dataM.push(
                             {
                               'title': 'TRP/' + element['refNo'],
                               'start': element['departure']['pickupDate'],
                               'end' : element['arrival']['dropDate'],
+                              'color' : color,
                               'weekends': 'true'
                             }
                           );
