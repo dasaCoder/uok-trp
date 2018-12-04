@@ -17,7 +17,7 @@
             <mat-tab label="New Requests">
 
                 <div class="mat-elevation-z8">
-                    <mat-table #table [dataSource]="dataSource" matSort>
+                    <mat-table #table [dataSource]="newReqDataSource" matSort>
 
                       <!-- Position Column -->
                       <ng-container matColumnDef="refNo">
@@ -60,7 +60,7 @@
             </mat-tab>
             <mat-tab label="Accepted Requests">
                 <div class="mat-elevation-z8">
-                    <mat-table #table [dataSource]="dataSource" matSort>
+                    <mat-table #table [dataSource]="acceptedReqDataSource" matSort>
 
                       <!-- Position Column -->
                       <ng-container matColumnDef="refNo">

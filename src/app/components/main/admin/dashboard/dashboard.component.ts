@@ -11,11 +11,16 @@ import { AdminService } from '../../../../services/admin.service';
 export class DashboardComponent implements OnInit {
 
   requestData: RequestElement[] = [];
+  newRequestData: RequestElement[] = []; // store all new reqeusts
+  acceptedReqData: RequestElement[] = [];
+
   //displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   displayedColumns: string[] = ['refNo', 'to', 'from', 'driver','vehicle'];
-  dataSource = new MatTableDataSource<RequestElement>(this.requestData);
+
+  acceptedReqDataSource = new MatTableDataSource<RequestElement>(this.requestData);
+  newReqDataSource = new MatTableDataSource<RequestElement>(this.newRequestData);
 
   requests: any = [];
 
@@ -29,7 +34,8 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+   // this.acceptedReqDataSource.paginator = this.paginator;
+    //this.dataSource.paginator = this.paginator;
 
     this.adminService.getRequestOnStatusForCalender(`status[0]=1&statsu[1]=2&status[2]=3&status[3]=4&status[4]=0`)
         .then( events => {this.events = events; } );
@@ -43,17 +49,24 @@ export class DashboardComponent implements OnInit {
           }
         };
 
-        this.adminService.getRequestsOnStatusForTable(`status[0]=1&statsu[1]=2&status[3]=4&status[4]=0`)
-          .then(data => {
-            this.requestData = data;
+    this.adminService.getRequestsOnStatusForTable(`status[0]=1`)
+        .then(data => {
+          this.acceptedReqData = data;
 
-           // const y = this.dataSource.data;
-           // y = this.requestData;
 
-            this.dataSource.data = this.requestData;
-            console.log(this.requestData);
+          this.acceptedReqDataSource.data = this.acceptedReqData;
+          console.log("accepted", this.acceptedReqDataSource);
 
-          });
+    });
+
+    this.adminService.getRequestsOnStatusForTable(`status[0]=0`)
+    .then(data => {
+      this.newRequestData = data;
+
+      this.newReqDataSource.data = this.newRequestData;
+      console.log("new", this.newRequestData);
+
+    });
 
 
    }
