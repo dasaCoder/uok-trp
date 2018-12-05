@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog} from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA} from '@angular/material';
 import { AddDriverComponent } from '../add-driver/add-driver.component';
 
 @Component({
@@ -9,7 +9,9 @@ import { AddDriverComponent } from '../add-driver/add-driver.component';
 })
 export class ReqeustPreveiwComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog) {
+    console.log("req data",data);
+   }
 
   ngOnInit() {
   }

@@ -88,11 +88,11 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  loadRequest(refNo) {
+  loadRequest(request) {
     //alert(refNo);
 
-    const dialogRef = this.dialog.open(ReqeustPreveiwComponent, {
-        id: 'dialogRequestPrev'
+    const dialogRef = this.dialog.open(ReqeustPreveiwComponent,{
+        data: request
     });
 
     dialogRef.afterClosed().subscribe(result => {
