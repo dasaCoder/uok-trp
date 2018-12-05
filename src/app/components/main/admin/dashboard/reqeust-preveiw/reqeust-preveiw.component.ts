@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog} from '@angular/material';
+import { AddDriverComponent } from '../add-driver/add-driver.component';
 
 @Component({
   selector: 'app-reqeust-preveiw',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReqeustPreveiwComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
+  }
+
+  addDriver() {
+    const dialogRef = this.dialog.open(AddDriverComponent, {
+        id: "dialogAddDriver"
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

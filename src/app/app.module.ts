@@ -58,6 +58,7 @@ import { MatTableModule } from '@angular/material/table';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { ReqeustPreveiwComponent } from './components/main/admin/dashboard/reqeust-preveiw/reqeust-preveiw.component';
+import { AddDriverComponent } from './components/main/admin/dashboard/add-driver/add-driver.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { ReqeustPreveiwComponent } from './components/main/admin/dashboard/reqeu
     DriverProfileComponent,
     LoginComponent,
     DashboardComponent,
-    ReqeustPreveiwComponent
+    ReqeustPreveiwComponent,
+    AddDriverComponent
   ],
   imports: [
     BrowserModule,
@@ -126,7 +128,8 @@ import { ReqeustPreveiwComponent } from './components/main/admin/dashboard/reqeu
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    ReqeustPreveiwComponent
+    ReqeustPreveiwComponent,
+    AddDriverComponent
   ]
 })
 export class AppModule { }
