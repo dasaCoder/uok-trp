@@ -3,6 +3,7 @@ import {MatPaginator, MatTableDataSource, MatDialog} from '@angular/material';
 import {FullCalendarModule} from 'primeng/fullcalendar';
 import { AdminService } from '../../../../services/admin.service';
 import { ReqeustPreveiwComponent } from './reqeust-preveiw/reqeust-preveiw.component';
+import { RequestService } from '../../../../services/request.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +11,7 @@ import { ReqeustPreveiwComponent } from './reqeust-preveiw/reqeust-preveiw.compo
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
 
   requestData: RequestElement[] = [];
   newRequestData: RequestElement[] = []; // store all new reqeusts
@@ -30,7 +32,7 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private adminService: AdminService, private dialog: MatDialog) {
+  constructor(private adminService: AdminService, private dialog: MatDialog, private requestService: RequestService) {
       //this.getNewReqeusts();
   }
 
@@ -88,16 +90,21 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  loadRequest(request) {
+  loadRequest(refNo) {
     //alert(refNo);
+    this.requestService.getOneRequest(refNo)
+        .subscribe(request => {
 
-    const dialogRef = this.dialog.open(ReqeustPreveiwComponent,{
-        data: request
+          const dialogRef = this.dialog.open(ReqeustPreveiwComponent,{
+              data: request['msg'][0]
+          });
+
+          dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+          });
+
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
 
   }
 
