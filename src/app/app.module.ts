@@ -57,6 +57,7 @@ import { MatTableModule } from '@angular/material/table';
 
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { FullCalendarModule } from 'primeng/fullcalendar';
+import { ReqeustPreveiwComponent } from './components/main/admin/dashboard/reqeust-preveiw/reqeust-preveiw.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { FullCalendarModule } from 'primeng/fullcalendar';
     DriverProfileComponent,
     LoginComponent,
     DashboardComponent,
+    ReqeustPreveiwComponent
   ],
   imports: [
     BrowserModule,
@@ -122,7 +124,10 @@ import { FullCalendarModule } from 'primeng/fullcalendar';
     AuthService,
     AuthGuardService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ReqeustPreveiwComponent
+  ]
 })
 export class AppModule { }
 platformBrowserDynamic().bootstrapModule(AppModule);
