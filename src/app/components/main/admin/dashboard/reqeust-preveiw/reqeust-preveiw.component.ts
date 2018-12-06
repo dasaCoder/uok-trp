@@ -18,7 +18,10 @@ export class ReqeustPreveiwComponent implements OnInit {
 
   addDriver() {
     const dialogRef = this.dialog.open(AddDriverComponent, {
-        id: "dialogAddDriver"
+        id: "dialogAddDriver",
+        data: {
+          'requests': []
+        }
     });
 
     dialogRef.afterClosed().subscribe(result => {

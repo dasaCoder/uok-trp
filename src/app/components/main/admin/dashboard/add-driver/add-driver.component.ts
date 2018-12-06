@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA} from '@angular/material';
 @Component({
   selector: 'app-add-driver',
   templateUrl: './add-driver.component.html',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddDriverComponent implements OnInit {
 
-  constructor() { }
+  requests: any[] = [];
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+    this.requests = this.data;
   }
 
 }
