@@ -96,6 +96,7 @@ export class DashboardComponent implements OnInit {
         .subscribe(request => {
 
           const dialogRef = this.dialog.open(ReqeustPreveiwComponent,{
+              width: '90%',
               data: request['msg'][0]
           });
 
