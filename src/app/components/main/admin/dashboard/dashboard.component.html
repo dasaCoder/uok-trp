@@ -5,7 +5,9 @@
     <mat-tab label="Shedule">
 
       <div>
-        <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar>
+        <!-- <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar> -->
+
+        <app-sheduler *ngIf="events.length > 0" [requests]="events"></app-sheduler>
 
       </div>
 
