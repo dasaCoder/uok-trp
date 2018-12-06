@@ -59,6 +59,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { ReqeustPreveiwComponent } from './components/main/admin/dashboard/reqeust-preveiw/reqeust-preveiw.component';
 import { AddDriverComponent } from './components/main/admin/dashboard/add-driver/add-driver.component';
+import { ShedulerComponent } from './components/main/admin/dashboard/sheduler/sheduler.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { AddDriverComponent } from './components/main/admin/dashboard/add-driver
     LoginComponent,
     DashboardComponent,
     ReqeustPreveiwComponent,
-    AddDriverComponent
+    AddDriverComponent,
+    ShedulerComponent
   ],
   imports: [
     BrowserModule,
