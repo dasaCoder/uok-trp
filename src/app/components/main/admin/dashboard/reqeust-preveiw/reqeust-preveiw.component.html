@@ -63,7 +63,17 @@
 
           </mat-expansion-panel-header>
 
-          <p>This is the primary content of the panel.</p>
+          <mat-list>
+            <mat-list-item *ngIf="data['driver']">
+              {{ data['driver']['name'] }}
+            </mat-list-item>
+
+            <mat-list-item *ngIf="!data['driver']">
+              Not Assigned yet
+            </mat-list-item>
+          </mat-list>
+
+
 
           <button mat-button cdkFocusInitial (click)="addDriver()">Add Driver</button>
 
@@ -77,7 +87,15 @@
 
           </mat-expansion-panel-header>
 
-          <p>This is the primary content of the panel.</p>
+          <mat-list>
+              <mat-list-item *ngIf="data['vehicle']">
+                {{ data['vehicle']['vehicle_no'] }}
+              </mat-list-item>
+
+              <mat-list-item *ngIf="!data['vehicle']">
+                Not Assigned yet
+              </mat-list-item>
+            </mat-list>
 
         </mat-expansion-panel>
 
@@ -89,7 +107,18 @@
 
           </mat-expansion-panel-header>
 
-          <p>This is the primary content of the panel.</p>
+          <mat-list>
+
+            <mat-list-item>{{data['lecturer']}}</mat-list-item>
+            <mat-list-item>{{data['position']}}</mat-list-item>
+            <mat-list-item>{{data['dep_unit']}}</mat-list-item>
+            <mat-list-item>{{data['purpose']}}</mat-list-item>
+            <mat-list-item>{{data['fundingWay']}}</mat-list-item>
+            <mat-list-item>{{data['email']}}</mat-list-item>
+            <mat-list-item>{{data['password']}}</mat-list-item>
+            <mat-list-item>{{data['num_passangers']}}</mat-list-item>
+
+          </mat-list>>
 
         </mat-expansion-panel>
       </mat-accordion>
