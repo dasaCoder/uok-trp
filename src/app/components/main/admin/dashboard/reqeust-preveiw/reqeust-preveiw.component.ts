@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA} from '@angular/material';
 import { AddDriverComponent } from '../add-driver/add-driver.component';
+import { RequestService } from '../../../../../services/request.service';
 
 @Component({
   selector: 'app-reqeust-preveiw',
@@ -9,7 +10,7 @@ import { AddDriverComponent } from '../add-driver/add-driver.component';
 })
 export class ReqeustPreveiwComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog, private requestService: RequestService) {
     console.log("req data",data);
    }
 
@@ -30,8 +31,32 @@ export class ReqeustPreveiwComponent implements OnInit {
   }
 
   rejectRequest(refNo) {
-    alert(refNo);
-    console.log("refNo ",refNo);
+    this.requestService.change_status(refNo, 3)
+      .subscribe( (response) => {
+        console.log(response['msg']);
+        location.reload();
+      });
+  }
+
+  acceptRequest(refNo) {
+    this.requestService.change_status(refNo, 1)
+      .subscribe( (response) => {
+        console.log(response['msg']);
+        location.reload();
+      });
+
+
+    // alert('accepted');
+  }
+
+
+  markDocumentedRequest(refNo) {
+    this.requestService.change_status(refNo, 4)
+      .subscribe( response => {
+        //alert('daon');
+        console.log(response['msg']);
+        location.reload();
+      });
   }
 
 }

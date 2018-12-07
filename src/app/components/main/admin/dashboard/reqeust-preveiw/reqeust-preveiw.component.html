@@ -100,19 +100,16 @@
   </div>
 
 
-
-
-
-
-
 </mat-dialog-content>
+
 <mat-dialog-actions>
 
   <div [ngSwitch]="data['status']" style="display: inline">
 
-    <button mat-button *ngSwitchCase="1">Accept</button>
-    <button mat-button *ngSwitchCase="2">Documented</button>
-    <button mat-button *ngSwitchCase="3">Completed</button>
+    <button mat-button *ngSwitchCase="0" (click)="acceptRequest(data['refNo'])">Accept</button>
+    <button mat-button *ngSwitchCase="2" (click)="markDocumentedRequest(data['refNo'])">Documented</button>
+    <button mat-button *ngSwitchCase="3" >Completed</button>
+
   </div>
 
   <button mat-button (click)="rejectRequest(data['refNo'] )">Reject</button>
