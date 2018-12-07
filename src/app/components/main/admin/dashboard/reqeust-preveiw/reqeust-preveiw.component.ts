@@ -29,4 +29,9 @@ export class ReqeustPreveiwComponent implements OnInit {
     });
   }
 
+  rejectRequest(refNo) {
+    alert(refNo);
+    console.log("refNo ",refNo);
+  }
+
 }

@@ -65,6 +65,8 @@
 
           <p>This is the primary content of the panel.</p>
 
+          <button mat-button cdkFocusInitial (click)="addDriver()">Add Driver</button>
+
         </mat-expansion-panel>
 
         <mat-expansion-panel>
@@ -105,6 +107,17 @@
 
 </mat-dialog-content>
 <mat-dialog-actions>
+
+  <div [ngSwitch]="data['status']" style="display: inline">
+
+    <button mat-button *ngSwitchCase="1">Accept</button>
+    <button mat-button *ngSwitchCase="2">Documented</button>
+    <button mat-button *ngSwitchCase="3">Completed</button>
+  </div>
+
+  <button mat-button (click)="rejectRequest(data['refNo'] )">Reject</button>
+
+
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="addDriver()">Install</button>
+
 </mat-dialog-actions>
