@@ -1,28 +1,106 @@
 <h2 mat-dialog-title>TRD/{{ data['refNo'] }}</h2>
+<mat-divider></mat-divider>
+
 <mat-dialog-content>
 
-  <mat-grid-list cols="4" rowHeight="100px">
-    <mat-grid-tile
-        [colspan]="2"
-        [rowspan]="1"
-       >
-      test 1ddddddddddddddddddddddddddddddddd
-    </mat-grid-tile>
 
-    <mat-grid-tile
-    [colspan]="2"
-    [rowspan]="2"
-   >
-      test 2dddddddddddddddddddddddddddddddddddddddddddddd
-    </mat-grid-tile>
 
-    <mat-grid-tile
-    [colspan]="2"
-    [rowspan]="1"
-    >
-    test 3ddddddddddddddddddddddddddddddddddddddddddddddd
-    </mat-grid-tile>
-  </mat-grid-list>
+  <div class="row">
+    <div class="col-lg-6">
+
+
+        <mat-card>
+          <mat-card-title>
+            To:
+          </mat-card-title>
+
+          <mat-chip-list>
+            <mat-chip [color]='primary' [selected]="true">
+              {{ data['departure']['pickupPoint']}}
+            </mat-chip>
+          </mat-chip-list>
+
+          <br>
+
+          <mat-list-item>{{ data['departure']['pickupDate']}}</mat-list-item>
+          <mat-list-item> {{ data['departure']['pickupTime']}} </mat-list-item>
+
+
+        </mat-card>
+
+        <mat-card>
+
+          <mat-card-title>From</mat-card-title>
+
+          <mat-chip-list>
+            <mat-chip [color]='warn' [selected]="true">
+              {{ data['arrival']['pickupPoint'] }}
+
+            </mat-chip>
+          </mat-chip-list>
+
+
+
+          <mat-list-item>{{data['arrival']['dropDate']}}</mat-list-item>
+
+          <mat-list-item> {{ data['arrival']['dropTime']}} </mat-list-item>
+
+        </mat-card>
+
+
+    </div>
+
+
+    <div class="col-lg-6">
+
+      <mat-accordion>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Driver
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <p>This is the primary content of the panel.</p>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Vehicle
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <p>This is the primary content of the panel.</p>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              More Info
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <p>This is the primary content of the panel.</p>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
 
 
 </mat-dialog-content>
