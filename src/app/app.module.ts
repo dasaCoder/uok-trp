@@ -60,6 +60,7 @@ import { FullCalendarModule } from 'primeng/fullcalendar';
 import { ReqeustPreveiwComponent } from './components/main/admin/dashboard/reqeust-preveiw/reqeust-preveiw.component';
 import { AddDriverComponent } from './components/main/admin/dashboard/add-driver/add-driver.component';
 import { ShedulerComponent } from './components/main/admin/dashboard/sheduler/sheduler.component';
+import { AddVehicleToReqComponent } from './components/main/admin/dashboard/add-vehicle-to-req/add-vehicle-to-req.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,6 @@ import { ShedulerComponent } from './components/main/admin/dashboard/sheduler/sh
     ProfileComponent,
     SetDriverComponent,
     SetVehicleComponent,
-    AddVehicleComponent,
     AdminHomeComponent,
     MapComponent,
     SearchComponent,
@@ -96,7 +96,9 @@ import { ShedulerComponent } from './components/main/admin/dashboard/sheduler/sh
     DashboardComponent,
     ReqeustPreveiwComponent,
     AddDriverComponent,
-    ShedulerComponent
+    ShedulerComponent,
+    AddVehicleComponent,
+    AddVehicleToReqComponent
   ],
   imports: [
     BrowserModule,
@@ -131,7 +133,8 @@ import { ShedulerComponent } from './components/main/admin/dashboard/sheduler/sh
   bootstrap: [AppComponent],
   entryComponents: [
     ReqeustPreveiwComponent,
-    AddDriverComponent
+    AddDriverComponent,
+    AddVehicleToReqComponent
   ]
 })
 export class AppModule { }

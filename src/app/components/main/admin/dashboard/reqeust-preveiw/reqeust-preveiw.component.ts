@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA} from '@angular/material';
 import { AddDriverComponent } from '../add-driver/add-driver.component';
 import { RequestService } from '../../../../../services/request.service';
+import { AddVehicleToReqComponent } from '../add-vehicle-to-req/add-vehicle-to-req.component';
+//import { AddVehicleComponent } from '../add-vehicle/add-vehicle.component';
 
 @Component({
   selector: 'app-reqeust-preveiw',
@@ -28,6 +30,15 @@ export class ReqeustPreveiwComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  addVehicle(refNo) {
+    const dialogRef = this.dialog.open(AddVehicleToReqComponent, {
+      id: "dialogAddVehicle",
+      data: {
+        'refNo': refNo
+      }
+  });
   }
 
   rejectRequest(refNo) {
