@@ -8,6 +8,7 @@ import { AdminService } from '../../../../../services/admin.service';
 })
 export class AddDriverComponent implements OnInit {
 
+  refNo;
   requests: any[];
   options: any = [];
   drivers: any[] = [];
@@ -20,7 +21,9 @@ export class AddDriverComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.requests = this.data;
+    this.refNo = this.data['refNo'];
+
+    //console.log("data",this.data);
 
     this.adminService.getAllDriversDetails()
       .subscribe( drivers => {
@@ -51,6 +54,18 @@ export class AddDriverComponent implements OnInit {
           }
         };
 
+  }
+
+  setDriver(driver) {
+
+    this.adminService.setDriver(this.refNo, driver['_id'])
+      .subscribe( response => {
+        console.log(response);
+        if ( response['success'] === true) {
+          //this.setDriver_.emit(this.selectedDriver);
+          location.reload();
+        }
+      });
   }
 
 }

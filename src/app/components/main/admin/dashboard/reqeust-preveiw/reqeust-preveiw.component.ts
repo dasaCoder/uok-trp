@@ -17,11 +17,11 @@ export class ReqeustPreveiwComponent implements OnInit {
   ngOnInit() {
   }
 
-  addDriver() {
+  addDriver(refNo) {
     const dialogRef = this.dialog.open(AddDriverComponent, {
         id: "dialogAddDriver",
         data: {
-          'requests': []
+          'refNo': refNo
         }
     });
 
