@@ -90,6 +90,7 @@ export class RequestFormComponent implements OnInit {
     'Other',
     'Software Engineering Teaching Unit'
 
+
   ];
 
 
@@ -107,7 +108,8 @@ export class RequestFormComponent implements OnInit {
    ];
    isGood = true;
    step = 1;
-   today = new Date();
+   dateObj = new Date();
+   today = this.dateObj.setDate(this.dateObj.getDate()-1);
    formData: Request = new Request();
    arrival: Trip = new Trip();
    departure: Trip = new Trip();
@@ -118,6 +120,8 @@ export class RequestFormComponent implements OnInit {
    };
 
    isLoading = false;
+
+  isOneDaytrip = false;
 
     refNoOfCreated:number = -1;
 
@@ -131,11 +135,16 @@ export class RequestFormComponent implements OnInit {
   ) {
     // this.formData = new Request();
     this.data = this.source.slice();
+
+
   }
   nextStep(nStep) {
     this.step = nStep;
   }
   ngOnInit() {
+    this.departure.pickupTime = `00:00` ;
+    this.arrival.dropTime = `00:00`; //`${new Date().getHours()}:${new Date().getMinutes()}`;
+
     this.mapsAPILoader.load().then(
       () => {
         let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement);
@@ -157,6 +166,7 @@ export class RequestFormComponent implements OnInit {
         })
       }
     );
+
     this.mapsAPILoader.load().then(
       () => {
         let autocomplete = new google.maps.places.Autocomplete(this.searchElement2.nativeElement);
@@ -230,8 +240,15 @@ export class RequestFormComponent implements OnInit {
 
     this.isLoading = true;
 
-    let arrival_temp = new Date(this.arrival.dropTime);
-    let arrival_hour: any = arrival_temp.getHours();
+    let arrival_temp;
+    if ( this.isOneDaytrip ) {
+      arrival_temp = new Date(this.departure.pickupDate);
+    } else
+    {
+      arrival_temp = new Date(this.arrival.dropDate);
+    }
+
+    /*let arrival_hour: any = arrival_temp.getHours();
       if (arrival_hour < 10) {
         arrival_hour = '0' + arrival_hour;
       }
@@ -240,14 +257,14 @@ export class RequestFormComponent implements OnInit {
 
         if (arrival_minute < 10 ) {
           arrival_minute = '0' + arrival_minute;
-        }
+        }*/
 
-    this.arrival.dropTime = `${arrival_hour}:${arrival_minute}`;
+   // this.arrival.dropTime = `${arrival_hour}:${arrival_minute}`;
     this.arrival.dropDate = `${arrival_temp.getFullYear()}-${arrival_temp.getMonth() + 1}-${arrival_temp.getDate()}`;
 
-    let departure_temp = new Date(this.departure.pickupTime);
+    let departure_temp = new Date(this.departure.pickupDate);
 
-    let departure_hour: any = departure_temp.getHours();
+    /*let departure_hour: any = departure_temp.getHours();
     if (departure_hour < 10) {
       departure_hour = '0' + departure_hour;
     }
@@ -255,9 +272,9 @@ export class RequestFormComponent implements OnInit {
     let departure_minute: any = departure_temp.getMinutes();
     if (departure_minute < 10 ) {
       departure_minute = '0' + departure_minute;
-    }
+    }*/
 
-    this.departure.pickupTime = `${departure_hour}:${departure_minute}`;
+    //this.departure.pickupTime = `${departure_hour}:${departure_minute}`;
     this.departure.pickupDate = `${departure_temp.getFullYear()}-${departure_temp.getMonth() + 1}-${departure_temp.getDate()}`;
     /*this.formData.jdatetime = `${this.intl.formatDate(this.dateTime, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.jstartTime, 't')}` ;*/
     /*this.formData.end_date_time = `${this.intl.formatDate(this.enddate, 'yyyy-MMM-dd')}` + ` ${this.intl.formatDate(this.endtime, 't')}` ;*/

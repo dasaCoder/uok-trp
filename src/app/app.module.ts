@@ -51,6 +51,9 @@ import { DriverProfileComponent } from './components/main/driver-profile/driver-
 import { LoginComponent } from './components/main/login/login.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import {AmazingTimePickerModule} from 'amazing-time-picker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule, MatTabsModule} from '@angular/material';
 import { DashboardComponent } from './components/main/admin/dashboard/dashboard.component';
 import { DemoMaterialModule } from './material.module';
 import { MatTableModule } from '@angular/material/table';
@@ -121,6 +124,10 @@ import { AddVehicleToReqComponent } from './components/main/admin/dashboard/add-
     DemoMaterialModule,
     MatTableModule,
     FullCalendarModule
+    AmazingTimePickerModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatTabsModule
   ],
   providers: [
     AvailableVehicleService,
