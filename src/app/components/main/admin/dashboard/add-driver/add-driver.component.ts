@@ -15,9 +15,6 @@ export class AddDriverComponent implements OnInit {
   clickedItem;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private adminService: AdminService) {
-
-
-
    }
 
   ngOnInit() {
