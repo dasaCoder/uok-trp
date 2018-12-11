@@ -2,18 +2,28 @@
 <div class="row">
   <div class="col-lg-7">
 
-      <app-sheduler [requests]="requests"></app-sheduler>
+      <app-sheduler *ngIf="requests" [requests]="requests"></app-sheduler>
+
+      <app-sheduler *ngIf="!requests" [requests]="[]"></app-sheduler>
 
   </div>
 
-  <div class="col-lg-5">
+  <div class="col-lg-5" *ngIf="drivers">
 
-    <mat-card>
-        <img mat-card-sm-image src="../../../../../../assets/images/pattern/pattern.png" style="display: inline">
-        <mat-card-subtitle style="display:inline">Mr. Dilusha Dasanayaka</mat-card-subtitle> <br>
-        <button mat-button>Add</button>
+    <div style="overflow-y: scroll; height:55vh;">
+      <mat-card style="cursor: pointer" [ngClass]="{red: clickedItem === driver['_id']}" (click)="selectDriver(driver)"  *ngFor="let driver of drivers" >
 
-    </mat-card>
+          <img mat-card-sm-image src="../../../../../../assets/images/pattern/pattern.png" style="display: inline">
+          <mat-card-subtitle style="display:inline">{{ driver['name'] }}</mat-card-subtitle> <br>
+          <button mat-button>Add</button>
+
+
+
+      </mat-card>
+    </div>
+
+
+
 
   </div>
 </div>

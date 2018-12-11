@@ -45,8 +45,6 @@ export class ReqeustPreveiwComponent implements OnInit {
         location.reload();
       });
 
-
-    // alert('accepted');
   }
 
 
