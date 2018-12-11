@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {MediaMatcher} from '@angular/cdk/layout';
+import {ChangeDetectorRef, Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatDialog} from '@angular/material';
 import {FullCalendarModule} from 'primeng/fullcalendar';
 import { AdminService } from '../../../../services/admin.service';
@@ -10,8 +11,10 @@ import { RequestService } from '../../../../services/request.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
+  //side nav
+  mobileQuery: MediaQueryList;
 
   requestData: RequestElement[] = [];
   newRequestData: RequestElement[] = []; // store all new reqeusts
@@ -32,7 +35,15 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private adminService: AdminService, private dialog: MatDialog, private requestService: RequestService) {
+  private _mobileQueryListener: () => void;
+
+  constructor(private adminService: AdminService, private dialog: MatDialog, private requestService: RequestService,
+    changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
+    ) {
+
+      this.mobileQuery = media.matchMedia('(max-width: 600px)');
+      this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+      this.mobileQuery.addListener(this._mobileQueryListener);
       //this.getNewReqeusts();
   }
 
@@ -73,6 +84,10 @@ export class DashboardComponent implements OnInit {
 
 
    }
+
+   ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
 
   getRequestOnStatus(): any {
     // this.adminService.getRequestsOnStatusForTable(`status[0]=1&statsu[1]=2&status[3]=4&status[4]=0`)

@@ -75,7 +75,7 @@
 
 
 
-          <button mat-button cdkFocusInitial (click)="addDriver(data['refNo'])">Add Driver</button>
+          <button mat-button cdkFocusInitial class="bg-success" (click)="addDriver(data['refNo'])">Add Driver</button>
 
         </mat-expansion-panel>
 
@@ -97,7 +97,7 @@
               </mat-list-item>
             </mat-list>
 
-            <button mat-button cdkFocusInitial (click)="addVehicle(data['refNo'])">Add Driver</button>
+            <button mat-button class="bg-success" cdkFocusInitial (click)="addVehicle(data['refNo'])">Add Vehicle</button>
 
         </mat-expansion-panel>
 
@@ -137,15 +137,15 @@
 
   <div [ngSwitch]="data['status']" style="display: inline">
 
-    <button mat-button *ngSwitchCase="0" (click)="acceptRequest(data['refNo'])">Accept</button>
-    <button mat-button *ngSwitchCase="2" (click)="markDocumentedRequest(data['refNo'])">Documented</button>
-    <button mat-button *ngSwitchCase="3" >Completed</button>
+    <button mat-button *ngSwitchCase="0" (click)="acceptRequest(data['refNo'])" style="background-color: #4CAF50; ">Accept</button>
+    <button mat-button *ngSwitchCase="2" (click)="markDocumentedRequest(data['refNo'])" style="background-color: #FF9800; ">Documented</button>
+    <button mat-button *ngSwitchCase="3" style="background-color: #9C27B0; " >Completed</button>
 
   </div>
 
-  <button mat-button (click)="rejectRequest(data['refNo'] )">Reject</button>
+  <button mat-button (click)="rejectRequest(data['refNo'] )" style="background-color: #f50057; ">Reject</button>
 
 
-  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close style="background-color: #FF9800; ">Cancel</button>
 
 </mat-dialog-actions>

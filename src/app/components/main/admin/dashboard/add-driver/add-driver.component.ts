@@ -59,6 +59,8 @@ export class AddDriverComponent implements OnInit {
       .subscribe( response => {
         console.log(response);
         if ( response['success'] === true) {
+
+          //this.ngOnInit();
           //this.setDriver_.emit(this.selectedDriver);
           location.reload();
         }
