@@ -25,7 +25,7 @@ export class RequestService {
   add_more_details(request: Request) {
     return this.http.post('https://uok-transport-division.herokuapp.com/requests/more_details', request);
   }
-  get_active_req(){
+  get_active_req() {
     return this.http.get('https://uok-transport-division.herokuapp.com/requests/active_requests');
   }
   get_status(refNo, password) {

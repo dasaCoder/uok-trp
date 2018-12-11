@@ -54,6 +54,16 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 import {AmazingTimePickerModule} from 'amazing-time-picker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MatTabsModule} from '@angular/material';
+import { DashboardComponent } from './components/main/admin/dashboard/dashboard.component';
+import { DemoMaterialModule } from './material.module';
+import { MatTableModule } from '@angular/material/table';
+
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import { FullCalendarModule } from 'primeng/fullcalendar';
+import { ReqeustPreveiwComponent } from './components/main/admin/dashboard/reqeust-preveiw/reqeust-preveiw.component';
+import { AddDriverComponent } from './components/main/admin/dashboard/add-driver/add-driver.component';
+import { ShedulerComponent } from './components/main/admin/dashboard/sheduler/sheduler.component';
+import { AddVehicleToReqComponent } from './components/main/admin/dashboard/add-vehicle-to-req/add-vehicle-to-req.component';
 
 @NgModule({
   declarations: [
@@ -80,13 +90,18 @@ import {MatNativeDateModule, MatTabsModule} from '@angular/material';
     ProfileComponent,
     SetDriverComponent,
     SetVehicleComponent,
-    AddVehicleComponent,
     AdminHomeComponent,
     MapComponent,
     SearchComponent,
     VehicleTableComponent,
     DriverProfileComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent,
+    ReqeustPreveiwComponent,
+    AddDriverComponent,
+    ShedulerComponent,
+    AddVehicleComponent,
+    AddVehicleToReqComponent
   ],
   imports: [
     BrowserModule,
@@ -106,6 +121,9 @@ import {MatNativeDateModule, MatTabsModule} from '@angular/material';
     AngularFontAwesomeModule,
     LayoutModule,
     NgxQRCodeModule,
+    DemoMaterialModule,
+    MatTableModule,
+    FullCalendarModule
     AmazingTimePickerModule,
     MatNativeDateModule,
     MatDatepickerModule,
@@ -119,6 +137,12 @@ import {MatNativeDateModule, MatTabsModule} from '@angular/material';
     AuthService,
     AuthGuardService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ReqeustPreveiwComponent,
+    AddDriverComponent,
+    AddVehicleToReqComponent
+  ]
 })
 export class AppModule { }
+platformBrowserDynamic().bootstrapModule(AppModule);

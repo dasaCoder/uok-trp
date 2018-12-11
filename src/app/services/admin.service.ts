@@ -65,11 +65,89 @@ export class AdminService {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
+
   get_request_list(status) {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/get_request_list/?status=${status}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
+
+  // return list of reqeust on given status/s
+  // formatted for sheduler in admin dasboard
+  // param array of status eg:- status[0] = "1"
+  getRequestOnStatusForCalender(status) {
+    return this.http.get(`https://uok-transport-division.herokuapp.com/admin/requests/status?${status}`, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    } )
+                      .toPromise()
+                      .then(res => <any[]> res)
+                      .then(data => {
+
+                        var dataM = [];
+
+                        data['msg'].forEach(element => {
+
+                          let color = '';
+                          switch ( element['status']) {
+                            case '0':
+                              color = '#1A73E8';
+                              break;
+                            case '1':
+                              color = '#1E8E3E';
+                              break;
+                            case '2':
+                              color = '#FA7B17';
+                              break;
+                            case '3':
+                              color = '#A142F4';
+                              break;
+                          }
+
+                          dataM.push(
+                            {
+                              'title': 'TRP/' + element['refNo'],
+                              'start': element['departure']['pickupDate'],
+                              'end' : element['arrival']['dropDate'],
+                              'color' : color,
+                              'weekends': 'true'
+                            }
+                          );
+
+                        });
+
+                        //let x = [];
+
+                        return dataM;
+                      });
+  }
+
+  // return array of requests
+  getRequestsOnStatusForTable(status) {
+    return this.http.get(`https://uok-transport-division.herokuapp.com/admin/requests/status?${status}`, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    } )
+                      .toPromise()
+                      .then(res => <any[]> res)
+                      .then(data => {
+                        var dataT = [];
+
+                        data['msg'].forEach(element => {
+
+
+                          dataT.push({
+                            'refNo'   : element['refNo'],
+                            'to'      : element['departure']['pickupPoint'],
+                            'from'    : element['departure']['dropPoint'],
+                            'driver'  : (element['driver'] !== undefined )? element['driver']['name'] : 'Not assigned',
+                            'vehicle' : (element['vehicle'] !== undefined)? element['vehicle']['vehicle_no'] : 'Not assigned'
+                          } );
+
+                        });
+
+                        return dataT;
+                      });
+  }
+
   getRequestList(vehicle_no) {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/get_request_on_vehicle?vehicle_no=${vehicle_no}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),

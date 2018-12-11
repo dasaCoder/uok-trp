@@ -1,0 +1,151 @@
+<h2 mat-dialog-title>TRD/{{ data['refNo'] }}</h2>
+<mat-divider></mat-divider>
+
+<mat-dialog-content>
+
+
+
+  <div class="row">
+    <div class="col-lg-6">
+
+
+        <mat-card>
+          <mat-card-title>
+            To:
+          </mat-card-title>
+
+          <mat-chip-list>
+            <mat-chip [color]='primary' [selected]="true">
+              {{ data['departure']['pickupPoint']}}
+            </mat-chip>
+          </mat-chip-list>
+
+          <br>
+
+          <mat-list-item>{{ data['departure']['pickupDate']}}</mat-list-item>
+          <mat-list-item> {{ data['departure']['pickupTime']}} </mat-list-item>
+
+
+        </mat-card>
+
+        <mat-card>
+
+          <mat-card-title>From</mat-card-title>
+
+          <mat-chip-list>
+            <mat-chip [color]='warn' [selected]="true">
+              {{ data['arrival']['pickupPoint'] }}
+
+            </mat-chip>
+          </mat-chip-list>
+
+
+
+          <mat-list-item>{{data['arrival']['dropDate']}}</mat-list-item>
+
+          <mat-list-item> {{ data['arrival']['dropTime']}} </mat-list-item>
+
+        </mat-card>
+
+
+    </div>
+
+
+    <div class="col-lg-6">
+
+      <mat-accordion>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Driver
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <mat-list>
+            <mat-list-item *ngIf="data['driver']">
+              {{ data['driver']['name'] }}
+            </mat-list-item>
+
+            <mat-list-item *ngIf="!data['driver']">
+              Not Assigned yet
+            </mat-list-item>
+          </mat-list>
+
+
+
+          <button mat-button cdkFocusInitial class="bg-success" (click)="addDriver(data['refNo'])">Add Driver</button>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Vehicle
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <mat-list>
+              <mat-list-item *ngIf="data['vehicle']">
+                {{ data['vehicle']['vehicle_no'] }}
+              </mat-list-item>
+
+              <mat-list-item *ngIf="!data['vehicle']">
+                Not Assigned yet
+              </mat-list-item>
+            </mat-list>
+
+            <button mat-button class="bg-success" cdkFocusInitial (click)="addVehicle(data['refNo'])">Add Vehicle</button>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              More Info
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <mat-list>
+
+            <mat-list-item>{{data['lecturer']}}</mat-list-item>
+            <mat-list-item>{{data['position']}}</mat-list-item>
+            <mat-list-item>{{data['dep_unit']}}</mat-list-item>
+            <mat-list-item>{{data['purpose']}}</mat-list-item>
+            <mat-list-item>{{data['fundingWay']}}</mat-list-item>
+            <mat-list-item>{{data['email']}}</mat-list-item>
+            <mat-list-item>{{data['password']}}</mat-list-item>
+            <mat-list-item>{{data['num_passangers']}}</mat-list-item>
+
+          </mat-list>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+
+    </div>
+
+  </div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+  <div [ngSwitch]="data['status']" style="display: inline">
+
+    <button mat-button *ngSwitchCase="0" (click)="acceptRequest(data['refNo'])" style="background-color: #4CAF50; ">Accept</button>
+    <button mat-button *ngSwitchCase="2" (click)="markDocumentedRequest(data['refNo'])" style="background-color: #FF9800; ">Documented</button>
+    <button mat-button *ngSwitchCase="3" style="background-color: #9C27B0; " >Completed</button>
+
+  </div>
+
+  <button mat-button (click)="rejectRequest(data['refNo'] )" style="background-color: #f50057; ">Reject</button>
+
+
+  <button mat-button mat-dialog-close style="background-color: #FF9800; ">Cancel</button>
+
+</mat-dialog-actions>
