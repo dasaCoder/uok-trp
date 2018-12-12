@@ -123,7 +123,7 @@ import { AddVehicleToReqComponent } from './components/main/admin/dashboard/add-
     NgxQRCodeModule,
     DemoMaterialModule,
     MatTableModule,
-    FullCalendarModule
+    FullCalendarModule,
     AmazingTimePickerModule,
     MatNativeDateModule,
     MatDatepickerModule,
