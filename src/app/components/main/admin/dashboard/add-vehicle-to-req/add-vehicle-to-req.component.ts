@@ -53,12 +53,18 @@ export class AddVehicleToReqComponent implements OnInit {
 
   setVehicle (vehicle) {
 
-    this.adminService.set_vehicle(this.refNo, vehicle['vehicle_no'])
+    this.adminService.set_vehicle(this.refNo, vehicle['_id'])
         .subscribe(response => {
           console.log("add vehicle",response);
           if (response['success']){
-            console.log(response);
+            console.log("add vehicle", response);
             //this.isSetVehicle = true;
+            if(vehicle['driver']) {
+              this.adminService.setDriver(this.refNo, vehicle['driver']['id'])
+                .subscribe( rspns => {
+                  console.log("add driver respns" , rspns);
+                });
+            }
           }
         });
 
