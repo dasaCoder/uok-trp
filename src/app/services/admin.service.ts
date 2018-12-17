@@ -49,7 +49,7 @@ export class AdminService {
       } );
   }
   getVehicle_to_req() {
-    return this.http.get('https://uok-transport-division.herokuapp.com/admin/vehicle/admin_to_request', {
+    return this.http.get('https://uok-transport-division.herokuapp.com/admin/get_vehicle_list', {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }

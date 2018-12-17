@@ -23,15 +23,18 @@ export class AddVehicleToReqComponent implements OnInit {
 
     this.adminService.getVehicle_to_req()
       .subscribe((response => {
-
-        this.vehicles = response['msg'];
+        console.log(response['data']);
+        this.vehicles = response['data'];
       }));
 
   }
 
   selectVehicle (vehicle) {
+    //console.log(vehicle);
 
     this.clickedItem = vehicle['_id'];
+
+    //alert(this.clickedItem);
 
     this.requests = undefined;
 
@@ -53,7 +56,7 @@ export class AddVehicleToReqComponent implements OnInit {
 
   setVehicle (vehicle) {
 
-    this.adminService.set_vehicle(this.refNo, vehicle['vehicle_no'])
+    this.adminService.set_vehicle(this.refNo, vehicle['_id'])
         .subscribe(response => {
           console.log("add vehicle",response);
           if (response['success']){
