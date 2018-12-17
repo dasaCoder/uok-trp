@@ -148,6 +148,104 @@ export class AdminService {
                       });
   }
 
+  /*
+  *  get request on vehicle
+  * */
+  getRequestsOnVehicleForCalender(_id) {
+    return this.http.get(`https://uok-transport-division.herokuapp.com/admin/requests/vehicle?_id=${_id}`, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    } )
+    .toPromise()
+                      .then(res => <any[]> res)
+                      .then(data => {
+
+                        var dataM = [];
+
+                        data['msg'].forEach(element => {
+
+                          let color = '';
+                          switch ( element['status']) {
+                            case '0':
+                              color = '#1A73E8';
+                              break;
+                            case '1':
+                              color = '#1E8E3E';
+                              break;
+                            case '2':
+                              color = '#FA7B17';
+                              break;
+                            case '3':
+                              color = '#A142F4';
+                              break;
+                          }
+
+                          dataM.push(
+                            {
+                              'title': 'TRP/' + element['refNo'],
+                              'start': element['departure']['pickupDate'],
+                              'end' : element['arrival']['dropDate'],
+                              'color' : color,
+                              'weekends': 'true'
+                            }
+                          );
+
+                        });
+
+                        //let x = [];
+
+                        return dataM;
+                      });
+  }
+
+  /*
+*  get request on driver
+* */
+  getRequestsOnDriverForCalender(_id) {
+    return this.http.get(`https://uok-transport-division.herokuapp.com/admin/requests/driver?_id=${_id}`, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    } )
+    .toPromise()
+                      .then(res => <any[]> res)
+                      .then(data => {
+
+                        var dataM = [];
+
+                        data['msg'].forEach(element => {
+
+                          let color = '';
+                          switch ( element['status']) {
+                            case '0':
+                              color = '#1A73E8';
+                              break;
+                            case '1':
+                              color = '#1E8E3E';
+                              break;
+                            case '2':
+                              color = '#FA7B17';
+                              break;
+                            case '3':
+                              color = '#A142F4';
+                              break;
+                          }
+
+                          dataM.push(
+                            {
+                              'title': 'TRP/' + element['refNo'],
+                              'start': element['departure']['pickupDate'],
+                              'end' : element['arrival']['dropDate'],
+                              'color' : color,
+                              'weekends': 'true'
+                            }
+                          );
+
+                        });
+
+                        //let x = [];
+
+                        return dataM;
+                      });
+  }
+
   getRequestList(vehicle_no) {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/get_request_on_vehicle?vehicle_no=${vehicle_no}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),

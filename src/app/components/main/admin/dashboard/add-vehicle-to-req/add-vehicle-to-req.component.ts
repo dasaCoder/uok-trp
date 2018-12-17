@@ -35,7 +35,7 @@ export class AddVehicleToReqComponent implements OnInit {
 
     this.requests = undefined;
 
-    this.adminService.getRequestOnStatusForCalender(`status[0]=1&statsu[1]=2&status[2]=3&status[3]=4&status[4]=0`)
+    this.adminService.getRequestsOnVehicleForCalender(this.clickedItem)
         .then( events => {
 
           this.requests = events;
