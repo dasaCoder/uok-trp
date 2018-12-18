@@ -13,6 +13,7 @@ import { RequestService } from '../../../../services/request.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
+  selectedTab = 1; // 1-> sheduer 2-> requests
   //side nav
   mobileQuery: MediaQueryList;
 
@@ -89,6 +90,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
+  //change tab
+  changeTab(tab) {
+    this.selectedTab = tab;
+  }
   getRequestOnStatus(): any {
     // this.adminService.getRequestsOnStatusForTable(`status[0]=1&statsu[1]=2&status[3]=4&status[4]=0`)
     //     .subscribe(data => {
