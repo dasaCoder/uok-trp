@@ -37,96 +37,20 @@
             <div *ngIf="selectedTab == 2">
               <mat-tab-group>
                   <mat-tab label="New Requests">
-
-                      <div class="mat-elevation-z8">
-                          <mat-table #table [dataSource]="newReqDataSource" matSort>
-
-                            <!-- Position Column -->
-                            <ng-container matColumnDef="refNo">
-                              <mat-header-cell *matHeaderCellDef> Ref No </mat-header-cell>
-                              <mat-cell *matCellDef="let element"> {{element.refNo}} </mat-cell>
-                            </ng-container>
-
-                            <!-- Name Column -->
-                            <ng-container matColumnDef="to">
-                              <mat-header-cell *matHeaderCellDef> To </mat-header-cell>
-                              <mat-cell *matCellDef="let element"> {{element.to}} </mat-cell>
-                            </ng-container>
-
-                            <!-- Weight Column -->
-                            <ng-container matColumnDef="from">
-                              <mat-header-cell *matHeaderCellDef> From </mat-header-cell>
-                              <mat-cell *matCellDef="let element"> {{element.from}} </mat-cell>
-                            </ng-container>
-
-                            <!-- Symbol Column -->
-                            <ng-container matColumnDef="driver">
-                              <mat-header-cell *matHeaderCellDef> Driver </mat-header-cell>
-                              <mat-cell *matCellDef="let element"> {{element.driver}} </mat-cell>
-                            </ng-container>
-
-
-                            <ng-container matColumnDef="vehicle">
-                              <mat-header-cell *matHeaderCellDef> Vehicle </mat-header-cell>
-                              <mat-cell *matCellDef="let element"> {{element.vehicle}} </mat-cell>
-                            </ng-container>
-
-
-                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                          </mat-table>
-
-
-                        </div>
-
+                      <app-requests-table [requestDataSource]="newReqDataSource"></app-requests-table>
                   </mat-tab>
                   <mat-tab label="Accepted Requests">
-                      <div class="mat-elevation-z8">
-                          <mat-table #table [dataSource]="acceptedReqDataSource" matSort>
-
-                            <!-- Position Column -->
-                            <ng-container matColumnDef="refNo">
-                              <mat-header-cell *matHeaderCellDef> Ref No </mat-header-cell>
-                              <mat-cell *matCellDef="let element"> {{element.refNo}} </mat-cell>
-                            </ng-container>
-
-                            <!-- Name Column -->
-                            <ng-container matColumnDef="to">
-                              <mat-header-cell *matHeaderCellDef> To </mat-header-cell>
-                              <mat-cell *matCellDef="let element"> {{element.to}} </mat-cell>
-                            </ng-container>
-
-                            <!-- Weight Column -->
-                            <ng-container matColumnDef="from">
-                              <mat-header-cell *matHeaderCellDef> From </mat-header-cell>
-                              <mat-cell *matCellDef="let element"> {{element.from}} </mat-cell>
-                            </ng-container>
-
-
-                            <ng-container matColumnDef="driver">
-                              <mat-header-cell *matHeaderCellDef> Driver </mat-header-cell>
-                              <mat-cell *matCellDef="let element"> {{element.driver}} </mat-cell>
-                            </ng-container>
-
-
-                            <ng-container matColumnDef="vehicle">
-                              <mat-header-cell *matHeaderCellDef> Vehicle </mat-header-cell>
-                              <mat-cell *matCellDef="let element"> {{element.vehicle}} </mat-cell>
-                            </ng-container>
-
-
-                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                            <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="loadRequest(row['refNo'])"></mat-row>
-                          </mat-table>
-
-
-                        </div>
-
-
+                      <app-requests-table [requestDataSource]="acceptedReqDataSource"></app-requests-table>
                   </mat-tab>
 
-                  <mat-tab label="Confirmed Requests"></mat-tab>
-                  <mat-tab label="Authenticated Requests"></mat-tab>
+                  <mat-tab label="Confirmed Requests">
+                      <app-requests-table [requestDataSource]="confirmedReqDataSource"></app-requests-table>
+                  </mat-tab>
+
+                  <mat-tab label="Authenticated Requests">
+                    <app-requests-table [requestDataSource]="authenticatedReqDataSource"></app-requests-table>
+                  </mat-tab>
+
                   <mat-tab label="Completed Requests"></mat-tab>
                   <mat-tab label="Rejected Requests"></mat-tab>
               </mat-tab-group>

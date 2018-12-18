@@ -1,3 +1,40 @@
-<p>
-  requests-table works!
-</p>
+<div class="mat-elevation-z8">
+  <mat-table #table [dataSource]="requestDataSource" matSort>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="refNo">
+      <mat-header-cell *matHeaderCellDef> Ref No </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.refNo}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="to">
+      <mat-header-cell *matHeaderCellDef> To </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.to}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="from">
+      <mat-header-cell *matHeaderCellDef> From </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.from}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="driver">
+      <mat-header-cell *matHeaderCellDef> Driver </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.driver}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="vehicle">
+      <mat-header-cell *matHeaderCellDef> Vehicle </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.vehicle}} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="loadRequest(row['refNo'])"></mat-row>
+  </mat-table>
+
+
+</div>
