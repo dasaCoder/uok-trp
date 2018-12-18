@@ -28,8 +28,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   //displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
-  displayedColumns: string[] = ['refNo', 'to', 'from', 'driver','vehicle'];
-
   acceptedReqDataSource = new MatTableDataSource<RequestElement>(this.requestData);
   newReqDataSource = new MatTableDataSource<RequestElement>(this.newRequestData);
   confirmedReqDataSource = new MatTableDataSource<RequestElement>(this.confirmedReqData);
@@ -133,25 +131,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         .subscribe(data => {
           console.log('new', data);
         });
-
-  }
-
-  loadRequest(refNo) {
-    //alert(refNo);
-    this.requestService.getOneRequest(refNo)
-        .subscribe(request => {
-
-          const dialogRef = this.dialog.open(ReqeustPreveiwComponent,{
-              width: '90%',
-              data: request['msg'][0]
-          });
-
-          dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
-          });
-
-    });
-
 
   }
 
