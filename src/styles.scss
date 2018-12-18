@@ -5,6 +5,36 @@
 @import 'variables';
 @import '../node_modules/font-awesome/scss/font-awesome';
 
+@import '../node_modules/primeicons/primeicons.css';
+@import '../node_modules/primeng/resources/themes/nova-light/theme.css';
+@import '../node_modules/primeng/resources/primeng.min.css';
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+.basic-container {
+  padding: 5px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+
+.bg-success-body{
+  background: #4CAF50;
+  color: white!important;
+}
+
+.bg-danger-body{
+  background: red;
+  color:white!important;
+}
+
+.mat-button{
+  color: #ffffff !important;
+}
+
 
 body{
   font: 15px/1.5;

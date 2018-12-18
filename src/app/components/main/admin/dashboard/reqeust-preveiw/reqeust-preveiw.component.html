@@ -1,0 +1,151 @@
+<h2 mat-dialog-title>TRD/{{ selectedRequest['refNo'] }}</h2>
+<mat-divider></mat-divider>
+
+<mat-dialog-content>
+
+
+
+  <div class="row">
+    <div class="col-lg-6">
+
+
+        <mat-card>
+          <mat-card-title>
+            To:
+          </mat-card-title>
+
+          <mat-chip-list>
+            <mat-chip [selected]="true">
+              {{ selectedRequest['departure']['pickupPoint']}}
+            </mat-chip>
+          </mat-chip-list>
+
+          <br>
+
+          <mat-list-item>{{ selectedRequest['departure']['pickupDate']}}</mat-list-item>
+          <mat-list-item> {{ selectedRequest['departure']['pickupTime']}} </mat-list-item>
+
+
+        </mat-card>
+
+        <mat-card>
+
+          <mat-card-title>From</mat-card-title>
+
+          <mat-chip-list>
+            <mat-chip [selected]="true">
+              {{ selectedRequest['arrival']['pickupPoint'] }}
+
+            </mat-chip>
+          </mat-chip-list>
+
+          <br>
+
+          <mat-list-item>{{selectedRequest['arrival']['dropDate']}}</mat-list-item>
+
+          <mat-list-item> {{ selectedRequest['arrival']['dropTime']}} </mat-list-item>
+
+        </mat-card>
+
+
+    </div>
+
+
+    <div class="col-lg-6">
+
+      <mat-accordion>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header class="bg-danger-body">
+            <mat-panel-title>
+              Driver
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <mat-list>
+            <mat-list-item *ngIf="selectedRequest['driver']">
+              {{ selectedRequest['driver']['name'] }}
+            </mat-list-item>
+
+            <mat-list-item *ngIf="!selectedRequest['driver']">
+              Not Assigned yet
+            </mat-list-item>
+          </mat-list>
+
+
+
+          <button mat-button cdkFocusInitial class="bg-success" (click)="addDriver(selectedRequest['refNo'])">Add Driver</button>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header class="bg-success-body">
+            <mat-panel-title>
+              Vehicle
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <mat-list>
+              <mat-list-item *ngIf="selectedRequest['vehicle']">
+                {{ selectedRequest['vehicle']['vehicle_no'] }}
+              </mat-list-item>
+
+              <mat-list-item *ngIf="!selectedRequest['vehicle']">
+                Not Assigned yet
+              </mat-list-item>
+            </mat-list>
+
+            <button mat-button class="bg-success" cdkFocusInitial (click)="addVehicle(selectedRequest['refNo'])">Add Vehicle</button>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              More Info
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <mat-list>
+
+            <mat-list-item>{{selectedRequest['lecturer']}}</mat-list-item>
+            <mat-list-item>{{selectedRequest['position']}}</mat-list-item>
+            <mat-list-item>{{selectedRequest['dep_unit']}}</mat-list-item>
+            <mat-list-item>{{selectedRequest['purpose']}}</mat-list-item>
+            <mat-list-item>{{selectedRequest['fundingWay']}}</mat-list-item>
+            <mat-list-item>{{selectedRequest['email']}}</mat-list-item>
+            <mat-list-item>{{selectedRequest['password']}}</mat-list-item>
+            <mat-list-item>{{selectedRequest['num_passangers']}}</mat-list-item>
+
+          </mat-list>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+
+    </div>
+
+  </div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+  <div [ngSwitch]="selectedRequest['status']" style="display: inline">
+
+    <button mat-button *ngSwitchCase="0" (click)="acceptRequest(selectedRequest['refNo'])" style="background-color: #4CAF50; ">Accept</button>
+    <button mat-button *ngSwitchCase="2" (click)="markDocumentedRequest(selectedRequest['refNo'])" style="background-color: #FF9800; ">Documented</button>
+    <button mat-button *ngSwitchCase="3" style="background-color: #9C27B0; " >Completed</button>
+
+  </div>
+
+  <button mat-button (click)="rejectRequest(selectedRequest['refNo'] )" style="background-color: #f50057; ">Reject</button>
+
+
+  <button mat-button mat-dialog-close style="background-color: #FF9800; ">Cancel</button>
+
+</mat-dialog-actions>

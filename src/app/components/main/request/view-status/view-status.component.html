@@ -71,7 +71,7 @@
                             Date
                           </th>
                           <td>
-                            {{request.departure.pickupTime}}
+                            {{request.departure.pickupDate}}
                           </td>
                         </tr>
 
@@ -81,7 +81,7 @@
                             Time
                           </th>
                           <td>
-                            2017/12/8
+                            {{request.departure.pickupTime}}
                           </td>
                         </tr>
 
@@ -117,7 +117,7 @@
                             Date
                           </th>
                           <td>
-                            {{request.arrival.dropTime}}
+                            {{request.arrival.dropDate}}
                           </td>
                         </tr>
 
@@ -127,7 +127,7 @@
                             Time
                           </th>
                           <td>
-                            2017/12/8
+                            {{request.arrival.dropTime}}
                           </td>
                         </tr>
 
@@ -137,7 +137,7 @@
                             From
                           </th>
                           <td>
-                            {{request.arrival.dropPoint}}
+                            {{request.arrival.pickupPoint}}
                           </td>
                         </tr>
 
@@ -147,7 +147,7 @@
                             To
                           </th>
                           <td>
-                            {{request.arrival.pickupPoint}}
+                            {{request.arrival.dropPoint}}
                           </td>
                         </tr>
                       </table>
