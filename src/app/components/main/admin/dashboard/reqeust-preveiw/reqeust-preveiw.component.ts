@@ -12,8 +12,13 @@ import { AddVehicleToReqComponent } from '../add-vehicle-to-req/add-vehicle-to-r
 })
 export class ReqeustPreveiwComponent implements OnInit {
 
+  selectedRequest = [];
+  //selectedDriver  = [];
+  //selectedVehicle = [];
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog, private requestService: RequestService) {
     console.log("req data",data);
+    this.selectedRequest = data;
    }
 
   ngOnInit() {
@@ -45,7 +50,7 @@ export class ReqeustPreveiwComponent implements OnInit {
     this.requestService.change_status(refNo, 3)
       .subscribe( (response) => {
         console.log(response['msg']);
-        location.reload();
+        this.selectedRequest['status'] = 3;
       });
   }
 
@@ -53,7 +58,8 @@ export class ReqeustPreveiwComponent implements OnInit {
     this.requestService.change_status(refNo, 1)
       .subscribe( (response) => {
         console.log(response['msg']);
-        location.reload();
+        this.selectedRequest['status'] = 1;
+        //location.reload();
       });
 
   }
@@ -64,7 +70,7 @@ export class ReqeustPreveiwComponent implements OnInit {
       .subscribe( response => {
         //alert('daon');
         console.log(response['msg']);
-        location.reload();
+        this.selectedRequest['status'] = 4;
       });
   }
 

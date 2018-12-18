@@ -21,8 +21,14 @@
   float: right;
 }
 
-.bg-success{
-  background-color: #4CAF50;
+.bg-success-body{
+  background: #4CAF50;
+  color: white!important;
+}
+
+.bg-danger-body{
+  background: red;
+  color:white!important;
 }
 
 .mat-button{
