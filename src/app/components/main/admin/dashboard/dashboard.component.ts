@@ -20,6 +20,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   requestData: RequestElement[] = [];
   newRequestData: RequestElement[] = []; // store all new reqeusts
   acceptedReqData: RequestElement[] = [];
+  confirmedReqData: RequestElement[] = [];
+  authenticatedReqData: RequestElement[] = [];
+  completedReqData: RequestElement[] = [];
+  rejectedReqData: RequestElement[] = [];
 
   //displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -28,6 +32,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   acceptedReqDataSource = new MatTableDataSource<RequestElement>(this.requestData);
   newReqDataSource = new MatTableDataSource<RequestElement>(this.newRequestData);
+  confirmedReqDataSource = new MatTableDataSource<RequestElement>(this.confirmedReqData);
+  authenticatedReqDataSource = new MatTableDataSource<RequestElement>(this.authenticatedReqData);
+
+  completedReqDataSource = new MatTableDataSource<RequestElement>(this.completedReqData);
+  rejectedReqDataSource = new MatTableDataSource<RequestElement>(this.rejectedReqData);
 
   requests: any = [];
 
@@ -64,25 +73,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           }
         };
 
-    this.adminService.getRequestsOnStatusForTable(`status[0]=1`)
-        .then(data => {
-          this.acceptedReqData = data;
-
-
-          this.acceptedReqDataSource.data = this.acceptedReqData;
-          console.log("accepted", this.acceptedReqDataSource);
-
-    });
-
-    this.adminService.getRequestsOnStatusForTable(`status[0]=0`)
-    .then(data => {
-      this.newRequestData = data;
-
-      this.newReqDataSource.data = this.newRequestData;
-      console.log("new", this.newRequestData);
-
-    });
-
+        this.loadTableData();
 
    }
 
@@ -93,6 +84,41 @@ export class DashboardComponent implements OnInit, OnDestroy {
   //change tab
   changeTab(tab) {
     this.selectedTab = tab;
+  }
+
+  loadTableData() {
+      this.adminService.getRequestsOnStatusForTable(`status[0]=1`)
+      .then(data => {
+        this.acceptedReqData = data;
+
+
+        this.acceptedReqDataSource.data = this.acceptedReqData;
+
+      });
+
+      this.adminService.getRequestsOnStatusForTable(`status[0]=0`)
+      .then(data => {
+        this.newRequestData = data;
+
+        this.newReqDataSource.data = this.newRequestData;
+
+      });
+
+      this.adminService.getRequestsOnStatusForTable(`status[0]=2`)
+      .then(data => {
+        this.confirmedReqData = data;
+
+        this.confirmedReqDataSource.data = this.confirmedReqData;
+
+      });
+
+      this.adminService.getRequestsOnStatusForTable(`status[0]=0`)
+      .then(data => {
+        this.authenticatedReqData = data;
+
+        this.authenticatedReqDataSource.data = this.authenticatedReqData;
+
+      });
   }
   getRequestOnStatus(): any {
     // this.adminService.getRequestsOnStatusForTable(`status[0]=1&statsu[1]=2&status[3]=4&status[4]=0`)
