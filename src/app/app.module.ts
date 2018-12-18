@@ -37,7 +37,7 @@ import { SheduleComponent } from './components/main/admin/shedule/shedule.compon
 import { StatusMsgComponent } from './components/main/home/request-btns/check-request/status-msg/status-msg.component';
 import {AuthService} from './services/auth.service';
 import { DriversComponent } from './components/main/admin/drivers/drivers.component';
-import { AddComponent } from './components/main/admin/drivers/add/add.component';
+import { AddComponent as AddNewDriverComponent } from './components/main/admin/drivers/add/add.component';
 import { ProfileComponent } from './components/main/admin/drivers/profile/profile.component';
 import { SetDriverComponent } from './components/main/admin/request-admin-view/set-driver/set-driver.component';
 import { SetVehicleComponent } from './components/main/admin/request-admin-view/set-vehicle/set-vehicle.component';
@@ -87,7 +87,7 @@ import { RequestsTableComponent } from './components/main/admin/dashboard/reques
     SheduleComponent,
     StatusMsgComponent,
     DriversComponent,
-    AddComponent,
+    AddNewDriverComponent,
     ProfileComponent,
     SetDriverComponent,
     SetVehicleComponent,

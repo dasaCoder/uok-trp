@@ -16,7 +16,18 @@
 				<a mat-list-item (click)="changeTab(1)" >Shedule</a>
         <a mat-list-item (click)="changeTab(2)" >Requests</a>
 
-        <a mat-list-item routerLink="." >Drivers</a>
+
+        <mat-expansion-panel class="sideNav">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Drivers
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <a mat-list-item (click)="changeTab(3)" >View</a>
+          <a mat-list-item (click)="changeTab(4)" >Add Driver</a>
+        </mat-expansion-panel>
+
         <a mat-list-item routerLink="." >Vehicles</a>
 
 			</mat-nav-list>
@@ -56,7 +67,9 @@
               </mat-tab-group>
             </div>
 
-
+            <div *ngIf="selectedTab == 3">
+              <app-driver-profile></app-driver-profile>
+            </div>
 
 
 

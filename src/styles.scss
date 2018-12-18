@@ -11,7 +11,9 @@
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-
+.sideNav .mat-expansion-panel-body{
+  padding: 0px!important;
+}
 .basic-container {
   padding: 5px;
 }
