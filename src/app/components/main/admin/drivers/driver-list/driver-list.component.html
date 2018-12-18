@@ -1,5 +1,12 @@
 <div class="row">
+
+
     <div class="col-lg-7">
+
+    <mat-card *ngIf="selectedDriverName">
+        <img mat-card-avatar src="../../../../../../assets/images/pattern/pattern.png">
+        <mat-card-title style="display:inline"> {{ selectedDriverName }}</mat-card-title>
+    </mat-card>
 
         <app-sheduler *ngIf="requests" [requests]="requests"></app-sheduler>
 
@@ -14,9 +21,6 @@
 
             <img mat-card-sm-image src="../../../../../../assets/images/pattern/pattern.png" style="display: inline">
             <mat-card-subtitle style="display:inline">{{ driver['name'] }}</mat-card-subtitle>
-
-
-
 
         </mat-card>
       </div>

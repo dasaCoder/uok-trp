@@ -15,6 +15,7 @@ export class DriverListComponent implements OnInit {
   options: any = [];
   drivers: any[] = [];
   clickedItem;
+  selectedDriverName;
 
   constructor(private adminService: AdminService) { }
 
@@ -31,6 +32,7 @@ export class DriverListComponent implements OnInit {
   selectDriver (driver) {
     //alert(driver['name']);
     this.clickedItem = driver['_id'];
+    this.selectedDriverName = driver['name'];
 
     this.requests = undefined;
 
