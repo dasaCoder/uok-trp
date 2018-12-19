@@ -1,6 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, Inject} from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 import { AdminService } from '../../../../../services/admin.service';
+import { Vehicle } from '../../../../../classes/vehicle';
+import { Driver } from 'selenium-webdriver/opera';
 
 @Component({
   selector: 'app-add-vehicle-to-req',
@@ -14,8 +16,10 @@ export class AddVehicleToReqComponent implements OnInit {
   options: any = [];
   vehicles: any[] = [];
   clickedItem;
+  selectedVehicle;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private adminService: AdminService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private adminService: AdminService,
+              public addVehicleRef: MatDialogRef <AddVehicleToReqComponent>) { }
 
   ngOnInit() {
 
@@ -33,6 +37,7 @@ export class AddVehicleToReqComponent implements OnInit {
     //console.log(vehicle);
 
     this.clickedItem = vehicle['_id'];
+    this.selectedVehicle = vehicle;
 
     //alert(this.clickedItem);
 
@@ -58,10 +63,9 @@ export class AddVehicleToReqComponent implements OnInit {
 
     this.adminService.set_vehicle(this.refNo, vehicle['_id'])
         .subscribe(response => {
-          console.log("add vehicle",response);
-          if (response['success']){
-            console.log(response);
-            //this.isSetVehicle = true;
+          console.log("add vehicle", response);
+          if (response['success']) {
+              this.addVehicleRef.close({'status': true, 'vehicle': this.selectedVehicle });
           }
         });
 

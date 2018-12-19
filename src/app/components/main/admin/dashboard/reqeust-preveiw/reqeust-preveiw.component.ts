@@ -43,7 +43,14 @@ export class ReqeustPreveiwComponent implements OnInit {
       data: {
         'refNo': refNo
       }
-  });
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+        if(result['status']) {
+          this.selectedRequest['vehicle'] = result['vehicle'];
+        }
+      });
   }
 
   rejectRequest(refNo) {

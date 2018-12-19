@@ -85,6 +85,9 @@ export class AdminService {
 
                         var dataM = [];
 
+                        if(data['msg'] === undefined) {
+                          return;
+                        }
                         data['msg'].forEach(element => {
 
                           let color = '';
@@ -131,6 +134,10 @@ export class AdminService {
                       .then(data => {
                         var dataT = [];
 
+                        if(data['msg'] === undefined) {
+                          return;
+                        }
+
                         data['msg'].forEach(element => {
 
 
@@ -160,6 +167,11 @@ export class AdminService {
                       .then(data => {
 
                         var dataM = [];
+
+                        console.log(data);
+                        if(data['msg'] === undefined) {
+                          return;
+                        }
 
                         data['msg'].forEach(element => {
 
