@@ -64,6 +64,8 @@ export class ReqeustPreveiwComponent implements OnInit {
       .subscribe( (response) => {
         console.log(response['msg']);
         this.selectedRequest['status'] = 3;
+
+        this.isChangeOccured = 1;
       });
   }
 
@@ -72,6 +74,8 @@ export class ReqeustPreveiwComponent implements OnInit {
       .subscribe( (response) => {
         console.log(response['msg']);
         this.selectedRequest['status'] = 1;
+
+        this.isChangeOccured = 1;
         //location.reload();
       });
 
@@ -84,6 +88,8 @@ export class ReqeustPreveiwComponent implements OnInit {
         //alert('daon');
         console.log(response['msg']);
         this.selectedRequest['status'] = 4;
+
+        this.isChangeOccured = 1;
       });
   }
 
