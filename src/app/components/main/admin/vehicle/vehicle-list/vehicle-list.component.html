@@ -1,6 +1,11 @@
 <div class="row">
   <div class="col-lg-7">
 
+    <mat-card *ngIf="selectedVehicle">
+      <img mat-card-avatar src="../../../../../../assets/images/pattern/pattern.png">
+      <mat-card-title style="display:inline"> {{ selectedVehicle['vehicle_no'] }}</mat-card-title>
+    </mat-card>
+
       <app-sheduler *ngIf="requests" [requests]="requests"></app-sheduler>
 
       <app-sheduler *ngIf="!requests" [requests]="[]"></app-sheduler>
@@ -10,7 +15,7 @@
   <div class="col-lg-5" *ngIf="vehicles">
 
     <div style="overflow-y: scroll; height:55vh;">
-      <mat-card style="cursor: pointer" [ngClass]="{red: clickedItem === vehicle['_id']}" (click)="selectVehicle(vehicle)"  *ngFor="let vehicle of vehicles" >
+      <mat-card style="cursor: pointer" [ngClass]="{clicked: clickedItem === vehicle['_id']}" (click)="selectVehicle(vehicle)"  *ngFor="let vehicle of vehicles" >
 
           <img mat-card-sm-image src="../../../../../../assets/images/pattern/pattern.png" style="display: inline">
           <mat-card-subtitle style="display:inline">{{ vehicle['vehicle_no'] }}</mat-card-subtitle>

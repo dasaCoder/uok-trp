@@ -11,10 +11,21 @@
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover {
+@import '~@angular/material/theming';
+
+/*.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover {
   background: #673ab7;
+}*/
+
+.elavation{
+  .my-class {
+    @include mat-elevation(2);
+  }
 }
 
+button:focus{
+  background-color: transparent;
+}
 .mat-expansion-panel-header .mat-expanded:focus,
 .mat-expansion-panel-header .mat-expanded:hover{
   background: #ffcc00;
@@ -679,6 +690,16 @@ NEW modification to landing page*/
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
+}
+
+.clicked{
+  background-color: #e8dcff;
+  color: white;
+}
+
+.mat-row:hover{
+  background-color: #e8dcff;
+  cursor:pointer;
 }
 
 

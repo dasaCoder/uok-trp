@@ -17,7 +17,7 @@
     <div class="col-lg-5" *ngIf="drivers">
 
       <div style="overflow-y: scroll; height:55vh;">
-        <mat-card style="cursor: pointer" [ngClass]="{red: clickedItem === driver['_id']}" (click)="selectDriver(driver)"  *ngFor="let driver of drivers" >
+        <mat-card style="cursor: pointer" [ngClass]="{clicked: clickedItem === driver['_id']}" (click)="selectDriver(driver)"  *ngFor="let driver of drivers" >
 
             <img mat-card-sm-image src="../../../../../../assets/images/pattern/pattern.png" style="display: inline">
             <mat-card-subtitle style="display:inline">{{ driver['name'] }}</mat-card-subtitle>

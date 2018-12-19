@@ -13,8 +13,10 @@
 		<mat-drawer #snav [mode]="'side'">
       <img mat-card-image src="https://via.placeholder.com/300x200">
 			<mat-nav-list>
-				<a mat-list-item (click)="changeTab(1)" >Shedule</a>
-        <a mat-list-item (click)="changeTab(2)" >Requests</a>
+
+				<a mat-list-item  (click)="changeTab(1)" >Shedule</a>
+
+        <a mat-list-item [class.mat-elevation-z8]="true" (click)="changeTab(2)" >Requests</a>
 
 
         <mat-expansion-panel class="sideNav">
@@ -28,7 +30,17 @@
           <a mat-list-item (click)="changeTab(4)" >Add Driver</a>
         </mat-expansion-panel>
 
-        <a mat-list-item routerLink="." >Vehicles</a>
+        <mat-expansion-panel class="sideNav">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Vehicles
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <a mat-list-item (click)="changeTab(5)" >View</a>
+          <a mat-list-item (click)="changeTab(6)" >Add Vehicle</a>
+        </mat-expansion-panel>
+
 
 			</mat-nav-list>
 		</mat-drawer>
@@ -72,7 +84,15 @@
             </div>
 
             <div *ngIf="selectedTab == 4">
+
+            </div>
+
+            <div *ngIf="selectedTab == 5">
               <app-vehicle-list></app-vehicle-list>
+            </div>
+
+            <div *ngIf="selectedTab == 6">
+
             </div>
 
 

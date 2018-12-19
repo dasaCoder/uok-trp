@@ -13,6 +13,7 @@ export class VehicleListComponent implements OnInit {
   options: any = [];
   vehicles: any[] = [];
   clickedItem;
+  selectedVehicle;
 
   constructor(private adminService: AdminService) { }
 
@@ -30,6 +31,7 @@ export class VehicleListComponent implements OnInit {
     //console.log(vehicle);
 
     this.clickedItem = vehicle['_id'];
+    this.selectedVehicle = vehicle;
 
     //alert(this.clickedItem);
 
