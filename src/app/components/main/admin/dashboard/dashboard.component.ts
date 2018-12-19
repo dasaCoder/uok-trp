@@ -134,6 +134,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   }
 
+  // invoke when dialog activity change data of a request
+  changeDetecter(change) {
+    if(change === 1) {
+      this.loadTableData();
+    }
+  }
+
 }
 
 export interface RequestElement {

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { AdminService } from '../../../../../services/admin.service';
 @Component({
   selector: 'app-add-driver',
@@ -14,7 +14,11 @@ export class AddDriverComponent implements OnInit {
   drivers: any[] = [];
   clickedItem;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private adminService: AdminService) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private adminService: AdminService,
+    public addDriverRef: MatDialogRef < AddDriverComponent>
+    ) {
    }
 
   ngOnInit() {
@@ -59,10 +63,7 @@ export class AddDriverComponent implements OnInit {
       .subscribe( response => {
         console.log(response);
         if ( response['success'] === true) {
-
-          //this.ngOnInit();
-          //this.setDriver_.emit(this.selectedDriver);
-          location.reload();
+            this.addDriverRef.close({'status':true, 'driver': driver});
         }
       });
   }

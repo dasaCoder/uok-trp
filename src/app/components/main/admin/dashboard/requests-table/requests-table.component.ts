@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { elementAt } from 'rxjs/operators';
 import { RequestService } from '../../../../../services/request.service';
 import { MatDialog } from '@angular/material';
@@ -12,6 +12,7 @@ import { ReqeustPreveiwComponent } from '../reqeust-preveiw/reqeust-preveiw.comp
 export class RequestsTableComponent implements OnInit {
 
   @Input() requestDataSource;
+  @Output() changeEmitter = new EventEmitter();
 
   displayedColumns: string[] = ['refNo', 'to', 'from', 'driver', 'vehicle'];
 
@@ -32,6 +33,9 @@ export class RequestsTableComponent implements OnInit {
 
           dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);
+            if(result ===1) {
+              this.changeEmitter.emit(1); // when any change occur to request by dialog activity
+            }
           });
 
     });

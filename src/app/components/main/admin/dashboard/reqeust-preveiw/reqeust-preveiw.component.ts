@@ -15,6 +15,7 @@ export class ReqeustPreveiwComponent implements OnInit {
   selectedRequest = [];
   //selectedDriver  = [];
   //selectedVehicle = [];
+  isChangeOccured = 0; // 0 -> nothing occured, 1 -> request is changed
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog, private requestService: RequestService) {
     console.log("req data",data);
@@ -34,6 +35,10 @@ export class ReqeustPreveiwComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      if(result['status']) {
+        this.selectedRequest['driver'] = result['driver'];
+        this.isChangeOccured = 1; // change happend to reqeust
+      }
     });
   }
 
@@ -49,6 +54,7 @@ export class ReqeustPreveiwComponent implements OnInit {
         console.log(`Dialog result: ${result}`);
         if(result['status']) {
           this.selectedRequest['vehicle'] = result['vehicle'];
+          this.isChangeOccured = 1; // change happend to reqeust
         }
       });
   }

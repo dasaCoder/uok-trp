@@ -48,18 +48,18 @@
             <div *ngIf="selectedTab == 2">
               <mat-tab-group>
                   <mat-tab label="New Requests">
-                      <app-requests-table [requestDataSource]="newReqDataSource"></app-requests-table>
+                      <app-requests-table [requestDataSource]="newReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
                   </mat-tab>
                   <mat-tab label="Accepted Requests">
-                      <app-requests-table [requestDataSource]="acceptedReqDataSource"></app-requests-table>
+                      <app-requests-table [requestDataSource]="acceptedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
                   </mat-tab>
 
                   <mat-tab label="Confirmed Requests">
-                      <app-requests-table [requestDataSource]="confirmedReqDataSource"></app-requests-table>
+                      <app-requests-table [requestDataSource]="confirmedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
                   </mat-tab>
 
                   <mat-tab label="Authenticated Requests">
-                    <app-requests-table [requestDataSource]="authenticatedReqDataSource"></app-requests-table>
+                    <app-requests-table [requestDataSource]="authenticatedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
                   </mat-tab>
 
                   <mat-tab label="Completed Requests"></mat-tab>
