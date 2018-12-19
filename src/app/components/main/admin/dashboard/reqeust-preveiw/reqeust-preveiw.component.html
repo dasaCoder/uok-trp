@@ -21,9 +21,10 @@
           </mat-chip-list>
 
           <br>
-
-          <mat-list-item>{{ selectedRequest['departure']['pickupDate']}}</mat-list-item>
-          <mat-list-item> {{ selectedRequest['departure']['pickupTime']}} </mat-list-item>
+        <mat-list>
+          <mat-list-item><mat-icon>  date_range</mat-icon>&nbsp;&nbsp; {{ selectedRequest['departure']['pickupDate']}}</mat-list-item>
+          <mat-list-item> <mat-icon>  access_time</mat-icon>&nbsp;&nbsp; {{ selectedRequest['departure']['pickupTime']}} </mat-list-item>
+        </mat-list>
 
 
         </mat-card>
@@ -40,10 +41,10 @@
           </mat-chip-list>
 
           <br>
-
-          <mat-list-item>{{selectedRequest['arrival']['dropDate']}}</mat-list-item>
-
-          <mat-list-item> {{ selectedRequest['arrival']['dropTime']}} </mat-list-item>
+        <mat-list>
+          <mat-list-item><mat-icon>  date_range</mat-icon>&nbsp;&nbsp; {{selectedRequest['arrival']['dropDate']}}</mat-list-item>
+          <mat-list-item> <mat-icon>  access_time</mat-icon>&nbsp;&nbsp; {{ selectedRequest['arrival']['dropTime']}} </mat-list-item>
+        </mat-list>
 
         </mat-card>
 
@@ -56,8 +57,8 @@
       <mat-accordion>
 
         <mat-expansion-panel>
-          <mat-expansion-panel-header class="bg-danger-body">
-            <mat-panel-title>
+          <mat-expansion-panel-header style="background: #4615b2">
+            <mat-panel-title style="color:white">
               Driver
             </mat-panel-title>
 
@@ -74,14 +75,14 @@
           </mat-list>
 
 
-
-          <button mat-button cdkFocusInitial class="bg-success" (click)="addDriver(selectedRequest['refNo'])">Add Driver</button>
+          <button mat-button *ngIf="selectedRequest['driver']" cdkFocusInitial class="bg-warning" (click)="addDriver(selectedRequest['refNo'])"><mat-icon>cached</mat-icon>&nbsp;Change Driver</button>
+          <button mat-button *ngIf="!selectedRequest['driver']" cdkFocusInitial class="bg-success" (click)="addDriver(selectedRequest['refNo'])"><mat-icon>add</mat-icon>&nbsp; Add Driver</button>
 
         </mat-expansion-panel>
 
         <mat-expansion-panel>
-          <mat-expansion-panel-header class="bg-success-body">
-            <mat-panel-title>
+          <mat-expansion-panel-header style="background: #651fff">
+            <mat-panel-title style="color:white">
               Vehicle
             </mat-panel-title>
 
@@ -97,13 +98,15 @@
               </mat-list-item>
             </mat-list>
 
-            <button mat-button class="bg-success" cdkFocusInitial (click)="addVehicle(selectedRequest['refNo'])">Add Vehicle</button>
+            <button mat-button *ngIf="!selectedRequest['vehicle']" class="bg-success" cdkFocusInitial (click)="addVehicle(selectedRequest['refNo'])"><mat-icon>add</mat-icon>&nbsp; Add Vehicle</button>
+            <button mat-button *ngIf="selectedRequest['vehicle']" class="bg-warning" cdkFocusInitial (click)="addVehicle(selectedRequest['refNo'])"><mat-icon>cached</mat-icon>&nbsp;Change Vehicle</button>
+
 
         </mat-expansion-panel>
 
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
+          <mat-expansion-panel-header style="background: #834bff">
+            <mat-panel-title style="color: white;">
               More Info
             </mat-panel-title>
 
@@ -111,14 +114,14 @@
 
           <mat-list class="trp-mat-list">
 
-            <mat-list-item><mat-icon>account_circle</mat-icon>  {{selectedRequest['lecturer']}}</mat-list-item>
-            <mat-list-item><mat-icon>location_city</mat-icon>  {{selectedRequest['position']}}</mat-list-item>
-            <mat-list-item><mat-icon>domain</mat-icon>  {{selectedRequest['dep_unit']}}</mat-list-item>
-            <mat-list-item><mat-icon>gps_fixed</mat-icon>  {{selectedRequest['purpose']}}</mat-list-item>
-            <mat-list-item><mat-icon>local_atm</mat-icon>  {{selectedRequest['fundingWay']}}</mat-list-item>
-            <mat-list-item><mat-icon>email</mat-icon>  {{selectedRequest['email']}}</mat-list-item>
-            <mat-list-item><mat-icon>lock</mat-icon>  {{selectedRequest['password']}}</mat-list-item>
-            <mat-list-item><mat-icon>person_add</mat-icon>  {{selectedRequest['num_passangers']}}</mat-list-item>
+            <mat-list-item><mat-icon>account_circle</mat-icon>  &nbsp;&nbsp; {{selectedRequest['lecturer']}}</mat-list-item>
+            <mat-list-item><mat-icon>location_city</mat-icon>  &nbsp;&nbsp; {{selectedRequest['position']}}</mat-list-item>
+            <mat-list-item><mat-icon>domain</mat-icon>  &nbsp;&nbsp; {{selectedRequest['dep_unit']}}</mat-list-item>
+            <mat-list-item><mat-icon>gps_fixed</mat-icon>  &nbsp;&nbsp; {{selectedRequest['purpose']}}</mat-list-item>
+            <mat-list-item><mat-icon>local_atm</mat-icon>  &nbsp;&nbsp; {{selectedRequest['fundingWay']}}</mat-list-item>
+            <mat-list-item><mat-icon>email</mat-icon>  &nbsp;&nbsp; {{selectedRequest['email']}}</mat-list-item>
+            <mat-list-item><mat-icon>lock</mat-icon>  &nbsp;&nbsp; {{selectedRequest['password']}}</mat-list-item>
+            <mat-list-item><mat-icon>person_add</mat-icon>  &nbsp;&nbsp; {{selectedRequest['num_passangers']}}</mat-list-item>
 
           </mat-list>
 

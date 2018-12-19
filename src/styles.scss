@@ -11,6 +11,15 @@
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover {
+  background: #673ab7;
+}
+
+.mat-expansion-panel-header .mat-expanded:focus,
+.mat-expansion-panel-header .mat-expanded:hover{
+  background: #ffcc00;
+}
+
 .sideNav .mat-expansion-panel-body{
   padding: 0px!important;
 }
