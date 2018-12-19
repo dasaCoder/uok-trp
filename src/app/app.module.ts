@@ -66,6 +66,7 @@ import { ShedulerComponent } from './components/main/admin/dashboard/sheduler/sh
 import { AddVehicleToReqComponent } from './components/main/admin/dashboard/add-vehicle-to-req/add-vehicle-to-req.component';
 import { RequestsTableComponent } from './components/main/admin/dashboard/requests-table/requests-table.component';
 import { DriverListComponent } from './components/main/admin/drivers/driver-list/driver-list.component';
+import { VehicleListComponent } from './components/main/admin/vehicle/vehicle-list/vehicle-list.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import { DriverListComponent } from './components/main/admin/drivers/driver-list
     AddVehicleComponent,
     AddVehicleToReqComponent,
     RequestsTableComponent,
-    DriverListComponent
+    DriverListComponent,
+    VehicleListComponent
   ],
   imports: [
     BrowserModule,
