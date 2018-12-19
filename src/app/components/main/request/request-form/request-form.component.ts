@@ -108,7 +108,8 @@ export class RequestFormComponent implements OnInit {
    ];
    isGood = true;
    step = 1;
-   today = new Date();
+   dateObj = new Date();
+   today = this.dateObj.setDate(this.dateObj.getDate()-1);
    formData: Request = new Request();
    arrival: Trip = new Trip();
    departure: Trip = new Trip();
@@ -119,6 +120,8 @@ export class RequestFormComponent implements OnInit {
    };
 
    isLoading = false;
+
+  isOneDaytrip = false;
 
     refNoOfCreated:number = -1;
 
@@ -132,13 +135,16 @@ export class RequestFormComponent implements OnInit {
   ) {
     // this.formData = new Request();
     this.data = this.source.slice();
+
+
   }
   nextStep(nStep) {
     this.step = nStep;
   }
   ngOnInit() {
-    this.departure.pickupTime = `00:00`;
-    this.arrival.dropTime = `${new Date().getHours()}:${new Date().getMinutes()}`;
+    this.departure.pickupTime = `00:00` ;
+    this.arrival.dropTime = `00:00`; //`${new Date().getHours()}:${new Date().getMinutes()}`;
+
     this.mapsAPILoader.load().then(
       () => {
         let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement);
@@ -160,6 +166,7 @@ export class RequestFormComponent implements OnInit {
         })
       }
     );
+
     this.mapsAPILoader.load().then(
       () => {
         let autocomplete = new google.maps.places.Autocomplete(this.searchElement2.nativeElement);
@@ -233,7 +240,14 @@ export class RequestFormComponent implements OnInit {
 
     this.isLoading = true;
 
-    let arrival_temp = new Date(this.arrival.dropDate);
+    let arrival_temp;
+    if ( this.isOneDaytrip ) {
+      arrival_temp = new Date(this.departure.pickupDate);
+    } else
+    {
+      arrival_temp = new Date(this.arrival.dropDate);
+    }
+
     /*let arrival_hour: any = arrival_temp.getHours();
       if (arrival_hour < 10) {
         arrival_hour = '0' + arrival_hour;

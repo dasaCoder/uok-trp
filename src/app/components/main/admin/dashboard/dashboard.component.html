@@ -1,0 +1,106 @@
+
+ <mat-toolbar color="primary"  style="text-align:right">
+
+	<h1>Admin Panel</h1>
+    <span class="example-fill-remaining-space"></span>
+
+  <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+</mat-toolbar>
+
+ <div fxLayout="row">
+
+  <mat-drawer-container class="example-sidenav-container" style="height:80vh; ">
+		<mat-drawer #snav [mode]="'side'">
+      <img mat-card-image src="https://via.placeholder.com/300x200">
+			<mat-nav-list>
+
+				<a mat-list-item  (click)="changeTab(1)" >Shedule</a>
+
+        <a mat-list-item [class.mat-elevation-z8]="true" (click)="changeTab(2)" >Requests</a>
+
+
+        <mat-expansion-panel class="sideNav">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Drivers
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <a mat-list-item (click)="changeTab(3)" >View</a>
+          <a mat-list-item (click)="changeTab(4)" >Add Driver</a>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="sideNav">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Vehicles
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <a mat-list-item (click)="changeTab(5)" >View</a>
+          <a mat-list-item (click)="changeTab(6)" >Add Vehicle</a>
+        </mat-expansion-panel>
+
+
+			</mat-nav-list>
+		</mat-drawer>
+
+    <mat-drawer-content>
+      <div class="container">
+
+
+
+            <div *ngIf="selectedTab == 1">
+              <!-- <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar> -->
+
+              <app-sheduler *ngIf="events.length > 0" [requests]="events"></app-sheduler>
+
+            </div>
+
+            <div *ngIf="selectedTab == 2">
+              <mat-tab-group>
+                  <mat-tab label="New Requests">
+                      <app-requests-table [requestDataSource]="newReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
+                  </mat-tab>
+                  <mat-tab label="Accepted Requests">
+                      <app-requests-table [requestDataSource]="acceptedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
+                  </mat-tab>
+
+                  <mat-tab label="Confirmed Requests">
+                      <app-requests-table [requestDataSource]="confirmedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
+                  </mat-tab>
+
+                  <mat-tab label="Authenticated Requests">
+                    <app-requests-table [requestDataSource]="authenticatedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
+                  </mat-tab>
+
+                  <mat-tab label="Completed Requests"></mat-tab>
+                  <mat-tab label="Rejected Requests"></mat-tab>
+              </mat-tab-group>
+            </div>
+
+            <div *ngIf="selectedTab == 3">
+              <app-driver-list></app-driver-list>>
+            </div>
+
+            <div *ngIf="selectedTab == 4">
+
+            </div>
+
+            <div *ngIf="selectedTab == 5">
+              <app-vehicle-list></app-vehicle-list>
+            </div>
+
+            <div *ngIf="selectedTab == 6">
+
+            </div>
+
+
+
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+
+
+</div>

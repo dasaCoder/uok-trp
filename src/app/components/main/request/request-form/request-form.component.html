@@ -90,6 +90,20 @@
                   <div id="step2" *ngSwitchCase="2" >
 
                     <div class="input-wrapper">
+                      <label for="">Is this a one day trip?</label>
+
+                      <!-- Disabled Switch -->
+                      <div class="switch">
+                        <label>
+                          No
+                          <input type="checkbox" [(ngModel)]="isOneDaytrip">
+                          <span class="lever"></span>
+                          Yes
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="input-wrapper">
                       <label>Date to pick you :</label>
                       <input [(ngModel)]="departure.pickupDate"
                              [owlDateTimeTrigger]="dtPicker1"
@@ -98,7 +112,9 @@
                              [min]="today"
                       >
                       <owl-date-time
-                        #dtPicker1></owl-date-time>
+                        #dtPicker1 [pickerType]="'calendar'"></owl-date-time>
+
+
                     </div>
 
                     <div class="input-wrapper">
@@ -109,7 +125,7 @@
                     </div>
 
 
-                    <div class="  ">
+                    <div class="  " *ngIf="!isOneDaytrip">
                       <label>Returning date:</label>
                       <input [(ngModel)]="arrival.dropDate"
                              [owlDateTimeTrigger]="dtPicker2"
@@ -118,7 +134,7 @@
                              [min]="departure.pickupDate"
                       >
                       <owl-date-time
-                        #dtPicker2
+                        #dtPicker2 [pickerType]="'calendar'"
                       ></owl-date-time>
 
 
@@ -137,8 +153,8 @@
 
                       <Button type="button"
                               class="trp-btn"
-                              [disabled]="!departure.pickupTime || !arrival.dropTime"
-                              [class.btn-disabled]="!departure.pickupTime || !arrival.dropTime"
+                              [disabled]="!departure.pickupTime || !arrival.dropTime ||  !departure.pickupDate"
+                              [class.btn-disabled]="!departure.pickupTime || !arrival.dropTime || !departure.pickupDate"
                               (click)="nextStep(3)"
                               style="margin-top: 20px;"
                       >
@@ -240,8 +256,8 @@
 
             <!--<div class="copy-text">Created with <i class="fa fa-heart"></i> by <a href="http://grafreez.com">Grafreez.com</a></div>-->
           </div>
-          <div class="col-md-7 banner-sec">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <div class="col-md-7 " style="background-color: #C01830"><!--banner-sec-->
+            <!--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -249,7 +265,7 @@
               </ol>
               <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
-                  <img class="d-block img-fluid" src="../../assets/images/background/cover.jpg" alt="First slide" style="height: 70vh">
+                  <img class="d-block img-fluid" src="../../../../../assets/images/background/cover.jpg" alt="First slide" style="height: 70vh">
                   <div class="carousel-caption d-none d-md-block">
                     <div class="banner-text">
                       <h2>Now it's easy!</h2>
@@ -257,16 +273,16 @@
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block img-fluid" src="../../assets/images/background/cover.jpg" alt="First slide" style="height: 70vh">
+                  <img class="d-block img-fluid" src="../../../../../assets/images/background/cover.jpg" alt="First slide" style="height: 70vh">
                   <div class="carousel-caption d-none d-md-block">
                     <div class="banner-text">
                       <h2>It's reliable</h2>
-                     <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>-->
+                     &lt;!&ndash; <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>&ndash;&gt;
                     </div>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block img-fluid" src="../../assets/images/background/cover.jpg" alt="First slide" style="height: 70vh">
+                  <img class="d-block img-fluid" src="../../../../../assets/images/background/cover.jpg" alt="First slide" style="height: 70vh">
                   <div class="carousel-caption d-none d-md-block">
                     <div class="banner-text">
                       <h2></h2>
@@ -275,7 +291,34 @@
                 </div>
               </div>
 
+            </div>-->
+
+
+
+
+            <div class="row hide-on-small-only" style="margin-top: 5vw;">
+
+              <div class="col s4" style="text-align: center" >
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARPSURBVGhD7ZhbqBVlGIa3qbHdhpgE20JNTbHyhGJpkZQhBKU32Y0RiCdQsTtTEVHpSvMAEVGboB1RiJIWEaJIGYmiRSASnnahgie8SNGkxNrL5128W5y9Zq31z6yZtS9aLzzMfIf/++dbaw7/TFNDDTXUc+rs7BwAL8I8WAfboM3InuTUfMVE8+FLm0EifzpsgRMg3YFzcBC+KhQKO9l+AYfhP2jH96CH5yMmWM1EB22WlQ6EvCVwEv6FH+AdmAb9nFYiYs/AVXjPrnwU0gjxV6ADrpG/ge0Qh4JE/lvwNwyyK3tVaoRYX2Ifgv6B97EHOpRIjO3nGq/alb3KNYKvP7Ef2V6B6XanFjUuw1yb2SuuEXwt+A6ArodEp1GcqDeYOvpHnrMre3VvBLsX9i7o0AHYXZOo1e56ve3KXt0bYX853IAxdqUWNVqp/xnb2zDD7nx0fyNsR8E/sKwYTClqDqfGWdAz5Az2Sw7lp26NfA2H8D1QDKYU41+AArWerbVWsJio2IgmZ6tfcJxDqaVaULBZH3U1Avo3vrE7tagxlJo71QjaAM0O5SsmUiM6n++wX/O5TJ1f4Qhshguw1aF8pUZA5/Nxu1KLMo+41tOy2S6F34rBvMW8XY28a1dqUWaYa2lZ8xHshvMO5yvm7Wpkil2pRAndcn8CLQ73wXb4GXQDaSNel2X8Rba97Eosxg8CrY4PUGek3UXhexl0De6yKx+5kchaK07k9fVuiRiv0+g4OS12RURsLNyEN+wqkX5I6GMzuUIaIT4CTtmMCL+W6DrI16FVtg6K7QjHiz74APYXB8WI2FpYbzO5QhqRyCl5KfIB72B7HZrZ13v6m/A4HFNOl4+4Hrh6JY5d/hBvUQ2bycXgio0Qmwwf24zIB6eLeaxdFUXeIrhV7oCJzYJ1NpOpWiPEHyIe+2KFfyH8brOqyB1CPd0hR9kVEf7HIN1Xl4BGZkLsReyxR21WFfnNoEam2lUiwmXnqygGVTu1PiHnSZsREdsK39kMEvl/wWybJSL2OYy2Ga5qjVQSY/XS1G4zSOT/AfNtZqeAf0Sr4ok2I8K/B7bYDBL5etqvsFkiYvvhCZvhCmhkHDnl7jI6qJU2g0S+mt9ss0TEJjJf2YdvWVVrhPjDxOfYjAi/TpMFNoNEPZ2On9qMCP9T8LzNZKrWCDE91bfZvCfG9cF/C2axPxy0xNBn1aGOx/pUC/bK7i7VgkQ/zD1RPPHFzhj9qqfhEvt6zmjVOx5eg+3KqeBbDPqqog/cq+TPRCkb0bNgEzxqVyIxbgJ8m3TeiqqhkV9Ad5i0aNnf441srAT19Ib4Z1zsfshZ4pK1i4KJGwkRdZMvM2pRHo1QcyA119isj5hwJXxvMxPRiJ49dW9kABMPs5mZqNvfu/URTYxk0ky/lFNPb4gdNusjNQFv28xM/ED1vdjzUE9d7PpY0GYzE/XUxa5PNa02G2ro/6empruGXbUIRf4ywAAAAABJRU5ErkJggg==">
+                <h5 style="color: white">Request a vehicle</h5>
+              </div>
+              <div class="col s4" style="text-align: center">
+                <img src="data:image/png;base64,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">
+                <h5 style="color: white">Get confirmation</h5>
+              </div>
+              <div class="col s4" style="text-align: center">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKoSURBVGhD7ZY9aFRBFIVXYgwxGhRRSKzUxh/8AcUyKooWgo0IprOwEgvRwsJC7ERUsFVQbOwkhU0EQdBUilhYpQtYaCFJJSiEXb87nDvsZjW+XX15M/A+OMy7Z96buYe3P9OoqampqZxmsznWarWOqswXgtxAxmVZecLbWEuI1+g71wOy84Cmt6CHaJvVBBhE28NkTljT9gbQnIWSHcHbj26iYVnpQpMTaJZQB2UFrMafZ2wxTicXhr4GaOo9ui6rCw+BvqK7yYahoefWHFyQFcFrD7HbPMZrdjPjNEO1PwQ0sI5GhnS9huv7jCfCpKDuCmFwvQl9RotoXHY10MBLNIu2yurgLyE+okXuOSe7OmjkFPqBXsiKJB+CBsbRMZVWH0ZHVAayeBM04ceOK7I6yCKEQRN27HiF7NixWnYg+RA0MIbuoc1W08wg1+EI4iQfwqCJfegn+oRGZUeyCOHQzFn0Be2RFUg+BA0MoRma6PqndkoPwQJ70SUW6fuvn2dXscZbZJyWHVkSYpfs/xfCN2C0c8xjhp7C8MywP8P1qK2BjodJ4XugckMg2+AptYV5wlA4DPe/Qe94ZoOsDpbsUUqIAywSP6/U9tF4wNhTGO49j+wg90xWhDXKDWGwyB01fUuWbVwoDHP2P3FIpdUnUTyGGDxrIRZQeSEMFlqPZpBxUXahMHi3mbO3MCmrA+ZXJoTDgn2Fod6I/wF9kxVhbmVDOCzcVxi8EbydKgPU1YRw2KDvj5nDXLUhHDb6l+9MGiEcNuw5DNdphXDYuHAYlGYIhwaKhJlC6YZwaKRImLRDODS0XJhJtENWuiEcGvttmHbw0w7h0OAfw1DnEcKh0a4wjHmFcGi4PcxVlF8Ih8ZDGJq3X608QzgK8widkVVTU1NTswyNxi92ok+JZ1q/lgAAAABJRU5ErkJggg==">
+                <h5 style="color: white">Complete the request</h5>
+              </div>
+
+
             </div>
+
+            <br><br>
+            <div class='video-container '><iframe width="560" height="315" src="https://www.youtube.com/embed/2XTpzlM1s2s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+
+
           </div>
         </div>
       </div>

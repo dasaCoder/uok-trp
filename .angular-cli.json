@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "public",
       "assets": [
         "assets",
         "favicon.ico"
@@ -20,14 +20,19 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/primeicons/primeicons.css",
+        "../node_modules/fullcalendar/dist/fullcalendar.min.css",
+        "../node_modules/primeng/resources/themes/nova-light/theme.css",
+        "../node_modules/primeng/resources/primeng.min.css"
 
       ],
       "scripts": [
         "../node_modules/popper.js/dist/umd/popper.min.js",
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
-        "../node_modules/jspdf/dist/jspdf.min.js"
+        "../node_modules/jspdf/dist/jspdf.min.js",
+        "../node_modules/fullcalendar/dist/fullcalendar.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

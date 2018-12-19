@@ -4,6 +4,64 @@
 @import "~@progress/kendo-theme-default/scss/all";
 @import 'variables';
 @import '../node_modules/font-awesome/scss/font-awesome';
+
+@import '../node_modules/primeicons/primeicons.css';
+@import '../node_modules/primeng/resources/themes/nova-light/theme.css';
+@import '../node_modules/primeng/resources/primeng.min.css';
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@import '~@angular/material/theming';
+
+/*.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover {
+  background: #673ab7;
+}*/
+
+.elavation{
+  .my-class {
+    @include mat-elevation(2);
+  }
+}
+
+button:focus{
+  background-color: transparent;
+}
+.mat-expansion-panel-header .mat-expanded:focus,
+.mat-expansion-panel-header .mat-expanded:hover{
+  background: #ffcc00;
+}
+
+.sideNav .mat-expansion-panel-body{
+  padding: 0px!important;
+}
+
+.trp-mat-list .mat-list-item{
+  height: 25px;
+}
+.basic-container {
+  padding: 5px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+
+.bg-success-body{
+  background: #4CAF50;
+  color: white!important;
+}
+
+.bg-danger-body{
+  background: red;
+  color:white!important;
+}
+
+.mat-button{
+  color: #ffffff !important;
+}
+
+
 body{
   font: 15px/1.5;
   font-family:'Raleway', sans-serif;;
@@ -144,6 +202,16 @@ body{
 
 .trp-autocomplete{
   padding: 0 4px 0 0!important;
+  ackground-color: transparent;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: none;
+  height: 3rem;
+  width: 100%;
+  font-size: 16px;
+  margin: 0 0 8px 0;
+  padding: 0;
 
 }
 
@@ -468,8 +536,8 @@ NEW modification to landing page*/
     border: #ffcc00 solid 2px;
     text-decoration: none;
     color:#ffffff;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 2vh;
     padding-right: 2vh;
   }
@@ -489,7 +557,7 @@ NEW modification to landing page*/
   }
   .trd-nav-link {
     padding-bottom: 10px;
-    padding-top: 8px;
+    padding-top: 10px;
     color: white;
     /* padding-top: 10px; */
     /* margin-top: 10px; */
@@ -535,8 +603,8 @@ NEW modification to landing page*/
     background-color: #ffcc00;
   }
   .trd-nav-link{
-    padding-top: 30px;
-    padding-bottom: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 2vh;
     padding-right: 2vh;
   }
@@ -551,8 +619,8 @@ NEW modification to landing page*/
     background-color: #ffcc00;
   }
   .trd-nav-link{
-    padding-top: 50px;
-    padding-bottom: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 2vh;
     padding-right: 2vh;
   }
@@ -567,8 +635,8 @@ NEW modification to landing page*/
     background-color: #ffcc00;
   }
   .trd-nav-link{
-    padding-top: 50px;
-    padding-bottom: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 2vh;
     padding-right: 2vh;
   }
@@ -622,6 +690,16 @@ NEW modification to landing page*/
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
+}
+
+.clicked{
+  background-color: #e8dcff;
+  color: white;
+}
+
+.mat-row:hover{
+  background-color: #e8dcff;
+  cursor:pointer;
 }
 
 

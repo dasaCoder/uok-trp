@@ -37,7 +37,7 @@ import { SheduleComponent } from './components/main/admin/shedule/shedule.compon
 import { StatusMsgComponent } from './components/main/home/request-btns/check-request/status-msg/status-msg.component';
 import {AuthService} from './services/auth.service';
 import { DriversComponent } from './components/main/admin/drivers/drivers.component';
-import { AddComponent } from './components/main/admin/drivers/add/add.component';
+import { AddComponent as AddNewDriverComponent } from './components/main/admin/drivers/add/add.component';
 import { ProfileComponent } from './components/main/admin/drivers/profile/profile.component';
 import { SetDriverComponent } from './components/main/admin/request-admin-view/set-driver/set-driver.component';
 import { SetVehicleComponent } from './components/main/admin/request-admin-view/set-vehicle/set-vehicle.component';
@@ -52,6 +52,21 @@ import { LoginComponent } from './components/main/login/login.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import {AmazingTimePickerModule} from 'amazing-time-picker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule, MatTabsModule} from '@angular/material';
+import { DashboardComponent } from './components/main/admin/dashboard/dashboard.component';
+import { DemoMaterialModule } from './material.module';
+import { MatTableModule } from '@angular/material/table';
+
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import { FullCalendarModule } from 'primeng/fullcalendar';
+import { ReqeustPreveiwComponent } from './components/main/admin/dashboard/reqeust-preveiw/reqeust-preveiw.component';
+import { AddDriverComponent } from './components/main/admin/dashboard/add-driver/add-driver.component';
+import { ShedulerComponent } from './components/main/admin/dashboard/sheduler/sheduler.component';
+import { AddVehicleToReqComponent } from './components/main/admin/dashboard/add-vehicle-to-req/add-vehicle-to-req.component';
+import { RequestsTableComponent } from './components/main/admin/dashboard/requests-table/requests-table.component';
+import { DriverListComponent } from './components/main/admin/drivers/driver-list/driver-list.component';
+import { VehicleListComponent } from './components/main/admin/vehicle/vehicle-list/vehicle-list.component';
 
 @NgModule({
   declarations: [
@@ -74,17 +89,25 @@ import {AmazingTimePickerModule} from 'amazing-time-picker';
     SheduleComponent,
     StatusMsgComponent,
     DriversComponent,
-    AddComponent,
+    AddNewDriverComponent,
     ProfileComponent,
     SetDriverComponent,
     SetVehicleComponent,
-    AddVehicleComponent,
     AdminHomeComponent,
     MapComponent,
     SearchComponent,
     VehicleTableComponent,
     DriverProfileComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent,
+    ReqeustPreveiwComponent,
+    AddDriverComponent,
+    ShedulerComponent,
+    AddVehicleComponent,
+    AddVehicleToReqComponent,
+    RequestsTableComponent,
+    DriverListComponent,
+    VehicleListComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +127,13 @@ import {AmazingTimePickerModule} from 'amazing-time-picker';
     AngularFontAwesomeModule,
     LayoutModule,
     NgxQRCodeModule,
-    AmazingTimePickerModule
+    DemoMaterialModule,
+    MatTableModule,
+    FullCalendarModule,
+    AmazingTimePickerModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatTabsModule
   ],
   providers: [
     AvailableVehicleService,
@@ -114,6 +143,12 @@ import {AmazingTimePickerModule} from 'amazing-time-picker';
     AuthService,
     AuthGuardService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ReqeustPreveiwComponent,
+    AddDriverComponent,
+    AddVehicleToReqComponent
+  ]
 })
 export class AppModule { }
+platformBrowserDynamic().bootstrapModule(AppModule);
