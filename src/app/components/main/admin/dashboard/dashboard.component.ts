@@ -110,7 +110,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       });
 
-      this.adminService.getRequestsOnStatusForTable(`status[0]=0`)
+      this.adminService.getRequestsOnStatusForTable(`status[0]=3`)
       .then(data => {
         this.authenticatedReqData = data;
 
