@@ -26,8 +26,8 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
 
-          <a mat-list-item (click)="changeTab(3)" >View</a>
-          <a mat-list-item (click)="changeTab(4)" >Add Driver</a>
+          <a mat-list-item (click)="changeTab(3)" ><mat-icon matListIcon>pageview</mat-icon>&nbsp;&nbsp;  View</a>
+          <a mat-list-item (click)="changeTab(4)" ><mat-icon matListIcon>add</mat-icon>&nbsp;&nbsp;  Add Driver</a>
         </mat-expansion-panel>
 
         <mat-expansion-panel class="sideNav">
@@ -37,8 +37,11 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
 
-          <a mat-list-item (click)="changeTab(5)" >View</a>
-          <a mat-list-item (click)="changeTab(6)" >Add Vehicle</a>
+          <mat-nav-list>
+            <a mat-list-item (click)="changeTab(5)" ><mat-icon matListIcon>pageview</mat-icon> &nbsp;&nbsp; View</a>
+            <a mat-list-item (click)="changeTab(6)" ><mat-icon matListIcon>add</mat-icon> &nbsp;&nbsp; Add Vehicle</a>
+          </mat-nav-list>
+
         </mat-expansion-panel>
 
 
@@ -84,7 +87,9 @@
             </div>
 
             <div *ngIf="selectedTab == 4">
-
+              <br><br>
+              <!-- add vehicle component -->
+              <app-add></app-add>
             </div>
 
             <div *ngIf="selectedTab == 5">
@@ -92,7 +97,8 @@
             </div>
 
             <div *ngIf="selectedTab == 6">
-
+              <br><br>
+              <app-add-vehicle></app-add-vehicle>
             </div>
 
 
