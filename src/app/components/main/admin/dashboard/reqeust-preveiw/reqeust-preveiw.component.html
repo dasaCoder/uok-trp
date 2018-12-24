@@ -143,6 +143,7 @@
     <button mat-button *ngSwitchCase="0" (click)="acceptRequest(selectedRequest['refNo'])" style="background-color: #4CAF50; ">Accept</button>
     <button mat-button *ngSwitchCase="2" (click)="markDocumentedRequest(selectedRequest['refNo'])" style="background-color: #FF9800; ">Documented</button>
     <button mat-button *ngSwitchCase="3" (click)="printPdf(selectedRequest)" style="background-color: #52b03c; " >Print Application</button>
+    <button mat-button *ngSwitchCase="3" (click)="printGatePass(selectedRequest)" style="background-color: #52b03c; " >Print Gate Pass</button>
     <button mat-button *ngSwitchCase="3" style="background-color: #9C27B0; " >Completed</button>
 
   </div>
@@ -155,3 +156,5 @@
 </mat-dialog-actions>
 
 <div id="request_form_div"></div>
+
+<div id="vehicle_pass_div"></div>
