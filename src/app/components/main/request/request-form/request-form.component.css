@@ -6,17 +6,7 @@
   color: #FFBE27;
 }
 
-.trp-zebra{
-  background-image:url('../../../../../assets/images/background/zebraline.svg');
-  padding: 10px;
-  margin-bottom: 5vh;
-}
 
-.btn {
-  left: 11.7%;
-  top: 71.3%;
-  font-weight: 200;
-}
 
 .img-arrow{
   width: 100%;
@@ -24,19 +14,6 @@
   margin-top: -10px;
 }
 
-.btn-next {
-  background-color: #FFBE27;
-  border-radius: 100px;
-  padding: 0.5em 2em;
-}
-
-.btn-next:hover {
-  border: 1px solid #FFBE27;
-  background-color: white;
-  color: #FFBE27;
-  border-radius: 100px;
-  padding: 0.5em 2em;
-}
 
 tr {
   border-bottom: none!important;

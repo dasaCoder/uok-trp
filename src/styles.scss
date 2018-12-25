@@ -649,6 +649,35 @@ NEW modification to landing page*/
 
 }
 
+.btn {
+  left: 11.7%;
+  top: 71.3%;
+  font-weight: 200;
+}
+
+.btn-next {
+  background-color: #FFBE27;
+  border-radius: 100px!important;
+  padding: 0.5em 2em;
+}
+
+.btn-next:hover {
+  border: 1px solid #FFBE27;
+  background-color: white;
+  color: #FFBE27;
+  border-radius: 100px;
+  padding: 0.5em 2em;
+}
+
+
+.trp-zebra{
+  background-image:url('/assets/images/background/zebraline.svg');
+  padding: 10px;
+  margin-bottom: 5vh;
+  background-repeat: repeat-x;
+}
+
+
 /*@media (max-width: 767px) {
   .trd-nav-link {
     padding-bottom: 10px;
