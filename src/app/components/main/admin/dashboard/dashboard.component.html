@@ -14,15 +14,15 @@
       <img mat-card-image src="https://via.placeholder.com/300x200">
 			<mat-nav-list>
 
-				<a mat-list-item  (click)="changeTab(1)" >Shedule</a>
+				<a mat-list-item  (click)="changeTab(1)" ><mat-icon matListIcon>calendar_today</mat-icon>   Shedule</a>
 
-        <a mat-list-item [class.mat-elevation-z8]="true" (click)="changeTab(2)" >Requests</a>
+        <a mat-list-item [class.mat-elevation-z8]="true" (click)="changeTab(2)" ><mat-icon matListIcon>receipt</mat-icon>   Requests</a>
 
 
         <mat-expansion-panel class="sideNav">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Drivers
+              <mat-icon matListIcon>face</mat-icon>   Drivers
             </mat-panel-title>
           </mat-expansion-panel-header>
 
@@ -33,7 +33,7 @@
         <mat-expansion-panel class="sideNav">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Vehicles
+             <mat-icon matListIcon>commute</mat-icon>   Vehicles
             </mat-panel-title>
           </mat-expansion-panel-header>
 
@@ -49,14 +49,28 @@
 		</mat-drawer>
 
     <mat-drawer-content>
-      <div class="container">
+      <div class="" style="padding-right: 4vw;padding-left: 4vw; padding-top: 5vh;">
 
 
 
             <div *ngIf="selectedTab == 1">
               <!-- <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar> -->
 
-              <app-sheduler *ngIf="events.length > 0" [requests]="events"></app-sheduler>
+              <div class="row">
+                <div class="col-lg-7">
+                  <app-sheduler *ngIf="events.length > 0" [requests]="events"></app-sheduler>
+
+                </div>
+
+                <div class="col-lg-5">
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      Today Req
+                    </mat-expansion-panel-header>
+                  </mat-expansion-panel>
+                </div>
+              </div>
+
 
             </div>
 
