@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { AddDriverComponent } from '../add-driver/add-driver.component';
 import { RequestService } from '../../../../../services/request.service';
 import { AddVehicleToReqComponent } from '../add-vehicle-to-req/add-vehicle-to-req.component';
 import * as html2canvas from 'html2canvas';
 import * as jsPDF from 'jspdf';
+import { EditRequestComponent } from '../edit-request/edit-request.component';
 //import { AddVehicleComponent } from '../add-vehicle/add-vehicle.component';
 
 @Component({
@@ -19,7 +20,13 @@ export class ReqeustPreveiwComponent implements OnInit {
   //selectedVehicle = [];
   isChangeOccured = 0; // 0 -> nothing occured, 1 -> request is changed
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog, private requestService: RequestService) {
+  constructor(
+                @Inject(MAT_DIALOG_DATA) public data: any,
+                private dialog: MatDialog,
+                private requestService: RequestService,
+                private requestDialogRef: MatDialogRef<ReqeustPreveiwComponent>
+              ) {
+
     console.log("req data",data);
     this.selectedRequest = data;
    }
@@ -61,6 +68,23 @@ export class ReqeustPreveiwComponent implements OnInit {
       });
   }
 
+  // load edit request window
+  loadEditWindow() {
+    const dialogRef = this.dialog.open(EditRequestComponent, {
+      id: 'dialogEditRequest',
+      width: '90%',
+      data: this.selectedRequest
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if(result === 1) {
+        this.requestDialogRef.close(1);
+        //this.changeEmitter.emit(1); // when any change occur to request by dialog activity
+      }
+    });
+  }
+
   rejectRequest(refNo) {
     this.requestService.change_status(refNo, 3)
       .subscribe( (response) => {
@@ -97,64 +121,64 @@ export class ReqeustPreveiwComponent implements OnInit {
 
   printPdf(request) {
     let content = `
-    			 		
+
 
           <div style="width:210mm; height:297mm">
             <div class="container">
-            
+
             <div class="container-fluid">
             <div class="text-center"> <br><br>
-            
+
                   <img src="../../assets/images/logo/logo.png" class="nav-logo" alt="" style="height: 150px">
                   <h3>කැළණිය විශ්ව විද්‍යාලය - කැළණිය</h3>
-                  
-                   
+
+
                    <p > ධාවන වාරයක් සදහා රථයක් ලබා ගැනීමට අවසර ලබා ගැනීම</p>
                    <br>
                    <br>
               </div>
-                
+
                 <div class="">
-                
+
                 <ngx-qrcode qrc-element-type="url" [qrc-value]="ngxQrcode2" ></ngx-qrcode>
-                
+
                  <div class="row">
-                
+
                     <div class="col-12">අංකය	:&nbsp;	TRD/${request.refNo}</div>
                     <div class="col-12">පීඨය	:	&nbsp;${request.dep_unit}</div>
                     <div class="col-12">ඉල්ලුම්කරුගේ නම  :  ${request.name}</div>
                     <div class="col-12">ඉල්ලුම්කරුගේ තනතුර	:&nbsp;	${request.position}</div>
-                    
+
                     <br><br>
                     <div class="col-12" style="border-bottom: 1px solid #000000;">චාරිකාව පිළිබද</div>
-                    
+
                     <div class="col-12" style="padding-top: 10px">ආරම්භක ස්ථානය	:&nbsp;	${request.departure.pickPointAddress}</div>
                     <div class="col-12">ගමනාන්තය		:&nbsp;	${request.departure.dropPointAddress}</div>
-                
+
                 <br><br>
                       <div class="col-8">පිටත්වන දිනය :&nbsp; ${request.departure.pickupDate}</div>
                       <div class="col-4">වේලාව &nbsp; &nbsp; &nbsp; : &nbsp;${request.departure.pickupTime}</div>
-                    
+
                       <div class="col-8">ආපසු පැමිණෙන දිනය:&nbsp; ${request.arrival.dropDate}</div>
-                      
+
                       <div class="col-4">වේලාව &nbsp; &nbsp; &nbsp; :&nbsp; ${request.arrival.dropTime}</div>
-           
+
                      <br><br>
-                   
+
                     <div class="col-6">හේතුව	&nbsp; &nbsp; &nbsp;		:&nbsp;	${request.purpose}</div>
-                  
+
                     <br><br><br>
-                    
-                    
-                  </div>         
-                  
+
+
+                  </div>
+
                   </div>
                 <div class="row">
                         <div class="col-lg-6">
                           <p>........................................</p>
                           <p>ඉල්ලුම්කරුගේ අත්සන</p>
                         </div>
-                        
+
                          <div class="col-lg-6">
                           <p>........................................</p>
                           <p>දිනය</p>
@@ -163,15 +187,15 @@ export class ReqeustPreveiwComponent implements OnInit {
                 </div>
                 </div>
             </div>
-              
-                
-               
+
+
+
             </div>
-          
-            
-          
-          
-          
+
+
+
+
+
           </div>
     `;
 

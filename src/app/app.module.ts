@@ -67,6 +67,7 @@ import { AddVehicleToReqComponent } from './components/main/admin/dashboard/add-
 import { RequestsTableComponent } from './components/main/admin/dashboard/requests-table/requests-table.component';
 import { DriverListComponent } from './components/main/admin/drivers/driver-list/driver-list.component';
 import { VehicleListComponent } from './components/main/admin/vehicle/vehicle-list/vehicle-list.component';
+import { EditRequestComponent } from './components/main/admin/dashboard/edit-request/edit-request.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { VehicleListComponent } from './components/main/admin/vehicle/vehicle-li
     AddVehicleToReqComponent,
     RequestsTableComponent,
     DriverListComponent,
-    VehicleListComponent
+    VehicleListComponent,
+    EditRequestComponent
   ],
   imports: [
     BrowserModule,
@@ -147,7 +149,8 @@ import { VehicleListComponent } from './components/main/admin/vehicle/vehicle-li
   entryComponents: [
     ReqeustPreveiwComponent,
     AddDriverComponent,
-    AddVehicleToReqComponent
+    AddVehicleToReqComponent,
+    EditRequestComponent
   ]
 })
 export class AppModule { }

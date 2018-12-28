@@ -1,10 +1,4 @@
-
-<div>
-  <h2 mat-dialog-title style="display: inline;">TRD/{{ selectedRequest['refNo'] }}</h2>
-  <button mat-icon-button style="float: right;vertical-align: bottom;" (click)="loadEditWindow()"><mat-icon>edit</mat-icon></button>
-</div>
-
-
+<h2 mat-dialog-title>TRD/{{ selectedRequest['refNo'] }}</h2>
 <mat-divider></mat-divider>
 
 <mat-dialog-content>
@@ -28,8 +22,25 @@
 
           <br>
         <mat-list>
-          <mat-list-item><mat-icon>  date_range</mat-icon>&nbsp;&nbsp; {{ selectedRequest['departure']['pickupDate']}}</mat-list-item>
-          <mat-list-item> <mat-icon>  access_time</mat-icon>&nbsp;&nbsp; {{ selectedRequest['departure']['pickupTime']}} </mat-list-item>
+          <mat-list-item><mat-icon>  date_range</mat-icon>&nbsp;&nbsp;
+
+            <input [(ngModel)]="selectedRequest['departure']['pickupDate']"
+                     [owlDateTimeTrigger]="dtPicker1"
+                     [owlDateTime]="dtPicker1"
+                     class="trp-min-input no-tr"
+                     [min]="today"
+              >
+
+
+              <owl-date-time
+                #dtPicker1 [pickerType]="'calendar'"></owl-date-time>
+
+            </mat-list-item>
+          <mat-list-item> <mat-icon>  access_time</mat-icon>&nbsp;&nbsp;
+
+            <input class="trp-min-input" atp-time-picker value="" [(ngModel)] = "selectedRequest['departure']['pickupTime']" />
+
+          </mat-list-item>
         </mat-list>
 
 
@@ -48,8 +59,24 @@
 
           <br>
         <mat-list>
-          <mat-list-item><mat-icon>  date_range</mat-icon>&nbsp;&nbsp; {{selectedRequest['arrival']['dropDate']}}</mat-list-item>
-          <mat-list-item> <mat-icon>  access_time</mat-icon>&nbsp;&nbsp; {{ selectedRequest['arrival']['dropTime']}} </mat-list-item>
+          <mat-list-item><mat-icon>  date_range</mat-icon>&nbsp;&nbsp;
+
+              <input [(ngModel)]="selectedRequest['arrival']['dropDate']"
+              [owlDateTimeTrigger]="dtPicker2"
+              [owlDateTime]="dtPicker2"
+              class="trp-min-input"
+              [min]="selectedRequest['departure']['pickupDate']"
+              >
+              <owl-date-time
+                #dtPicker2 [pickerType]="'calendar'"
+              ></owl-date-time>
+
+            </mat-list-item>
+          <mat-list-item> <mat-icon>  access_time</mat-icon>&nbsp;&nbsp;
+
+            <input class="trp-min-input" atp-time-picker value="" [(ngModel)] = "selectedRequest['arrival']['dropTime']" />
+
+          </mat-list-item>
         </mat-list>
 
         </mat-card>
@@ -120,14 +147,14 @@
 
           <mat-list class="trp-mat-list">
 
-            <mat-list-item><mat-icon>account_circle</mat-icon>  &nbsp;&nbsp; {{selectedRequest['lecturer']}}</mat-list-item>
-            <mat-list-item><mat-icon>work_outline</mat-icon>  &nbsp;&nbsp; {{selectedRequest['position']}}</mat-list-item>
-            <mat-list-item><mat-icon>domain</mat-icon>  &nbsp;&nbsp; {{selectedRequest['dep_unit']}}</mat-list-item>
-            <mat-list-item><mat-icon>info</mat-icon>  &nbsp;&nbsp; {{selectedRequest['purpose']}}</mat-list-item>
-            <mat-list-item><mat-icon>local_atm</mat-icon>  &nbsp;&nbsp; {{selectedRequest['fundingWay']}}</mat-list-item>
-            <mat-list-item><mat-icon>email</mat-icon>  &nbsp;&nbsp; {{selectedRequest['email']}}</mat-list-item>
-            <mat-list-item><mat-icon>lock</mat-icon>  &nbsp;&nbsp; {{selectedRequest['password']}}</mat-list-item>
-            <mat-list-item><mat-icon>person_add</mat-icon>  &nbsp;&nbsp; {{selectedRequest['num_passangers']}}</mat-list-item>
+            <mat-list-item><mat-icon>account_circle</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Requester's Name" matInput [(ngModel)]="selectedRequest['lecturer']"></mat-list-item><br>
+            <mat-list-item><mat-icon>work_outline</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Requester's position" matInput [(ngModel)]="selectedRequest['position']"></mat-list-item><br>
+            <mat-list-item><mat-icon>domain</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Requester's Department/unit" matInput [(ngModel)]="selectedRequest['dep_unit']"></mat-list-item><br>
+            <mat-list-item><mat-icon>info</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Purpose" matInput [(ngModel)]="selectedRequest['purpose']"></mat-list-item><br>
+            <mat-list-item><mat-icon>local_atm</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Funding Method" matInput [(ngModel)]="selectedRequest['fundingWay']"></mat-list-item><br>
+            <mat-list-item><mat-icon>email</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Email" matInput [(ngModel)]="selectedRequest['email']"></mat-list-item><br>
+            <mat-list-item><mat-icon>lock</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Password" matInput [(ngModel)]="selectedRequest['password']"></mat-list-item><br>
+            <mat-list-item><mat-icon>person_add</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Number of Passengers" matInput [(ngModel)]="selectedRequest['num_passangers']"></mat-list-item><br>
 
           </mat-list>
 
@@ -144,20 +171,8 @@
 
 <mat-dialog-actions>
 
-  <div [ngSwitch]="selectedRequest['status']" style=" display: inline">
-
-    <button mat-button *ngSwitchCase="0" (click)="acceptRequest(selectedRequest['refNo'])" style="background-color: #4CAF50; ">Accept</button>
-    <button mat-button *ngSwitchCase="2" (click)="markDocumentedRequest(selectedRequest['refNo'])" style="background-color: #FF9800; ">Documented</button>
-    <button mat-button *ngSwitchCase="3" (click)="printPdf(selectedRequest)" style="background-color: #52b03c; " >Print Application</button>
-    <button mat-button *ngSwitchCase="3" (click)="printGatePass(selectedRequest)" style="background-color: #52b03c; " >Print Gate Pass</button>
-    <button mat-button *ngSwitchCase="3" style="background-color: #9C27B0; " >Completed</button>
-
-  </div>
-
-  <button mat-button (click)="rejectRequest(selectedRequest['refNo'] )" style="background-color: #f50057; ">Reject</button>
-
-
-  <button mat-button [mat-dialog-close]="1" style="background-color: #FF9800; ">Cancel</button>
+  <button mat-button (click)="editRequest(selectedRequest)" style="background-color: #4CAF50; ">Done</button>
+  <button mat-button [mat-dialog-close]="2" style="background-color: #FF9800; ">Cancel</button>
 
 </mat-dialog-actions>
 
