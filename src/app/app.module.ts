@@ -151,4 +151,4 @@ import { VehicleListComponent } from './components/main/admin/vehicle/vehicle-li
   ]
 })
 export class AppModule { }
-platformBrowserDynamic().bootstrapModule(AppModule);
+//platformBrowserDynamic().bootstrapModule(AppModule);
