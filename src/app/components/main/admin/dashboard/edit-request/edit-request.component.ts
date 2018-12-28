@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-edit-request',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditRequestComponent implements OnInit {
 
-  constructor() { }
+  selectedRequest = [];
+
+  constructor(@Inject(MAT_DIALOG_DATA) data: any) {
+
+    this.selectedRequest = data;
+  }
 
   ngOnInit() {
+  }
+
+  // edit the reqeust
+  editRequest(request) {
+
   }
 
 }

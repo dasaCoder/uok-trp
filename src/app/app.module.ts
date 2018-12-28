@@ -149,7 +149,8 @@ import { EditRequestComponent } from './components/main/admin/dashboard/edit-req
   entryComponents: [
     ReqeustPreveiwComponent,
     AddDriverComponent,
-    AddVehicleToReqComponent
+    AddVehicleToReqComponent,
+    EditRequestComponent
   ]
 })
 export class AppModule { }
