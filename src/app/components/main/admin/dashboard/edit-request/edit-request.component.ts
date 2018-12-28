@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-edit-request',
@@ -10,7 +10,10 @@ export class EditRequestComponent implements OnInit {
 
   selectedRequest = [];
 
-  constructor(@Inject(MAT_DIALOG_DATA) data: any) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) data: any,
+    private editDialogRef: MatDialogRef<EditRequestComponent>
+    ) {
 
     this.selectedRequest = data;
   }
@@ -20,7 +23,7 @@ export class EditRequestComponent implements OnInit {
 
   // edit the reqeust
   editRequest(request) {
-
+    this.editDialogRef.close(1);
   }
 
 }

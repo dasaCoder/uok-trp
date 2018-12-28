@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { AddDriverComponent } from '../add-driver/add-driver.component';
 import { RequestService } from '../../../../../services/request.service';
 import { AddVehicleToReqComponent } from '../add-vehicle-to-req/add-vehicle-to-req.component';
@@ -20,7 +20,13 @@ export class ReqeustPreveiwComponent implements OnInit {
   //selectedVehicle = [];
   isChangeOccured = 0; // 0 -> nothing occured, 1 -> request is changed
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog, private requestService: RequestService) {
+  constructor(
+                @Inject(MAT_DIALOG_DATA) public data: any,
+                private dialog: MatDialog,
+                private requestService: RequestService,
+                private requestDialogRef: MatDialogRef<ReqeustPreveiwComponent>
+              ) {
+
     console.log("req data",data);
     this.selectedRequest = data;
    }
@@ -68,6 +74,14 @@ export class ReqeustPreveiwComponent implements OnInit {
       id: 'dialogEditRequest',
       width: '90%',
       data: this.selectedRequest
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if(result === 1) {
+        this.requestDialogRef.close(1);
+        //this.changeEmitter.emit(1); // when any change occur to request by dialog activity
+      }
     });
   }
 
