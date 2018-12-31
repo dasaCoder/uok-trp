@@ -80,6 +80,40 @@
                       <mat-icon>battery_alert</mat-icon>Vehicles on maintenence
                     </mat-expansion-panel-header>
 
+                    <form class="">
+
+                      <div class="col-lg-12">
+                        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                          <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">
+                            {{vehicle}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </div>
+
+                      <div class="col-lg-12">
+
+                        <mat-label>Start Date:</mat-label>
+                        <mat-icon matListIcon style="vertical-align:middle">date_range</mat-icon>
+                        <input [(ngModel)]="startDate"
+                               [owlDateTimeTrigger]="dtPicker2"
+                               [owlDateTime]="dtPicker2"
+                               class=""
+                               [min]="today"
+                               style="display: inline;width: 150px"
+                        >
+                        <owl-date-time
+                          #dtPicker2 [pickerType]="'calendar'"
+                        ></owl-date-time>
+
+                        <mat-icon matListIcon>access_time</mat-icon>
+
+                        <input class="" atp-time-picker value="" style="width: 150px" [(ngModel)] = "startTime" s/>
+
+                      </div>
+
+
+                    </form>
 
                   </mat-expansion-panel>
 

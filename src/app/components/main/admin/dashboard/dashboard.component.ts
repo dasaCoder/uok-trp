@@ -5,6 +5,7 @@ import {FullCalendarModule} from 'primeng/fullcalendar';
 import { AdminService } from '../../../../services/admin.service';
 import { ReqeustPreveiwComponent } from './reqeust-preveiw/reqeust-preveiw.component';
 import { RequestService } from '../../../../services/request.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -40,6 +41,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   events: any = [];
   options: any = [];
+
+  // add maintenece autocomplete
+  myControl = new FormControl();
+  vehicles: string[] = ['One', 'Two', 'Three'];
+  startDate;
+  endDate;
+  startTime;
+  endTime;
+  mReason;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -118,6 +128,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       });
   }
+
   getRequestOnStatus(): any {
     // this.adminService.getRequestsOnStatusForTable(`status[0]=1&statsu[1]=2&status[3]=4&status[4]=0`)
     //     .subscribe(data => {
@@ -133,6 +144,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
         });
 
   }
+
+  // add new maintenence details
+
 
   // invoke when dialog activity change data of a request
   changeDetecter(change) {
