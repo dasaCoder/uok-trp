@@ -23,7 +23,8 @@ export class EditRequestComponent implements OnInit {
 
   // edit the reqeust
   editRequest(request) {
-    this.editDialogRef.close(1);
+    console.log(request);
+    //this.editDialogRef.close(1);
   }
 
 }

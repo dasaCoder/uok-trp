@@ -43,6 +43,14 @@ export class AdminService {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
+
+  // update a reqeust
+  updateRequest(request) {
+    return this.http.post(this.url + '/request/update', request, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    });
+  }
+
   getAllDriversDetails() {
     return this.http.get('https://uok-transport-division.herokuapp.com/admin/get_all_driver_details', {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
@@ -114,6 +122,7 @@ export class AdminService {
                               break;
                           }
 
+                          console.log(element);
                           dataM.push(
                             {
                               'title': 'TRP/' + element['refNo'],

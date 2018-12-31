@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
    // this.acceptedReqDataSource.paginator = this.paginator;
     //this.dataSource.paginator = this.paginator;
 
-    this.adminService.getRequestOnStatusForCalender(`status[0]=1&statsu[1]=2&status[2]=3&status[3]=4&status[4]=0`)
+    this.adminService.getRequestOnStatusForCalender(`status[0]=1&statsu[1]=2&status[2]=3&status[3]=4&status[4]=0&status[5]=100`)
         .then( events => {this.events = events; } );
 
         this.options = {
@@ -175,6 +175,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.adminService.addMainteneceDetails(this.mSelectedVehicle['_id'], details)
         .subscribe( response => {
           console.log(response);
+          if (response['success']){
+
+          }
         });
   }
 
