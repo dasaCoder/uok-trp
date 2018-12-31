@@ -66,6 +66,14 @@ export class AdminService {
       } );
   }
 
+  // add new maintenece details for given vehicle
+  addMainteneceDetails(_id, details) {
+
+    return this.http.post( this.url + `/vehicle/maintenance/add?_id=${_id}`, details, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    });
+  }
+
   get_request_list(status) {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/get_request_list/?status=${status}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),

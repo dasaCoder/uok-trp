@@ -44,12 +44,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   // add maintenece autocomplete
   myControl = new FormControl();
-  vehicles: string[] = ['One', 'Two', 'Three'];
+  vehicles = [];
   startDate;
   endDate;
   startTime;
   endTime;
   mReason;
+  mSelectedVehicle;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -82,6 +83,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
         };
 
         this.loadTableData();
+
+    // load vehicle list
+    this.adminService.getVehicle_to_req()
+    .subscribe((response => {
+      console.log(response['data']);
+      this.vehicles = response['data'];
+    }));
 
    }
 
@@ -146,13 +154,40 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   // add new maintenence details
+  addMainteneceDetails() {
 
+    let details = [];
+
+    details['arrival'] = [];
+    details['arrival']['dropDate'] = this.endDate;
+    details['arrival']['dropTime'] = this.endTime;
+
+    details['departure'] = [];
+    details['departure']['pickupDate'] = this.startDate;
+    details['departure']['pickupTime'] = this.startTime;
+
+    details['status'] = 'Under Maintenece';
+    details['reason'] = this.mReason;
+    details['vehicle'] = this.mSelectedVehicle;
+
+    console.log("details",details);
+    //
+    this.adminService.addMainteneceDetails(this.mSelectedVehicle['_id'], details)
+        .subscribe( response => {
+          console.log(response);
+        });
+  }
 
   // invoke when dialog activity change data of a request
   changeDetecter(change) {
     if(change === 1) {
       this.loadTableData();
     }
+  }
+
+  // filter vehicle no for autocomplete after select an option
+  displayVehicleNo(vehicle) {
+      return vehicle ? vehicle['vehicle_no'] : vehicle;
   }
 
 }
