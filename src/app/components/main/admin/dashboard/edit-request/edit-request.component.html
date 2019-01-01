@@ -107,11 +107,7 @@
             </mat-list-item>
           </mat-list>
 
-
-          <button mat-button *ngIf="selectedRequest['driver']" cdkFocusInitial class="bg-warning" (click)="addDriver(selectedRequest['refNo'])"><mat-icon>cached</mat-icon>&nbsp;Change Driver</button>
-          <button mat-button *ngIf="!selectedRequest['driver']" cdkFocusInitial class="bg-success" (click)="addDriver(selectedRequest['refNo'])"><mat-icon>add</mat-icon>&nbsp; Add Driver</button>
-
-        </mat-expansion-panel>
+       </mat-expansion-panel>
 
         <mat-expansion-panel>
           <mat-expansion-panel-header >
@@ -130,9 +126,6 @@
                 Not Assigned yet
               </mat-list-item>
             </mat-list>
-
-            <button mat-button *ngIf="!selectedRequest['vehicle']" class="bg-success" cdkFocusInitial (click)="addVehicle(selectedRequest['refNo'])"><mat-icon>add</mat-icon>&nbsp; Add Vehicle</button>
-            <button mat-button *ngIf="selectedRequest['vehicle']" class="bg-warning" cdkFocusInitial (click)="addVehicle(selectedRequest['refNo'])"><mat-icon>cached</mat-icon>&nbsp;Change Vehicle</button>
 
 
         </mat-expansion-panel>
