@@ -46,7 +46,7 @@ export class AdminService {
 
   // update a reqeust
   updateRequest(request) {
-    return this.http.post(this.url + '/request/update', request, {
+    return this.http.post(this.url + '/requests/update', request, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     });
   }
