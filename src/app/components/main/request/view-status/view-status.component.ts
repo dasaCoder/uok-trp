@@ -5,6 +5,7 @@ import { Request} from '../../../../classes/request';
 import {AuthService} from '../../../../services/auth.service';
 import * as html2canvas from 'html2canvas';
 import * as jsPDF from 'jspdf';
+import * as rasterizeHTML from 'rasterizehtml';
 
 @Component({
   selector: 'app-view-status',
@@ -269,22 +270,43 @@ export class ViewStatusComponent implements OnInit {
   </center>
 </div>`;
 
-    //document.getElementById('request_form_div').innerHTML = content;
+    // //document.getElementById('request_form_div').innerHTML = content;
 
-    html2canvas(document.getElementById('request_form_div')).then( canvas => {
+    // html2canvas(document.getElementById('request_form_div')).then( canvas => {
 
-      //document.getElementById('request_form_div').innerHTML = '';
+    //   //document.getElementById('request_form_div').innerHTML = '';
+    //   console.log(canvas);
 
-      let imgData = canvas.toDataURL('image/png');
-      // document.body.appendChild(canvas);
+    //   // let imgData = canvas.toDataURL('image/png');
+    //   // // document.body.appendChild(canvas);
 
-      let doc = new jsPDF('p', 'mm' , 'a4');
-      //doc.setFont("helvetica");
-      var width = 300;
-      let height = 297;
-      doc.addImage(imgData, 'JPEG', 0 , 0, width, height);
-      doc.save('request.pdf');
-    })
+    //   // let doc = new jsPDF('p', 'mm' , 'a4');
+    //   // //doc.setFont("helvetica");
+    //   // var width = 300;
+    //   // let height = 297;
+    //   // doc.addImage(imgData, 'JPEG', 0 , 0, width, height);
+    //   // doc.save('request.pdf');
+    // })
+
+    let canvas:any = document.getElementById("request_form_div");
+    let context = canvas.getContext('2d');
+
+    //console.log(rasterizeHTML.drawHTML(content, canvas));
+
+    rasterizeHTML.drawHTML(content, canvas)
+        .then(function success(renderResult) {
+          console.log("jspf;",renderResult);
+          let imgData = context.drawImage(renderResult.image, 10, 25);
+          // document.body.appendChild(canvas);
+          let doc = new jsPDF('p', 'mm' , 'a4');
+          //doc.setFont("helvetica");
+          var width = 300;
+          let height = 297;
+          doc.addImage(imgData, 'JPEG', 0 , 0, width, height);
+          doc.save('request.pdf');
+        }, function error(e) {
+          console.log("jspf error", e)  ;
+        });
   }
 
 
