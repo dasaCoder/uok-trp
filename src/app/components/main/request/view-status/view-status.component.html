@@ -4,6 +4,7 @@
 
 
 <div>
+  <br>
     <h2 mat-dialog-title style="display: inline;">TRD/{{ request['refNo'] }}</h2>
 
     <!-- start -> req status detaila -->
@@ -28,7 +29,7 @@
           <div *ngIf="request.status == 2" class="alert alert-info">
             <i class="fa fa-info-circle"></i>  Your request is confirmed! Download Application and
             <b> Handover to Transport Division </b>
-            <br> <br>
+
             <button class="btn btn-primary" (click)="printPdf()">Download Application</button>
           </div>
 
@@ -39,8 +40,6 @@
     </div>
   </div>
   <!-- end status details -->
-
-  <mat-divider></mat-divider>
 
   <mat-dialog-content>
 
@@ -225,12 +224,6 @@
   </mat-dialog-content>
 
   <mat-dialog-actions>
-
-    <div [ngSwitch]="request['status']" style="float: right; padding-bottom: 20px">
-
-      <button mat-button *ngSwitchCase="3" (click)="printPdf(request)" style="background-color: #52b03c; " >Print Application</button>
-
-    </div>
 
 
   </mat-dialog-actions>
