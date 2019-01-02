@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestService} from '../../../../services/request.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Request} from '../../../../classes/request';
 import {AuthService} from '../../../../services/auth.service';
 import * as html2canvas from 'html2canvas';
@@ -19,7 +19,7 @@ export class ViewStatusComponent implements OnInit {
   ngxQrcode2 = 'https://www.npmjs.com/package/ngx-qrcode2';
 
 
-  constructor(private requestService: RequestService, private route: ActivatedRoute, private authService: AuthService) {
+  constructor(private requestService: RequestService, private route: ActivatedRoute,private router:Router, private authService: AuthService) {
     this.route.paramMap
       .subscribe(params => {
          console.log(+params.get('refNo'));
@@ -66,66 +66,72 @@ export class ViewStatusComponent implements OnInit {
       });
   }
 
+  logout() {
+    this.authService.logout();
+
+    this.router.navigate(['/']);
+  }
+
   printPdf() {
     let content = `
-    			 		
+
 
           <div style="width:210mm; height:297mm">
             <div class="container">
-            
+
             <div class="container-fluid">
             <div class="text-center"> <br><br>
-            
+
                   <img src="../../assets/images/logo/logo.png" class="nav-logo" alt="" style="height: 150px">
                   <h3>කැළණිය විශ්ව විද්‍යාලය - කැළණිය</h3>
-                  
-                   
+
+
                    <p > ධාවන වාරයක් සදහා රථයක් ලබා ගැනීමට අවසර ලබා ගැනීම</p>
                    <br>
                    <br>
               </div>
-                
+
                 <div class="">
-                
+
                 <ngx-qrcode qrc-element-type="url" [qrc-value]="ngxQrcode2" ></ngx-qrcode>
-                
+
                  <div class="row">
-                
+
                     <div class="col-12">අංකය	:&nbsp;	TRD/${this.request.refNo}</div>
                     <div class="col-12">පීඨය	:	&nbsp;${this.request.dep_unit}</div>
                     <div class="col-12">ඉල්ලුම්කරුගේ නම  :  ${this.request.name}</div>
                     <div class="col-12">ඉල්ලුම්කරුගේ තනතුර	:&nbsp;	${this.request.position}</div>
-                    
+
                     <br><br>
                     <div class="col-12" style="border-bottom: 1px solid #000000;">චාරිකාව පිළිබද</div>
-                    
+
                     <div class="col-12" style="padding-top: 10px">ආරම්භක ස්ථානය	:&nbsp;	${this.request.departure.pickPointAddress}</div>
                     <div class="col-12">ගමනාන්තය		:&nbsp;	${this.request.departure.dropPointAddress}</div>
-                
+
                 <br><br>
                       <div class="col-8">පිටත්වන දිනය :&nbsp; ${this.request.departure.pickupDate}</div>
                       <div class="col-4">වේලාව &nbsp; &nbsp; &nbsp; : &nbsp;${this.request.departure.pickupTime}</div>
-                    
+
                       <div class="col-8">ආපසු පැමිණෙන දිනය:&nbsp; ${this.request.arrival.dropDate}</div>
-                      
+
                       <div class="col-4">වේලාව &nbsp; &nbsp; &nbsp; :&nbsp; ${this.request.arrival.dropTime}</div>
-           
+
                      <br><br>
-                   
+
                     <div class="col-6">හේතුව	&nbsp; &nbsp; &nbsp;		:&nbsp;	${this.request.purpose}</div>
-                  
+
                     <br><br><br>
-                    
-                    
-                  </div>         
-                  
+
+
+                  </div>
+
                   </div>
                 <div class="row">
                         <div class="col-lg-6">
                           <p>........................................</p>
                           <p>ඉල්ලුම්කරුගේ අත්සන</p>
                         </div>
-                        
+
                          <div class="col-lg-6">
                           <p>........................................</p>
                           <p>දිනය</p>
@@ -134,15 +140,15 @@ export class ViewStatusComponent implements OnInit {
                 </div>
                 </div>
             </div>
-              
-                
-               
+
+
+
             </div>
-          
-            
-          
-          
-          
+
+
+
+
+
           </div>
     `;
 
