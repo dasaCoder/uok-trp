@@ -73,57 +73,44 @@ export class ViewStatusComponent implements OnInit {
   }
 
   printPdf() {
-    let content = `<div class="page">
+    let content = `
+
+    <div class="page">
     <center class="wrapper">
       <table class="top-panel center" width="602" border="0" cellspacing="0" cellpadding="0">
           <tbody>
-          <tr>
-            <br>
-              <td><img src="https://i.ibb.co/0hjnWbB/220px-Kelaniya.png" alt="220px-Kelaniya" style="height:100px;float:right" border="0"></td>
-              <td class="title" width="300"><div class="title">ප්රවාහන අංශය</div>
-                <div class="title" style="    font-size: 15px;
-    padding-top: 0px;
-   ">
-                  කැළණිය විශ්ව විද්‍යාලය - කැළණිය
-                </div>
-            </td>
+                <tr>
+                  <br>
+                    <td><img src="https://i.ibb.co/0hjnWbB/220px-Kelaniya.png" alt="220px-Kelaniya" style="height:100px;float:right" border="0"></td>
+                    <td class="title" width="300"><div class="title">ප්රවාහන අංශය</div>
+                      <div class="title" style="    font-size: 15px;
+          padding-top: 0px;
+        ">
+                        කැළණිය විශ්ව විද්‍යාලය - කැළණිය
+                      </div>
+                  </td>
 
-          </tr>
+                </tr>
+                <tr>
 
-
-
-          </tbody>
-      </table>
-<br>
+                    <td class="border" style="margin-top:30px" colspan="2">&nbsp;</td>
+                </tr>
+                </tbody>
+            </table>
+      <br>
       <h3>ධාවන වාරයක් සදහා රථයක් ලබා ගැනීමට අවසර ලබා ගැනීම</h3>
-      <div class="spacer">&nbsp;</div>
+            <div class="spacer">&nbsp;</div>
 
-      <table class="main center" width="602" border="0" cellspacing="0" cellpadding="0">
-          <tbody>
-
-          <tr>
-              <td class="column">
-                  <div class="column-top">&nbsp;</div>
-                  <table class="content" border="0" cellspacing="0" cellpadding="0">
-                      <tbody>
-                      <tr>
-<!--                           <td class="padded">
-                            <h1 style="margin-bottom:-5px">Transport Division</h1>
-                            <span style="padding-left:5px;font-size:0.8em;">University of Kelaniya</span>
-                            <hr>
-                            <br>
-                            <p>Hi! Diusha,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your request is Accepted which means we are able to supply your vehicle on time. Please supply us few additional details to proceed. </p> <i> Please use following credentials for check the status of your request.</i> <br><br>
-                            <div style="padding-left:50px">
-                              <ul class="mail-ul">
-                              <li>Refferance No : TRD/230</li>
-                              <li>password : 1234</li>
-                            </ul>
-                            </div>
-
-                            <p class="caption">This is a caption text in main email body.</p>
-                          </td> -->
-                      </tr>
-                                                                                                   <tr>
+            <table class="main center" width="602" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td class="column">
+                        <div class="column-top">&nbsp;</div>
+                        <table class="content" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr>
+                            </tr>
+                                                    <tr>
                                 <td class="padded">
                                   අංකය
                                 </td>
@@ -156,12 +143,12 @@ export class ViewStatusComponent implements OnInit {
                                 </td>
                               </tr>
 
-                      </tbody>
-                  </table>
-                <hr>
-                <h4 class="padded">චාරිකාව පිළිබද</h4> <br>
-                <table  class="content" border="0" cellspacing="0" cellpadding="0">
-                                          <tr>
+                            </tbody>
+                        </table>
+                      <hr>
+                      <h4 class="padded">චාරිකාව පිළිබද</h4> <br>
+                      <table class="content" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
                           <td class="padded">
                             ආරම්භක ස්ථානය
                           </td>
@@ -208,80 +195,84 @@ export class ViewStatusComponent implements OnInit {
                           <td class="padded">හේතුව</td>
                           <td class="padded">${this.request.purpose}</td>
                         </tr>
-                </table>
-                <hr>
-                <table class="content" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <br><br><br>
-                    <td class="padded">
-                      ............................................................
-                    </td>
-                     <td class="padded">
-                      ............................................................
-                    </td>
-                     <td class="padded">
-                      ............................................................
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="padded-sign">
-                      ඉල්ලුම්කරුගේ අත්සන
-                    </td>
-                     <td class="padded-sign">
-                      Dean
-                    </td>
-                     <td class="padded-sign">
-                      දිනය
-                    </td>
-                  </tr>
+                      </table>
+                      <hr>
+                      <table class="content" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <br><br><br>
+                          <td class="padded">
+                            ............................................................
+                          </td>
+                          <td class="padded">
+                            ............................................................
+                          </td>
+                          <td class="padded">
+                            ............................................................
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="padded-sign">
+                            ඉල්ලුම්කරුගේ අත්සන
+                          </td>
+                          <td class="padded-sign">
+                            Dean
+                          </td>
+                          <td class="padded-sign">
+                            දිනය
+                          </td>
+                        </tr>
 
-                </table>
-                <br>
-                  <div class="column-bottom">&nbsp;</div>
-              </td>
-          </tr>
-          </tbody>
-      </table>
+                      </table>
+                      <br>
+                        <div class="column-bottom">&nbsp;</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
-      <div class="spacer">&nbsp;</div>
+            <div class="spacer">&nbsp;</div>
 
-      <table class="footer center" width="602" border="0" cellspacing="0" cellpadding="0">
-          <tbody>
-          <tr>
-              <td class="border" colspan="2">&nbsp;</td>
-          </tr>
-          <tr>
-              <td class="signature" width="300">
-                  <p>
+            <table class="footer center" width="602" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td class="border" colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="signature" width="300">
+                        <p>
 
-                      Transport Division,<br>
-                      University Of Kelaniya <br>
-                      +0 (000) 00-00-00, John Doe<br>
-                      </p>
-                  <p>
-                      Support: <a class="strong" href="mailto:#" target="_blank">trp.uok@gmail.com</a>
-                  </p>
-              </td>
+                            Transport Division,<br>
+                            University Of Kelaniya <br>
+                            +0 (000) 00-00-00, John Doe<br>
+                            </p>
+                        <p>
+                            Support: <a class="strong" href="mailto:#" target="_blank">trp.uok@gmail.com</a>
+                        </p>
+                    </td>
 
-          </tr>
-          </tbody>
-      </table>
-  </center>
-</div>`;
+                </tr>
+                </tbody>
+            </table>
+        </center>
+      </div>
 
-    //document.getElementById('request_form_div').innerHTML = content;
+    `;
+
+    document.getElementById('request_form_div').innerHTML = content;
 
     html2canvas(document.getElementById('request_form_div')).then( canvas => {
 
-      //document.getElementById('request_form_div').innerHTML = '';
+      document.getElementById('request_form_div').innerHTML = '';
 
       let imgData = canvas.toDataURL('image/png');
       // document.body.appendChild(canvas);
 
       let doc = new jsPDF('p', 'mm' , 'a4');
-      //doc.setFont("helvetica");
-      var width = 300;
-      let height = 297;
+      doc.setFont("helvetica");
+      doc.setFontType("bold");
+      doc.setFontSize(10);
+      var width = 470;
+      let height = doc.internal.pageSize.height;
       doc.addImage(imgData, 'JPEG', 0 , 0, width, height);
       doc.save('request.pdf');
     })
