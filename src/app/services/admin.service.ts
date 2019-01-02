@@ -43,6 +43,14 @@ export class AdminService {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
+
+  // update a reqeust
+  updateRequest(request) {
+    return this.http.post(this.url + '/requests/update', request, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    });
+  }
+
   getAllDriversDetails() {
     return this.http.get('https://uok-transport-division.herokuapp.com/admin/get_all_driver_details', {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
@@ -64,6 +72,14 @@ export class AdminService {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/vehicle/set_vehicle/?refNo=${refNo}&_id=${_id}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
+  }
+
+  // add new maintenece details for given vehicle
+  addMainteneceDetails(_id, details) {
+
+    return this.http.post( this.url + `/vehicle/maintenance/add?_id=${_id}`, details, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    });
   }
 
   get_request_list(status) {
@@ -106,6 +122,7 @@ export class AdminService {
                               break;
                           }
 
+                          console.log(element);
                           dataM.push(
                             {
                               'title': 'TRP/' + element['refNo'],

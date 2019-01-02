@@ -5,6 +5,7 @@ import {FullCalendarModule} from 'primeng/fullcalendar';
 import { AdminService } from '../../../../services/admin.service';
 import { ReqeustPreveiwComponent } from './reqeust-preveiw/reqeust-preveiw.component';
 import { RequestService } from '../../../../services/request.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -41,6 +42,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   events: any = [];
   options: any = [];
 
+  // add maintenece autocomplete
+  myControl = new FormControl();
+  vehicles = [];
+  startDate;
+  endDate;
+  startTime;
+  endTime;
+  mReason;
+  mSelectedVehicle;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   private _mobileQueryListener: () => void;
@@ -59,7 +70,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
    // this.acceptedReqDataSource.paginator = this.paginator;
     //this.dataSource.paginator = this.paginator;
 
-    this.adminService.getRequestOnStatusForCalender(`status[0]=1&statsu[1]=2&status[2]=3&status[3]=4&status[4]=0`)
+    this.adminService.getRequestOnStatusForCalender(`status[0]=1&statsu[1]=2&status[2]=3&status[3]=4&status[4]=0&status[5]=100`)
         .then( events => {this.events = events; } );
 
         this.options = {
@@ -72,6 +83,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
         };
 
         this.loadTableData();
+
+    // load vehicle list
+    this.adminService.getVehicle_to_req()
+    .subscribe((response => {
+      console.log(response['data']);
+      this.vehicles = response['data'];
+    }));
 
    }
 
@@ -118,6 +136,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       });
   }
+
   getRequestOnStatus(): any {
     // this.adminService.getRequestsOnStatusForTable(`status[0]=1&statsu[1]=2&status[3]=4&status[4]=0`)
     //     .subscribe(data => {
@@ -134,11 +153,44 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   }
 
+  // add new maintenence details
+  addMainteneceDetails() {
+
+    let details = [];
+
+    details['arrival'] = [];
+    details['arrival']['dropDate'] = this.endDate;
+    details['arrival']['dropTime'] = this.endTime;
+
+    details['departure'] = [];
+    details['departure']['pickupDate'] = this.startDate;
+    details['departure']['pickupTime'] = this.startTime;
+
+    details['status'] = 'Under Maintenece';
+    details['reason'] = this.mReason;
+    details['vehicle'] = this.mSelectedVehicle;
+
+    console.log("details",details);
+    //
+    this.adminService.addMainteneceDetails(this.mSelectedVehicle['_id'], details)
+        .subscribe( response => {
+          console.log(response);
+          if (response['success']){
+
+          }
+        });
+  }
+
   // invoke when dialog activity change data of a request
   changeDetecter(change) {
     if(change === 1) {
       this.loadTableData();
     }
+  }
+
+  // filter vehicle no for autocomplete after select an option
+  displayVehicleNo(vehicle) {
+      return vehicle ? vehicle['vehicle_no'] : vehicle;
   }
 
 }

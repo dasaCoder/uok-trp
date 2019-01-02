@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestService} from '../../../../services/request.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Request} from '../../../../classes/request';
 import {AuthService} from '../../../../services/auth.service';
 import * as html2canvas from 'html2canvas';
@@ -19,7 +19,7 @@ export class ViewStatusComponent implements OnInit {
   ngxQrcode2 = 'https://www.npmjs.com/package/ngx-qrcode2';
 
 
-  constructor(private requestService: RequestService, private route: ActivatedRoute, private authService: AuthService) {
+  constructor(private requestService: RequestService, private route: ActivatedRoute,private router:Router, private authService: AuthService) {
     this.route.paramMap
       .subscribe(params => {
          console.log(+params.get('refNo'));
@@ -66,84 +66,196 @@ export class ViewStatusComponent implements OnInit {
       });
   }
 
+  logout() {
+    this.authService.logout();
+
+    this.router.navigate(['/']);
+  }
+
   printPdf() {
     let content = `
-    			 		
 
-          <div style="width:210mm; height:297mm">
-            <div class="container">
-            
-            <div class="container-fluid">
-            <div class="text-center"> <br><br>
-            
-                  <img src="../../assets/images/logo/logo.png" class="nav-logo" alt="" style="height: 150px">
-                  <h3>කැළණිය විශ්ව විද්‍යාලය - කැළණිය</h3>
-                  
-                   
-                   <p > ධාවන වාරයක් සදහා රථයක් ලබා ගැනීමට අවසර ලබා ගැනීම</p>
-                   <br>
-                   <br>
-              </div>
-                
-                <div class="">
-                
-                <ngx-qrcode qrc-element-type="url" [qrc-value]="ngxQrcode2" ></ngx-qrcode>
-                
-                 <div class="row">
-                
-                    <div class="col-12">අංකය	:&nbsp;	TRD/${this.request.refNo}</div>
-                    <div class="col-12">පීඨය	:	&nbsp;${this.request.dep_unit}</div>
-                    <div class="col-12">ඉල්ලුම්කරුගේ නම  :  ${this.request.name}</div>
-                    <div class="col-12">ඉල්ලුම්කරුගේ තනතුර	:&nbsp;	${this.request.position}</div>
-                    
-                    <br><br>
-                    <div class="col-12" style="border-bottom: 1px solid #000000;">චාරිකාව පිළිබද</div>
-                    
-                    <div class="col-12" style="padding-top: 10px">ආරම්භක ස්ථානය	:&nbsp;	${this.request.departure.pickPointAddress}</div>
-                    <div class="col-12">ගමනාන්තය		:&nbsp;	${this.request.departure.dropPointAddress}</div>
-                
-                <br><br>
-                      <div class="col-8">පිටත්වන දිනය :&nbsp; ${this.request.departure.pickupDate}</div>
-                      <div class="col-4">වේලාව &nbsp; &nbsp; &nbsp; : &nbsp;${this.request.departure.pickupTime}</div>
-                    
-                      <div class="col-8">ආපසු පැමිණෙන දිනය:&nbsp; ${this.request.arrival.dropDate}</div>
-                      
-                      <div class="col-4">වේලාව &nbsp; &nbsp; &nbsp; :&nbsp; ${this.request.arrival.dropTime}</div>
-           
-                     <br><br>
-                   
-                    <div class="col-6">හේතුව	&nbsp; &nbsp; &nbsp;		:&nbsp;	${this.request.purpose}</div>
-                  
-                    <br><br><br>
-                    
-                    
-                  </div>         
-                  
-                  </div>
-                <div class="row">
-                        <div class="col-lg-6">
-                          <p>........................................</p>
-                          <p>ඉල්ලුම්කරුගේ අත්සන</p>
-                        </div>
-                        
-                         <div class="col-lg-6">
-                          <p>........................................</p>
-                          <p>දිනය</p>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-              
-                
-               
-            </div>
-          
-            
-          
-          
-          
-          </div>
+    <div class="page">
+    <center class="wrapper">
+      <table class="top-panel center" width="602" border="0" cellspacing="0" cellpadding="0">
+          <tbody>
+                <tr>
+                  <br>
+                    <td><img src="https://i.ibb.co/0hjnWbB/220px-Kelaniya.png" alt="220px-Kelaniya" style="height:100px;float:right" border="0"></td>
+                    <td class="title" width="300"><div class="title">ප්රවාහන අංශය</div>
+                      <div class="title" style="    font-size: 15px;
+          padding-top: 0px;
+        ">
+                        කැළණිය විශ්ව විද්‍යාලය - කැළණිය
+                      </div>
+                  </td>
+
+                </tr>
+                <tr>
+
+                    <td class="border" style="margin-top:30px" colspan="2">&nbsp;</td>
+                </tr>
+                </tbody>
+            </table>
+      <br>
+      <h3>ධාවන වාරයක් සදහා රථයක් ලබා ගැනීමට අවසර ලබා ගැනීම</h3>
+            <div class="spacer">&nbsp;</div>
+
+            <table class="main center" width="602" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td class="column">
+                        <div class="column-top">&nbsp;</div>
+                        <table class="content" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr>
+                            </tr>
+                                                    <tr>
+                                <td class="padded">
+                                  අංකය
+                                </td>
+                                <td class="padded">
+                                  TRD/${this.request.refNo}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="padded">
+                                  ඉල්ලුම්කරුගේ නම
+                                </td>
+                                <td class="padded">
+                                ${this.request.lecturer}
+                                </td>
+                              </tr>
+                                                      <tr>
+                                <td class="padded">
+                                  ඉල්ලුම්කරුගේ තනතුර
+                                </td>
+                                <td class="padded">
+                                ${this.request.position}
+                                </td>
+                              </tr>
+                                                      <tr>
+                                <td class="padded">
+                                  පීඨය
+                                </td>
+                                <td class="padded">
+                                ${this.request.dep_unit}
+                                </td>
+                              </tr>
+
+                            </tbody>
+                        </table>
+                      <hr>
+                      <h4 class="padded">චාරිකාව පිළිබද</h4> <br>
+                      <table class="content" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td class="padded">
+                            ආරම්භක ස්ථානය
+                          </td>
+
+                          <td class="padded">
+                          ${this.request.departure.pickPointAddress}
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td class="padded">
+                            ගමනාන්තය
+                          </td>
+
+                          <td class="padded">
+                          ${this.request.departure.dropPointAddress}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="padded">
+                            පිටත්වන දිනය
+                          </td>
+
+                          <td class="padded" style="width:5cm">
+                          ${this.request.departure.pickupDate}
+                          </td>
+
+                          <td class="padded">වේලාව</td>
+                          <td class="padded">${this.request.departure.pickupTime}</td>
+
+
+                        </tr>
+
+                        <tr>
+                          <td class="padded" style="width:5cm">ආපසු පැමිණෙන දිනය</td>
+                          <td class="padded">${this.request.arrival.dropDate}</td>
+                          <td class="padded">වේලාව</td>
+                          <td class="padded">${this.request.arrival.dropTime}</td>
+
+
+                        </tr>
+
+                        <tr>
+                          <td class="padded">හේතුව</td>
+                          <td class="padded">${this.request.purpose}</td>
+                        </tr>
+                      </table>
+                      <hr>
+                      <table class="content" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <br><br><br>
+                          <td class="padded">
+                            ............................................................
+                          </td>
+                          <td class="padded">
+                            ............................................................
+                          </td>
+                          <td class="padded">
+                            ............................................................
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="padded-sign">
+                            ඉල්ලුම්කරුගේ අත්සන
+                          </td>
+                          <td class="padded-sign">
+                            Dean
+                          </td>
+                          <td class="padded-sign">
+                            දිනය
+                          </td>
+                        </tr>
+
+                      </table>
+                      <br>
+                        <div class="column-bottom">&nbsp;</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="spacer">&nbsp;</div>
+
+            <table class="footer center" width="602" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td class="border" colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="signature" width="300">
+                        <p>
+
+                            Transport Division,<br>
+                            University Of Kelaniya <br>
+                            +0 (000) 00-00-00, John Doe<br>
+                            </p>
+                        <p>
+                            Support: <a class="strong" href="mailto:#" target="_blank">trp.uok@gmail.com</a>
+                        </p>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </center>
+      </div>
+
     `;
 
     document.getElementById('request_form_div').innerHTML = content;
