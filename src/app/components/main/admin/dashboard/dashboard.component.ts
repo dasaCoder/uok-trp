@@ -6,6 +6,8 @@ import { AdminService } from '../../../../services/admin.service';
 import { ReqeustPreveiwComponent } from './reqeust-preveiw/reqeust-preveiw.component';
 import { RequestService } from '../../../../services/request.service';
 import { FormControl } from '@angular/forms';
+import { AuthService } from '../../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -59,8 +61,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(private adminService: AdminService, private dialog: MatDialog, private requestService: RequestService,
-    changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
+  constructor(
+    private adminService: AdminService,
+    private authService: AuthService,
+    private dialog: MatDialog,
+    private requestService: RequestService,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    private router: Router
     ) {
 
       this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -70,6 +78,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    //check the auth token validity
+    if (!this.authService.isLoggedIn()) {
+
+      this.router.navigateByUrl('/login');
+    }
    // this.acceptedReqDataSource.paginator = this.paginator;
     //this.dataSource.paginator = this.paginator;
 

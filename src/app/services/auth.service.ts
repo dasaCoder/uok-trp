@@ -17,15 +17,17 @@ export class AuthService {
     } else{
       let jwtHelper = new JwtHelper();
       let token = localStorage.getItem('token');
-      let token_decoded = jwtHelper.decodeToken(token);
-      if ( token_decoded) {
+      //let token_decoded = jwtHelper.decodeToken(token);
+      if ( !this.isTokenExpired(token)) {
         console.log('true');
         return true;
       }
+      console.log('not expiered');
       return false;
     }
 
   }
+
   isLoggedInWithRefno(refNo): boolean {
     let jwtHelper = new JwtHelper();
     let token = localStorage.getItem('token');
@@ -41,12 +43,16 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
   }
+
+
   get_status() {
     let jwtHelper = new JwtHelper();
     let token = localStorage.getItem('token');
     let token_decoded = jwtHelper.decodeToken(token);
     return token_decoded['status'];
   }
+
+
   get_refNo() {
     let jwtHelper = new JwtHelper();
     let token = localStorage.getItem('token');
@@ -54,4 +60,24 @@ export class AuthService {
     return token_decoded['refNo'];
   }
 
+
+  getTokenExpirationDate(token: string): Date {
+    let jwtHelper = new JwtHelper();
+    const decoded = jwtHelper.decodeToken(token);
+
+    if (decoded.exp === undefined) return null;
+
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
+
+  isTokenExpired(token?: string): boolean {
+    if(!token) token = localStorage.getItem('token');
+    if(!token) return false;
+
+    const date = this.getTokenExpirationDate(token);
+    if(date === undefined) return false;
+    return !(date.valueOf() > new Date().valueOf());
+  }
 }
