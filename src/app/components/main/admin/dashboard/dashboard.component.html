@@ -80,7 +80,21 @@
                       <mat-icon>battery_alert</mat-icon>Vehicles on maintenence
                     </mat-expansion-panel-header>
 
-                    <form class="">
+                      <mat-list *ngIf="!isAddRepairModeOn">
+                        <mat-list-item>XXX-3344</mat-list-item>
+                        <mat-list-item>XXX-3344</mat-list-item>
+                        <mat-list-item>XXX-3344</mat-list-item>
+                        <mat-list-item>XXX-3344</mat-list-item>
+                        <mat-list-item>XXX-3344</mat-list-item>
+                      </mat-list>
+
+                      <button mat-button color="primary" (click)="isAddRepairModeOn = !isAddRepairModeOn">
+                        <span *ngIf="!isAddRepairModeOn">Add Repair</span>
+                        <span *ngIf="isAddRepairModeOn">Back</span>
+                      </button>
+
+
+                    <form class="repairForm" *ngIf="isAddRepairModeOn">
 
                       <div class="col-lg-12">
 

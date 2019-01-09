@@ -52,6 +52,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   mReason;
   mSelectedVehicle;
 
+  // toggle between add repair mode and not
+  isAddRepairModeOn = false;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   private _mobileQueryListener: () => void;
