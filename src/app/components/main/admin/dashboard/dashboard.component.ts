@@ -166,7 +166,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     details['departure']['pickupDate'] = this.startDate;
     details['departure']['pickupTime'] = this.startTime;
 
-    details['status'] = 'Under Maintenece';
+    details['status'] = '102';
     details['reason'] = this.mReason;
     details['vehicle'] = this.mSelectedVehicle;
 

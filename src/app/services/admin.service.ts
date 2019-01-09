@@ -76,8 +76,7 @@ export class AdminService {
 
   // add new maintenece details for given vehicle
   addMainteneceDetails(_id, details) {
-
-    return this.http.post( this.url + `/vehicle/maintenance/add?_id=${_id}`, details, {
+    return this.http.post( this.url + `/vehicle/maintenance/add`, JSON.stringify(details), {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     });
   }
