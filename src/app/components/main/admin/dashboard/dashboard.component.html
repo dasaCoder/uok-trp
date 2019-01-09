@@ -88,11 +88,6 @@
                         <mat-list-item>XXX-3344</mat-list-item>
                       </mat-list>
 
-                      <button mat-button color="primary" (click)="isAddRepairModeOn = !isAddRepairModeOn">
-                        <span *ngIf="!isAddRepairModeOn">Add Repair</span>
-                        <span *ngIf="isAddRepairModeOn">Back</span>
-                      </button>
-
 
                     <form class="repairForm" *ngIf="isAddRepairModeOn">
 
@@ -167,6 +162,13 @@
 
 
                     </form>
+
+                    <div style="text-align:right">
+                      <button mat-button color="primary" class="bg-primary" (click)="isAddRepairModeOn = !isAddRepairModeOn">
+                        <span *ngIf="!isAddRepairModeOn">Add Repair</span>
+                        <span *ngIf="isAddRepairModeOn">Back</span>
+                      </button>
+                    </div>
 
                   </mat-expansion-panel>
 
