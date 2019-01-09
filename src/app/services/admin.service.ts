@@ -82,6 +82,13 @@ export class AdminService {
     });
   }
 
+  // get list of vehicls on status (repair)
+  getVehicleListOnStatus(status) {
+  return this.http.get( this.url + `/vehicle/maintenance/get?status=${status}`, {
+        headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+      });
+  }
+
   get_request_list(status) {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/get_request_list/?status=${status}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
