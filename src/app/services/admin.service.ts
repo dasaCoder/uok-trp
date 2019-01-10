@@ -76,14 +76,15 @@ export class AdminService {
 
   // add new maintenece details for given vehicle
   addMainteneceDetails(_id, details) {
-    return this.http.post( this.url + `/vehicle/maintenance/add`, JSON.stringify(details), {
+    console.log("details in service" , details);
+    return this.http.post( 'http://localhost:5000/admin' + `/vehicle/maintenance/add`, details), {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     });
   }
 
   // get list of vehicls on status (repair)
   getVehicleListOnStatus(status) {
-  return this.http.get( this.url + `/vehicle/maintenance/get?status=${status}`, {
+  return this.http.get( 'http://localhost:5000/admin' + `/vehicle/maintenance/get?status=${status}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       });
   }
