@@ -210,7 +210,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
           console.log(response);
           if (response['success']){
+            this.loadMainteneceDetails();
 
+            this.isAddRepairModeOn = false;
           }
 
         });

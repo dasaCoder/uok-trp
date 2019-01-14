@@ -86,7 +86,7 @@
                       </mat-list>
 
 
-                    <form class="repairForm" *ngIf="isAddRepairModeOn">
+                    <form class="repairForm" #repairForm="ngForm" *ngIf="isAddRepairModeOn">
 
                       <div class="col-lg-12">
 
@@ -153,7 +153,7 @@
                       </div>
 
                       <div class="col-lg-12">
-                        <button mat-button class="bg-success" (click)="addMainteneceDetails()"><mat-icon>add</mat-icon> ADD</button>
+                        <button mat-button class="bg-success" (click)="addMainteneceDetails(); repairForm.reset()"><mat-icon>add</mat-icon> ADD</button>
                       </div>
 
                     </form>
