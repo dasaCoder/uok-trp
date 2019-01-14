@@ -137,7 +137,6 @@ export class AdminService {
                               break;
                           }
 
-                          console.log(element);
                           dataM.push(
                             {
                               'title': 'TRP/' + element['refNo'],

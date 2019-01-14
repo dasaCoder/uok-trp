@@ -41,6 +41,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   requests: any = [];
 
+  onRepairList: any = []; // list of vehicles on repair
   events: any = [];
   options: any = [];
 
@@ -108,6 +109,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.vehicles = response['data'];
     }));
 
+    this.loadMainteneceDetails();
+
    }
 
    ngOnDestroy(): void {
@@ -168,6 +171,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
           console.log('new', data);
         });
 
+  }
+
+  // load maintenence details
+  loadMainteneceDetails() {
+    this.adminService.getVehicleListOnStatus(102)
+        .subscribe(records=> {
+
+          if (records['success']) {
+
+           this.onRepairList = records['msg'];
+
+          }
+        });
   }
 
   // add new maintenence details
