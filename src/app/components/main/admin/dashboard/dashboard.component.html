@@ -124,7 +124,7 @@
 
                         <mat-icon matListIcon>access_time</mat-icon>
 
-                        <input class="" atp-time-picker value="" style="width: 150px" [(ngModel)] = "startTime" s/>
+                        <input class="" atp-time-picker value="" style="width: 150px" [(ngModel)]="startTime" name="startTime" />
 
                       </div>
 
@@ -146,13 +146,13 @@
 
                           <mat-icon matListIcon>access_time</mat-icon>
 
-                          <input class="" atp-time-picker value="" style="width: 150px" [(ngModel)] = "endTime" s/>
+                          <input class="" atp-time-picker value="" style="width: 150px" [(ngModel)]="endTime" name="endTime"/>
 
                       </div>
 
                       <div class="col-lg-12">
                         <mat-label>Reason</mat-label> <br>
-                        <input matInput id="txtMReason" [(ngModel)]="mReason">
+                        <input matInput id="txtMReason" [(ngModel)]="mReason" name="txtMReason">{{mReason}}
                       </div>
 
                       <div class="col-lg-12">

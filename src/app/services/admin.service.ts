@@ -76,8 +76,16 @@ export class AdminService {
 
   // add new maintenece details for given vehicle
   addMainteneceDetails(_id, details) {
-    console.log("details in service" , details);
-    return this.http.post( 'http://localhost:5000/admin' + `/vehicle/maintenance/add`, details), {
+
+    let body = {
+      'status': details['status'],
+      'reason': details['reason'],
+      'vehicle': details['vehicle'],
+      'arrival': details['arrival'],
+      'departure': details['departure']
+    };
+
+    return this.http.post( 'http://localhost:5000/admin' + `/vehicle/maintenance/add?_id=${_id}`, body, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     });
   }

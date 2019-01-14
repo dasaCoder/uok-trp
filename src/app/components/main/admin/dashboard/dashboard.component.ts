@@ -49,8 +49,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   vehicles = [];
   startDate;
   endDate;
-  startTime;
-  endTime;
+  startTime = '00:00';
+  endTime = '00:00';
   mReason;
   mSelectedVehicle;
 
@@ -175,26 +175,28 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     let details = [];
 
-    details['arrival'] = [];
-    details['arrival']['dropDate'] = this.endDate;
+    details['arrival'] = {};
+    let arrival_temp = new Date(this.endDate);
+    details['arrival']['dropDate'] = `${arrival_temp.getFullYear()}-${arrival_temp.getMonth() + 1}-${arrival_temp.getDate()}`;
     details['arrival']['dropTime'] = this.endTime;
 
-    details['departure'] = [];
-    details['departure']['pickupDate'] = this.startDate;
+    details['departure'] = {};
+    let departure_temp = new Date(this.startDate);
+    details['departure']['pickupDate'] = `${departure_temp.getFullYear()}-${departure_temp.getMonth() + 1}-${departure_temp.getDate()}`;
     details['departure']['pickupTime'] = this.startTime;
 
     details['status'] = '102';
     details['reason'] = this.mReason;
-    details['vehicle'] = this.mSelectedVehicle;
+    details['vehicle'] = this.mSelectedVehicle['_id'];
 
-    console.log("details",details);
-    //
-    this.adminService.addMainteneceDetails(this.mSelectedVehicle['_id'], details)
+   this.adminService.addMainteneceDetails(this.mSelectedVehicle['_id'], details)
         .subscribe( response => {
+
           console.log(response);
           if (response['success']){
 
           }
+
         });
   }
 
