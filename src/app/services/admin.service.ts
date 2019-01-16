@@ -104,6 +104,14 @@ export class AdminService {
     });
   }
 
+  // update repair history record
+  updateRepairHistoryRecord(_id, newRec) {
+    console.log("_ID", _id);
+    return this.http.post( 'http://localhost:5000/' + `vehicles/maintenance/update?_id=${_id}`, newRec, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    });
+  }
+
   get_request_list(status) {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/get_request_list/?status=${status}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),

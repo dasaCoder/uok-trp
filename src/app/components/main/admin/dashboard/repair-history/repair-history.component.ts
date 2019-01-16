@@ -48,4 +48,13 @@ export class RepairHistoryComponent implements OnInit {
     this.selectedRecord['departure']['pickupDate'] = new Date(this.selectedRecord['departure']['pickupDate']);
   }
 
+  // update given record
+  updateRecord() {
+
+    this.adminService.updateRepairHistoryRecord(this.data._id, this.selectedRecord)
+        .subscribe( response => {
+          console.log("edit", response);
+        });
+  }
+
 }

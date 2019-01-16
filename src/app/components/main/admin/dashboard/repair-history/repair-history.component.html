@@ -85,7 +85,7 @@
                   </div>
 
               <div style="text-align:right" *ngIf="!disabled">
-                <button mat-button color="primary" class="bg-primary" (click)="isAddRepairModeOn = !isAddRepairModeOn">
+                <button mat-button color="primary" class="bg-primary" (click)="updateRecord()">
                   <span *ngIf="!isAddRepairModeOn"><mat-icon>refresh</mat-icon>Update</span>
 
                 </button>
