@@ -97,6 +97,13 @@ export class AdminService {
       });
   }
 
+  // get repair history for given vehicle
+  getRepairHistory(_id) {
+    return this.http.get( 'http://localhost:5000/' + `vehicles/maintenance/single/get?_id=${_id}`, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    });
+  }
+
   get_request_list(status) {
     return this.http.get(`https://uok-transport-division.herokuapp.com/admin/get_request_list/?status=${status}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
@@ -178,7 +185,7 @@ export class AdminService {
                             'from'    : element['departure']['dropPoint'],
                             'driver'  : (element['driver'] !== undefined )? element['driver']['name'] : 'Not assigned',
                             'vehicle' : (element['vehicle'] !== undefined)? element['vehicle']['vehicle_no'] : 'Not assigned'
-                          } );
+                          });
 
                         });
 

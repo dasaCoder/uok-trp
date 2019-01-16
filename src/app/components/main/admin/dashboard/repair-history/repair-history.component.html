@@ -1,16 +1,15 @@
 <mat-dialog-content>
       <div class="row">
+
       <div class="col-lg-4">
           <mat-list>
-              <mat-card-title>
-                  <mat-icon>settings</mat-icon>
-                  Maintenence History
-                </mat-card-title>
+            <mat-card-subtitle>
+              <mat-icon>settings</mat-icon>
+              Maintenence History
+            </mat-card-subtitle>
 
-            <mat-list-item>XXX-5555</mat-list-item>
-            <mat-list-item>XXX-5555</mat-list-item>
-            <mat-list-item>XXX-5555</mat-list-item>
-            <mat-list-item>XXX-5555</mat-list-item>
+            <mat-list-item *ngFor="let record of recordList" (click)="selectRecord(record); ">{{record['_id']}}</mat-list-item>
+
           </mat-list>
       </div>
 
@@ -24,15 +23,14 @@
 
                 <div class="col-lg-12">
                     <mat-label>Reason</mat-label> <br>
-                    <input matInput id="txtMReason"  [(ngModel)]="mReason" name="txtMReason" [disabled]="disabled">
+                    <input matInput  id=""  [(ngModel)]="selectedRecord['reason']"  name="" [disabled]="disabled">
                   </div>
 
                 <div class="col-lg-12">
                   <mat-label>Start Date:</mat-label> <br>
                   <mat-icon matListIcon style="vertical-align:middle">date_range</mat-icon>
-                  <input [(ngModel)]="startDate"
+                  <input [(ngModel)]="selectedRecord['departure']['pickupDate']"
                         [owlDateTimeTrigger]="dtPicker1"
-                        name="txtStartDate"
                         [owlDateTime]="dtPicker1"
                         class=""
                         [min]="today"
@@ -45,20 +43,19 @@
 
                   <mat-icon matListIcon>access_time</mat-icon>
 
-                  <input class="" atp-time-picker value="" style="width: 150px" [(ngModel)]="startTime" name="startTime" [disabled]="disabled"/>
+                  <input class="" atp-time-picker value="" style="width: 150px" [(ngModel)]="selectedRecord['departure']['pickupTime']" name="startTime" [disabled]="disabled"/>
 
                 </div>
 
                 <div class="col-lg-12">
 
-                    <mat-label>Finishing Date:</mat-label> <br>
+                    <mat-label>Finishing Date:{{selectedRecord['arrival']['dropDate']}}</mat-label> <br>
                     <mat-icon matListIcon style="vertical-align:middle">date_range</mat-icon>
-                    <input [(ngModel)]="endDate"
-                          name="txtEndDate"
+                    <input [(ngModel)]="selectedRecord['arrival']['dropDate']"
                           [owlDateTimeTrigger]="dtPicker2"
                           [owlDateTime]="dtPicker2"
                           class=""
-                          [min]="startDate"
+                          [min]="selectedRecord['departure']['pickupDate']"
                           style="display: inline;width: 150px"
                           [disabled]="disabled"
                     >
@@ -68,23 +65,23 @@
 
                     <mat-icon matListIcon>access_time</mat-icon>
 
-                    <input class="" atp-time-picker value="" style="width: 150px" [(ngModel)]="endTime" name="endTime" [disabled]="disabled"/>
+                    <input class="" atp-time-picker value="" style="width: 150px" [(ngModel)]="selectedRecord['arrival']['dropTime']" name="endTime" [disabled]="disabled"/>
 
                 </div>
 
                 <div class="col-lg-12">
                     <mat-label>Shop</mat-label> <br>
-                    <input matInput id="txtMReason"  [(ngModel)]="mReason" name="txtMReason" [disabled]="disabled">
+                    <input matInput  id=""  [(ngModel)]="selectedRecord['shop']"  name="" [disabled]="disabled">
                   </div>
 
                 <div class="col-lg-12">
                     <mat-label>Cost</mat-label> <br>
-                    <input matInput id="txtMReason"  [(ngModel)]="mReason" name="txtMReason" [disabled]="disabled">
+                    <input matInput  id=""  [(ngModel)]="selectedRecord['cost']"  name="" [disabled]="disabled">
                   </div>
 
                 <div class="col-lg-12">
                     <mat-label>File No</mat-label> <br>
-                    <input matInput id="txtMReason"  [(ngModel)]="mReason" name="txtMReason" [disabled]="disabled">
+                    <input matInput  id=""  [(ngModel)]="selectedRecord['file_no']"  name="" [disabled]="disabled">
                   </div>
 
               <div style="text-align:right" *ngIf="!disabled">
