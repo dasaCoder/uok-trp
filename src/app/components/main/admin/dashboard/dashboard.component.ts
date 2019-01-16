@@ -8,6 +8,7 @@ import { RequestService } from '../../../../services/request.service';
 import { FormControl } from '@angular/forms';
 import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
+import { RepairHistoryComponent } from './repair-history/repair-history.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -228,6 +229,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   // filter vehicle no for autocomplete after select an option
   displayVehicleNo(vehicle) {
       return vehicle ? vehicle['vehicle_no'] : vehicle;
+  }
+
+  // load maintenence history of given vehicle
+  loadRepairHistory(_id) {
+    let repiarDialogRef = this.dialog.open(RepairHistoryComponent, {
+                            'data': {
+                              '_id': _id
+                            },
+                            'id': 'repairDialogRef'
+                          });
   }
 
 }
