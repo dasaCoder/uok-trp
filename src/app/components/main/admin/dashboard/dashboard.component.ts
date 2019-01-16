@@ -237,7 +237,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
                             'data': {
                               '_id': _id
                             },
-                            'id': 'repairDialogRef'
+                            'id': 'repairDialogRef',
+                            'width': '80%'
                           });
   }
 
