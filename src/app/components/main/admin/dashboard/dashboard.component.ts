@@ -240,6 +240,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
                             'id': 'repairDialogRef',
                             'width': '80%'
                           });
+
+    repiarDialogRef.afterClosed().subscribe(data=> {
+      this.loadMainteneceDetails();
+    })
   }
 
 }
