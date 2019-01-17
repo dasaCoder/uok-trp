@@ -3,12 +3,12 @@
 
       <div class="col-lg-4">
           <mat-list>
-            <mat-card-subtitle>
+            <mat-card-title>
               <mat-icon>settings</mat-icon>
               Maintenence History
-            </mat-card-subtitle>
+            </mat-card-title>
 
-            <mat-list-item *ngFor="let record of recordList" (click)="selectRecord(record); ">{{record['_id']}}</mat-list-item>
+            <mat-list-item class="listOnRepair" *ngFor="let record of recordList" (click)="selectRecord(record); ">REPAIR/{{record['_id'].substr(20)}}</mat-list-item>
 
           </mat-list>
       </div>
@@ -16,7 +16,7 @@
       <div class="col-lg-8">
           <mat-card>
             <mat-card-title>
-              XXX=5555<button mat-icon-button style="float: right;vertical-align: bottom;" (click)="disabled = !disabled"><mat-icon>edit</mat-icon></button>
+              <button mat-icon-button style="float: right;vertical-align: bottom;background: gainsboro;" (click)="disabled = !disabled"><mat-icon>edit</mat-icon></button>
             </mat-card-title>
 
             <mat-card-content>

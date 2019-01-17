@@ -9,9 +9,10 @@ import { AdminService } from '../../../../../services/admin.service';
 })
 export class RepairHistoryComponent implements OnInit {
 
-  disabled = false; // disable or enable inputs
+  disabled = true; // disable or enable inputs
   recordList = [];
   selectedRecord = {};
+  vehicleNo = 'xxxxxxxx';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -34,6 +35,7 @@ export class RepairHistoryComponent implements OnInit {
 
       if (records['success']) {
         this.recordList = records['msg']['status_info'];
+        this.vehicleNo = records['msg']['vehicle_no'];
 
         this.selectRecord(this.recordList[0]);
       }
@@ -54,6 +56,21 @@ export class RepairHistoryComponent implements OnInit {
     this.adminService.updateRepairHistoryRecord(this.data._id, this.selectedRecord)
         .subscribe( response => {
           console.log("edit", response);
+
+          if (response['success']) {
+            if(response['msg']['nModified'] === 1) {
+                alert("edited");
+                this.disabled = true;
+            }
+            else
+            {
+              alert("error occred... Please try again later");
+            }
+          }
+          else
+            {
+              alert("error occred... Please try again later");
+            }
         });
   }
 

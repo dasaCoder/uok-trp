@@ -13,3 +13,17 @@ button:focus{
 mat-icon{
   vertical-align: middle;
 }
+
+.listOnRepair {
+  border-left: solid 2px red;
+}
+
+.listOnRepair:hover{
+  background-color: #ffdada;
+  color: red;
+  cursor: pointer;
+}
+
+input:disabled{
+  color: #524a4a;
+}
