@@ -202,7 +202,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     details['departure']['pickupDate'] = `${departure_temp.getFullYear()}-${departure_temp.getMonth() + 1}-${departure_temp.getDate()}`;
     details['departure']['pickupTime'] = this.startTime;
 
-    details['status'] = '102';
+    details['isFinished'] = false;
     details['reason'] = this.mReason;
     details['vehicle'] = this.mSelectedVehicle['_id'];
 

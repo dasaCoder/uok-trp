@@ -17,6 +17,15 @@
           <mat-card>
             <mat-card-title>
               <button mat-icon-button style="float: right;vertical-align: bottom;background: gainsboro;" (click)="disabled = !disabled"><mat-icon>edit</mat-icon></button>
+              <button mat-icon-button
+                      *ngIf="selectedRecord['isFinished'] || !disabled"
+                      style="float: right;vertical-align: bottom; padding-right: 10px"
+                      (click)="selectedRecord['isFinished'] =!selectedRecord['isFinished']"
+                      [ngClass]="{'btnRepairDone': selectedRecord['isFinished']}"
+                      [ngClass]="{'btnRepairNotDone': !selectedRecord['isFinished']}"
+              >
+                  <mat-icon>done_outline</mat-icon>
+              </button>
             </mat-card-title>
 
             <mat-card-content>
@@ -49,7 +58,7 @@
 
                 <div class="col-lg-12">
 
-                    <mat-label>Finishing Date:{{selectedRecord['arrival']['dropDate']}}</mat-label> <br>
+                    <mat-label>Finishing Date:</mat-label> <br>
                     <mat-icon matListIcon style="vertical-align:middle">date_range</mat-icon>
                     <input [(ngModel)]="selectedRecord['arrival']['dropDate']"
                           [owlDateTimeTrigger]="dtPicker2"

@@ -55,11 +55,11 @@ export class RepairHistoryComponent implements OnInit {
 
     this.adminService.updateRepairHistoryRecord(this.data._id, this.selectedRecord)
         .subscribe( response => {
-          console.log("edit", response);
+          //console.log("edit", response);
 
           if (response['success']) {
             if(response['msg']['nModified'] === 1) {
-                alert("edited");
+                //alert("edited");
                 this.disabled = true;
             }
             else

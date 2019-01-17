@@ -28,3 +28,13 @@ mat-icon{
 input:disabled{
   color: #524a4a;
 }
+
+.btnRepairDone{
+  background: green;
+  color:white;
+}
+
+.btnRepairNotDone{
+  background-color: gainsboro;
+  color:black;
+}
