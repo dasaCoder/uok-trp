@@ -16,6 +16,7 @@ mat-icon{
 
 .listOnRepair {
   border-left: solid 2px red;
+  background-color: gainsboro;
 }
 
 .listOnRepair:hover{
