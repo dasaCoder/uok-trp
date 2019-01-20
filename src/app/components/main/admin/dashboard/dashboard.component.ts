@@ -6,6 +6,9 @@ import { AdminService } from '../../../../services/admin.service';
 import { ReqeustPreveiwComponent } from './reqeust-preveiw/reqeust-preveiw.component';
 import { RequestService } from '../../../../services/request.service';
 import { FormControl } from '@angular/forms';
+import { AuthService } from '../../../../services/auth.service';
+import { Router } from '@angular/router';
+import { RepairHistoryComponent } from './repair-history/repair-history.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -39,6 +42,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   requests: any = [];
 
+  onRepairList: any = []; // list of vehicles on repair
   events: any = [];
   options: any = [];
 
@@ -47,17 +51,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
   vehicles = [];
   startDate;
   endDate;
-  startTime;
-  endTime;
+  startTime = '00:00';
+  endTime = '00:00';
   mReason;
   mSelectedVehicle;
+
+  // toggle between add repair mode and not
+  isAddRepairModeOn = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   private _mobileQueryListener: () => void;
 
-  constructor(private adminService: AdminService, private dialog: MatDialog, private requestService: RequestService,
-    changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
+  constructor(
+    private adminService: AdminService,
+    private authService: AuthService,
+    private dialog: MatDialog,
+    private requestService: RequestService,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    private router: Router
     ) {
 
       this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -67,6 +80,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    //check the auth token validity
+    if (!this.authService.isLoggedIn()) {
+
+      this.router.navigateByUrl('/login');
+    }
    // this.acceptedReqDataSource.paginator = this.paginator;
     //this.dataSource.paginator = this.paginator;
 
@@ -90,6 +109,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.log(response['data']);
       this.vehicles = response['data'];
     }));
+
+    this.loadMainteneceDetails();
 
    }
 
@@ -153,31 +174,48 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   }
 
+  // load maintenence details
+  loadMainteneceDetails() {
+    this.adminService.getVehicleListOnStatus(102)
+        .subscribe(records=> {
+
+          if (records['success']) {
+
+           this.onRepairList = records['msg'];
+
+          }
+        });
+  }
+
   // add new maintenence details
   addMainteneceDetails() {
 
     let details = [];
 
-    details['arrival'] = [];
-    details['arrival']['dropDate'] = this.endDate;
+    details['arrival'] = {};
+    let arrival_temp = new Date(this.endDate);
+    details['arrival']['dropDate'] = `${arrival_temp.getFullYear()}-${arrival_temp.getMonth() + 1}-${arrival_temp.getDate()}`;
     details['arrival']['dropTime'] = this.endTime;
 
-    details['departure'] = [];
-    details['departure']['pickupDate'] = this.startDate;
+    details['departure'] = {};
+    let departure_temp = new Date(this.startDate);
+    details['departure']['pickupDate'] = `${departure_temp.getFullYear()}-${departure_temp.getMonth() + 1}-${departure_temp.getDate()}`;
     details['departure']['pickupTime'] = this.startTime;
 
-    details['status'] = 'Under Maintenece';
+    details['isFinished'] = false;
     details['reason'] = this.mReason;
-    details['vehicle'] = this.mSelectedVehicle;
+    details['vehicle'] = this.mSelectedVehicle['_id'];
 
-    console.log("details",details);
-    //
-    this.adminService.addMainteneceDetails(this.mSelectedVehicle['_id'], details)
+   this.adminService.addMainteneceDetails(this.mSelectedVehicle['_id'], details)
         .subscribe( response => {
+
           console.log(response);
           if (response['success']){
+            this.loadMainteneceDetails();
 
+            this.isAddRepairModeOn = false;
           }
+
         });
   }
 
@@ -191,6 +229,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
   // filter vehicle no for autocomplete after select an option
   displayVehicleNo(vehicle) {
       return vehicle ? vehicle['vehicle_no'] : vehicle;
+  }
+
+  // load maintenence history of given vehicle
+  loadRepairHistory(_id) {
+    let repiarDialogRef = this.dialog.open(RepairHistoryComponent, {
+                            'data': {
+                              '_id': _id
+                            },
+                            'id': 'repairDialogRef',
+                            'width': '80%'
+                          });
+
+    repiarDialogRef.afterClosed().subscribe(data=> {
+      this.loadMainteneceDetails();
+    })
   }
 
 }

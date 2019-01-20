@@ -77,7 +77,37 @@ export class AdminService {
   // add new maintenece details for given vehicle
   addMainteneceDetails(_id, details) {
 
-    return this.http.post( this.url + `/vehicle/maintenance/add?_id=${_id}`, details, {
+    let body = {
+      'status': details['status'],
+      'reason': details['reason'],
+      'vehicle': details['vehicle'],
+      'arrival': details['arrival'],
+      'departure': details['departure']
+    };
+
+    return this.http.post( 'http://localhost:5000/admin' + `/vehicle/maintenance/add?_id=${_id}`, body, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    });
+  }
+
+  // get list of vehicls on status (repair)
+  getVehicleListOnStatus(status) {
+  return this.http.get( 'http://localhost:5000/admin' + `/vehicle/maintenance/get?status=${status}`, {
+        headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+      });
+  }
+
+  // get repair history for given vehicle
+  getRepairHistory(_id) {
+    return this.http.get( 'http://localhost:5000/' + `vehicles/maintenance/single/get?_id=${_id}`, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    });
+  }
+
+  // update repair history record
+  updateRepairHistoryRecord(_id, newRec) {
+    console.log("_ID", _id);
+    return this.http.post( 'http://localhost:5000/' + `vehicles/maintenance/update?_id=${_id}`, newRec, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     });
   }
@@ -122,7 +152,6 @@ export class AdminService {
                               break;
                           }
 
-                          console.log(element);
                           dataM.push(
                             {
                               'title': 'TRP/' + element['refNo'],
@@ -164,7 +193,7 @@ export class AdminService {
                             'from'    : element['departure']['dropPoint'],
                             'driver'  : (element['driver'] !== undefined )? element['driver']['name'] : 'Not assigned',
                             'vehicle' : (element['vehicle'] !== undefined)? element['vehicle']['vehicle_no'] : 'Not assigned'
-                          } );
+                          });
 
                         });
 

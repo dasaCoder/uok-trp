@@ -68,6 +68,7 @@ import { RequestsTableComponent } from './components/main/admin/dashboard/reques
 import { DriverListComponent } from './components/main/admin/drivers/driver-list/driver-list.component';
 import { VehicleListComponent } from './components/main/admin/vehicle/vehicle-list/vehicle-list.component';
 import { EditRequestComponent } from './components/main/admin/dashboard/edit-request/edit-request.component';
+import { RepairHistoryComponent } from './components/main/admin/dashboard/repair-history/repair-history.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { EditRequestComponent } from './components/main/admin/dashboard/edit-req
     RequestsTableComponent,
     DriverListComponent,
     VehicleListComponent,
-    EditRequestComponent
+    EditRequestComponent,
+    RepairHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -151,7 +153,8 @@ import { EditRequestComponent } from './components/main/admin/dashboard/edit-req
     ReqeustPreveiwComponent,
     AddDriverComponent,
     AddVehicleToReqComponent,
-    EditRequestComponent
+    EditRequestComponent,
+    RepairHistoryComponent
   ]
 })
 export class AppModule { }
