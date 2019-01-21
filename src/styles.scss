@@ -682,6 +682,14 @@ NEW modification to landing page*/
   background-repeat: repeat-x;
 }
 
+.trp-zebra-border{
+  border: 10px solid transparent;
+  padding: 15px;
+  -webkit-border-image: url('/assets/images/background/zebraline.svg') 30 stretch; /* Safari 3.1-5 */
+  -o-border-image: url('/assets/images/background/zebraline.svg') 30 stretch; /* Opera 11-12.1 */
+  border-image: url('/assets/images/background/zebraline.svg') 30 stretch;
+}
+
 
 /*@media (max-width: 767px) {
   .trd-nav-link {

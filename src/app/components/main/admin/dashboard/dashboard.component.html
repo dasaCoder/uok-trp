@@ -1,7 +1,7 @@
 
  <mat-toolbar color="primary"  style="text-align:right">
 
-	<h1>Admin Panel</h1>
+	<h1 (click)="snav.toggle()" style="cursor: pointer">Admin Panel</h1>
     <span class="example-fill-remaining-space"></span>
 
   <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
@@ -10,8 +10,20 @@
  <div fxLayout="row">
 
   <mat-drawer-container class="example-sidenav-container" style="height:80vh; ">
-		<mat-drawer #snav [mode]="'side'">
-      <img mat-card-image src="https://via.placeholder.com/300x200">
+    <mat-drawer #snav [mode]="'side'" style="max-width: 200px;">
+
+      <button mat-icon-button
+            (click)="snav.toggle()"
+            style="position: absolute;
+                    margin: 15px;
+                    background: white;">
+                <mat-icon style="margin-left:14px">arrow_back_ios</mat-icon>
+
+              </button>
+
+      <div class="trp-zebra-border"  style="height: 200px; background: #000000">
+
+      </div>
 			<mat-nav-list>
 
 				<a mat-list-item  (click)="changeTab(1)" ><mat-icon matListIcon>calendar_today</mat-icon>   Shedule</a>
