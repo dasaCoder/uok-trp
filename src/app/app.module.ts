@@ -158,4 +158,4 @@ import { RepairHistoryComponent } from './components/main/admin/dashboard/repair
   ]
 })
 export class AppModule { }
-platformBrowserDynamic().bootstrapModule(AppModule);
+//platformBrowserDynamic().bootstrapModule(AppModule);

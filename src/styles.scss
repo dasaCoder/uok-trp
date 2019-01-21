@@ -480,7 +480,7 @@ NEW modification to landing page*/
 }
 
 .trp-home-menu{
-  height: 150px;
+  height: 15vh;
 }
 .trp-home-text{
   color: #cc6600;
@@ -520,6 +520,10 @@ NEW modification to landing page*/
   color: #FFFfff;
 }
 
+.nav-logo{
+  height: 10vh;
+
+}
 @media (max-width: 575.98px) {
   .nav-logo {
     width: 225px;
@@ -619,8 +623,8 @@ NEW modification to landing page*/
     background-color: #ffcc00;
   }
   .trd-nav-link{
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     padding-left: 2vh;
     padding-right: 2vh;
   }
