@@ -8,7 +8,11 @@
               Maintenence History
             </mat-card-title>
 
-            <mat-list-item class="listOnRepair" *ngFor="let record of recordList" (click)="selectRecord(record); ">REPAIR/{{record['_id'].substr(20)}}</mat-list-item>
+            <mat-list-item
+                [ngClass]="{selectedRecord: selectedRecord === record}"
+                class="listOnRepair"
+                *ngFor="let record of recordList"
+                (click)="selectRecord(record); ">REPAIR/{{record['_id'].substr(20)}}</mat-list-item>
 
           </mat-list>
       </div>

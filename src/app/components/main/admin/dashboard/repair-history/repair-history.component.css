@@ -38,3 +38,9 @@ input:disabled{
   background-color: gainsboro;
   color:black;
 }
+
+.selectedRecord{
+  background-color: #ffdada!important;
+  color: red!important;
+  cursor: pointer!important;
+}

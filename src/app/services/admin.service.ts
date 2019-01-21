@@ -92,14 +92,14 @@ export class AdminService {
 
   // get list of vehicls on status (repair)
   getVehicleListOnStatus(status) {
-  return this.http.get( 'http://localhost:5000/admin' + `/vehicle/maintenance/get?status=${status}`, {
+  return this.http.get( this.url + `/vehicle/maintenance/get?status=${status}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       });
   }
 
   // get repair history for given vehicle
   getRepairHistory(_id) {
-    return this.http.get( 'http://localhost:5000/' + `vehicles/maintenance/single/get?_id=${_id}`, {
+    return this.http.get( this.url + `/../vehicles/maintenance/single/get?_id=${_id}`, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     });
   }
@@ -107,7 +107,7 @@ export class AdminService {
   // update repair history record
   updateRepairHistoryRecord(_id, newRec) {
     console.log("_ID", _id);
-    return this.http.post( 'http://localhost:5000/' + `vehicles/maintenance/update?_id=${_id}`, newRec, {
+    return this.http.post( this.url + `/../vehicles/maintenance/update?_id=${_id}`, newRec, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     });
   }
