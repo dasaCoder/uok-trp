@@ -19,9 +19,11 @@
           <div class="form-check">
             <!--<label class="form-check-label">
               <input type="checkbox" class="form-check-input">
-              <small>Remember Me</small>
+              <small>Remember Mes</small>
             </label>-->
-            <button type="submit" class="btn btn-login float-right">Submit</button>
+            <button type="submit" class="btn btn-login float-right">
+                  <mat-spinner *ngIf="isLoading"  [diameter]="20" [color]="accent"></mat-spinner>
+                  <span *ngIf="!isLoading">Login</span></button>
           </div>
 
         </form>
