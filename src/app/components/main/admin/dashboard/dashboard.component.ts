@@ -205,6 +205,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     details['isFinished'] = false;
     details['reason'] = this.mReason;
     details['vehicle'] = this.mSelectedVehicle['_id'];
+    details['status'] = '102'; // change vehicle status
+    details['isFinished'] = false;
 
    this.adminService.addMainteneceDetails(this.mSelectedVehicle['_id'], details)
         .subscribe( response => {
