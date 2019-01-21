@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
           if (resp['status'] === 200)
           {
             localStorage.setItem('token', resp['token']);
-            this.router.navigate(['/admin/dashboard']);
-            window.location.reload();
+            window.location.href = '/admin/dashboard';
+            //window.location.reload();
           } else {
             alert('username or password is incorrect');
             this.isLoading = false;
