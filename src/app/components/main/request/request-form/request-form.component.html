@@ -79,7 +79,7 @@
               <div class="input-wrapper">
                 <mat-icon matListIcon>access_time</mat-icon><label>Time to pick you :</label>
 
-                <input class="trp-min-input" atp-time-picker value="" [(ngModel)] = "this.departure.pickupTime" />
+                <input class="trp-min-input" atp-time-picker value="" [(ngModel)] = "this.departure.pickupTime"  changeToMinutes="true" />
 
               </div>
             </div>
@@ -107,7 +107,7 @@
               <div class="input-wrapper">
                 <mat-icon matListIcon>access_time</mat-icon><label>Returning time :</label>
 
-                <input class="trp-min-input" atp-time-picker value="" [(ngModel)] = "this.arrival.dropTime" />
+                <input class="trp-min-input" atp-time-picker value="" [(ngModel)] = "this.arrival.dropTime" changeToMinutes="true" />
 
               </div>
             </div>
