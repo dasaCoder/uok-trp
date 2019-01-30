@@ -135,7 +135,6 @@ export class AdminService {
                           return;
                         }
 
-                        console.log(data['msg']);
                         data['msg'].forEach(element => {
 
                           let color = '';
