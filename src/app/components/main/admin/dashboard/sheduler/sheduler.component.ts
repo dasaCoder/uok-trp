@@ -20,7 +20,7 @@ export class ShedulerComponent implements OnInit {
   ngOnInit() {
 
       this.events = this.requests;
-
+console.log("events", this.events);
       this.options = {
         weekends: true,
         header: {
