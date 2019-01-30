@@ -241,8 +241,8 @@ export class AdminService {
                           dataM.push(
                             {
                               'title': 'TRP/' + element['refNo'],
-                              'start': element['departure']['pickupDate'],
-                              'end' : element['arrival']['dropDate'],
+                              'start': new Date(element['departure']['pickupDate'] + ' ' + element['departure']['pickupTime']),
+                              'end' : new Date(element['arrival']['dropDate'] + ' ' + element['arrival']['dropTime']),
                               'color' : color,
                               'weekends': 'true'
                             }
@@ -290,8 +290,8 @@ export class AdminService {
                           dataM.push(
                             {
                               'title': 'TRP/' + element['refNo'],
-                              'start': element['departure']['pickupDate'],
-                              'end' : element['arrival']['dropDate'],
+                              'start': new Date(element['departure']['pickupDate'] + ' ' + element['departure']['pickupTime']),
+                              'end' : new Date(element['arrival']['dropDate'] + ' ' + element['arrival']['dropTime']),
                               'color' : color,
                               'weekends': 'true'
                             }
