@@ -1,0 +1,46 @@
+mat-label{
+  padding-right: 10px;
+}
+
+button:focus{
+  outline: none
+}
+
+.col-lg-12{
+  margin-bottom: 10px;
+}
+
+mat-icon{
+  vertical-align: middle;
+}
+
+.listOnRepair {
+  border-left: solid 2px red;
+  background-color: gainsboro;
+}
+
+.listOnRepair:hover{
+  background-color: #ffdada;
+  color: red;
+  cursor: pointer;
+}
+
+input:disabled{
+  color: #524a4a;
+}
+
+.btnRepairDone{
+  background: green;
+  color:white;
+}
+
+.btnRepairNotDone{
+  background-color: gainsboro;
+  color:black;
+}
+
+.selectedRecord{
+  background-color: #ffdada!important;
+  color: red!important;
+  cursor: pointer!important;
+}

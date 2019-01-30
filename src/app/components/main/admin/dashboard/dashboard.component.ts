@@ -5,6 +5,10 @@ import {FullCalendarModule} from 'primeng/fullcalendar';
 import { AdminService } from '../../../../services/admin.service';
 import { ReqeustPreveiwComponent } from './reqeust-preveiw/reqeust-preveiw.component';
 import { RequestService } from '../../../../services/request.service';
+import { FormControl } from '@angular/forms';
+import { AuthService } from '../../../../services/auth.service';
+import { Router } from '@angular/router';
+import { RepairHistoryComponent } from './repair-history/repair-history.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -38,15 +42,35 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   requests: any = [];
 
+  onRepairList: any = []; // list of vehicles on repair
   events: any = [];
   options: any = [];
+
+  // add maintenece autocomplete
+  myControl = new FormControl();
+  vehicles = [];
+  startDate;
+  endDate;
+  startTime = '00:00';
+  endTime = '00:00';
+  mReason;
+  mSelectedVehicle;
+
+  // toggle between add repair mode and not
+  isAddRepairModeOn = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   private _mobileQueryListener: () => void;
 
-  constructor(private adminService: AdminService, private dialog: MatDialog, private requestService: RequestService,
-    changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
+  constructor(
+    private adminService: AdminService,
+    private authService: AuthService,
+    private dialog: MatDialog,
+    private requestService: RequestService,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    private router: Router
     ) {
 
       this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -56,10 +80,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    //check the auth token validity
+    if (!this.authService.isLoggedIn()) {
+
+      this.router.navigateByUrl('/login');
+    }
    // this.acceptedReqDataSource.paginator = this.paginator;
     //this.dataSource.paginator = this.paginator;
 
-    this.adminService.getRequestOnStatusForCalender(`status[0]=1&statsu[1]=2&status[2]=3&status[3]=4&status[4]=0`)
+    this.adminService.getRequestOnStatusForCalender(`status[0]=1&statsu[1]=2&status[2]=3&status[3]=4&status[4]=0&status[5]=100`)
         .then( events => {this.events = events; } );
 
         this.options = {
@@ -72,6 +102,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
         };
 
         this.loadTableData();
+
+    // load vehicle list
+    this.adminService.getVehicle_to_req()
+    .subscribe((response => {
+      console.log(response['data']);
+      this.vehicles = response['data'];
+    }));
+
+    this.loadMainteneceDetails();
 
    }
 
@@ -110,7 +149,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       });
 
-      this.adminService.getRequestsOnStatusForTable(`status[0]=0`)
+      this.adminService.getRequestsOnStatusForTable(`status[0]=3`)
       .then(data => {
         this.authenticatedReqData = data;
 
@@ -118,6 +157,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       });
   }
+
   getRequestOnStatus(): any {
     // this.adminService.getRequestsOnStatusForTable(`status[0]=1&statsu[1]=2&status[3]=4&status[4]=0`)
     //     .subscribe(data => {
@@ -134,11 +174,78 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   }
 
+  // load maintenence details
+  loadMainteneceDetails() {
+    this.adminService.getVehicleListOnStatus(102)
+        .subscribe(records=> {
+
+          if (records['success']) {
+
+           this.onRepairList = records['msg'];
+
+          }
+        });
+  }
+
+  // add new maintenence details
+  addMainteneceDetails() {
+
+    let details = [];
+
+    details['arrival'] = {};
+    let arrival_temp = new Date(this.endDate);
+    details['arrival']['dropDate'] = `${arrival_temp.getFullYear()}-${arrival_temp.getMonth() + 1}-${arrival_temp.getDate()}`;
+    details['arrival']['dropTime'] = this.endTime;
+
+    details['departure'] = {};
+    let departure_temp = new Date(this.startDate);
+    details['departure']['pickupDate'] = `${departure_temp.getFullYear()}-${departure_temp.getMonth() + 1}-${departure_temp.getDate()}`;
+    details['departure']['pickupTime'] = this.startTime;
+
+    details['isFinished'] = false;
+    details['reason'] = this.mReason;
+    details['vehicle'] = this.mSelectedVehicle['_id'];
+    details['status'] = '102'; // change vehicle status
+    details['isFinished'] = false;
+
+   this.adminService.addMainteneceDetails(this.mSelectedVehicle['_id'], details)
+        .subscribe( response => {
+
+          console.log(response);
+          if (response['success']){
+            this.loadMainteneceDetails();
+
+            this.isAddRepairModeOn = false;
+          }
+
+        });
+  }
+
   // invoke when dialog activity change data of a request
   changeDetecter(change) {
     if(change === 1) {
       this.loadTableData();
     }
+  }
+
+  // filter vehicle no for autocomplete after select an option
+  displayVehicleNo(vehicle) {
+      return vehicle ? vehicle['vehicle_no'] : vehicle;
+  }
+
+  // load maintenence history of given vehicle
+  loadRepairHistory(_id) {
+    let repiarDialogRef = this.dialog.open(RepairHistoryComponent, {
+                            'data': {
+                              '_id': _id
+                            },
+                            'id': 'repairDialogRef',
+                            'width': '80%'
+                          });
+
+    repiarDialogRef.afterClosed().subscribe(data=> {
+      this.loadMainteneceDetails();
+    })
   }
 
 }

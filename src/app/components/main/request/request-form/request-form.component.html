@@ -1,4 +1,273 @@
-<!--<div class="container-fluid">
+<div style="background: #F7F7F7">
+
+  <script src="../../home/home.component.ts"></script>
+  <div class="container" style="background: white; padding: 0 5vw 0 5vw">
+
+
+    <h2 style="padding: 50px 0 20px 0;color: #000000"><mat-icon>golf_course</mat-icon>Plan Your journey!</h2>
+
+    <div class="trp-zebra">
+
+    </div>
+
+    <div *ngIf="isLoading" style="    text-align: center;
+                                                margin-top: 70px;
+                                                margin-bottom: 30px;">
+
+      <mat-spinner style="margin:0 auto;" mode="indeterminate"></mat-spinner> <br>
+      <label for="">Pleas wait!</label>
+    </div>
+
+
+    <div *ngIf="!isLoading">
+      <div [ngSwitch]=step @slide>
+        <div *ngSwitchCase="1">
+          <div class="row">
+
+            <div class="col-lg-12">
+              <div class=" input-wrapper">
+                <label for="">Is this a one day trip?</label>
+
+                <div class="switch">
+                  <label>
+                    No
+                    <input type="checkbox" [(ngModel)]="isOneDaytrip">
+                    <span class="lever"></span>
+                    Yes
+                  </label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-lg-6">
+              <mat-icon matListIcon>my_location</mat-icon><label for="pickupPoint">Pickup Point</label>
+              <input type="text"  autocomplete="off" placeholder="search for pickup location" autocapitalize="off" id="pickupPoint" name="pickupPoint" class="trp-min-input" #search required>
+            </div>
+
+            <div class="col-lg-6">
+              <mat-icon matListIcon>place</mat-icon><label for="dropPoint">Drop Point</label>
+              <input type="text"  autocomplete="off" placeholder="search for drop location" autocapitalize="off" id="dropPoint" name="dropPoint" class="trp-min-input" #search2 required>
+            </div>
+
+
+          </div>
+
+          <div class="row">
+
+
+            <div class="col-lg-6">
+
+              <mat-icon matListIcon>date_range</mat-icon><label>   Date to pick you :</label>
+              <input [(ngModel)]="departure.pickupDate"
+                     [owlDateTimeTrigger]="dtPicker1"
+                     [owlDateTime]="dtPicker1"
+                     class="trp-min-input no-tr"
+                     [min]="today"
+              >
+
+
+              <owl-date-time
+                #dtPicker1 [pickerType]="'calendar'"></owl-date-time>
+
+            </div>
+
+            <div class="col-lg-6">
+              <div class="input-wrapper">
+                <mat-icon matListIcon>access_time</mat-icon><label>Time to pick you :</label>
+
+                <input class="trp-min-input" atp-time-picker value="" [(ngModel)] = "this.departure.pickupTime" />
+
+              </div>
+            </div>
+
+
+            <div class="col-lg-6" *ngIf="!isOneDaytrip">
+              <div class="  " >
+                <mat-icon matListIcon>date_range</mat-icon><label>   Returning date:</label>
+                <input [(ngModel)]="arrival.dropDate"
+                       [owlDateTimeTrigger]="dtPicker2"
+                       [owlDateTime]="dtPicker2"
+                       class="trp-min-input"
+                       [min]="departure.pickupDate"
+                >
+                <owl-date-time
+                  #dtPicker2 [pickerType]="'calendar'"
+                ></owl-date-time>
+
+
+
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="input-wrapper">
+                <mat-icon matListIcon>access_time</mat-icon><label>Returning time :</label>
+
+                <input class="trp-min-input" atp-time-picker value="" [(ngModel)] = "this.arrival.dropTime" />
+
+              </div>
+            </div>
+
+            <div class="col-lg-12" style="text-align: right;padding-right: 3vw">
+              <button
+                [disabled]="!arrival.pickPointAddress || !departure.pickPointAddress || !departure.pickupTime || !arrival.dropTime || departure.pickupTime=='00:00' || arrival.dropTime=='00:00' ||  !departure.pickupDate || (!isOneDaytrip && !arrival.dropDate)"
+                (click)="nextStep(2)"
+                class="btn btn-next">Next</button>
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <div *ngSwitchCase="2">
+
+          <div class="alert alert-danger" role="alert" style="margin-top: 8px" [hidden]="!formD.isError">
+            <strong>Error! </strong> {{formD.errMsg.toString()}}
+          </div>
+
+          <div class="  ">
+
+            <mat-icon matListIcon>group</mat-icon>
+
+            <label for="form-numOfPassanger">Number of Passangers</label>
+            <input class="trp-min-input " type="number" [(ngModel)]="formData.num_passangers" id="form-numOfPassanger" name="numOfPassangers" required>
+          </div>
+
+          <br>
+          <div class="" style="display: inline">
+            <mat-icon matListIcon>person_pin</mat-icon>
+            <label label="name" for="form-name">Name</label>
+            <input type="text" class=" trp-min-input " [(ngModel)]="formData.lecturer" id="form-name" name="name">
+
+          </div>
+          <br> <br>
+          <div class="">
+            <mat-icon matListIcon>business</mat-icon>
+
+            <label for="">Department/Unit</label>
+
+            <kendo-autocomplete
+              [data]="data"
+              [filterable]="true"
+              (filterChange)="handleFilter($event)"
+              class="trp-select trp-min-input trp-autocomplete"
+              [(value)]="formData.dep_unit"
+            >
+            </kendo-autocomplete>
+          </div>
+          <br>
+          <div class="  ">
+            <mat-icon matListIcon>alternate_email</mat-icon>
+
+            <label for="form-email">Email</label>
+            <input class=" trp-min-input " type="email" [(ngModel)]="formData.email" id="form-email" name="email">
+          </div>
+          <br>
+          <div class="  ">
+            <mat-icon matListIcon>lock</mat-icon>
+
+            <label for="form-password">Password</label>
+            <input class=" trp-min-input " type="password" minlength="11" [(ngModel)]="formData.password" id="form-password" name="password">
+          </div>
+          <br>
+          <div class="  ">
+            <mat-icon matListIcon>lock_open</mat-icon>
+
+            <label for="form-password-re">Retype Password</label>
+            <input class=" trp-min-input " id="form-password-re" type="password" [(ngModel)]="rePassword" name="password">
+          </div>
+          <br><br>
+          <div class="col-lg-12" style="text-align: right;padding-right: 3vw">
+            <button
+              (click)="validateForm()"
+              class="btn btn-next">Request</button>
+          </div>
+
+
+        </div>
+
+
+        <div *ngSwitchCase="4">
+
+          <div class="card text-center" style="margin-top: 5px">
+            <div class="card-header bg-success text-white">
+              Successfully Reqeusted!
+            </div>
+
+            <div class="card-body" style="padding: 2vh 10vw 0 10vw">
+              <h5 class="card-title" style="margin-top: 5px">Your Credentials...</h5>
+              <br><br>
+
+              <table class="table">
+                <tbody>
+                <tr>
+                  <td>Refferance No</td>
+                  <td>TRD/{{refNoOfCreated}}</td>
+
+                </tr>
+
+                <tr>
+
+                  <td>Password</td>
+                  <td>{{formData['password']}}</td>
+                </tr>
+                </tbody>
+              </table>
+
+              <p class="card-text">Please use above credential to further inquries about this request</p>
+              <a href="/" class="btn btn-success" style="margin-bottom: 5px">Got it..</a>
+            </div>
+            <div class="card-footer text-muted ">
+              Thank You!
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+    <br><br>
+
+  </div>
+
+
+
+    <div class="container" style="background: #909090;padding: 0 5vw 0 5vw">
+
+      <div class="row">
+        <img src="../../../../../assets/images/background/arrow.svg" class="responsive-img img-arrow" alt="">
+      </div>
+
+
+        <h2 style="padding: 50px 0 20px 0;color: #FFFfff"><mat-icon>golf_course</mat-icon>Now it's easy!</h2>
+
+        <div  style="padding: 0 2vw 5vh 2vw">
+          <div class='video-container ' ><iframe width="560" height="315" src="https://www.youtube.com/embed/2XTpzlM1s2s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>
+
+
+<!--
+<div class="container-fluid">
   <div class="row">
     <div class="col-xl-4 col-lg-5 col-md-6 col-sm-10">
 
@@ -11,7 +280,7 @@
 
 
   </div>
-</div>-->
+</div>
 
 <div class="">
   <div class="row">
@@ -34,7 +303,7 @@
 
                 <div class="trp-form-div card-body" style="    padding: 10px;    overflow: hidden;" #formDiv>
 
-                  <h2 style="text-align: center" class="">Plan a journey</h2>   <!--trp-title card-title-->
+                  <h2 style="text-align: center" class="">Plan a journey</h2>   &lt;!&ndash;trp-title card-title&ndash;&gt;
                   <div class="row trp-form-bar" >
                     <div class="col-md-4 col-sm-3 col-4 trp-align-center {{isActive(1)}}" >
                       <fa name="location-arrow" inverse="true" size="1x" > </fa>
@@ -71,7 +340,7 @@
                     </div>
 
 
-                  <!--  <input atp-time-picker value="19:00"/>-->
+                  &lt;!&ndash;  <input atp-time-picker value="19:00"/>&ndash;&gt;
                     <div style="text-align: center; padding:0 10px 0 10px ">
                       <Button type="button"
                               [disabled]="!arrival.pickPointAddress || !departure.pickPointAddress || !formData.num_passangers"
@@ -92,7 +361,7 @@
                     <div class="input-wrapper">
                       <label for="">Is this a one day trip?</label>
 
-                      <!-- Disabled Switch -->
+                      &lt;!&ndash; Disabled Switch &ndash;&gt;
                       <div class="switch">
                         <label>
                           No
@@ -254,10 +523,10 @@
             </div>
 
 
-            <!--<div class="copy-text">Created with <i class="fa fa-heart"></i> by <a href="http://grafreez.com">Grafreez.com</a></div>-->
+            &lt;!&ndash;<div class="copy-text">Created with <i class="fa fa-heart"></i> by <a href="http://grafreez.com">Grafreez.com</a></div>&ndash;&gt;
           </div>
-          <div class="col-md-7 " style="background-color: #C01830"><!--banner-sec-->
-            <!--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <div class="col-md-7 " style="background-color: #C01830">&lt;!&ndash;banner-sec&ndash;&gt;
+            &lt;!&ndash;<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -291,7 +560,7 @@
                 </div>
               </div>
 
-            </div>-->
+            </div>&ndash;&gt;
 
 
 
@@ -327,5 +596,6 @@
 
 
 </div>
+-->
 
 

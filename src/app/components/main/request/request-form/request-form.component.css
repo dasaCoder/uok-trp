@@ -1,4 +1,55 @@
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+
+.mat-icon {
+  vertical-align: middle;
+  margin-right: 10px;
+  color: #FFBE27;
+}
+
+
+
+.img-arrow{
+  width: 100%;
+  position: absolute;
+  margin-top: -10px;
+}
+
+
+tr {
+  border-bottom: none!important;
+}
+
+.owl-dt-inline-container .owl-dt-calendar .owl-dt-popup-container .owl-dt-calendar {
+  height: 100%;
+}
+
+.owl-dt-calendar-header .no-tr{
+  border-bottom: none!important;
+}
+
+.mat-input-element{
+  border-bottom: none;
+  height: 1rem;
+  padding: 0px;
+}
+
+.col-lg-6{
+  padding-right:3vw;
+}
+.mat-input-element:focus{
+  border-bottom: none;
+  height: 1rem;
+  padding: 0px;
+}
+
+
+.mat-form-field-infix {
+   padding: 200px!important;
+   border-top: none!important;
+}
+
+
+
 .login-block{
   background: #DE6262;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #FFFFFF, #ff9704);  /* Chrome 10-25, Safari 5.1-6 */
@@ -10,7 +61,7 @@
 
 
 .banner-sec{background:url('../../../../../assets/images/background/cover.jpg')  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
-.container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
+/*.container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}*/
 .carousel-inner{border-radius:0 10px 10px 0;}
 .carousel-caption{text-align:left; left:5%;}
 .login-sec{padding: 50px 30px; position:relative;}

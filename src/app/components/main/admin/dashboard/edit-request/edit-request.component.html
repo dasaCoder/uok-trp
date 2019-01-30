@@ -1,0 +1,174 @@
+<h2 mat-dialog-title>TRD/{{ selectedRequest['refNo'] }}</h2>
+<mat-divider></mat-divider>
+
+<mat-dialog-content>
+
+
+
+  <div class="row">
+    <div class="col-lg-6">
+
+
+        <mat-card>
+          <mat-card-title>
+            To:
+          </mat-card-title>
+
+          <mat-chip-list>
+            <mat-chip [selected]="true">
+              {{ selectedRequest['departure']['pickupPoint']}}
+            </mat-chip>
+          </mat-chip-list>
+
+          <br>
+        <mat-list>
+          <mat-list-item><mat-icon>  date_range</mat-icon>&nbsp;&nbsp;
+
+            <input [(ngModel)]="selectedRequest['departure']['pickupDate']"
+                     [owlDateTimeTrigger]="dtPicker1"
+                     [owlDateTime]="dtPicker1"
+                     class="trp-min-input no-tr"
+
+              >
+
+
+              <owl-date-time
+                #dtPicker1 [pickerType]="'calendar'"></owl-date-time>
+
+            </mat-list-item>
+          <mat-list-item> <mat-icon>  access_time</mat-icon>&nbsp;&nbsp;
+
+            <input class="trp-min-input" atp-time-picker value="" [(ngModel)] = "selectedRequest['departure']['pickupTime']" />
+
+          </mat-list-item>
+        </mat-list>
+
+
+        </mat-card>
+
+        <mat-card>
+
+          <mat-card-title>From</mat-card-title>
+
+          <mat-chip-list>
+            <mat-chip [selected]="true">
+              {{ selectedRequest['arrival']['pickupPoint'] }}
+
+            </mat-chip>
+          </mat-chip-list>
+
+          <br>
+        <mat-list>
+          <mat-list-item><mat-icon>  date_range</mat-icon>&nbsp;&nbsp;
+
+              <input [(ngModel)]="selectedRequest['arrival']['dropDate']"
+              [owlDateTimeTrigger]="dtPicker2"
+              [owlDateTime]="dtPicker2"
+              class="trp-min-input"
+              [min]="selectedRequest['departure']['pickupDate']"
+              >
+              <owl-date-time
+                #dtPicker2 [pickerType]="'calendar'"
+              ></owl-date-time>
+
+            </mat-list-item>
+          <mat-list-item> <mat-icon>  access_time</mat-icon>&nbsp;&nbsp;
+
+            <input class="trp-min-input" atp-time-picker value="" [(ngModel)] = "selectedRequest['arrival']['dropTime']" />
+
+          </mat-list-item>
+        </mat-list>
+
+        </mat-card>
+
+
+    </div>
+
+
+    <div class="col-lg-6">
+
+      <mat-accordion>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header >
+            <mat-panel-title >
+              Driver
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <mat-list>
+            <mat-list-item *ngIf="selectedRequest['driver']">
+              {{ selectedRequest['driver']['name'] }}
+            </mat-list-item>
+
+            <mat-list-item *ngIf="!selectedRequest['driver']">
+              Not Assigned yet
+            </mat-list-item>
+          </mat-list>
+
+       </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header >
+            <mat-panel-title >
+              Vehicle
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <mat-list>
+              <mat-list-item *ngIf="selectedRequest['vehicle']">
+                {{ selectedRequest['vehicle']['vehicle_no'] }}
+              </mat-list-item>
+
+              <mat-list-item *ngIf="!selectedRequest['vehicle']">
+                Not Assigned yet
+              </mat-list-item>
+            </mat-list>
+
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header >
+            <mat-panel-title >
+              More Info
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <mat-list class="trp-mat-list">
+
+            <mat-list-item><mat-icon>account_circle</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Requester's Name" matInput [(ngModel)]="selectedRequest['lecturer']"></mat-list-item><br>
+            <mat-list-item><mat-icon>work_outline</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Requester's position" matInput [(ngModel)]="selectedRequest['position']"></mat-list-item><br>
+            <mat-list-item><mat-icon>domain</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Requester's Department/unit" matInput [(ngModel)]="selectedRequest['dep_unit']"></mat-list-item><br>
+            <mat-list-item><mat-icon>info</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Purpose" matInput [(ngModel)]="selectedRequest['purpose']"></mat-list-item><br>
+            <mat-list-item><mat-icon>local_atm</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Funding Method" matInput [(ngModel)]="selectedRequest['fundingWay']"></mat-list-item><br>
+            <mat-list-item><mat-icon>email</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Email" matInput [(ngModel)]="selectedRequest['email']"></mat-list-item><br>
+            <mat-list-item><mat-icon>lock</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Password" matInput [(ngModel)]="selectedRequest['password']"></mat-list-item><br>
+            <mat-list-item><mat-icon>person_add</mat-icon>  &nbsp;&nbsp; <input type="text" placeholder="Number of Passengers" matInput [(ngModel)]="selectedRequest['num_passangers']"></mat-list-item><br>
+
+          </mat-list>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+
+    </div>
+
+  </div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+  <button mat-button (click)="editRequest(selectedRequest)" style="background-color: #4CAF50; ">Done</button>
+  <button mat-button [mat-dialog-close]="2" style="background-color: #FF9800; ">Cancel</button>
+
+</mat-dialog-actions>
+
+<div id="request_form_div"></div>
+
+<div id="vehicle_pass_div"></div>

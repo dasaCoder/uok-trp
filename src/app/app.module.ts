@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -67,6 +67,8 @@ import { AddVehicleToReqComponent } from './components/main/admin/dashboard/add-
 import { RequestsTableComponent } from './components/main/admin/dashboard/requests-table/requests-table.component';
 import { DriverListComponent } from './components/main/admin/drivers/driver-list/driver-list.component';
 import { VehicleListComponent } from './components/main/admin/vehicle/vehicle-list/vehicle-list.component';
+import { EditRequestComponent } from './components/main/admin/dashboard/edit-request/edit-request.component';
+import { RepairHistoryComponent } from './components/main/admin/dashboard/repair-history/repair-history.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +109,9 @@ import { VehicleListComponent } from './components/main/admin/vehicle/vehicle-li
     AddVehicleToReqComponent,
     RequestsTableComponent,
     DriverListComponent,
-    VehicleListComponent
+    VehicleListComponent,
+    EditRequestComponent,
+    RepairHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -133,7 +137,8 @@ import { VehicleListComponent } from './components/main/admin/vehicle/vehicle-li
     AmazingTimePickerModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatTabsModule
+    MatTabsModule,
+    ReactiveFormsModule
   ],
   providers: [
     AvailableVehicleService,
@@ -147,8 +152,10 @@ import { VehicleListComponent } from './components/main/admin/vehicle/vehicle-li
   entryComponents: [
     ReqeustPreveiwComponent,
     AddDriverComponent,
-    AddVehicleToReqComponent
+    AddVehicleToReqComponent,
+    EditRequestComponent,
+    RepairHistoryComponent
   ]
 })
 export class AppModule { }
-platformBrowserDynamic().bootstrapModule(AppModule);
+//platformBrowserDynamic().bootstrapModule(AppModule);

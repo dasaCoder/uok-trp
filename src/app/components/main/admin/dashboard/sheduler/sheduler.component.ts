@@ -21,8 +21,6 @@ export class ShedulerComponent implements OnInit {
 
       this.events = this.requests;
 
-      console.log("sheduler",this.requests);
-
       this.options = {
         weekends: true,
         header: {

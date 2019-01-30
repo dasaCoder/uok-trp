@@ -1,4 +1,10 @@
-<h2 mat-dialog-title>TRD/{{ selectedRequest['refNo'] }}</h2>
+
+<div>
+  <h2 mat-dialog-title style="display: inline;">TRD/{{ selectedRequest['refNo'] }}</h2>
+  <button mat-icon-button style="float: right;vertical-align: bottom;" (click)="loadEditWindow()"><mat-icon>edit</mat-icon></button>
+</div>
+
+
 <mat-divider></mat-divider>
 
 <mat-dialog-content>
@@ -57,8 +63,8 @@
       <mat-accordion>
 
         <mat-expansion-panel>
-          <mat-expansion-panel-header style="background: #4615b2">
-            <mat-panel-title style="color:white">
+          <mat-expansion-panel-header >
+            <mat-panel-title >
               Driver
             </mat-panel-title>
 
@@ -81,8 +87,8 @@
         </mat-expansion-panel>
 
         <mat-expansion-panel>
-          <mat-expansion-panel-header style="background: #651fff">
-            <mat-panel-title style="color:white">
+          <mat-expansion-panel-header >
+            <mat-panel-title >
               Vehicle
             </mat-panel-title>
 
@@ -105,8 +111,8 @@
         </mat-expansion-panel>
 
         <mat-expansion-panel>
-          <mat-expansion-panel-header style="background: #834bff">
-            <mat-panel-title style="color: white;">
+          <mat-expansion-panel-header >
+            <mat-panel-title >
               More Info
             </mat-panel-title>
 
@@ -115,9 +121,9 @@
           <mat-list class="trp-mat-list">
 
             <mat-list-item><mat-icon>account_circle</mat-icon>  &nbsp;&nbsp; {{selectedRequest['lecturer']}}</mat-list-item>
-            <mat-list-item><mat-icon>location_city</mat-icon>  &nbsp;&nbsp; {{selectedRequest['position']}}</mat-list-item>
+            <mat-list-item><mat-icon>work_outline</mat-icon>  &nbsp;&nbsp; {{selectedRequest['position']}}</mat-list-item>
             <mat-list-item><mat-icon>domain</mat-icon>  &nbsp;&nbsp; {{selectedRequest['dep_unit']}}</mat-list-item>
-            <mat-list-item><mat-icon>gps_fixed</mat-icon>  &nbsp;&nbsp; {{selectedRequest['purpose']}}</mat-list-item>
+            <mat-list-item><mat-icon>info</mat-icon>  &nbsp;&nbsp; {{selectedRequest['purpose']}}</mat-list-item>
             <mat-list-item><mat-icon>local_atm</mat-icon>  &nbsp;&nbsp; {{selectedRequest['fundingWay']}}</mat-list-item>
             <mat-list-item><mat-icon>email</mat-icon>  &nbsp;&nbsp; {{selectedRequest['email']}}</mat-list-item>
             <mat-list-item><mat-icon>lock</mat-icon>  &nbsp;&nbsp; {{selectedRequest['password']}}</mat-list-item>
@@ -138,10 +144,12 @@
 
 <mat-dialog-actions>
 
-  <div [ngSwitch]="selectedRequest['status']" style="display: inline">
+  <div [ngSwitch]="selectedRequest['status']" style=" display: inline">
 
     <button mat-button *ngSwitchCase="0" (click)="acceptRequest(selectedRequest['refNo'])" style="background-color: #4CAF50; ">Accept</button>
     <button mat-button *ngSwitchCase="2" (click)="markDocumentedRequest(selectedRequest['refNo'])" style="background-color: #FF9800; ">Documented</button>
+    <button mat-button *ngSwitchCase="3" (click)="printPdf(selectedRequest)" style="background-color: #52b03c; " >Print Application</button>
+    <button mat-button *ngSwitchCase="3" (click)="printGatePass(selectedRequest)" style="background-color: #52b03c; " >Print Gate Pass</button>
     <button mat-button *ngSwitchCase="3" style="background-color: #9C27B0; " >Completed</button>
 
   </div>
@@ -152,3 +160,7 @@
   <button mat-button [mat-dialog-close]="1" style="background-color: #FF9800; ">Cancel</button>
 
 </mat-dialog-actions>
+
+<div id="request_form_div"></div>
+
+<div id="vehicle_pass_div"></div>

@@ -11,7 +11,8 @@ export class LoginComponent implements OnInit {
   //@Input() login_type;
   public username: string;
   public password: string;
-
+  isLoading = false;
+  white = '#ffffff';
   constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit() {
@@ -20,16 +21,18 @@ export class LoginComponent implements OnInit {
 
   login(loginform) {
    // alert('ok');
+    this.isLoading = true;
     if (this.username !== null && this.password !== null) {
       this.adminService.adminLogin(this.username, this.password)
         .subscribe(resp => {
           if (resp['status'] === 200)
           {
             localStorage.setItem('token', resp['token']);
-            this.router.navigate(['/admin/dashboard']);
-            window.location.reload();
+            window.location.href = '/admin/dashboard';
+            //window.location.reload();
           } else {
             alert('username or password is incorrect');
+            this.isLoading = false;
               loginform.reset();
           }
         });
