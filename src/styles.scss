@@ -682,7 +682,10 @@ NEW modification to landing page*/
   background-repeat: repeat-x;
 }
 
-
+#time-picker-wrapper.light[_ngcontent-c35] #time-picker[_ngcontent-c35] .time-picker-clock[_ngcontent-c35] > button.active[_ngcontent-c35] {
+  background: #FFBE27;
+  color: #fff;
+}
 
 
 /*@media (max-width: 767px) {
