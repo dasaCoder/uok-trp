@@ -40,7 +40,7 @@ export class StatusMsgComponent implements OnInit, OnDestroy {
         } else {
           this.status = 5;
         }
-        console.log(response);
+      
       });
   }
 
