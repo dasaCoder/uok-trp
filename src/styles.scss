@@ -745,6 +745,17 @@ NEW modification to landing page*/
   background-color: #f1f1f1;
 }
 
+.listOnRepair {
+  border-left: solid 2px red;
+  background-color: gainsboro;
+}
+
+.listOnRepair:hover{
+  background-color: #ffdada;
+  color: red;
+  cursor: pointer;
+}
+
 
 /*@media screen and (max-width: 400px) {
   .nav-logo {
