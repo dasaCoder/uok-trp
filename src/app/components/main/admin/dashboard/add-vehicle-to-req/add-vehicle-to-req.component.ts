@@ -70,7 +70,6 @@ export class AddVehicleToReqComponent implements OnInit {
           //console.log("add vehicle", response);
           if (response['success']) {
               if (typeof vehicle['dirver'] !== undefined) {
-                alert("test");
 
                 this.adminService.setDriver(this.refNo, vehicle['driver']['_id'])
                 .subscribe( rsp => {
@@ -82,10 +81,11 @@ export class AddVehicleToReqComponent implements OnInit {
                   } else {
                     this.addVehicleRef.close({'status': true, 'vehicle': this.selectedVehicle });
                   }
+
                 });
 
               } else {
-                console.log("no driver", vehicle);
+
                 this.addVehicleRef.close({'status': true, 'vehicle': this.selectedVehicle });
               }
 
