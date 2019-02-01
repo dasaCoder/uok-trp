@@ -60,9 +60,10 @@ export class ReqeustPreveiwComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
+        console.log(`Dialog result:`, result);
         if(result['status']) {
           this.selectedRequest['vehicle'] = result['vehicle'];
+          this.selectedRequest['driver'] = result['driver'];
           this.isChangeOccured = 1; // change happend to reqeust
         }
       });
