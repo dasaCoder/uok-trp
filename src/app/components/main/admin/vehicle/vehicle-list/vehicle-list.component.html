@@ -32,11 +32,24 @@
           <mat-icon>settings</mat-icon>
           Settings
         </mat-card-title>
+        <br>
 
-        <mat-card-subtitle>Maintenence</mat-card-subtitle>
+        <mat-card-subtitle>Maintenence History</mat-card-subtitle>
 
         <mat-card-content>
-          test
+
+          <mat-list>
+
+              <mat-list-item
+                [ngClass]="{selectedHistoryRecord: selectedHistoryRecord === record}"
+                class="listOnRepair"
+                *ngFor="let record of repairHistory"
+               (click) ="loadRepairDialog()">REPAIR/{{record['_id'].substr(20)}}</mat-list-item>
+
+               <mat-list-item *ngIf="repairHistory.length == 0">0 records</mat-list-item>
+
+          </mat-list>
+
         </mat-card-content>
       </mat-card>
   </div>

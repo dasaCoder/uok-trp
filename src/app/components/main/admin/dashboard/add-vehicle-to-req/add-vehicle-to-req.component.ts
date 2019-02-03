@@ -18,8 +18,11 @@ export class AddVehicleToReqComponent implements OnInit {
   clickedItem;
   selectedVehicle;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private adminService: AdminService,
-              public addVehicleRef: MatDialogRef <AddVehicleToReqComponent>) { }
+  constructor(
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private adminService: AdminService,
+              public addVehicleRef: MatDialogRef <AddVehicleToReqComponent>
+              ) { }
 
   ngOnInit() {
 
@@ -60,12 +63,32 @@ export class AddVehicleToReqComponent implements OnInit {
   }
 
   setVehicle (vehicle) {
+    console.log("vehicle", vehicle);
 
     this.adminService.set_vehicle(this.refNo, vehicle['_id'])
         .subscribe(response => {
-          console.log("add vehicle", response);
+          //console.log("add vehicle", response);
           if (response['success']) {
-              this.addVehicleRef.close({'status': true, 'vehicle': this.selectedVehicle });
+              if (typeof vehicle['dirver'] !== undefined) {
+
+                this.adminService.setDriver(this.refNo, vehicle['driver']['_id'])
+                .subscribe( rsp => {
+                  ///console.log(response);
+                  if ( rsp['success'] === true) {
+
+                    this.addVehicleRef.close({'status': true, 'vehicle': this.selectedVehicle, 'driver': vehicle['driver'] });
+
+                  } else {
+                    this.addVehicleRef.close({'status': true, 'vehicle': this.selectedVehicle });
+                  }
+
+                });
+
+              } else {
+
+                this.addVehicleRef.close({'status': true, 'vehicle': this.selectedVehicle });
+              }
+
           }
         });
 

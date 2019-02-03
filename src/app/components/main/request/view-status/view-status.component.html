@@ -152,19 +152,24 @@
         <mat-accordion>
 
           <mat-expansion-panel>
-            <mat-expansion-panel-header >
+            <mat-expansion-panel-header class="trp-tab-header">
               <mat-panel-title >
                 Driver
               </mat-panel-title>
 
             </mat-expansion-panel-header>
 
-            <mat-list>
-              <mat-list-item *ngIf="request['driver']">
-                {{ request['driver']['name'] }}
-              </mat-list-item>
+            <mat-list *ngIf="request['driver']" style="text-align: center">
 
-              <mat-list-item *ngIf="!request['driver']">
+              <img mat-card-md-image style="border-radius: 100px;" src="../../../../../../assets/images/pattern/pattern.png"/>
+              <h5 style="margin-top:20px;">
+                {{ request['driver']['name'] }}
+              </h5>
+
+            </mat-list>
+
+            <mat-list *ngIf="!request['driver']">
+              <mat-list-item >
                 Not Assigned yet
               </mat-list-item>
             </mat-list>
@@ -172,27 +177,31 @@
           </mat-expansion-panel>
 
           <mat-expansion-panel>
-            <mat-expansion-panel-header >
+            <mat-expansion-panel-header class="trp-tab-header">
               <mat-panel-title >
                 Vehicle
               </mat-panel-title>
 
             </mat-expansion-panel-header>
 
-            <mat-list>
-                <mat-list-item *ngIf="request['vehicle']">
-                  {{ request['vehicle']['vehicle_no'] }}
-                </mat-list-item>
+            <mat-list *ngIf="request['vehicle']" style="text-align: center">
 
+                    <img mat-card-md-image style="border-radius: 100px;" src="../../../../../../assets/images/pattern/pattern.png"/>
+                    <h5 style="margin-top:20px;">
+                        {{ request['vehicle']['vehicle_no'] }}
+                    </h5>
+            </mat-list>
+
+            <mat-list>
                 <mat-list-item *ngIf="!request['vehicle']">
                   Not Assigned yet
                 </mat-list-item>
-              </mat-list>
+            </mat-list>
 
             </mat-expansion-panel>
 
           <mat-expansion-panel>
-            <mat-expansion-panel-header >
+            <mat-expansion-panel-header class="trp-tab-header">
               <mat-panel-title >
                 More Info
               </mat-panel-title>

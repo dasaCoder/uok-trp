@@ -682,7 +682,10 @@ NEW modification to landing page*/
   background-repeat: repeat-x;
 }
 
-
+#time-picker-wrapper.light[_ngcontent-c35] #time-picker[_ngcontent-c35] .time-picker-clock[_ngcontent-c35] > button.active[_ngcontent-c35] {
+  background: #FFBE27;
+  color: #fff;
+}
 
 
 /*@media (max-width: 767px) {
@@ -736,6 +739,21 @@ NEW modification to landing page*/
 .mat-row:hover{
   background-color: #e8dcff;
   cursor:pointer;
+}
+
+.trp-tab-header{
+  background-color: #f1f1f1;
+}
+
+.listOnRepair {
+  border-left: solid 2px red;
+  background-color: gainsboro;
+}
+
+.listOnRepair:hover{
+  background-color: #ffdada;
+  color: red;
+  cursor: pointer;
 }
 
 

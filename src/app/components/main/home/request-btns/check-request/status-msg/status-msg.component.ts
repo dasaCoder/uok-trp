@@ -19,8 +19,16 @@ export class StatusMsgComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.status = 10;
   }
+
+
   login(body) {
     this.status = 6;
+    console.log("body",body);
+
+    body['refNo'] = body['refNo'].substr(4); // remove 'TRD/' part
+
+    this.refNo = body['refNo'];
+
     this.authService.login(body)
       .subscribe( response => {
         //console.log(response['isLogged']);
@@ -33,9 +41,10 @@ export class StatusMsgComponent implements OnInit, OnDestroy {
         } else {
           this.status = 5;
         }
-        console.log(response);
+
       });
   }
+
   logout() {
     this.authService.logout();
   }

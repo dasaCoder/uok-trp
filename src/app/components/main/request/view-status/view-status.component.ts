@@ -27,6 +27,7 @@ export class ViewStatusComponent implements OnInit {
           .subscribe(response => {
             if (+params.get('refNo') === this.authService.get_refNo()) {
               this.request = response['msg'][0];
+              console.log(this.request);
             }
             this.isPermited = this.authService.isLoggedInWithRefno(+params.get('refNo'));
             // console.log(this.request['status']);
