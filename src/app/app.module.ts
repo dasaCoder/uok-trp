@@ -69,6 +69,8 @@ import { VehicleListComponent } from './components/main/admin/vehicle/vehicle-li
 import { EditRequestComponent } from './components/main/admin/dashboard/edit-request/edit-request.component';
 import { RepairHistoryComponent } from './components/main/admin/dashboard/repair-history/repair-history.component';
 
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -137,7 +139,8 @@ import { RepairHistoryComponent } from './components/main/admin/dashboard/repair
     MatNativeDateModule,
     MatDatepickerModule,
     MatTabsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule
   ],
   providers: [
     AvailableVehicleService,
