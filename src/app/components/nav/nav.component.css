@@ -1,3 +1,22 @@
 .menu-spacer {
   flex: 1 1 auto;
 }
+
+.trd-nav, .trd-nav:hover, .trd-nav:active{
+  text-decoration: none;
+  border: solid #000;
+  border-radius: 100px;
+
+  font-weight: bolder;
+
+}
+
+.trd-nav:hover, .trd-nav:active{
+  background-color: #000;
+  text-decoration: none;
+  color: #fc0!important;
+  border: solid #fc0;
+
+}
+
+
