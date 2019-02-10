@@ -24,7 +24,7 @@
         <div *ngSwitchCase="1">
           <div class="row">
 
-            <div class="col-lg-12">
+            <div class="col-lg-6">
               <div class=" input-wrapper">
                 <label for="">Is this a one day trip?</label>
 
@@ -32,6 +32,21 @@
                   <label>
                     No
                     <input type="checkbox" [(ngModel)]="isOneDaytrip">
+                    <span class="lever"></span>
+                    Yes
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class=" input-wrapper">
+                <label for="">Are you expecting a return service</label>
+
+                <div class="switch">
+                  <label>
+                    No
+                    <input type="checkbox" [(ngModel)]="isReturnExpected">
                     <span class="lever"></span>
                     Yes
                   </label>
@@ -85,7 +100,7 @@
             </div>
 
 
-            <div class="col-lg-6" *ngIf="!isOneDaytrip">
+            <div class="col-lg-6" *ngIf="(!isOneDaytrip && isReturnExpected)">
               <div class="  " >
                 <mat-icon matListIcon>date_range</mat-icon><label>   Returning date:</label>
                 <input [(ngModel)]="arrival.dropDate"
@@ -103,7 +118,7 @@
               </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-6" *ngIf="isReturnExpected">
               <div class="input-wrapper">
                 <mat-icon matListIcon>access_time</mat-icon><label>Returning time :</label>
 
@@ -114,7 +129,7 @@
 
             <div class="col-lg-12" style="text-align: right;padding-right: 3vw">
               <button
-                [disabled]="!arrival.pickPointAddress || !departure.pickPointAddress || !departure.pickupTime || !arrival.dropTime || departure.pickupTime=='00:00' || arrival.dropTime=='00:00' ||  !departure.pickupDate || (!isOneDaytrip && !arrival.dropDate)"
+                [disabled]="!arrival.pickPointAddress || !departure.pickPointAddress || !departure.pickupTime || (isReturnExpected && !arrival.dropTime) || departure.pickupTime=='00:00' || (isReturnExpected && arrival.dropTime=='00:00') ||  !departure.pickupDate || (!isOneDaytrip && (!arrival.dropDate && isReturnExpected))"
                 (click)="nextStep(2)"
                 class="btn btn-next">Next</button>
             </div>

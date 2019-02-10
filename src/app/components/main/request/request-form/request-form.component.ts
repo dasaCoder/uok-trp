@@ -122,8 +122,9 @@ export class RequestFormComponent implements OnInit {
    isLoading = false;
 
   isOneDaytrip = false;
+  isReturnExpected = true;
 
-    refNoOfCreated:number = -1;
+  refNoOfCreated:number = -1;
 
   @ViewChild('search') public searchElement: ElementRef;
   @ViewChild('search2') public searchElement2: ElementRef;
