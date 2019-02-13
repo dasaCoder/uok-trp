@@ -30,10 +30,28 @@
         <mat-accordion>
             <a mat-list-item  (click)="changeTab(1)" ><mat-icon matListIcon>calendar_today</mat-icon>   Shedule</a>
 
-            <a mat-list-item [class.mat-elevation-z8]="true" (click)="changeTab(2)" ><mat-icon matListIcon>receipt</mat-icon>   Requests</a>
+            <a mat-list-item  (click)="changeTab(2)" ><mat-icon matListIcon>receipt</mat-icon>   Requests</a>
 
+            <a mat-list-item > <mat-icon matListIcon>face</mat-icon>   Drivers
+              <span style="flex: 1 1 auto;"></span>
+                  <button mat-icon-button [matMenuTriggerFor]="menu" style="float:right">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
 
-            <mat-expansion-panel class="sideNav">
+                    <button mat-menu-item (click)="changeTab(3)">
+                      <mat-icon>pageview</mat-icon>
+                      <span>View</span>
+                    </button>
+
+                    <button mat-menu-item (click)="changeTab(4)">
+                      <mat-icon>add</mat-icon>
+                      <span>Add Driver</span>
+                    </button>
+                  </mat-menu>
+            </a>
+
+            <!-- <mat-expansion-panel class="sideNav">
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   <mat-icon matListIcon>face</mat-icon>   Drivers
@@ -42,12 +60,30 @@
 
               <a mat-list-item (click)="changeTab(3)" ><mat-icon matListIcon>pageview</mat-icon>&nbsp;&nbsp;  View</a>
               <a mat-list-item (click)="changeTab(4)" ><mat-icon matListIcon>add</mat-icon>&nbsp;&nbsp;  Add Driver</a>
-            </mat-expansion-panel>
+            </mat-expansion-panel> -->
 
-            <mat-expansion-panel class="sideNav">
+            <a mat-list-item > <mat-icon matListIcon>commute</mat-icon>   commute
+              <span style="flex: 1 1 auto;"></span>
+              <button mat-icon-button [matMenuTriggerFor]="menu" id="btn1" style="float:right">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+
+                <button mat-menu-item (click)="changeTab(5)">
+                  <mat-icon>pageview</mat-icon>
+                  <span>View</span>
+                </button>
+
+                <button mat-menu-item (click)="changeTab(6)">
+                  <mat-icon>add</mat-icon>
+                  <span>Add Vehicle</span>
+                </button>
+              </mat-menu>
+        </a>
+            <!-- <mat-expansion-panel class="sideNav">
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                <mat-icon matListIcon>commute</mat-icon>   Vehicles
+                <mat-icon matListIcon>commute</mat-icon>   commute
                 </mat-panel-title>
               </mat-expansion-panel-header>
 
@@ -60,7 +96,7 @@
                 </a>
               </mat-nav-list>
 
-            </mat-expansion-panel>
+            </mat-expansion-panel> -->
         </mat-accordion>
 
 

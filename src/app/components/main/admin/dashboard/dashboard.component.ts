@@ -1,5 +1,5 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatDialog} from '@angular/material';
 import {FullCalendarModule} from 'primeng/fullcalendar';
 import { AdminService } from '../../../../services/admin.service';
@@ -10,12 +10,14 @@ import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
 import { RepairHistoryComponent } from './repair-history/repair-history.component';
 
+import { FocusMonitor } from '@angular/cdk/a11y';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
   selectedTab = 1; // 1-> sheduer 2-> requests
   //side nav
@@ -70,7 +72,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private requestService: RequestService,
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    private router: Router
+    private router: Router,
+    private _focusMonitor: FocusMonitor
     ) {
 
       this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -78,6 +81,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.mobileQuery.addListener(this._mobileQueryListener);
       //this.getNewReqeusts();
   }
+
+  ngAfterViewInit() {
+    this._focusMonitor.stopMonitoring(document.getElementById('btn1'));
+}
 
   ngOnInit() {
 
@@ -117,6 +124,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
    ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
+
 
   //change tab
   changeTab(tab) {
