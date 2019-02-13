@@ -69,7 +69,7 @@ export class AdminService {
       } );
   }
   set_vehicle(refNo, _id) {
-    return this.http.get(`https://uok-transport-division.herokuapp.com/admin/vehicle/set_vehicle/?refNo=${refNo}&_id=${_id}`, {
+    return this.http.get(`${this.url}/vehicle/set_vehicle/?refNo=${refNo}&_id=${_id}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
@@ -84,8 +84,8 @@ export class AdminService {
       'arrival': details['arrival'],
       'departure': details['departure']
     };
-
-    return this.http.post( 'http://localhost:5000/admin' + `/vehicle/maintenance/add?_id=${_id}`, body, {
+console.log("body",body);
+    return this.http.post( `${this.url}/vehicle/maintenance/add?_id=${_id}`, body, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     });
   }
