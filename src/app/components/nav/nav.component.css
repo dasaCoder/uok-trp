@@ -16,3 +16,27 @@
     width: 200px;
   }
 }
+
+.trd-nav, .trd-nav:hover, .trd-nav:active{
+  text-decoration: none;
+  border: solid #000;
+  border-radius: 100px;
+
+  font-weight: bolder;
+
+}
+
+.trd-nav:hover, .trd-nav:active{
+  background-color: #000;
+  text-decoration: none;
+  color: #fc0!important;
+  border: solid #fc0;
+
+}
+
+.trd-nav-active {
+  background-color: #fc0!important;
+  text-decoration: none;
+  color: #000000!important;
+  border: solid #fc0;
+}
