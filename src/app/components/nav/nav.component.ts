@@ -8,12 +8,16 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavComponent implements OnInit {
   navbarOpen = false;
+  isAdmin = false;
 
   constructor(private authService: AuthService) {
 
   }
 
   ngOnInit() {
+    if(localStorage.getItem('isAdmin').toLowerCase() === 'true') {
+      this.isAdmin = true;
+    }
   }
 
   toggleNavbar() {

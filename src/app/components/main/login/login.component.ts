@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
           if (resp['status'] === 200)
           {
             localStorage.setItem('token', resp['token']);
+            localStorage.setItem('isAdmin', 'true');
             window.location.href = '/admin/dashboard';
             //window.location.reload();
           } else {

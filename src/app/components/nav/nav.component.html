@@ -1,7 +1,7 @@
 
 
 
-<header class="navbar navbar-dark bg-dark navbar-static-top" style="background-color: black;height: auto;">
+<header *ngIf='!isAdmin' class="navbar navbar-dark bg-dark navbar-static-top" style="background-color: black;height: auto;">
   <nav class="navbar navbar-toggleable-md navbar-dark bg-dark " style="    height: auto; background-color: black;margin: -6px">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
             data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="padding-top: 10px">
