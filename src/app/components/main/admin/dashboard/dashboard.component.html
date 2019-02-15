@@ -64,7 +64,7 @@
 
             <a mat-list-item > <mat-icon matListIcon>commute</mat-icon>   commute
               <span style="flex: 1 1 auto;"></span>
-              <button mat-icon-button [matMenuTriggerFor]="menu" id="btn1" style="float:right">
+              <button mat-icon-button [matMenuTriggerFor]="menu"  style="float:right">
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
@@ -247,8 +247,13 @@
                     <app-requests-table [requestDataSource]="authenticatedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
                   </mat-tab>
 
-                  <mat-tab label="Completed Requests"></mat-tab>
-                  <mat-tab label="Rejected Requests"></mat-tab>
+                  <mat-tab label="Completed Requests">
+                    <app-requests-table *ngIf="completedReqDataSource.length != 0" [requestDataSource]="completedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
+                  </mat-tab>
+
+                  <mat-tab label="Rejected Requests">
+                    <app-requests-table [requestDataSource]="rejectedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
+                  </mat-tab>
               </mat-tab-group>
             </div>
 

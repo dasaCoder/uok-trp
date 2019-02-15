@@ -83,6 +83,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
+
     this._focusMonitor.stopMonitoring(document.getElementById('btn1'));
 }
 
@@ -162,6 +163,22 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
         this.authenticatedReqData = data;
 
         this.authenticatedReqDataSource.data = this.authenticatedReqData;
+
+      });
+
+      this.adminService.getRequestsOnStatusForTable(`status[0]=4`)
+      .then(data => {
+        this.confirmedReqData = data;
+
+        this.completedReqDataSource.data = this.authenticatedReqData;
+
+      });
+
+      this.adminService.getRequestsOnStatusForTable(`status[0]=5`)
+      .then(data => {
+        this.rejectedReqData = data;
+
+        this.rejectedReqDataSource.data = this.authenticatedReqData;
 
       });
   }
