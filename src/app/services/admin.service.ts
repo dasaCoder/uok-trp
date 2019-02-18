@@ -353,10 +353,10 @@ console.log("body",body);
   }
 
 
-  // get list of requests
+  // get list of requests for given date
 
   getRequestListOnDay(date){
-    return this.http.get(`${this.url}/get_request_has_vehicle?date=${date}`, {
+    return this.http.get(`${this.url}/get_requests_on_date?date=${date}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }

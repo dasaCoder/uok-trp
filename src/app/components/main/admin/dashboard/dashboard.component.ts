@@ -44,6 +44,9 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
   requests: any = [];
 
+  //hold requests of today
+  todayRequests: any = [];
+
   onRepairList: any = []; // list of vehicles on repair
   events: any = [];
   options: any = [];
@@ -120,6 +123,9 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.loadMainteneceDetails();
 
+    //load today
+    this.loadTodayRequest();
+
    }
 
    ngOnDestroy(): void {
@@ -182,6 +188,20 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
         this.rejectedReqDataSource.data = this.rejectedReqData;
 
       });
+  }
+
+  // load today's requests
+  loadTodayRequest() {
+    let today = new Date("2019-01-24");
+    console.log(today.toLocaleString());
+
+    this.adminService.getRequestListOnDay("2019-01-24")
+      .subscribe(data=> {
+        console.log("today report",data);
+        if(data['success']) {
+          this.todayRequests = data['data'];
+        }
+      })
   }
 
   getRequestOnStatus(): any {

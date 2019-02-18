@@ -123,6 +123,20 @@
 
                   <mat-accordion>
                       <mat-expansion-panel [expanded]="true">
+                          <mat-expansion-panel-header><mat-icon>list</mat-icon> Today's Requests </mat-expansion-panel-header>
+                          <mat-list>
+                            <mat-list-item *ngFor="let request of todayRequests">
+                              {{ request.refNo }}
+                              <span class="spacer"></span>
+                              {{ request.departure.pickupPoint}}
+                              <span class="spacer"></span>
+                              {{ request.departure.dropPoint}}
+                            </mat-list-item>
+
+                          </mat-list>
+                        </mat-expansion-panel>
+
+                      <mat-expansion-panel [expanded]="true">
                         <mat-expansion-panel-header><mat-icon>list</mat-icon> Requests.. </mat-expansion-panel-header>
                         <mat-list>
                           <mat-list-item><span class="colour-box" style="background-color: #1A73E8"></span>New</mat-list-item>
