@@ -170,7 +170,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
       .then(data => {
         this.confirmedReqData = data;
 
-        this.completedReqDataSource.data = this.authenticatedReqData;
+        this.completedReqDataSource.data = this.confirmedReqData;
 
       });
 
@@ -178,7 +178,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
       .then(data => {
         this.rejectedReqData = data;
 
-        this.rejectedReqDataSource.data = this.authenticatedReqData;
+        this.rejectedReqDataSource.data = this.rejectedReqData;
 
       });
   }

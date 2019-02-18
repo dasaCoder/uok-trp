@@ -36,10 +36,10 @@
 
             <a mat-list-item > <mat-icon matListIcon>face</mat-icon>   Drivers
               <span style="flex: 1 1 auto;"></span>
-                  <button mat-icon-button [matMenuTriggerFor]="menu" style="float:right">
+                  <button mat-icon-button [matMenuTriggerFor]="menuDrivers" style="float:right">
                     <mat-icon>more_vert</mat-icon>
                   </button>
-                  <mat-menu #menu="matMenu">
+                  <mat-menu #menuDrivers="matMenu">
 
                     <button mat-menu-item (click)="changeTab(3)">
                       <mat-icon>pageview</mat-icon>
@@ -66,10 +66,10 @@
 
             <a mat-list-item > <mat-icon matListIcon>commute</mat-icon>   Vehicles
               <span style="flex: 1 1 auto;"></span>
-              <button mat-icon-button [matMenuTriggerFor]="menu"  style="float:right">
+              <button mat-icon-button [matMenuTriggerFor]="menuVehicles"  style="float:right">
                 <mat-icon>more_vert</mat-icon>
               </button>
-              <mat-menu #menu="matMenu">
+              <mat-menu #menuVehicles="matMenu">
 
                 <button mat-menu-item (click)="changeTab(5)">
                   <mat-icon>pageview</mat-icon>
@@ -250,11 +250,15 @@
                   </mat-tab>
 
                   <mat-tab label="Completed Requests">
-                    <app-requests-table *ngIf="completedReqDataSource.length != 0" [requestDataSource]="completedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
+                    <app-requests-table [requestDataSource]="completedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
                   </mat-tab>
 
                   <mat-tab label="Rejected Requests">
-                    <app-requests-table [requestDataSource]="rejectedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
+                    <div class="container">
+
+                      <p *ngIf="rejectedReqData.length == 0">No rejected records yet</p>
+                    </div>
+                    <app-requests-table *ngIf="rejectedReqData.length != 0" [requestDataSource]="rejectedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
                   </mat-tab>
               </mat-tab-group>
             </div>
