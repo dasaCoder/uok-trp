@@ -133,22 +133,23 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   loadTableData() {
-      this.adminService.getRequestsOnStatusForTable(`status[0]=1`)
-      .then(data => {
-        this.acceptedReqData = data;
+
+    this.adminService.getRequestsOnStatusForTable(`status[0]=0`)
+    .then(data => {
+      this.newRequestData = data;
+
+      this.newReqDataSource.data = this.newRequestData;
+
+    });
+
+    this.adminService.getRequestsOnStatusForTable(`status[0]=1`)
+    .then(data => {
+      this.acceptedReqData = data;
 
 
-        this.acceptedReqDataSource.data = this.acceptedReqData;
+      this.acceptedReqDataSource.data = this.acceptedReqData;
 
-      });
-
-      this.adminService.getRequestsOnStatusForTable(`status[0]=0`)
-      .then(data => {
-        this.newRequestData = data;
-
-        this.newReqDataSource.data = this.newRequestData;
-
-      });
+    });
 
       this.adminService.getRequestsOnStatusForTable(`status[0]=2`)
       .then(data => {
@@ -168,9 +169,9 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.adminService.getRequestsOnStatusForTable(`status[0]=4`)
       .then(data => {
-        this.confirmedReqData = data;
+        this.completedReqData = data;
 
-        this.completedReqDataSource.data = this.confirmedReqData;
+        this.completedReqDataSource.data = this.completedReqData;
 
       });
 

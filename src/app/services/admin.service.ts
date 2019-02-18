@@ -140,16 +140,16 @@ console.log("body",body);
                           let color = '';
                           switch ( element['status']) {
                             case '0':
-                              color = '#1A73E8';
+                              color = '#1A73E8'; // new request
                               break;
                             case '1':
-                              color = '#1E8E3E';
+                              color = '#1E8E3E'; // accepted
                               break;
                             case '2':
-                              color = '#FA7B17';
+                              color = '#FA7B17'; // confirmed
                               break;
                             case '3':
-                              color = '#A142F4';
+                              color = '#A142F4'; // authenticate
                               break;
                           }
 
