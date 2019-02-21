@@ -30,8 +30,9 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   authenticatedReqData: RequestElement[] = [];
   completedReqData: RequestElement[] = [];
   rejectedReqData: RequestElement[] = [];
+  todayReqData: RequestElement[] = [];
 
-  //displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['refNo', 'to', 'from'];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   acceptedReqDataSource = new MatTableDataSource<RequestElement>(this.requestData);
@@ -41,6 +42,8 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
   completedReqDataSource = new MatTableDataSource<RequestElement>(this.completedReqData);
   rejectedReqDataSource = new MatTableDataSource<RequestElement>(this.rejectedReqData);
+
+  todayReqDataSource = new MatTableDataSource<RequestElement>(this.todayReqData);
 
   requests: any = [];
 
@@ -195,13 +198,13 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
     let today = new Date("2019-01-24");
     console.log(today.toLocaleString());
 
-    this.adminService.getRequestListOnDay("2019-01-24")
-      .subscribe(data=> {
-        console.log("today report",data);
-        if(data['success']) {
-          this.todayRequests = data['data'];
-        }
-      })
+    this.adminService.getRequestsOnDayForTable("2019-01-24")
+      .then(data => {
+          this.todayReqData = data;
+
+          this.todayReqDataSource.data = this.todayReqData;
+console.log("today",this.todayReqData);
+      });
   }
 
   getRequestOnStatus(): any {

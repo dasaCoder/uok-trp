@@ -125,18 +125,39 @@
                       <mat-expansion-panel [expanded]="true">
                           <mat-expansion-panel-header><mat-icon>list</mat-icon> Today's Requests </mat-expansion-panel-header>
                           <mat-list>
-                            <mat-list-item *ngFor="let request of todayRequests">
-                              {{ request.refNo }}
-                              <span class="spacer"></span>
-                              {{ request.departure.pickupPoint}}
-                              <span class="spacer"></span>
-                              {{ request.departure.dropPoint}}
-                            </mat-list-item>
+                            <div class="mat-elevation-z3">
+                              <mat-table #table [dataSource]="todayReqDataSource" matSort>
+
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="refNo">
+                                  <mat-header-cell *matHeaderCellDef> Ref No </mat-header-cell>
+                                  <mat-cell *matCellDef="let element"> {{element.refNo}} </mat-cell>
+                                </ng-container>
+
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="to">
+                                  <mat-header-cell *matHeaderCellDef> To </mat-header-cell>
+                                  <mat-cell *matCellDef="let element"> {{element.to}} </mat-cell>
+                                </ng-container>
+
+                                <!-- Weight Column -->
+                                <ng-container matColumnDef="from">
+                                  <mat-header-cell *matHeaderCellDef> From </mat-header-cell>
+                                  <mat-cell *matCellDef="let element"> {{element.from}} </mat-cell>
+                                </ng-container>
+
+
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+                              </mat-table>
+
+
+                            </div>
 
                           </mat-list>
                         </mat-expansion-panel>
 
-                      <mat-expansion-panel [expanded]="true">
+                      <mat-expansion-panel >
                         <mat-expansion-panel-header><mat-icon>list</mat-icon> Requests.. </mat-expansion-panel-header>
                         <mat-list>
                           <mat-list-item><span class="colour-box" style="background-color: #1A73E8"></span>New</mat-list-item>

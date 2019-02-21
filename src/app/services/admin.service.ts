@@ -202,6 +202,37 @@ console.log("body",body);
                       });
   }
 
+    // return array of requests
+    getRequestsOnDayForTable(date) {
+      return this.http.get(`${this.url}/get_requests_on_date?date=${date}`, {
+        headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+      } )
+                        .toPromise()
+                        .then(res => <any[]> res)
+                        .then(data => {
+                          var dataT = [];
+
+                          if(data['data'] === undefined) {
+                            return;
+                          }
+
+                          data['data'].forEach(element => {
+
+
+                            dataT.push({
+                              'refNo'   : element['refNo'],
+                              'to'      : element['departure']['pickupPoint'],
+                              'from'    : element['departure']['dropPoint'],
+                              'driver'  : (element['driver'] !== undefined )? element['driver']['name'] : 'Not assigned',
+                              'vehicle' : (element['vehicle'] !== undefined)? element['vehicle']['vehicle_no'] : 'Not assigned'
+                            });
+
+                          });
+
+                          return dataT;
+                        });
+    }
+
   /*
   *  get request on vehicle
   * */
