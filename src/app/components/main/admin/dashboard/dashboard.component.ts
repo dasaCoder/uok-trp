@@ -297,6 +297,30 @@ console.log("today",this.todayReqData);
     })
   }
 
+  // open reqeust dialog
+  loadRequest(refNo) {
+    //alert(refNo);
+    this.requestService.getOneRequest(refNo)
+        .subscribe(request => {
+
+          const dialogRef = this.dialog.open(ReqeustPreveiwComponent, {
+              width: '90%',
+              data: request['msg'][0]
+          });
+
+          dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+            if(result ===1) {
+              this.loadTodayRequest();
+              //this.changeEmitter.emit(1); // when any change occur to request by dialog activity
+            }
+          });
+
+    });
+
+
+  }
+
 }
 
 export interface RequestElement {
