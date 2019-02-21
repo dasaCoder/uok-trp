@@ -99,6 +99,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
     if (!this.authService.isLoggedIn()) {
 
       this.router.navigateByUrl('/login');
+      return;
     }
    // this.acceptedReqDataSource.paginator = this.paginator;
     //this.dataSource.paginator = this.paginator;
