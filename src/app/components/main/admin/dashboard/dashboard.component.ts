@@ -321,6 +321,15 @@ console.log("today",this.todayReqData);
 
   }
 
+  // logout from the system
+  logout() {
+    if(confirm("Are you sure to logged out from the system?")){
+
+      this.authService.logout();
+      location.href = '/login';
+    }
+  }
+
 }
 
 export interface RequestElement {
