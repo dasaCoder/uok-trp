@@ -95,6 +95,11 @@ export class ReqeustPreveiwComponent implements OnInit {
     });
   }
 
+  // print pdf
+  printApplication(refNo) {
+    let url = `https://storage.googleapis.com/uok-trp/${refNo}.pdf`;
+    window.open(url, "_blank");
+  }
 
   rejectRequest(refNo) {
     this.requestService.change_status(refNo, 5)
