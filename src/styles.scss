@@ -755,7 +755,11 @@ NEW modification to landing page*/
   color: red;
   cursor: pointer;
 }
-
+.spacer {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
 
 /*@media screen and (max-width: 400px) {
   .nav-logo {
