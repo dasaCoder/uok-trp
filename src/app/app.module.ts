@@ -70,6 +70,7 @@ import { EditRequestComponent } from './components/main/admin/dashboard/edit-req
 import { RepairHistoryComponent } from './components/main/admin/dashboard/repair-history/repair-history.component';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { TrackerScreenComponent } from './components/main/admin/dashboard/tracker-screen/tracker-screen.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     DriverListComponent,
     VehicleListComponent,
     EditRequestComponent,
-    RepairHistoryComponent
+    RepairHistoryComponent,
+    TrackerScreenComponent
   ],
   imports: [
     BrowserModule,

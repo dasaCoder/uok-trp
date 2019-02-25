@@ -155,7 +155,7 @@
 
   </div>
 
-  <button mat-button (click)="rejectRequest(selectedRequest['refNo'] )" style="background-color: #f50057; ">Reject</button>
+  <button *ngIf="selectedRequest['status'] != '5'" mat-button (click)="rejectRequest(selectedRequest['refNo'] )" style="background-color: #f50057; ">Reject</button>
 
 
   <button mat-button [mat-dialog-close]="1" style="background-color: #FF9800; ">Cancel</button>

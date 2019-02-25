@@ -12,7 +12,7 @@
 
  <div fxLayout="row">
 
-  <mat-drawer-container class="example-sidenav-container" style="height:80vh; ">
+  <mat-drawer-container class="example-sidenav-container" style="min-height:80vh;width: 100%; ">
     <mat-drawer #snav [mode]="'side'" style="max-width: 200px;">
 
       <!-- <button mat-icon-button
@@ -33,6 +33,8 @@
             <a mat-list-item  (click)="changeTab(1)" ><mat-icon matListIcon>calendar_today</mat-icon>   Shedule</a>
 
             <a mat-list-item  (click)="changeTab(2)" ><mat-icon matListIcon>receipt</mat-icon>   Requests</a>
+
+            <a mat-list-item  (click)="changeTab(7)" ><mat-icon matListIcon>receipt</mat-icon>   Tracker</a>
 
             <a mat-list-item > <mat-icon matListIcon>face</mat-icon>   Drivers
               <span style="flex: 1 1 auto;"></span>
@@ -291,7 +293,9 @@
               <app-add-vehicle></app-add-vehicle>
             </div>
 
-
+            <div *ngIf="selectedTab == 7">
+                <app-tracker-screen></app-tracker-screen>
+            </div>
 
       </div>
     </mat-drawer-content>
