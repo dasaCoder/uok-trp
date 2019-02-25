@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MouseEvent } from '@agm/core';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-tracker-screen',
@@ -8,6 +10,7 @@ import { MouseEvent } from '@agm/core';
 })
 export class TrackerScreenComponent implements OnInit {
 
+  public vehcles: Observable<any[]>;
 
   // google maps zoom level
   zoom: number = 18;
@@ -54,9 +57,9 @@ export class TrackerScreenComponent implements OnInit {
     console.log('dragEnd', m, $event);
   }
 
-
-
-  constructor() { }
+  constructor(db: AngularFirestore) {
+    this.vehcles = db.collection('/vehicles').valueChanges();
+   }
 
   ngOnInit() {
   }
@@ -71,4 +74,8 @@ interface marker {
     label?: string;
     draggable: boolean;
     iconUrl?: string;
+}
+
+class Vehicle {
+  constructor(public vehicleNo) { }
 }

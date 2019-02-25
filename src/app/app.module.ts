@@ -8,6 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 /*google maps api*/
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
+// firebase db
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireModule } from 'angularfire2';
+
+// credentials
+import { environment } from '../environments/environment';
+
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MainComponent } from './components/main/main.component';
@@ -142,7 +149,9 @@ import { TrackerScreenComponent } from './components/main/admin/dashboard/tracke
     MatDatepickerModule,
     MatTabsModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [
     AvailableVehicleService,
