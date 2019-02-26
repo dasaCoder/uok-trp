@@ -1,6 +1,6 @@
 
 <div class="container">
-  <!-- <p *ngFor="let vehicle of vehicles">{{vehicle.vehicleNo}}</p> -->
+
   <agm-map
       [latitude]="lat"
       [longitude]="lng"
@@ -10,15 +10,13 @@
       (mapClick)="mapClicked($event)">
 
        <agm-marker
-           *ngFor="let m of markers; let i = index"
-           (markerClick)="clickedMarker(m.label, i)"
+           *ngFor="let m of vehicles; let i = index"
+           (markerClick)="clickedMarker(m.name, i)"
            [latitude]="m.lat"
            [longitude]="m.lng"
-           [label]="m.label"
-           [iconUrl]="m.iconUrl"
-           [markerDraggable]="m.draggable"
-           (dragEnd)="markerDragEnd(m, $event)">
+           [label]="m.name"
 
+       >
           <agm-info-window>
             <strong>InfoWindow content</strong>
           </agm-info-window>

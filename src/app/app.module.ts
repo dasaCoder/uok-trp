@@ -9,8 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 // firebase db
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 // credentials
 import { environment } from '../environments/environment';
