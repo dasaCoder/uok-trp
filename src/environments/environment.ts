@@ -7,7 +7,7 @@ export const environment = {
   production: true,
   // Initialize Firebase
   firebase: {
-    apiKey: "AIzaSyCHVnqa07g2nQ41jboxGP-5HDzwWcFWdl0sdsds",
+    apiKey: "AIzaSyCHVnqa07g2nQ41jboxGP-5HDzwWcFWdl0sdsdsaa",
     authDomain: "uok-trp.firebaseapp.com",
     databaseURL: "https://uok-trp.firebaseio.com",
     projectId: "uok-trp",
