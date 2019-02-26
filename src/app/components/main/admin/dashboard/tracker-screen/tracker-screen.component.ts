@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MouseEvent } from '@agm/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs-compat';
 
 @Component({
   selector: 'app-tracker-screen',
