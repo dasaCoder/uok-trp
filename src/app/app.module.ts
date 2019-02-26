@@ -8,6 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 /*google maps api*/
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
+// firebase db
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+// credentials
+import { environment } from '../environments/environment';
+
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MainComponent } from './components/main/main.component';
@@ -70,6 +77,7 @@ import { EditRequestComponent } from './components/main/admin/dashboard/edit-req
 import { RepairHistoryComponent } from './components/main/admin/dashboard/repair-history/repair-history.component';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { TrackerScreenComponent } from './components/main/admin/dashboard/tracker-screen/tracker-screen.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +120,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     DriverListComponent,
     VehicleListComponent,
     EditRequestComponent,
-    RepairHistoryComponent
+    RepairHistoryComponent,
+    TrackerScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -140,7 +149,9 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatDatepickerModule,
     MatTabsModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [
     AvailableVehicleService,

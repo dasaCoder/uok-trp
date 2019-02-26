@@ -33,6 +33,21 @@
             <a class="btn btn-primary" target="_blank" href="https://storage.googleapis.com/uok-trp/{{request.refNo}}.pdf">Download Application</a>
           </div>
 
+          <div *ngIf="request.status == 3">
+              <i class="fa fa-info"></i>
+              Request is Confirmed. please feel free contact us in any issue about your journey.
+          </div>
+
+          <div *ngIf="request.status == 4">
+              <i class="fa fa-info"></i>
+              Request is Authenticated. please let us know if you don't need this service.
+          </div>
+
+          <div *ngIf="request.status == 5">
+              <i class="fa fa-info"></i>
+              Request is Rejected. please contact us for further details.
+          </div>
+
           <div>
             <!--<img class="" src="../../assets/images/background/van.svg" alt="First slide" style="height: 70vh;">-->
           </div>

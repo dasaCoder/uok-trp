@@ -69,7 +69,7 @@ export class AdminService {
       } );
   }
   set_vehicle(refNo, _id) {
-    return this.http.get(`https://uok-transport-division.herokuapp.com/admin/vehicle/set_vehicle/?refNo=${refNo}&_id=${_id}`, {
+    return this.http.get(`${this.url}/vehicle/set_vehicle/?refNo=${refNo}&_id=${_id}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }
@@ -84,8 +84,8 @@ export class AdminService {
       'arrival': details['arrival'],
       'departure': details['departure']
     };
-
-    return this.http.post( 'http://localhost:5000/admin' + `/vehicle/maintenance/add?_id=${_id}`, body, {
+console.log("body",body);
+    return this.http.post( `${this.url}/vehicle/maintenance/add?_id=${_id}`, body, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     });
   }
@@ -140,16 +140,16 @@ export class AdminService {
                           let color = '';
                           switch ( element['status']) {
                             case '0':
-                              color = '#1A73E8';
+                              color = '#1A73E8'; // new request
                               break;
                             case '1':
-                              color = '#1E8E3E';
+                              color = '#1E8E3E'; // accepted
                               break;
                             case '2':
-                              color = '#FA7B17';
+                              color = '#FA7B17'; // confirmed
                               break;
                             case '3':
-                              color = '#A142F4';
+                              color = '#A142F4'; // authenticate
                               break;
                           }
 
@@ -201,6 +201,37 @@ export class AdminService {
                         return dataT;
                       });
   }
+
+    // return array of requests
+    getRequestsOnDayForTable(date) {
+      return this.http.get(`${this.url}/get_requests_on_date?date=${date}`, {
+        headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+      } )
+                        .toPromise()
+                        .then(res => <any[]> res)
+                        .then(data => {
+                          var dataT = [];
+
+                          if(data['data'] === undefined) {
+                            return;
+                          }
+
+                          data['data'].forEach(element => {
+
+
+                            dataT.push({
+                              'refNo'   : element['refNo'],
+                              'to'      : element['departure']['pickupPoint'],
+                              'from'    : element['departure']['dropPoint'],
+                              'driver'  : (element['driver'] !== undefined )? element['driver']['name'] : 'Not assigned',
+                              'vehicle' : (element['vehicle'] !== undefined)? element['vehicle']['vehicle_no'] : 'Not assigned'
+                            });
+
+                          });
+
+                          return dataT;
+                        });
+    }
 
   /*
   *  get request on vehicle
@@ -353,10 +384,10 @@ export class AdminService {
   }
 
 
-  // get list of requests
+  // get list of requests for given date
 
   getRequestListOnDay(date){
-    return this.http.get(`${this.url}/get_request_has_vehicle?date=${date}`, {
+    return this.http.get(`${this.url}/get_requests_on_date?date=${date}`, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import { AddDriverComponent } from '../add-driver/add-driver.component';
 import { RequestService } from '../../../../../services/request.service';
 import { AddVehicleToReqComponent } from '../add-vehicle-to-req/add-vehicle-to-req.component';
@@ -24,7 +24,8 @@ export class ReqeustPreveiwComponent implements OnInit {
                 @Inject(MAT_DIALOG_DATA) public data: any,
                 private dialog: MatDialog,
                 private requestService: RequestService,
-                private requestDialogRef: MatDialogRef<ReqeustPreveiwComponent>
+                private requestDialogRef: MatDialogRef<ReqeustPreveiwComponent>,
+                private snackBar: MatSnackBar
               ) {
 
     console.log("req data",data);
@@ -86,12 +87,26 @@ export class ReqeustPreveiwComponent implements OnInit {
     });
   }
 
+  // open the snack bar
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+      verticalPosition: 'top'
+    });
+  }
+
+  // print pdf
+  printApplication(refNo) {
+    let url = `https://storage.googleapis.com/uok-trp/${refNo}.pdf`;
+    window.open(url, "_blank");
+  }
+
   rejectRequest(refNo) {
-    this.requestService.change_status(refNo, 4)
+    this.requestService.change_status(refNo, 5)
       .subscribe( (response) => {
         console.log(response['msg']);
-        this.selectedRequest['status'] = 3;
-
+        this.selectedRequest['status'] = 5;
+        this.openSnackBar("Rejected Successfully!", "Got it!");
         this.isChangeOccured = 1;
       });
   }
@@ -101,6 +116,7 @@ export class ReqeustPreveiwComponent implements OnInit {
       .subscribe( (response) => {
         console.log(response['msg']);
         this.selectedRequest['status'] = 1;
+        this.openSnackBar("Accepted Successfully!", "Got it!");
 
         this.isChangeOccured = 1;
         //location.reload();
@@ -110,11 +126,12 @@ export class ReqeustPreveiwComponent implements OnInit {
 
 
   markDocumentedRequest(refNo) {
-    this.requestService.change_status(refNo, 3)
+    this.requestService.change_status(refNo, 4)
       .subscribe( response => {
         //alert('daon');
         console.log(response['msg']);
         this.selectedRequest['status'] = 4;
+        this.openSnackBar("Marked Successfully!", "Got it!");
 
         this.isChangeOccured = 1;
       });

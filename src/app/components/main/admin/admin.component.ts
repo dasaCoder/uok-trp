@@ -19,7 +19,11 @@ export class AdminComponent implements OnInit {
   confirmed_requests = [];
   detailed_requests = [];
   driverList: Driver[];
-  constructor(private vehicleService: VehicleService, private requestService: RequestService, private adminService: AdminService, private authservice: AuthService) {
+  constructor(
+    private vehicleService: VehicleService,
+    private requestService: RequestService,
+    private adminService: AdminService,
+    private authservice: AuthService) {
 
   }
 
