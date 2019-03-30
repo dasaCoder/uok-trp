@@ -32,9 +32,23 @@
         <mat-accordion>
             <a mat-list-item  (click)="changeTab(1)" ><mat-icon matListIcon>calendar_today</mat-icon>   Shedule</a>
 
-            <a mat-list-item  (click)="changeTab(2)" ><mat-icon matListIcon>receipt</mat-icon>   Requests</a>
+            <a mat-list-item  (click)="changeTab(2)" ><mat-icon matListIcon>receipt</mat-icon>   Requests
+              <mat-chip-list>
+                <mat-chip [selected]="true"
+                  style="height: 20px;
+                          width: 20px;
+                          font-size: 12px;
+                          text-align: center;
+                          padding-left: 7px;
+                          margin-left: 10px;
+                          background: red;"
+                >
+                  {{ newRequestData.length }}
+                </mat-chip>
+              </mat-chip-list>
+            </a>
 
-            <a mat-list-item  (click)="changeTab(7)" ><mat-icon matListIcon>receipt</mat-icon>   Tracker</a>
+            <a mat-list-item  (click)="changeTab(7)" ><mat-icon matListIcon>map</mat-icon>   Tracker</a>
 
             <a mat-list-item > <mat-icon matListIcon>face</mat-icon>   Drivers
               <span style="flex: 1 1 auto;"></span>
