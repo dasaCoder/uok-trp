@@ -139,12 +139,16 @@ export class ReqeustPreveiwComponent implements OnInit {
 
   printGatePass(request) {
     let content = `
-    <div #pdf style="width: 210mm;height: 148mm;font-size:12px; padding: 7px; border:1px solid black;">
+    <style>
+      @page { size: auto;  margin: 0mm; }
+    </style>
+    <div #pdf style="width: 200mm;height: 280mm;font-size:12px; padding: 7px; border:1px solid black;">
 
-    <h5 style="text-align: center;"><strong>කැළණිය විශ්ව විද්&zwj;යාලය</strong></h5>
+    <h1 style="text-align: center;"><strong>කැළණිය විශ්ව විද්&zwj;යාලය</strong></h1>
 
-    <p style="text-align: center;"><strong>වාහන ධාවන අවසර පත්&zwj;රය</strong></p>
-    <p>ආරක්ෂක නිළධාරීතුමණි,</p>
+    <h3 style="text-align: center;"><strong>වාහන ධාවන අවසර පත්&zwj;රය</strong></h3>
+    <hr>
+    <h3>ආරක්ෂක නිළධාරීතුමණි,</h3>
     <table style="height: 20px; border-color: null;" border="0" width="685">
       <tbody>
       <tr>
@@ -157,11 +161,21 @@ export class ReqeustPreveiwComponent implements OnInit {
       </tr>
       </tbody>
     </table>
-    <p style="text-align: center;"><strong>ඉහත සදහන් වාහනය රාජකාරී කටයුතු සදහා යොදවා ඇති බැවින් වාහනය පිටවීමට අවසර ලබා දෙන්න.</strong></p>
-    <ul>
-      <li>වාහනය යන ස්ථානය : ${request.departure.dropPoint}</li>
-      <li>රාජකාරී විස්තරය&nbsp; &nbsp; &nbsp; : ${request.purpose}li>
-    </ul>
+    <br>
+    <h3 style="text-align: center;"><strong>ඉහත සදහන් වාහනය රාජකාරී කටයුතු සදහා යොදවා ඇති බැවින් වාහනය පිටවීමට අවසර ලබා දෙන්න.</strong></h3>
+    <table>
+      <tbody>
+        <tr>
+        <td>වාහනය යන ස්ථානය : ${request.departure.dropPoint}</td>
+        
+        </tr>
+        <tr>
+          <td>රාජකාරී විස්තරය&nbsp; &nbsp; &nbsp; : ${request.purpose}</td>
+        </tr>
+      </tbody>
+      
+    </table>
+    <br>
     <table>
       <tbody>
       <tr>
@@ -185,13 +199,31 @@ export class ReqeustPreveiwComponent implements OnInit {
       <tr style="height: 25px;">
         <td style="width: 202px; height: 25px;">දිනය</td>
         <td style="width: 178px; height: 25px;">&nbsp;</td>
-        <td style="width: 301px; height: 25px;">සටහන් තබා ගන්නා ආරක්ෂක නිලධාරීයාගේ,</td>
+        
       </tr>
       <tr style="height: 5px;">
         <td style="width: 202px; height: 5px;">
           <p>&nbsp;</p>
           <p>______________________</p>
         </td>
+        <td style="width: 178px; height: 25px;">&nbsp;</td>      
+        
+      </tr>
+      <tr style="height: 17px;">
+        <td style="width: 202px; height: 17px;">රියදුරු මහතාගේ අත්සන</td>
+        <td style="width: 178px; height: 17px;">&nbsp;</td>
+        <td style="width: 301px; height: 17px;">&nbsp; &nbsp;</td>
+      </tr>
+      </tbody>
+    </table>
+<hr>
+    <table style="height: 73px; width: 693px;">
+      <tbody>
+      <tr style="height: 25px;">
+        <td style="width: 178px; height: 25px;">&nbsp;</td>
+        <td style="width: 301px; height: 25px;">සටහන් තබා ගන්නා ආරක්ෂක නිලධාරීයාගේ,</td>
+      </tr>
+      <tr style="height: 5px;">
         <td style="width: 210px; height: 5px;">&nbsp;
             <table style="height: 42px; width: 178.2px;">
             <tbody>
@@ -221,31 +253,16 @@ export class ReqeustPreveiwComponent implements OnInit {
           </table>
         </td>
       </tr>
-      <tr style="height: 17px;">
-        <td style="width: 202px; height: 17px;">රියදුරු මහතාගේ අත්සන</td>
-        <td style="width: 178px; height: 17px;">&nbsp;</td>
-        <td style="width: 301px; height: 17px;">&nbsp; &nbsp;</td>
-      </tr>
+      
       </tbody>
     </table>
 
   </div>
     `;
 
-    document.getElementById('vehicle_pass_div').innerHTML = content;
-
-    html2canvas(document.getElementById('vehicle_pass_div')).then( canvas => {
-
-      document.getElementById('vehicle_pass_div').innerHTML = '';
-
-      let imgData = canvas.toDataURL('image/png');
-      // document.body.appendChild(canvas);
-
-      let doc = new jsPDF('l', 'pt' , 'a5');
-      let width = doc.internal.pageSize.width;
-      let height = doc.internal.pageSize.height;
-      doc.addImage(imgData, 'JPEG', 0 , 0, width, height);
-      doc.save('img.pdf');
-    })
+        let newWin= window.open("");
+        newWin.document.write(content);
+        newWin.print();
+        newWin.close();
   }
 }
