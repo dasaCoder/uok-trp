@@ -1,4 +1,7 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-nav',
@@ -6,10 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  navbarOpen = false;
+  isAdmin = false;
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private location: Location
+    ) {
+
+  }
 
   ngOnInit() {
+    if(this.location.path().split('/')[1] === 'admin') {
+      this.isAdmin = true;
+    }
   }
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
+
 
 }

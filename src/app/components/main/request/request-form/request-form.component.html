@@ -24,7 +24,7 @@
         <div *ngSwitchCase="1">
           <div class="row">
 
-            <div class="col-lg-12">
+            <div class="col-lg-6">
               <div class=" input-wrapper">
                 <label for="">Is this a one day trip?</label>
 
@@ -32,6 +32,21 @@
                   <label>
                     No
                     <input type="checkbox" [(ngModel)]="isOneDaytrip">
+                    <span class="lever"></span>
+                    Yes
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class=" input-wrapper">
+                <label for="">Are you expecting a return service</label>
+
+                <div class="switch">
+                  <label>
+                    No
+                    <input type="checkbox" [(ngModel)]="isReturnExpected">
                     <span class="lever"></span>
                     Yes
                   </label>
@@ -87,7 +102,12 @@
 
             <div class="col-lg-6" *ngIf="!isOneDaytrip">
               <div class="  " >
-                <mat-icon matListIcon>date_range</mat-icon><label>   Returning date:</label>
+                <mat-icon matListIcon>date_range</mat-icon>
+
+                <label *ngIf="isReturnExpected">   Returning date:</label>
+                <label *ngIf="!isReturnExpected">   Expected Finishing date:</label>
+
+
                 <input [(ngModel)]="arrival.dropDate"
                        [owlDateTimeTrigger]="dtPicker2"
                        [owlDateTime]="dtPicker2"
@@ -105,7 +125,11 @@
 
             <div class="col-lg-6">
               <div class="input-wrapper">
-                <mat-icon matListIcon>access_time</mat-icon><label>Returning time :</label>
+                <mat-icon matListIcon>access_time</mat-icon>
+
+                <label *ngIf="isReturnExpected">Returning time :</label>
+                <label *ngIf="!isReturnExpected">Expected Finishing time :</label>
+
 
                 <input class="trp-min-input" atp-time-picker value="" [(ngModel)] = "this.arrival.dropTime" changeToMinutes="true" theme="material-orange" />
 

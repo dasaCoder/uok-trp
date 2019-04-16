@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import { AddDriverComponent } from '../add-driver/add-driver.component';
 import { RequestService } from '../../../../../services/request.service';
 import { AddVehicleToReqComponent } from '../add-vehicle-to-req/add-vehicle-to-req.component';
@@ -24,7 +24,8 @@ export class ReqeustPreveiwComponent implements OnInit {
                 @Inject(MAT_DIALOG_DATA) public data: any,
                 private dialog: MatDialog,
                 private requestService: RequestService,
-                private requestDialogRef: MatDialogRef<ReqeustPreveiwComponent>
+                private requestDialogRef: MatDialogRef<ReqeustPreveiwComponent>,
+                private snackBar: MatSnackBar
               ) {
 
     console.log("req data",data);
@@ -60,9 +61,10 @@ export class ReqeustPreveiwComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
+        console.log(`Dialog result:`, result);
         if(result['status']) {
           this.selectedRequest['vehicle'] = result['vehicle'];
+          this.selectedRequest['driver'] = result['driver'];
           this.isChangeOccured = 1; // change happend to reqeust
         }
       });
@@ -85,12 +87,26 @@ export class ReqeustPreveiwComponent implements OnInit {
     });
   }
 
+  // open the snack bar
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+      verticalPosition: 'top'
+    });
+  }
+
+  // print pdf
+  printApplication(refNo) {
+    let url = `https://storage.googleapis.com/uok-trp/${refNo}.pdf`;
+    window.open(url, "_blank");
+  }
+
   rejectRequest(refNo) {
-    this.requestService.change_status(refNo, 3)
+    this.requestService.change_status(refNo, 5)
       .subscribe( (response) => {
         console.log(response['msg']);
-        this.selectedRequest['status'] = 3;
-
+        this.selectedRequest['status'] = 5;
+        this.openSnackBar("Rejected Successfully!", "Got it!");
         this.isChangeOccured = 1;
       });
   }
@@ -100,6 +116,7 @@ export class ReqeustPreveiwComponent implements OnInit {
       .subscribe( (response) => {
         console.log(response['msg']);
         this.selectedRequest['status'] = 1;
+        this.openSnackBar("Accepted Successfully!", "Got it!");
 
         this.isChangeOccured = 1;
         //location.reload();
@@ -114,120 +131,24 @@ export class ReqeustPreveiwComponent implements OnInit {
         //alert('daon');
         console.log(response['msg']);
         this.selectedRequest['status'] = 4;
+        this.openSnackBar("Marked Successfully!", "Got it!");
 
         this.isChangeOccured = 1;
       });
   }
 
-  printPdf(request) {
-    let content = `
-
-
-          <div style="width:210mm; height:297mm">
-            <div class="container">
-
-            <div class="container-fluid">
-            <div class="text-center"> <br><br>
-
-                  <img src="../../assets/images/logo/logo.png" class="nav-logo" alt="" style="height: 150px">
-                  <h3>කැළණිය විශ්ව විද්‍යාලය - කැළණිය</h3>
-
-
-                   <p > ධාවන වාරයක් සදහා රථයක් ලබා ගැනීමට අවසර ලබා ගැනීම</p>
-                   <br>
-                   <br>
-              </div>
-
-                <div class="">
-
-                <ngx-qrcode qrc-element-type="url" [qrc-value]="ngxQrcode2" ></ngx-qrcode>
-
-                 <div class="row">
-
-                    <div class="col-12">අංකය	:&nbsp;	TRD/${request.refNo}</div>
-                    <div class="col-12">පීඨය	:	&nbsp;${request.dep_unit}</div>
-                    <div class="col-12">ඉල්ලුම්කරුගේ නම  :  ${request.name}</div>
-                    <div class="col-12">ඉල්ලුම්කරුගේ තනතුර	:&nbsp;	${request.position}</div>
-
-                    <br><br>
-                    <div class="col-12" style="border-bottom: 1px solid #000000;">චාරිකාව පිළිබද</div>
-
-                    <div class="col-12" style="padding-top: 10px">ආරම්භක ස්ථානය	:&nbsp;	${request.departure.pickPointAddress}</div>
-                    <div class="col-12">ගමනාන්තය		:&nbsp;	${request.departure.dropPointAddress}</div>
-
-                <br><br>
-                      <div class="col-8">පිටත්වන දිනය :&nbsp; ${request.departure.pickupDate}</div>
-                      <div class="col-4">වේලාව &nbsp; &nbsp; &nbsp; : &nbsp;${request.departure.pickupTime}</div>
-
-                      <div class="col-8">ආපසු පැමිණෙන දිනය:&nbsp; ${request.arrival.dropDate}</div>
-
-                      <div class="col-4">වේලාව &nbsp; &nbsp; &nbsp; :&nbsp; ${request.arrival.dropTime}</div>
-
-                     <br><br>
-
-                    <div class="col-6">හේතුව	&nbsp; &nbsp; &nbsp;		:&nbsp;	${request.purpose}</div>
-
-                    <br><br><br>
-
-
-                  </div>
-
-                  </div>
-                <div class="row">
-                        <div class="col-lg-6">
-                          <p>........................................</p>
-                          <p>ඉල්ලුම්කරුගේ අත්සන</p>
-                        </div>
-
-                         <div class="col-lg-6">
-                          <p>........................................</p>
-                          <p>දිනය</p>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-
-
-            </div>
-
-
-
-
-
-          </div>
-    `;
-
-    document.getElementById('request_form_div').innerHTML = content;
-
-    html2canvas(document.getElementById('request_form_div')).then( canvas => {
-
-      document.getElementById('request_form_div').innerHTML = '';
-
-      let imgData = canvas.toDataURL('image/png');
-      // document.body.appendChild(canvas);
-
-      let doc = new jsPDF('p', 'mm' , 'a4');
-      doc.setFont("helvetica");
-      doc.setFontType("bold");
-      doc.setFontSize(10);
-      var width = 470;
-      let height = doc.internal.pageSize.height;
-      doc.addImage(imgData, 'JPEG', 0 , 0, width, height);
-      doc.save('request.pdf');
-    });
-  }
-
-
   printGatePass(request) {
     let content = `
-    <div #pdf style="width: 210mm;height: 148mm;font-size:12px; padding: 7px; border:1px solid black;">
+    <style>
+      @page { size: auto;  margin: 0mm; }
+    </style>
+    <div #pdf style="width: 200mm;height: 280mm;font-size:12px; padding: 7px; border:1px solid black;">
 
-    <h5 style="text-align: center;"><strong>කැළණිය විශ්ව විද්&zwj;යාලය</strong></h5>
+    <h1 style="text-align: center;"><strong>කැළණිය විශ්ව විද්&zwj;යාලය</strong></h1>
 
-    <p style="text-align: center;"><strong>වාහන ධාවන අවසර පත්&zwj;රය</strong></p>
-    <p>ආරක්ෂක නිළධාරීතුමණි,</p>
+    <h3 style="text-align: center;"><strong>වාහන ධාවන අවසර පත්&zwj;රය</strong></h3>
+    <hr>
+    <h3>ආරක්ෂක නිළධාරීතුමණි,</h3>
     <table style="height: 20px; border-color: null;" border="0" width="685">
       <tbody>
       <tr>
@@ -240,11 +161,21 @@ export class ReqeustPreveiwComponent implements OnInit {
       </tr>
       </tbody>
     </table>
-    <p style="text-align: center;"><strong>ඉහත සදහන් වාහනය රාජකාරී කටයුතු සදහා යොදවා ඇති බැවින් වාහනය පිටවීමට අවසර ලබා දෙන්න.</strong></p>
-    <ul>
-      <li>වාහනය යන ස්ථානය : ${request.departure.dropPoint}</li>
-      <li>රාජකාරී විස්තරය&nbsp; &nbsp; &nbsp; : ${request.purpose}li>
-    </ul>
+    <br>
+    <h3 style="text-align: center;"><strong>ඉහත සදහන් වාහනය රාජකාරී කටයුතු සදහා යොදවා ඇති බැවින් වාහනය පිටවීමට අවසර ලබා දෙන්න.</strong></h3>
+    <table>
+      <tbody>
+        <tr>
+        <td>වාහනය යන ස්ථානය : ${request.departure.dropPoint}</td>
+        
+        </tr>
+        <tr>
+          <td>රාජකාරී විස්තරය&nbsp; &nbsp; &nbsp; : ${request.purpose}</td>
+        </tr>
+      </tbody>
+      
+    </table>
+    <br>
     <table>
       <tbody>
       <tr>
@@ -268,13 +199,31 @@ export class ReqeustPreveiwComponent implements OnInit {
       <tr style="height: 25px;">
         <td style="width: 202px; height: 25px;">දිනය</td>
         <td style="width: 178px; height: 25px;">&nbsp;</td>
-        <td style="width: 301px; height: 25px;">සටහන් තබා ගන්නා ආරක්ෂක නිලධාරීයාගේ,</td>
+        
       </tr>
       <tr style="height: 5px;">
         <td style="width: 202px; height: 5px;">
           <p>&nbsp;</p>
           <p>______________________</p>
         </td>
+        <td style="width: 178px; height: 25px;">&nbsp;</td>      
+        
+      </tr>
+      <tr style="height: 17px;">
+        <td style="width: 202px; height: 17px;">රියදුරු මහතාගේ අත්සන</td>
+        <td style="width: 178px; height: 17px;">&nbsp;</td>
+        <td style="width: 301px; height: 17px;">&nbsp; &nbsp;</td>
+      </tr>
+      </tbody>
+    </table>
+<hr>
+    <table style="height: 73px; width: 693px;">
+      <tbody>
+      <tr style="height: 25px;">
+        <td style="width: 178px; height: 25px;">&nbsp;</td>
+        <td style="width: 301px; height: 25px;">සටහන් තබා ගන්නා ආරක්ෂක නිලධාරීයාගේ,</td>
+      </tr>
+      <tr style="height: 5px;">
         <td style="width: 210px; height: 5px;">&nbsp;
             <table style="height: 42px; width: 178.2px;">
             <tbody>
@@ -304,31 +253,16 @@ export class ReqeustPreveiwComponent implements OnInit {
           </table>
         </td>
       </tr>
-      <tr style="height: 17px;">
-        <td style="width: 202px; height: 17px;">රියදුරු මහතාගේ අත්සන</td>
-        <td style="width: 178px; height: 17px;">&nbsp;</td>
-        <td style="width: 301px; height: 17px;">&nbsp; &nbsp;</td>
-      </tr>
+      
       </tbody>
     </table>
 
   </div>
     `;
 
-    document.getElementById('vehicle_pass_div').innerHTML = content;
-
-    html2canvas(document.getElementById('vehicle_pass_div')).then( canvas => {
-
-      document.getElementById('vehicle_pass_div').innerHTML = '';
-
-      let imgData = canvas.toDataURL('image/png');
-      // document.body.appendChild(canvas);
-
-      let doc = new jsPDF('l', 'pt' , 'a5');
-      let width = doc.internal.pageSize.width;
-      let height = doc.internal.pageSize.height;
-      doc.addImage(imgData, 'JPEG', 0 , 0, width, height);
-      doc.save('img.pdf');
-    })
+        let newWin= window.open("");
+        newWin.document.write(content);
+        newWin.print();
+        newWin.close();
   }
 }

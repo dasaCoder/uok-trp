@@ -1,5 +1,5 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatDialog} from '@angular/material';
 import {FullCalendarModule} from 'primeng/fullcalendar';
 import { AdminService } from '../../../../services/admin.service';
@@ -10,12 +10,14 @@ import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
 import { RepairHistoryComponent } from './repair-history/repair-history.component';
 
+import { FocusMonitor } from '@angular/cdk/a11y';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
   selectedTab = 1; // 1-> sheduer 2-> requests
   //side nav
@@ -28,8 +30,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   authenticatedReqData: RequestElement[] = [];
   completedReqData: RequestElement[] = [];
   rejectedReqData: RequestElement[] = [];
+  todayReqData: RequestElement[] = [];
 
-  //displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['refNo', 'to', 'from'];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   acceptedReqDataSource = new MatTableDataSource<RequestElement>(this.requestData);
@@ -40,7 +43,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   completedReqDataSource = new MatTableDataSource<RequestElement>(this.completedReqData);
   rejectedReqDataSource = new MatTableDataSource<RequestElement>(this.rejectedReqData);
 
+  todayReqDataSource = new MatTableDataSource<RequestElement>(this.todayReqData);
+
   requests: any = [];
+
+  //hold requests of today
+  todayRequests: any = [];
 
   onRepairList: any = []; // list of vehicles on repair
   events: any = [];
@@ -70,7 +78,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private requestService: RequestService,
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    private router: Router
+    private router: Router,
+    private _focusMonitor: FocusMonitor
     ) {
 
       this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -79,12 +88,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
       //this.getNewReqeusts();
   }
 
+  ngAfterViewInit() {
+
+    this._focusMonitor.stopMonitoring(document.getElementById('btn1'));
+}
+
   ngOnInit() {
 
     //check the auth token validity
     if (!this.authService.isLoggedIn()) {
 
       this.router.navigateByUrl('/login');
+      return;
     }
    // this.acceptedReqDataSource.paginator = this.paginator;
     //this.dataSource.paginator = this.paginator;
@@ -112,11 +127,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.loadMainteneceDetails();
 
+    //load today
+    this.loadTodayRequest();
+
    }
 
    ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
+
 
   //change tab
   changeTab(tab) {
@@ -124,22 +143,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   loadTableData() {
-      this.adminService.getRequestsOnStatusForTable(`status[0]=1`)
-      .then(data => {
-        this.acceptedReqData = data;
+
+    this.adminService.getRequestsOnStatusForTable(`status[0]=0`)
+    .then(data => {
+      this.newRequestData = data;
+
+      this.newReqDataSource.data = this.newRequestData;
+
+    });
+
+    this.adminService.getRequestsOnStatusForTable(`status[0]=1`)
+    .then(data => {
+      this.acceptedReqData = data;
 
 
-        this.acceptedReqDataSource.data = this.acceptedReqData;
+      this.acceptedReqDataSource.data = this.acceptedReqData;
 
-      });
-
-      this.adminService.getRequestsOnStatusForTable(`status[0]=0`)
-      .then(data => {
-        this.newRequestData = data;
-
-        this.newReqDataSource.data = this.newRequestData;
-
-      });
+    });
 
       this.adminService.getRequestsOnStatusForTable(`status[0]=2`)
       .then(data => {
@@ -155,6 +175,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
         this.authenticatedReqDataSource.data = this.authenticatedReqData;
 
+      });
+
+      this.adminService.getRequestsOnStatusForTable(`status[0]=4`)
+      .then(data => {
+        this.completedReqData = data;
+
+        this.completedReqDataSource.data = this.completedReqData;
+
+      });
+
+      this.adminService.getRequestsOnStatusForTable(`status[0]=5`)
+      .then(data => {
+        this.rejectedReqData = data;
+
+        this.rejectedReqDataSource.data = this.rejectedReqData;
+
+      });
+  }
+
+  // load today's requests
+  loadTodayRequest() {
+    let today = new Date("2019-01-24");
+    console.log(today.toLocaleString());
+
+    this.adminService.getRequestsOnDayForTable("2019-01-24")
+      .then(data => {
+          this.todayReqData = data;
+
+          this.todayReqDataSource.data = this.todayReqData;
+console.log("today",this.todayReqData);
       });
   }
 
@@ -246,6 +296,39 @@ export class DashboardComponent implements OnInit, OnDestroy {
     repiarDialogRef.afterClosed().subscribe(data=> {
       this.loadMainteneceDetails();
     })
+  }
+
+  // open reqeust dialog
+  loadRequest(refNo) {
+    //alert(refNo);
+    this.requestService.getOneRequest(refNo)
+        .subscribe(request => {
+
+          const dialogRef = this.dialog.open(ReqeustPreveiwComponent, {
+              width: '90%',
+              data: request['msg'][0]
+          });
+
+          dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+            if(result ===1) {
+              this.loadTodayRequest();
+              //this.changeEmitter.emit(1); // when any change occur to request by dialog activity
+            }
+          });
+
+    });
+
+
+  }
+
+  // logout from the system
+  logout() {
+    if(confirm("Are you sure to logged out from the system?")){
+
+      this.authService.logout();
+      location.href = '/login';
+    }
   }
 
 }

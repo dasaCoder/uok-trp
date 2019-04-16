@@ -4,6 +4,12 @@
   flex: 1 1 auto;
 }
 
+.spacer {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
 .mat-icon{
   margin-right: 20px;
   vertical-align:middle
@@ -30,4 +36,19 @@
   background-color: #ffdada;
   color: red;
   cursor: pointer;
+}
+
+.menu-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-button.cdk-focused, .mat-icon-button.cdk-focused, .mat-button.cdk-program-focused, .mat-icon-button.cdk-program-focused {
+  background-color: none !important;
+  border: none !important;
+  outline: none !important;
+}
+.mat-button.cdk-focused .mat-button-focus-overlay, .mat-icon-button.cdk-focused .mat-button-focus-overlay, .mat-button.cdk-program-focused .mat-button-focus-overlay, .mat-icon-button.cdk-program-focused .mat-button-focus-overlay {
+  display: none !important;
+  border: none !important;
+  outline: none !important;
 }

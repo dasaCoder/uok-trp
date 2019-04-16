@@ -4,7 +4,7 @@
   <div class="row">
 
     <div class="col-md-4">
-      <img src="../../../../../../../assets/images/logo/logo.png" alt="" style="height: 20vh;padding-top: 20px;"> <br>
+      <img src="../../../../../../../assets/images/logo/trplogo.png" alt="" style="height: 20vh;padding-top: 20px;"> <br>
 
     </div>
 
@@ -25,18 +25,34 @@
       </div>
       <div *ngSwitchCase="2" class="text-center">
         <div class="alert alert-success" role="alert">
-          <strong>Confirmed</strong>  Your request is confirmed
+          <strong>Confirmed!</strong>  Your request is confirmed
         </div>
         <button class="btn btn-success" [routerLink]="['/request/view_req/'+refNo]" data-dismiss="modal" aria-label="Close">View more</button>
       </div>
+
       <div *ngSwitchCase="3" class="text-center">
+          <div class="alert alert-success" role="alert">
+            <strong>Authenticated!</strong>  Your request is completed all documentation
+          </div>
+          <button class="btn btn-success" [routerLink]="['/request/view_req/'+refNo]" data-dismiss="modal" aria-label="Close">View more</button>
+        </div>
+
+        <div *ngSwitchCase="4" class="text-center">
+            <div class="alert alert-success" role="alert">
+              <strong>Completed</strong>  Your request is completed
+            </div>
+            <button class="btn btn-success" [routerLink]="['/request/view_req/'+refNo]" data-dismiss="modal" aria-label="Close">View more</button>
+          </div>
+
+      <div *ngSwitchCase="5" class="text-center">
 
         <div class="alert alert-danger" role="alert">
           <strong>Sorry !</strong> Your request is rejected.
         </div>
         <button class="btn btn-danger" [routerLink]="['/request/view_req/'+refNo]" data-dismiss="modal" aria-label="Close">View more</button>
       </div>
-      <div *ngSwitchCase="5" class="text-center">
+
+      <div *ngSwitchCase="999" class="text-center">
         <div class="alert alert-danger" role="alert">
           <strong>Error !</strong> Referance number or password is invalid.
         </div>
@@ -64,7 +80,7 @@
                 <div class="col-md-12">
                   <div class="input-group">
                     <!--<span class="input-group-addon">TRD</span>-->
-                    <input id="redNo" name="refNo" autofocus [(ngModel)]="refNo" class="form-control input-md" placeholder="Ex: - 5" type="text" required="">
+                    <input id="refNo" name="refNo" [(ngModel)]="refNo" autofocus class="form-control input-md" placeholder="Ex: - TRD/5" type="text" required="">
                   </div>
 
                 </div>

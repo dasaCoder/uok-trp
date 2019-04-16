@@ -23,6 +23,7 @@ export class StatusMsgComponent implements OnInit, OnDestroy {
 
   login(body) {
     this.status = 6;
+    console.log("body",body);
 
     body['refNo'] = body['refNo'].substr(4); // remove 'TRD/' part
 
@@ -38,9 +39,9 @@ export class StatusMsgComponent implements OnInit, OnDestroy {
           // console.log(this.status);
 
         } else {
-          this.status = 5;
+          this.status = 999;
         }
-        console.log(response);
+
       });
   }
 

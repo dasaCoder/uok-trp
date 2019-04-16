@@ -8,6 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 /*google maps api*/
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
+// firebase db
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+// credentials
+import { environment } from '../environments/environment';
+
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MainComponent } from './components/main/main.component';
@@ -19,7 +26,6 @@ import { RequestBtnsComponent } from './components/main/home/request-btns/reques
 import { CreateRequestComponent } from './components/main/home/request-btns/create-request/create-request.component';
 import { CheckRequestComponent } from './components/main/home/request-btns/check-request/check-request.component';
 import { RequestFormComponent } from './components/main/request/request-form/request-form.component';
-import { CheckReqStatusComponent } from './components/main/request/check-req-status/check-req-status.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
@@ -70,6 +76,9 @@ import { VehicleListComponent } from './components/main/admin/vehicle/vehicle-li
 import { EditRequestComponent } from './components/main/admin/dashboard/edit-request/edit-request.component';
 import { RepairHistoryComponent } from './components/main/admin/dashboard/repair-history/repair-history.component';
 
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { TrackerScreenComponent } from './components/main/admin/dashboard/tracker-screen/tracker-screen.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +92,7 @@ import { RepairHistoryComponent } from './components/main/admin/dashboard/repair
     CreateRequestComponent,
     CheckRequestComponent,
     RequestFormComponent,
-    CheckReqStatusComponent,
+    /*CheckReqStatusComponent,*/
     ViewStatusComponent,
     AdminComponent,
     VehicleComponent,
@@ -111,7 +120,8 @@ import { RepairHistoryComponent } from './components/main/admin/dashboard/repair
     DriverListComponent,
     VehicleListComponent,
     EditRequestComponent,
-    RepairHistoryComponent
+    RepairHistoryComponent,
+    TrackerScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -138,7 +148,10 @@ import { RepairHistoryComponent } from './components/main/admin/dashboard/repair
     MatNativeDateModule,
     MatDatepickerModule,
     MatTabsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [
     AvailableVehicleService,

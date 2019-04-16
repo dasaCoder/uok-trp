@@ -1,18 +1,21 @@
 
- <mat-toolbar color="primary"  style="text-align:right">
-
-	<h1 (click)="snav.toggle()" style="cursor: pointer">Admin Panel</h1>
-    <span class="example-fill-remaining-space"></span>
+ <mat-toolbar color="primary" style="background:black;text-align:right">
 
   <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+	<h1 (click)="snav.toggle()" style="cursor: pointer">Admin Panel</h1>
+    <span class="example-fill-remaining-space"></span>
+      <img src="../../../../../assets/images/logo/trplogo.png" style="margin-top: 30px;
+                                                                      height: 80px;" alt="">
+    <span class="example-fill-remaining-space"></span>
+
 </mat-toolbar>
 
  <div fxLayout="row">
 
-  <mat-drawer-container class="example-sidenav-container" style="height:80vh; ">
+  <mat-drawer-container class="example-sidenav-container" style="min-height:80vh;width: 100%; ">
     <mat-drawer #snav [mode]="'side'" style="max-width: 200px;">
 
-      <button mat-icon-button
+      <!-- <button mat-icon-button
             (click)="snav.toggle()"
             style="position: absolute;
                     margin: 15px;
@@ -21,40 +24,73 @@
 
               </button>
 
-      <div class="trp-zebra-border"  style="height: 200px; background: #000000">
+      <div class="trp-zebra-border"  style="height: 100px; background: #000000"></div> -->
 
-      </div>
+
 			<mat-nav-list>
 
-				<a mat-list-item  (click)="changeTab(1)" ><mat-icon matListIcon>calendar_today</mat-icon>   Shedule</a>
+        <mat-accordion>
+            <a mat-list-item  (click)="changeTab(1)" ><mat-icon matListIcon>calendar_today</mat-icon>   Shedule</a>
 
-        <a mat-list-item [class.mat-elevation-z8]="true" (click)="changeTab(2)" ><mat-icon matListIcon>receipt</mat-icon>   Requests</a>
+            <a mat-list-item  (click)="changeTab(2)" ><mat-icon matListIcon>receipt</mat-icon>   Requests
+              <mat-chip-list>
+                <mat-chip [selected]="true"
+                  style="height: 20px;
+                          width: 20px;
+                          font-size: 12px;
+                          text-align: center;
+                          padding-left: 7px;
+                          margin-left: 10px;
+                          background: red;"
+                >
+                  {{ newRequestData.length }}
+                </mat-chip>
+              </mat-chip-list>
+            </a>
 
+            <a mat-list-item  (click)="changeTab(7)" ><mat-icon matListIcon>map</mat-icon>   Tracker</a>
 
-        <mat-expansion-panel class="sideNav">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon matListIcon>face</mat-icon>   Drivers
-            </mat-panel-title>
-          </mat-expansion-panel-header>
+            <a mat-list-item > <mat-icon matListIcon>face</mat-icon>   Drivers
+              <span style="flex: 1 1 auto;"></span>
+                  <button mat-icon-button [matMenuTriggerFor]="menuDrivers" style="float:right">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menuDrivers="matMenu">
 
-          <a mat-list-item (click)="changeTab(3)" ><mat-icon matListIcon>pageview</mat-icon>&nbsp;&nbsp;  View</a>
-          <a mat-list-item (click)="changeTab(4)" ><mat-icon matListIcon>add</mat-icon>&nbsp;&nbsp;  Add Driver</a>
-        </mat-expansion-panel>
+                    <button mat-menu-item (click)="changeTab(3)">
+                      <mat-icon>pageview</mat-icon>
+                      <span>View</span>
+                    </button>
 
-        <mat-expansion-panel class="sideNav">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-             <mat-icon matListIcon>commute</mat-icon>   Vehicles
-            </mat-panel-title>
-          </mat-expansion-panel-header>
+                    <button mat-menu-item (click)="changeTab(4)">
+                      <mat-icon>add</mat-icon>
+                      <span>Add Driver</span>
+                    </button>
+                  </mat-menu>
+            </a>
 
-          <mat-nav-list>
-            <a mat-list-item (click)="changeTab(5)" ><mat-icon matListIcon>pageview</mat-icon> &nbsp;&nbsp; View</a>
-            <a mat-list-item (click)="changeTab(6)" ><mat-icon matListIcon>add</mat-icon> &nbsp;&nbsp; Add Vehicle</a>
-          </mat-nav-list>
+            <a mat-list-item > <mat-icon matListIcon>commute</mat-icon>   Vehicles
+              <span style="flex: 1 1 auto;"></span>
+              <button mat-icon-button [matMenuTriggerFor]="menuVehicles"  style="float:right">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menuVehicles="matMenu">
 
-        </mat-expansion-panel>
+                <button mat-menu-item (click)="changeTab(5)">
+                  <mat-icon>pageview</mat-icon>
+                  <span>View</span>
+                </button>
+
+                <button mat-menu-item (click)="changeTab(6)">
+                  <mat-icon>add</mat-icon>
+                  <span>Add Vehicle</span>
+                </button>
+              </mat-menu>
+        </a>
+
+      </mat-accordion>
+
+      <a mat-list-item (click)="logout()"  ><mat-icon matListIcon>exit_to_app</mat-icon>   Logout</a>
 
 
 			</mat-nav-list>
@@ -63,121 +99,157 @@
     <mat-drawer-content>
       <div class="" style="padding-right: 4vw;padding-left: 4vw; padding-top: 5vh;">
 
-
-
             <div *ngIf="selectedTab == 1">
               <!-- <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar> -->
 
               <div class="row">
                 <div class="col-lg-7">
+
                   <app-sheduler *ngIf="events.length > 0" [requests]="events"></app-sheduler>
 
                 </div>
 
                 <div class="col-lg-5">
 
-                  <mat-expansion-panel>
+                  <mat-accordion>
+                      <mat-expansion-panel [expanded]="true">
+                          <mat-expansion-panel-header><mat-icon>list</mat-icon> Today's Requests </mat-expansion-panel-header>
+                          <mat-list>
+                            <div class="mat-elevation-z3">
+                              <mat-table #table [dataSource]="todayReqDataSource" matSort>
 
-                    <mat-expansion-panel-header><mat-icon>list</mat-icon> Requests.. </mat-expansion-panel-header>
-                    <mat-list>
-                      <mat-list-item><span class="colour-box" style="background-color: #1A73E8"></span>New</mat-list-item>
-                      <mat-list-item><span class="colour-box" style="background-color: #1E8E3E"></span>Accepted</mat-list-item>
-                      <mat-list-item><span class="colour-box" style="background-color: #FA7B17"></span>Confirmed</mat-list-item>
-                      <mat-list-item><span class="colour-box" style="background-color: #A142F4"></span>Authenticated</mat-list-item>
-                    </mat-list>
-                  </mat-expansion-panel>
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="refNo">
+                                  <mat-header-cell *matHeaderCellDef> Ref No </mat-header-cell>
+                                  <mat-cell *matCellDef="let element"> {{element.refNo}} </mat-cell>
+                                </ng-container>
 
-                  <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                      <mat-icon>battery_alert</mat-icon>Vehicles on maintenence
-                    </mat-expansion-panel-header>
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="to">
+                                  <mat-header-cell *matHeaderCellDef> To </mat-header-cell>
+                                  <mat-cell *matCellDef="let element"> {{element.to}} </mat-cell>
+                                </ng-container>
 
-                      <mat-list *ngIf="!isAddRepairModeOn">
-                        <mat-list-item class="listOnRepair" *ngFor="let vehicle of onRepairList" (click)="loadRepairHistory(vehicle['_id'])">{{vehicle['vehicle_no']}}</mat-list-item>
+                                <!-- Weight Column -->
+                                <ng-container matColumnDef="from">
+                                  <mat-header-cell *matHeaderCellDef> From </mat-header-cell>
+                                  <mat-cell *matCellDef="let element"> {{element.from}} </mat-cell>
+                                </ng-container>
 
-                      </mat-list>
+
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="loadRequest(row['refNo'])"></mat-row>
+                              </mat-table>
 
 
-                    <form class="repairForm" #repairForm="ngForm" *ngIf="isAddRepairModeOn">
+                            </div>
 
-                      <div class="col-lg-12">
+                          </mat-list>
+                        </mat-expansion-panel>
 
-                        <mat-label>Vehicle</mat-label> <br>
-                        <input type="text" placeholder="Pick one" aria-label="Number" matInput
-                              [formControl]="myControl"
-                              [matAutocomplete]="auto"
-                              [(ngModel)] = "mSelectedVehicle"
+                      <mat-expansion-panel >
+                        <mat-expansion-panel-header><mat-icon>list</mat-icon> Requests.. </mat-expansion-panel-header>
+                        <mat-list>
+                          <mat-list-item><span class="colour-box" style="background-color: #1A73E8"></span>New</mat-list-item>
+                          <mat-list-item><span class="colour-box" style="background-color: #1E8E3E"></span>Accepted</mat-list-item>
+                          <mat-list-item><span class="colour-box" style="background-color: #FA7B17"></span>Confirmed</mat-list-item>
+                          <mat-list-item><span class="colour-box" style="background-color: #A142F4"></span>Authenticated</mat-list-item>
+                        </mat-list>
+                      </mat-expansion-panel>
+
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-icon>battery_alert</mat-icon>Vehicles on maintenence
+                        </mat-expansion-panel-header>
+
+                          <mat-list *ngIf="!isAddRepairModeOn">
+                            <mat-list-item class="listOnRepair" *ngFor="let vehicle of onRepairList" (click)="loadRepairHistory(vehicle['_id'])">{{vehicle['vehicle_no']}}</mat-list-item>
+                          </mat-list>
+
+
+                        <form class="repairForm" #repairForm="ngForm" *ngIf="isAddRepairModeOn">
+
+                          <div class="col-lg-12">
+
+                            <mat-label>Vehicle</mat-label> <br>
+                            <input type="text" placeholder="Pick one" aria-label="Number" matInput
+                                  [formControl]="myControl"
+                                  [matAutocomplete]="auto"
+                                  [(ngModel)] = "mSelectedVehicle"
+                                  >
+                            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayVehicleNo">
+                              <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">
+                                {{vehicle['vehicle_no']}}
+                              </mat-option>
+                            </mat-autocomplete>
+                          </div>
+
+                          <div class="col-lg-12">
+
+                            <mat-label>Start Date:</mat-label> <br>
+                            <mat-icon matListIcon style="vertical-align:middle">date_range</mat-icon>
+                            <input [(ngModel)]="startDate"
+                                  [owlDateTimeTrigger]="dtPicker1"
+                                  name="txtStartDate"
+                                  [owlDateTime]="dtPicker1"
+                                  class=""
+                                  [min]="today"
+                                  style="display: inline;width: 150px"
+                            >
+                            <owl-date-time
+                              #dtPicker1 [pickerType]="'calendar'"
+                            ></owl-date-time>
+
+                            <mat-icon matListIcon>access_time</mat-icon>
+
+                            <input class="" atp-time-picker value="" style="width: 150px" [(ngModel)]="startTime" name="startTime" changeToMinutes="true" />
+
+                          </div>
+
+                          <div class="col-lg-12">
+
+                              <mat-label>Finishing Date:</mat-label> <br>
+                              <mat-icon matListIcon style="vertical-align:middle">date_range</mat-icon>
+                              <input [(ngModel)]="endDate"
+                                    name="txtEndDate"
+                                    [owlDateTimeTrigger]="dtPicker2"
+                                    [owlDateTime]="dtPicker2"
+                                    class=""
+                                    [min]="startDate"
+                                    style="display: inline;width: 150px"
                               >
-                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayVehicleNo">
-                          <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">
-                            {{vehicle['vehicle_no']}}
-                          </mat-option>
-                        </mat-autocomplete>
-                      </div>
+                              <owl-date-time
+                                #dtPicker2 [pickerType]="'calendar'"
+                              ></owl-date-time>
 
-                      <div class="col-lg-12">
+                              <mat-icon matListIcon>access_time</mat-icon>
 
-                        <mat-label>Start Date:</mat-label> <br>
-                        <mat-icon matListIcon style="vertical-align:middle">date_range</mat-icon>
-                        <input [(ngModel)]="startDate"
-                               [owlDateTimeTrigger]="dtPicker1"
-                               name="txtStartDate"
-                               [owlDateTime]="dtPicker1"
-                               class=""
-                               [min]="today"
-                               style="display: inline;width: 150px"
-                        >
-                        <owl-date-time
-                          #dtPicker1 [pickerType]="'calendar'"
-                        ></owl-date-time>
+                              <input class="" atp-time-picker value="" style="width: 150px" [(ngModel)]="endTime" name="endTime" changeToMinutes="true"/>
 
-                        <mat-icon matListIcon>access_time</mat-icon>
+                          </div>
 
-                        <input class="" atp-time-picker value="" style="width: 150px" [(ngModel)]="startTime" name="startTime" />
+                          <div class="col-lg-12">
+                            <mat-label>Reason</mat-label> <br>
+                            <input matInput id="txtMReason" [(ngModel)]="mReason" name="txtMReason">{{mReason}}
+                          </div>
 
-                      </div>
+                          <div class="col-lg-12">
+                            <button mat-button class="bg-success" (click)="addMainteneceDetails(); repairForm.reset()"><mat-icon>add</mat-icon> ADD</button>
+                          </div>
 
-                      <div class="col-lg-12">
+                        </form>
 
-                          <mat-label>Finishing Date:</mat-label> <br>
-                          <mat-icon matListIcon style="vertical-align:middle">date_range</mat-icon>
-                          <input [(ngModel)]="endDate"
-                                 name="txtEndDate"
-                                 [owlDateTimeTrigger]="dtPicker2"
-                                 [owlDateTime]="dtPicker2"
-                                 class=""
-                                 [min]="startDate"
-                                 style="display: inline;width: 150px"
-                          >
-                          <owl-date-time
-                            #dtPicker2 [pickerType]="'calendar'"
-                          ></owl-date-time>
+                        <div style="text-align:right">
+                          <button mat-button color="primary" class="bg-primary" (click)="isAddRepairModeOn = !isAddRepairModeOn">
+                            <span *ngIf="!isAddRepairModeOn">Add Repair</span>
+                            <span *ngIf="isAddRepairModeOn">Back</span>
+                          </button>
+                        </div>
 
-                          <mat-icon matListIcon>access_time</mat-icon>
+                      </mat-expansion-panel>
 
-                          <input class="" atp-time-picker value="" style="width: 150px" [(ngModel)]="endTime" name="endTime"/>
 
-                      </div>
-
-                      <div class="col-lg-12">
-                        <mat-label>Reason</mat-label> <br>
-                        <input matInput id="txtMReason" [(ngModel)]="mReason" name="txtMReason">{{mReason}}
-                      </div>
-
-                      <div class="col-lg-12">
-                        <button mat-button class="bg-success" (click)="addMainteneceDetails(); repairForm.reset()"><mat-icon>add</mat-icon> ADD</button>
-                      </div>
-
-                    </form>
-
-                    <div style="text-align:right">
-                      <button mat-button color="primary" class="bg-primary" (click)="isAddRepairModeOn = !isAddRepairModeOn">
-                        <span *ngIf="!isAddRepairModeOn">Add Repair</span>
-                        <span *ngIf="isAddRepairModeOn">Back</span>
-                      </button>
-                    </div>
-
-                  </mat-expansion-panel>
+                  </mat-accordion>
 
                 </div>
               </div>
@@ -202,8 +274,17 @@
                     <app-requests-table [requestDataSource]="authenticatedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
                   </mat-tab>
 
-                  <mat-tab label="Completed Requests"></mat-tab>
-                  <mat-tab label="Rejected Requests"></mat-tab>
+                  <mat-tab label="Completed Requests">
+                    <app-requests-table [requestDataSource]="completedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
+                  </mat-tab>
+
+                  <mat-tab label="Rejected Requests">
+                    <div class="container">
+
+                      <p *ngIf="rejectedReqData.length == 0">No rejected records yet</p>
+                    </div>
+                    <app-requests-table *ngIf="rejectedReqData.length != 0" [requestDataSource]="rejectedReqDataSource" (changeEmitter)="changeDetecter($event)"></app-requests-table>
+                  </mat-tab>
               </mat-tab-group>
             </div>
 
@@ -226,7 +307,9 @@
               <app-add-vehicle></app-add-vehicle>
             </div>
 
-
+            <div *ngIf="selectedTab == 7">
+                <app-tracker-screen></app-tracker-screen>
+            </div>
 
       </div>
     </mat-drawer-content>

@@ -142,19 +142,20 @@
 
 </mat-dialog-content>
 
-<mat-dialog-actions>
+<mat-dialog-actions style="text-align:right">
+  <div class="spacer"></div>
 
   <div [ngSwitch]="selectedRequest['status']" style=" display: inline">
 
     <button mat-button *ngSwitchCase="0" (click)="acceptRequest(selectedRequest['refNo'])" style="background-color: #4CAF50; ">Accept</button>
     <button mat-button *ngSwitchCase="2" (click)="markDocumentedRequest(selectedRequest['refNo'])" style="background-color: #FF9800; ">Documented</button>
-    <button mat-button *ngSwitchCase="3" (click)="printPdf(selectedRequest)" style="background-color: #52b03c; " >Print Application</button>
+    <button mat-button *ngSwitchCase="3" (click)="printApplication(selectedRequest['refNo'])" style="background-color: #52b03c; " >Print Application</button>
     <button mat-button *ngSwitchCase="3" (click)="printGatePass(selectedRequest)" style="background-color: #52b03c; " >Print Gate Pass</button>
     <button mat-button *ngSwitchCase="3" style="background-color: #9C27B0; " >Completed</button>
 
   </div>
 
-  <button mat-button (click)="rejectRequest(selectedRequest['refNo'] )" style="background-color: #f50057; ">Reject</button>
+  <button *ngIf="selectedRequest['status'] != '5'" mat-button (click)="rejectRequest(selectedRequest['refNo'] )" style="background-color: #f50057; ">Reject</button>
 
 
   <button mat-button [mat-dialog-close]="1" style="background-color: #FF9800; ">Cancel</button>

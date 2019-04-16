@@ -1,4 +1,4 @@
-<mat-dialog-content>
+<mat-dialog-content style="height:100%">
       <div class="row">
 
       <div class="col-lg-4">
@@ -23,7 +23,7 @@
               <button mat-icon-button style="float: right;vertical-align: bottom;background: gainsboro;" (click)="disabled = !disabled"><mat-icon>edit</mat-icon></button>
               <button mat-icon-button
                       *ngIf="selectedRecord['isFinished'] || !disabled"
-                      style="float: right;vertical-align: bottom; padding-right: 10px"
+                      style="float: right;vertical-align: bottom; padding-right: 10px;margin-left: 15px"
                       (click)="selectedRecord['isFinished'] =!selectedRecord['isFinished']"
                       [ngClass]="{'btnRepairDone': selectedRecord['isFinished']}"
                       [ngClass]="{'btnRepairNotDone': !selectedRecord['isFinished']}"
@@ -109,6 +109,10 @@
           </mat-card>
 
       </div>
+    </div>
+
+    <div style="float:right">
+      <button mat-button [mat-dialog-close]="1" style="background-color: #FF9800; ">Close</button>
     </div>
 </mat-dialog-content>
 

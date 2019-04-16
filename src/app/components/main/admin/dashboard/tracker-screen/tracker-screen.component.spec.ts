@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CheckReqStatusComponent } from './check-req-status.component';
+import { TrackerScreenComponent } from './tracker-screen.component';
 
-describe('CheckReqStatusComponent', () => {
-  let component: CheckReqStatusComponent;
-  let fixture: ComponentFixture<CheckReqStatusComponent>;
+describe('TrackerScreenComponent', () => {
+  let component: TrackerScreenComponent;
+  let fixture: ComponentFixture<TrackerScreenComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckReqStatusComponent ]
+      declarations: [ TrackerScreenComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckReqStatusComponent);
+    fixture = TestBed.createComponent(TrackerScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

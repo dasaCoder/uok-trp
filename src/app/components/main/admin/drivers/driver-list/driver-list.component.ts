@@ -25,7 +25,7 @@ export class DriverListComponent implements OnInit {
     .subscribe( drivers => {
 
         this.drivers = drivers['msg'];
-        //console.log(this.drivers);
+        console.log("drifers",this.drivers);
     } );
   }
 

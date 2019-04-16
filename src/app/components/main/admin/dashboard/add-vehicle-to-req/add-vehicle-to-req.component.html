@@ -10,15 +10,29 @@
     <div class="col-lg-5" *ngIf="vehicles">
 
       <div style="overflow-y: scroll; height:55vh;">
-        <mat-card style="cursor: pointer" [ngClass]="{red: clickedItem === vehicle['_id']}" (click)="selectVehicle(vehicle)"  *ngFor="let vehicle of vehicles" >
 
-            <img mat-card-sm-image src="../../../../../../assets/images/pattern/pattern.png" style="display: inline">
-            <mat-card-subtitle style="display:inline">{{ vehicle['vehicle_no'] }}</mat-card-subtitle>
-            <button mat-button (click)="setVehicle(vehicle)" style="background-color: #4CAF50; color: #ffffff;">Add</button>
+          <mat-list   >
+              <mat-list-item style="cursor: pointer;    border-bottom: 1px solid #c8c8c8;" [ngClass]="{clicked: clickedItem === vehicle['_id']}" (click)="selectVehicle(vehicle)"  *ngFor="let vehicle of vehicles">
+                <img matListAvatar src="../../../../../../assets/images/pattern/pattern.png" alt="avatar">
+                <h3 matLine> {{ vehicle['vehicle_no'] }} </h3>
+                <p matLine>
+                    <button mat-button (click)="setVehicle(vehicle)" style="background-color: #4CAF50; color: #ffffff;float: right;">Add</button>
+
+                    <span class="demo-2" *ngIf="vehicle['status'] == 102">
+
+                    <mat-chip
+                      [selected]="true"
+                      style="background-color:red;height: 18px;"
+                    >
+                        Under Maintenence
+                    </mat-chip>
+                  </span>
+                </p>
+              </mat-list-item>
+          </mat-list>
 
 
 
-        </mat-card>
       </div>
 
 
@@ -27,7 +41,9 @@
     </div>
 
     <div mat-dialog-actions>
-      <button mat-button [mat-dialog-close]="selectedVehicle" cdkFocusInitial>Cancel</button>
+        <div class="spacer"></div>
+
+      <button mat-button [mat-dialog-close]="selectedVehicle" style="background-color: #FF9800; " cdkFocusInitial>Close</button>
     </div>
 
   </div>

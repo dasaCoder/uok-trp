@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit {
     if (this.username !== null && this.password !== null) {
       this.adminService.adminLogin(this.username, this.password)
         .subscribe(resp => {
-          if (resp['status'] === 200)
-          {
+          if (resp['status'] === 200) {
             localStorage.setItem('token', resp['token']);
+
             window.location.href = '/admin/dashboard';
             //window.location.reload();
           } else {
