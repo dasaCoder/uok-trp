@@ -78,6 +78,7 @@ import { RepairHistoryComponent } from './components/main/admin/dashboard/repair
 
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { TrackerScreenComponent } from './components/main/admin/dashboard/tracker-screen/tracker-screen.component';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -159,7 +160,8 @@ import { TrackerScreenComponent } from './components/main/admin/dashboard/tracke
     VehicleService,
     AdminService,
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    AngularFireDatabase
   ],
   bootstrap: [AppComponent],
   entryComponents: [

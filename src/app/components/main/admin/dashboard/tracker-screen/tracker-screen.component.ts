@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MouseEvent } from '@agm/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tracker-screen',
@@ -13,28 +14,6 @@ export class TrackerScreenComponent implements OnInit {
 
   // google maps zoom level
   zoom: number = 18;
-
-  markers: marker[] = [
-      {
-        lat: 6.975739464451433,
-        lng: 79.9152656685767,
-        label: 'XXX-4561',
-        draggable: true,
-        iconUrl: 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png'
-      },
-      {
-        lat: 6.974301790865349,
-        lng: 79.91610519999836,
-        label: 'DDD-8965',
-        draggable: false
-      },
-      {
-        lat: 6.975222967411798,
-        lng: 79.91478287095401,
-        label: 'MMM-4856',
-        draggable: true
-      }
-  ];
 
   // initial center position for the map
   lat: number = 6.975052576510879;
@@ -56,13 +35,15 @@ export class TrackerScreenComponent implements OnInit {
     console.log('dragEnd', m, $event);
   }
 
-  constructor(db: AngularFirestore) {
-    db.collection('/vehicles')
-          .valueChanges()
-          .subscribe(data => {
-            this.vehicles = data;
-            console.log("v",this.vehicles);
-          });
+  constructor(private db: AngularFireDatabase) {
+    //this.vehicles = this.db.list('test-11a39').valueChanges();
+
+    this.db.list('/books').valueChanges()
+        .subscribe(data=> {
+          console.log("da",data);
+          this.vehicles = data;
+        })
+    
    }
 
   ngOnInit() {

@@ -7,11 +7,11 @@ export const environment = {
   production: true,
   // Initialize Firebase
   firebase: {
-    apiKey: "AIzaSyCHVnqa07g2nQ41jboxGP-5HDzwWcFWdl0",
-    authDomain: "uok-trp.firebaseapp.com",
-    databaseURL: "https://uok-trp.firebaseio.com",
-    projectId: "uok-trp",
-    storageBucket: "uok-trp.appspot.com",
-    messagingSenderId: "710668904466"
+    apiKey: "AIzaSyBFfEltKVy1NHI6m0GkNK2PQQaDe4JBRHY",
+    authDomain: "test-11a39.firebaseapp.com",
+    databaseURL: "https://test-11a39.firebaseio.com",
+    projectId: "test-11a39",
+    storageBucket: "test-11a39.appspot.com",
+    messagingSenderId: "846251089169"
   }
 };
