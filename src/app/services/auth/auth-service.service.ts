@@ -4,14 +4,27 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class AuthServiceService {
 
-  constructor(private http: HttpClient) { }
+  public url;
+  constructor(private http: HttpClient) {
+    this.url = 'https://uok-transport-division.herokuapp.com';
+   }
 
   adminLogin(username, password){
     let user = {
       username: username,
       password: password
     };
-    return this.http.post(`https://uok-transport-division.herokuapp.com/login`, user);
+    return this.http.post(`${this.url}/login`, user);
+  }
+
+
+  driverLogin(username, password) {
+    let user = {
+      username: username,
+      password: password
+    };
+
+    return this.http.post(`${this.url}/driver/login`, user);
   }
 
 }

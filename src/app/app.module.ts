@@ -79,6 +79,7 @@ import { RepairHistoryComponent } from './components/main/admin/dashboard/repair
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { TrackerScreenComponent } from './components/main/admin/dashboard/tracker-screen/tracker-screen.component';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { DriverLoginComponent } from './components/main/driver-login/driver-login.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import { AngularFireDatabase } from '@angular/fire/database';
     VehicleListComponent,
     EditRequestComponent,
     RepairHistoryComponent,
-    TrackerScreenComponent
+    TrackerScreenComponent,
+    DriverLoginComponent
   ],
   imports: [
     BrowserModule,
