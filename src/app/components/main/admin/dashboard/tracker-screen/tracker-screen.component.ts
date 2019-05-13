@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class TrackerScreenComponent implements OnInit {
 
-  public vehicles: any[];
+  public vehicles: any[] = [];
 
   // google maps zoom level
   zoom: number = 18;
@@ -38,10 +38,20 @@ export class TrackerScreenComponent implements OnInit {
   constructor(private db: AngularFireDatabase) {
     //this.vehicles = this.db.list('test-11a39').valueChanges();
 
-    this.db.list('/books').valueChanges()
+    this.db.list('/vehicles').valueChanges()
         .subscribe(data=> {
-          console.log("da",data);
-          this.vehicles = data;
+         // console.log("da",data);
+
+          let key = 0;
+          data.forEach(vehicle => {
+            let v = Object.entries(vehicle);
+            let v1 = v.slice(-1)[0];
+            
+            this.vehicles[key] = v1[1];
+            key++;
+          });
+
+          console.log(this.vehicles);
         })
     
    }
