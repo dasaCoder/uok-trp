@@ -96,10 +96,10 @@ export class ReqeustPreveiwComponent implements OnInit {
   }
 
   // print pdf
-  printApplication(refNo) {
-    let url = `https://storage.googleapis.com/uok-trp/${refNo}.pdf`;
-    window.open(url, "_blank");
-  }
+  // printApplication(refNo) {
+  //   let url = `https://storage.googleapis.com/uok-trp/${refNo}.pdf`;
+  //   window.open(url, "_blank");
+  // }
 
   rejectRequest(refNo) {
     this.requestService.change_status(refNo, 5)
@@ -259,6 +259,124 @@ export class ReqeustPreveiwComponent implements OnInit {
 
   </div>
     `;
+
+        let newWin= window.open("");
+        newWin.document.write(content);
+        newWin.print();
+        newWin.close();
+  }
+
+  printApplication(request) {
+    let content = `
+    <style>
+    @page { size: auto;  margin: 0mm; padding:30px };
+    td : {
+      padding: 10px;
+    }
+  </style>
+  <div #pdf style="width: 200mm;height: 280mm;font-size:12px; padding: 7px; border:1px solid black;">
+  <h1 style="text-align: center;"><strong>Transport Division</strong></h1>
+  <h2 style="text-align: center;"><strong>University of Kelaniya - Kelaniya</strong></h2>
+
+  <h3 style="text-align: center;"><strong>Obtaining a Permission to Drive for a Official Journey</strong></h3>
+  <hr>
+ <br><br>
+  <table style="height: 20px; border-color: null;" border="0" width="685">
+    <tbody>
+    <tr>
+      <td style="width: 335.2px;" >Ref No :  ${request['refNo']}</td>
+     
+    </tr>
+    <tr>
+      <td style="">Applicant's Name : ${request['lecturer']}</td>
+    </tr>
+    <tr>
+      <td style="width: 335.2px;">Applicant's Designation&nbsp; : ${request['position']}</td>
+      
+    </tr>
+    <tr>
+      <td style="">Faculaty / Department&nbsp; : ${request['dep_unit']}</td>
+      
+    </tr>
+    </tbody>
+  </table>
+  <br>
+  <hr>
+ 
+  <h2> Details of the journey </h2>
+  <table>
+    <tbody>
+      <tr>
+      <td>Starting point : ${request.departure.pickupPoint}</td>
+      
+      </tr>
+      <tr>
+        <td>Destination&nbsp; &nbsp; &nbsp; : ${request.departure.dropPoint}</td>
+      </tr>
+    </tbody>
+    
+  </table>
+  <br>
+  <table>
+    <tbody>
+    <tr>
+      <td width="350">Date of departure&nbsp; &nbsp; &nbsp;: ${request.departure.pickupDate}</td>
+      <td width="350">Date of arrival: ${request.arrival.dropDate}</td>
+    </tr>
+    <tr>
+      <td width="350">Time : ${request.departure.pickupTime}</td>
+      <td width="350">Time &nbsp; &nbsp; &nbsp; : ${request.arrival.dropTime}</td>
+    </tr>
+<br>
+    <tr>
+      <td>Number of passangers : ${request.num_passangers}</td>
+    </tr>
+    <tr>
+      <td>Purpose : ${request.purpose}</td>
+    </tr>
+
+    <tr>
+      <td>Funding method : ${request.fundingWay}</td>
+    </tr>
+   
+    </tbody>
+  </table>
+  <p>&nbsp;</p>
+  <hr />
+  <table style="height: 73px; width: 693px;">
+    <tbody>
+    <tr style="height: 25px;">
+    <br>
+      <td style="width: 202px; height: 25px;">Date&nbsp :</td>
+      <td style="width: 178px; height: 25px;">&nbsp;</td>
+      
+    </tr>
+    <tr style="height: 5px;text-align:center">
+      <td style="width: 202px; height: 5px;">
+        <p>&nbsp;</p>
+        <p>______________________</p>
+      </td>
+      <td style="width: 202px; height: 5px;">
+        <p>&nbsp;</p>
+        <p>______________________</p>
+      </td>
+      <td style="width: 178px; height: 25px;">&nbsp;</td>      
+      
+    </tr>
+    <tr style="height: 17px;">
+      <td style="width: 202px; height: 17px;text-align:center"> Applicant's signature</td>
+      <td style="width: 202px; height: 17px;text-align:center">  Dean/ Unit head</td>
+      <td style="width: 178px; height: 17px;">&nbsp;</td>
+      <td style="width: 301px; height: 17px;">&nbsp; &nbsp;</td>
+    </tr>
+    </tbody>
+  </table>
+<hr>
+
+
+</div>
+ 
+`;
 
         let newWin= window.open("");
         newWin.document.write(content);
