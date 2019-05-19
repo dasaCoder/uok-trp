@@ -109,7 +109,7 @@ export class RequestFormComponent implements OnInit {
    isGood = true;
    step = 1;
    dateObj = new Date();
-   today = this.dateObj.setDate(this.dateObj.getDate()-1);
+   minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
    formData: Request = new Request();
    arrival: Trip = new Trip();
    departure: Trip = new Trip();
@@ -136,6 +136,7 @@ export class RequestFormComponent implements OnInit {
   ) {
     // this.formData = new Request();
     this.data = this.source.slice();
+    console.log("today",this.minDate);
 
 
   }
