@@ -1,19 +1,5 @@
 <div class="row">
 
-
-    <div class="col-lg-7">
-
-    <mat-card *ngIf="selectedDriverName">
-        <img mat-card-avatar src="../../../../../../assets/images/pattern/pattern.png">
-        <mat-card-title style="display:inline"> {{ selectedDriverName }}</mat-card-title>
-    </mat-card>
-
-        <app-sheduler *ngIf="requests" [requests]="requests"></app-sheduler>
-
-        <app-sheduler *ngIf="!requests" [requests]="[]"></app-sheduler>
-
-    </div>
-
     <div class="col-lg-5" *ngIf="drivers">
 
       <div style="overflow-y: scroll; height:55vh;">
@@ -25,9 +11,28 @@
         </mat-card>
       </div>
 
+    </div>
 
+    <div class="col-lg-7">
 
+        <mat-card *ngIf="selectedDriverName">
+
+          <div class="">
+              <img mat-card-avatar src="../../../../../../assets/images/pattern/pattern.png">
+              <mat-card-title style="display:inline"> {{ selectedDriverName }}</mat-card-title>
+  
+              <button mat-icon-button style="float: right;vertical-align: bottom;background: gainsboro;" ><mat-icon>delete_outline</mat-icon></button>
+
+          </div>
+
+        </mat-card>
+
+        <app-sheduler *ngIf="requests" [requests]="requests"></app-sheduler>
+
+        <app-sheduler *ngIf="!requests" [requests]="[]"></app-sheduler>
 
     </div>
+
+
   </div>
 
