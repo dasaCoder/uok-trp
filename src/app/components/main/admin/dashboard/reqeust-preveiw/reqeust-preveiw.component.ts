@@ -29,7 +29,7 @@ export class ReqeustPreveiwComponent implements OnInit {
               ) {
 
     console.log("req data",data);
-    this.selectedRequest = data;
+    this.selectedRequest = data; 
    }
 
   ngOnInit() {
