@@ -50,43 +50,9 @@
 
             <a mat-list-item  (click)="changeTab(7)" ><mat-icon matListIcon>map</mat-icon>   Tracker</a>
 
-            <a mat-list-item > <mat-icon matListIcon>face</mat-icon>   Drivers
-              <span style="flex: 1 1 auto;"></span>
-                  <button mat-icon-button [matMenuTriggerFor]="menuDrivers" style="float:right">
-                    <mat-icon>more_vert</mat-icon>
-                  </button>
-                  <mat-menu #menuDrivers="matMenu">
+            <a mat-list-item  (click)="changeTab(3)" ><mat-icon matListIcon>face</mat-icon>   Drivers</a>
 
-                    <button mat-menu-item (click)="changeTab(3)">
-                      <mat-icon>pageview</mat-icon>
-                      <span>View</span>
-                    </button>
-
-                    <button mat-menu-item (click)="changeTab(4)">
-                      <mat-icon>add</mat-icon>
-                      <span>Add Driver</span>
-                    </button>
-                  </mat-menu>
-            </a>
-
-            <a mat-list-item > <mat-icon matListIcon>commute</mat-icon>   Vehicles
-              <span style="flex: 1 1 auto;"></span>
-              <button mat-icon-button [matMenuTriggerFor]="menuVehicles"  style="float:right">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menuVehicles="matMenu">
-
-                <button mat-menu-item (click)="changeTab(5)">
-                  <mat-icon>pageview</mat-icon>
-                  <span>View</span>
-                </button>
-
-                <button mat-menu-item (click)="changeTab(6)">
-                  <mat-icon>add</mat-icon>
-                  <span>Add Vehicle</span>
-                </button>
-              </mat-menu>
-        </a>
+            <a mat-list-item  (click)="changeTab(5)" ><mat-icon matListIcon>commute</mat-icon>   Vehicles</a>
 
       </mat-accordion>
 
@@ -294,19 +260,8 @@
               <app-driver-list></app-driver-list>>
             </div>
 
-            <div *ngIf="selectedTab == 4">
-              <br><br>
-              <!-- add vehicle component -->
-              <app-add></app-add>
-            </div>
-
             <div *ngIf="selectedTab == 5">
               <app-vehicle-list></app-vehicle-list>
-            </div>
-
-            <div *ngIf="selectedTab == 6">
-              <br><br>
-              <app-add-vehicle></app-add-vehicle>
             </div>
 
             <div *ngIf="selectedTab == 7">
