@@ -6,12 +6,14 @@
 export const environment = {
   production: true,
   // Initialize Firebase
-  firebase: {
+  firebase : {
     apiKey: "AIzaSyCHVnqa07g2nQ41jboxGP-5HDzwWcFWdl0",
     authDomain: "uok-trp.firebaseapp.com",
     databaseURL: "https://uok-trp.firebaseio.com",
     projectId: "uok-trp",
     storageBucket: "uok-trp.appspot.com",
-    messagingSenderId: "710668904466"
+    messagingSenderId: "710668904466",
+    appId: "1:710668904466:web:0802734c2186c9f5"
   }
+  
 };

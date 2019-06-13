@@ -4,8 +4,8 @@
   <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
 	<h1 (click)="snav.toggle()" style="cursor: pointer">Admin Panel</h1>
     <span class="example-fill-remaining-space"></span>
-      <img src="../../../../../assets/images/logo/trplogo.png" style="margin-top: 30px;
-                                                                      height: 80px;" alt="">
+      <img src="../../../../../assets/images/logo/trplogo.png" style="margin-top: 0px;
+                                                                      height: 50px;" alt="">
     <span class="example-fill-remaining-space"></span>
 
 </mat-toolbar>
@@ -112,7 +112,7 @@
 
                 <div class="col-lg-5">
 
-                  <mat-accordion>
+                  <mat-accordion multi="true">
                       <mat-expansion-panel [expanded]="true">
                           <mat-expansion-panel-header><mat-icon>list</mat-icon> Today's Requests </mat-expansion-panel-header>
                           <mat-list>
@@ -148,17 +148,8 @@
                           </mat-list>
                         </mat-expansion-panel>
 
-                      <mat-expansion-panel >
-                        <mat-expansion-panel-header><mat-icon>list</mat-icon> Requests.. </mat-expansion-panel-header>
-                        <mat-list>
-                          <mat-list-item><span class="colour-box" style="background-color: #1A73E8"></span>New</mat-list-item>
-                          <mat-list-item><span class="colour-box" style="background-color: #1E8E3E"></span>Accepted</mat-list-item>
-                          <mat-list-item><span class="colour-box" style="background-color: #FA7B17"></span>Confirmed</mat-list-item>
-                          <mat-list-item><span class="colour-box" style="background-color: #A142F4"></span>Authenticated</mat-list-item>
-                        </mat-list>
-                      </mat-expansion-panel>
 
-                      <mat-expansion-panel>
+                      <mat-expansion-panel [expanded]="true">
                         <mat-expansion-panel-header>
                           <mat-icon>battery_alert</mat-icon>Vehicles on maintenence
                         </mat-expansion-panel-header>
@@ -249,6 +240,16 @@
 
                       </mat-expansion-panel>
 
+
+                      <mat-expansion-panel >
+                        <mat-expansion-panel-header><mat-icon>list</mat-icon> Requests.. </mat-expansion-panel-header>
+                        <mat-list>
+                          <mat-list-item><span class="colour-box" style="background-color: #1A73E8"></span>New</mat-list-item>
+                          <mat-list-item><span class="colour-box" style="background-color: #1E8E3E"></span>Accepted</mat-list-item>
+                          <mat-list-item><span class="colour-box" style="background-color: #FA7B17"></span>Confirmed</mat-list-item>
+                          <mat-list-item><span class="colour-box" style="background-color: #A142F4"></span>Authenticated</mat-list-item>
+                        </mat-list>
+                      </mat-expansion-panel>
 
                   </mat-accordion>
 

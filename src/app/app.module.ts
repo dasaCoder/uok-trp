@@ -78,6 +78,8 @@ import { RepairHistoryComponent } from './components/main/admin/dashboard/repair
 
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { TrackerScreenComponent } from './components/main/admin/dashboard/tracker-screen/tracker-screen.component';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { DriverLoginComponent } from './components/main/driver-login/driver-login.component';
 import { SettingsComponent } from './components/main/admin/dashboard/settings/settings.component';
 
 @NgModule({
@@ -122,8 +124,7 @@ import { SettingsComponent } from './components/main/admin/dashboard/settings/se
     VehicleListComponent,
     EditRequestComponent,
     RepairHistoryComponent,
-    TrackerScreenComponent,
-    SettingsComponent
+    TrackerScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -161,7 +162,8 @@ import { SettingsComponent } from './components/main/admin/dashboard/settings/se
     VehicleService,
     AdminService,
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    AngularFireDatabase
   ],
   bootstrap: [AppComponent],
   entryComponents: [
