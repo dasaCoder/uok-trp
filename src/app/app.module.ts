@@ -124,7 +124,9 @@ import { SettingsComponent } from './components/main/admin/dashboard/settings/se
     VehicleListComponent,
     EditRequestComponent,
     RepairHistoryComponent,
-    TrackerScreenComponent
+    TrackerScreenComponent,
+    DriverLoginComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
