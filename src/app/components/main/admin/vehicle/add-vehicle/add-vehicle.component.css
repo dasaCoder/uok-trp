@@ -1,9 +1,33 @@
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
+input,input[type=password]{
+  margin-bottom:-5px;
+}
+
+input:focus,input[type=password]{
+  border-bottom: none!important;
+}
+
+.mat-input-element:focus{
+  border-bottom: none;
+  height: 1rem;
+  padding: 0px;
+}
+
+.mat-input-container{
   width: 100%;
 }
 
-.example-full-width {
-  width: 100%;
+.mat-form-field-infix {
+   padding: 200px!important;
+   border-top: none!important;
+}
+.mat-input-element{
+  border-bottom: none;
+  height: 1rem;
+  padding: 0px;
+}
+
+.mat-spinner{
+  position: relative;
+  margin-left: 50%;
+  margin-right: 50%;
 }
