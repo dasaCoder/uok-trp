@@ -90,6 +90,7 @@
 
       </mat-accordion>
 
+      <a mat-list-item  (click)="changeTab(8)" ><mat-icon matListIcon>settings</mat-icon>   Settings</a>
       <a mat-list-item (click)="logout()"  ><mat-icon matListIcon>exit_to_app</mat-icon>   Logout</a>
 
 
@@ -310,6 +311,10 @@
             <div *ngIf="selectedTab == 7">
                 <app-tracker-screen></app-tracker-screen>
             </div>
+
+            <div *ngIf="selectedTab == 8">
+              <app-settings></app-settings>
+          </div>
 
       </div>
     </mat-drawer-content>

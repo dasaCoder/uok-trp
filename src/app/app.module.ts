@@ -78,6 +78,7 @@ import { RepairHistoryComponent } from './components/main/admin/dashboard/repair
 
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { TrackerScreenComponent } from './components/main/admin/dashboard/tracker-screen/tracker-screen.component';
+import { SettingsComponent } from './components/main/admin/dashboard/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -121,7 +122,8 @@ import { TrackerScreenComponent } from './components/main/admin/dashboard/tracke
     VehicleListComponent,
     EditRequestComponent,
     RepairHistoryComponent,
-    TrackerScreenComponent
+    TrackerScreenComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
