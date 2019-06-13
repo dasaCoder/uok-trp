@@ -19,10 +19,10 @@
   padding: 0px;
 }
 
-input{
+input,input[type=password]{
   margin-bottom:-5px;
 }
 
-input:focus{
+input:focus,input[type=password]{
   border-bottom: none!important;
 }

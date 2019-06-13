@@ -1,17 +1,63 @@
 <div class="example-container">
 
-  <mat-card>
+  <div class="row">
+    <div class="col-lg-6">
+       <mat-card>
 
-    <mat-form-field>
-      <input matInput placeholder="Input" class="trp-select">
-    </mat-form-field>
+        <mat-card-title>Add New Admin Account</mat-card-title>
 
-    <mat-form-field>
-      <mat-select placeholder="Select">
-        <mat-option value="option">Option</mat-option>
-      </mat-select>
-    </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="User Name" class="trp-select">
+        </mat-form-field>
 
-  </mat-card>
+        <mat-form-field>
+            <input  matInput type="password" placeholder="Password" class="trp-select">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Role">
+            <mat-option value="admin">Admin</mat-option>
+            <mat-option value="assistant">Assistant</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-card-actions style="text-align: center">
+          <button class="btn-success" mat-button>Add</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+    <div class="col-lg-6">
+        <mat-card>
+
+            <mat-card-title>Change Password</mat-card-title>
+
+            <mat-form-field>
+                <input  matInput type="password" placeholder="Old Password" class="trp-select">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input  matInput type="password" placeholder="Password" class="trp-select">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input  matInput type="password" placeholder="Confirm Password" class="trp-select">
+            </mat-form-field>
+
+            <mat-card-actions style="text-align: center">
+              <button class="btn-success" mat-button>Add</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div class="col-lg-12">
+      <app-add></app-add>
+    </div>
+
+    <div class="col-lg-12">
+      <app-add-vehicle></app-add-vehicle>
+    </div>
+
+  </div>
 
 </div>

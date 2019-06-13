@@ -1,80 +1,68 @@
 <div class="container">
     <div class="row">
-          <div class="col-lg-12" *ngIf="!isSubmited">
-            <form class="form-horizontal" #driverForm="ngForm" (ngSubmit)="addDriver(driverForm.value)">
+          <mat-card >
+            <form *ngIf="isSubmited" class="form-horizontal" #driverForm="ngForm" (ngSubmit)="addDriver(driverForm.value);driverForm.reset()">
               <fieldset>
+              <div class="row">
+                  <!-- Form Name -->
+                  <legend>Add Driver</legend>
+                  <div class="col-lg-4">
+                    <mat-form-field>
+                        <input  matInput ngModel placeholder="Name" class="trp-select"  id="name" name="name">
+                    </mat-form-field>
+                  </div>
 
-              <!-- Form Name -->
-              <legend>Add Driver</legend>
+                  <div class="col-lg-4">
+                      <mat-form-field>
+                          <input  matInput ngModel placeholder="NIC No" class="trp-select"  id="nic_no" name="nic_no">
+                      </mat-form-field>
+                  </div>
 
-              <!-- Text input-->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="name">Name</label>
-                <div class="col-md-8">
-                <input ngModel id="name" name="name" type="text" placeholder="Driver's name" class="form-control input-md" required="">
+                  <div class="col-lg-4">
+                    <mat-form-field>
+                        <input  matInput ngModel placeholder="Driving licence No" class="trp-select"  id="driving_liecence_no" name="driving_liecence_no">
+                    </mat-form-field>
+                  </div>
 
+                  <div class="col-lg-4">
+                    <mat-form-field>
+                        <input  matInput ngModel placeholder="Telephone" class="trp-select"  id="telephone" name="telephone">
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col-lg-4">
+                    <mat-form-field>
+                        <textarea ngModel matInput placeholder="Address" class="trp-select" id="address" name="address"></textarea>
+                    </mat-form-field>
+                  </div>
+
+
+                  <!-- File Button -->
+                  <!-- <div class="form-group">
+                    <label class="col-md-4 control-label" for="image">Image</label>
+                    <div class="col-md-4">
+                      <input ngModel id="image" name="image" class="input-file" type="file">
+                    </div>
+                  </div> -->
+                <div class="col-lg-4">
+                    <mat-card-actions style="text-align: right;">
+                        <button class="btn-success" mat-button>Add</button>
+                    </mat-card-actions>
                 </div>
+
               </div>
 
-              <!-- Text input-->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="nic_no">NIC number</label>
-                <div class="col-md-8">
-                <input ngModel id="nic_no" name="nic_no" type="text" placeholder="NIC number" class="form-control input-md" required="">
 
-                </div>
-              </div>
-
-              <!-- Text input-->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="driving_liecence_no">Driving licence No </label>
-                <div class="col-md-8">
-                <input ngModel id="driving_liecence_no" name="driving_liecence_no" type="text" placeholder="Liecence Number" class="form-control input-md" required="">
-
-                </div>
-              </div>
-
-              <!-- Text input-->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="telephone">Telephone</label>
-                <div class="col-md-8">
-                <input ngModel id="telephone" name="telephone" type="text" placeholder="Telephone" class="form-control input-md" required="">
-
-                </div>
-              </div>
-
-              <!-- File Button -->
-              <!-- <div class="form-group">
-                <label class="col-md-4 control-label" for="image">Image</label>
-                <div class="col-md-4">
-                  <input ngModel id="image" name="image" class="input-file" type="file">
-                </div>
-              </div> -->
-
-              <!-- Textarea -->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="address">Address</label>
-                <div class="col-md-4">
-                  <textarea ngModel class="form-control" id="address" name="address"></textarea>
-              </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-4 ">
-                  <button class="btn btn-primary" ><i class="fa fa-add"></i> Add</button>
-                </div>
-              </div>
               </fieldset>
               </form>
 
-          </div>
+            <div *ngIf="!isSubmited" class="container" style="text-align: center">
+                <mat-spinner ></mat-spinner>
+            </div>
 
-          <div *ngIf="isSubmited">
-            <img src="/assets/images/loading.gif" alt="" style="height: 100px;
-              margin-top: 25vh;
-              margin-left: 50vh;
-              margin-bottom: 25vh;">
-          </div>
+          </mat-card>
+
+
       </div>
 </div>
 
