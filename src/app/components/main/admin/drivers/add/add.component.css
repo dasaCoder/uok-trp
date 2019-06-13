@@ -25,3 +25,9 @@ input:focus,input[type=password]{
   height: 1rem;
   padding: 0px;
 }
+
+.mat-spinner{
+  position: relative;
+  margin-left: 50%;
+  margin-right: 50%;
+}

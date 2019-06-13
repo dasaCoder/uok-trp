@@ -4,10 +4,6 @@
   <form class="example-form" #vehicleForm="ngForm" (ngSubmit)="addVehicle(vehicleForm.value)">
     <fieldset>
 
-      <!-- Form Name -->
-      <legend>Add Vehicle</legend>
-
-
       <div class="form-group">
         <label class="text-uppercase" for="vehicle_no">*Vehicle No</label>
 
@@ -69,5 +65,73 @@
 </div>
 </div>
 </div>
+
+<div class="row">
+    <mat-card style="width: 100%" >
+      <form *ngIf="!isSubmited" class="form-horizontal" #vehicleForm="ngForm" (ngSubmit)="addVehicle(vehicleForm.value);vehicleForm.reset()">
+        <fieldset>
+        <div class="row">
+
+            <div class="col-lg-4">
+              <mat-form-field>
+                  <input  matInput ngModel placeholder="*Vehicle No" class="trp-select"  id="vehicle_no" name="vehicle_no">
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+                <mat-form-field>
+                    <input  matInput ngModel placeholder="*Chassi's No" class="trp-select"  id="chassi_no" name="chassi_no">
+                </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+                <mat-form-field>
+                    <mat-select ngModel placeholder="*Vehicle Type"  name="vehicle_type" id="vehicle_type">
+                        <mat-option value="van">Van</mat-option>
+                        <mat-option value="bus">Bus</mat-option>
+                        <mat-option value="three_wheel">Three Wheel</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+                <mat-form-field>
+                    <mat-select ngModel placeholder="*Driver"  name="driver" id="driver">
+                        <mat-option *ngFor="let driver of driverList" value="{{driver['_id']}}">{{driver['name']}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+
+
+            <!-- File Button -->
+            <!-- <div class="form-group">
+              <label class="col-md-4 control-label" for="image">Image</label>
+              <div class="col-md-4">
+                <input ngModel id="image" name="image" class="input-file" type="file">
+              </div>
+            </div> -->
+          <div class="row">
+            <div class="col-lg-12">
+                <mat-card-actions style="text-align: right;">
+                    <button class="btn-success" mat-button>Add</button>
+                </mat-card-actions>
+            </div>
+          </div>
+
+
+        </div>
+
+
+        </fieldset>
+        </form>
+
+      <mat-spinner *ngIf="isSubmited"></mat-spinner>
+
+    </mat-card>
+
+
+</div>
+
 
 

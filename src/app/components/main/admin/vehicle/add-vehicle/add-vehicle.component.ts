@@ -45,7 +45,7 @@ export class AddVehicleComponent implements OnInit {
           alert(response['msg']);
           this.isSubmited = false;
 
-          location.reload();
+          //location.reload();
 
         }
       });
