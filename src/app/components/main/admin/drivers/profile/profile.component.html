@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-5">
 
-        <img mat-card-image src="http://placehold.it/350x350">
+        <img mat-card-image src="http://placehold.it/200x200" style="">
 
         <mat-list>
           <mat-list-item>
@@ -19,8 +19,24 @@
               <mat-icon mat-list-icon>folder</mat-icon>
               <h4 mat-line>{{driver.nic_no}}</h4>
           </mat-list-item>
+
+          <mat-list-item>
+              <mat-icon mat-list-icon>folder</mat-icon>
+              <h4 mat-line>{{driver.telephone}}</h4>
+          </mat-list-item>
+
+          <mat-list-item>
+              <mat-icon mat-list-icon>folder</mat-icon>
+              <h4 mat-line>{{driver.address}}</h4>
+          </mat-list-item>
         </mat-list>
 
+    </div>
+
+    <div class="col-lg-7">
+        <app-sheduler *ngIf="requests" [requests]="requests"></app-sheduler>
+
+        <app-sheduler *ngIf="!requests" [requests]="[]"></app-sheduler>
     </div>
   </div>
 </mat-card>

@@ -18,6 +18,8 @@ export class ProfileComponent implements OnInit {
 
   //public driver: Driver; // driver details
   public reqListOnDriver: Request[] = [];
+  public requests: any[];
+  public options;
   public selectedReq: Request = new Request();
 
   constructor(private route: ActivatedRoute, private adminService: AdminService) {
@@ -25,13 +27,22 @@ export class ProfileComponent implements OnInit {
    }
 
   ngOnInit() {
-    // this.adminService.getDriver(this.driver._id)
-    //   .subscribe( data => {
-    //     this.driver = data['data'][0];
-    //     // console.log(data);
-    //   });
 
-    console.log("profile",this.driver);
+    this.adminService.getRequestsOnDriverForCalender(this.driver._id)
+    .then( events => {
+
+      this.requests = events;
+    } );
+
+    this.options = {
+      weekends: true,
+      header: {
+          left: 'prev,next',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+      }
+    };
+
     this.adminService.getRequestOfDriverOnDay(this.driver._id)
       .subscribe( data => {
         // console.log(data);
