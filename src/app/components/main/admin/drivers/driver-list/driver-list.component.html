@@ -1,26 +1,32 @@
+<div class="row" style="margin-top:-4vw">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+      <form class="">
+          <mat-form-field class="example-full-width" style="width:100%">
+              <mat-icon matPrefix >search</mat-icon>
+            <input matInput  [matAutocomplete]="auto" [formControl]="stateCtrl" style="border-bottom: none;margin-bottom:-2px;width: 95%!important">
+            <mat-autocomplete
+                #auto="matAutocomplete"
+                [displayWith]="displayFn"
+                (optionSelected) = "getDriver($event.option.value)"
+            >
+              <mat-option *ngFor="let driver of filteredStates | async" [value]="driver">
+                <img style="vertical-align:middle;" aria-hidden src="../../../../../../assets/images/admin/driver.png" height="25" />
+                <span>{{ driver.name }}</span> |
+                <small>Liecence No: {{driver.driving_liecence_no}}</small>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+
+        </form>
+  </div>
+  <div class="col-lg-3"></div>
+
+</div>
 <div class="row">
 
     <div class="col-lg-5" *ngIf="drivers">
-
-        <form class="">
-            <mat-form-field class="example-full-width" style="width:100%">
-
-              <input matInput  [matAutocomplete]="auto" [formControl]="stateCtrl" style="border-bottom: none;margin-bottom:-2px;">
-              <mat-autocomplete
-                  #auto="matAutocomplete"
-                  [displayWith]="displayFn"
-                  (optionSelected) = "getDriver($event.option.value)"
-              >
-                <mat-option *ngFor="let driver of filteredStates | async" [value]="driver">
-                  <img style="vertical-align:middle;" aria-hidden src="{{driver.flag}}" height="25" />
-                  <span>{{ driver.name }}</span> |
-                  <small>Population: {{driver.population}}</small>
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-
-
-          </form>
 
       <div style="overflow-y: scroll; height:55vh;">
         <mat-card style="cursor: pointer" [ngClass]="{clicked: clickedItem === driver['_id']}" (click)="selectDriver(driver)"  *ngFor="let driver of drivers" >
