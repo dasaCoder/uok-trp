@@ -27,10 +27,13 @@ export class DriverListComponent implements OnInit {
   selectedDriverName;
 
 
+  // auto complete var
   stateCtrl: FormControl;
   filteredStates: Observable<any[]>;
-
   states: any[];
+  // end auto complete var
+
+  selectedDriver: any[];
 
   constructor(private adminService: AdminService) {
     this.stateCtrl = new FormControl();
@@ -68,7 +71,7 @@ export class DriverListComponent implements OnInit {
   }
 
   getDriver(driver) {
-    console.log("seleted driver", driver);
+    this.selectDriver = driver;
   }
 
 
