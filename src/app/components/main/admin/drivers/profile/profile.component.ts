@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AdminService } from '../../../../../services/admin.service';
 import {ActivatedRoute } from '@angular/router';
 import {Request} from '../../../../../classes/request';
@@ -13,29 +13,37 @@ import {Vehicle} from '../../../../../classes/vehicle';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  public driver: Driver; // driver details
-  public _id: String; // holds the value of driver object id
+
+  @Input() driver;
+
+  //public driver: Driver; // driver details
   public reqListOnDriver: Request[] = [];
+  public requests: any[];
+  public options;
   public selectedReq: Request = new Request();
 
   constructor(private route: ActivatedRoute, private adminService: AdminService) {
-    // this.selectedReq['vehicle'] = Vehicle;
-    /*
-    this will get the driver _id from url parameter
-    */
-    route.paramMap.subscribe( params => {
-      this._id = params.get('driver_id');
-    });
+
    }
 
   ngOnInit() {
-    this.adminService.getDriver(this._id)
-      .subscribe( data => {
-        this.driver = data['data'][0];
-        // console.log(data);
-      });
 
-    this.adminService.getRequestOfDriverOnDay(this._id)
+    this.adminService.getRequestsOnDriverForCalender(this.driver._id)
+    .then( events => {
+
+      this.requests = events;
+    } );
+
+    this.options = {
+      weekends: true,
+      header: {
+          left: 'prev,next',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+      }
+    };
+
+    this.adminService.getRequestOfDriverOnDay(this.driver._id)
       .subscribe( data => {
         // console.log(data);
         this.reqListOnDriver = data['data'];
@@ -44,14 +52,14 @@ export class ProfileComponent implements OnInit {
   }
 
   onClickDay() {
-    this.adminService.getRequestOfDriverOnDay(this._id)
+    this.adminService.getRequestOfDriverOnDay(this.driver._id)
       .subscribe( data => {
         this.reqListOnDriver = data['data'];
       });
   }
 
   onClickMonth() {
-    this.adminService.getRequestOfDriverOnMonth(this._id)
+    this.adminService.getRequestOfDriverOnMonth(this.driver._id)
       .subscribe(data => {
         this.reqListOnDriver = data['data'];
       });

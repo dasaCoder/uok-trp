@@ -26,19 +26,22 @@ export class DriverListComponent implements OnInit {
   clickedItem;
   selectedDriverName;
 
+
+  // auto complete var
   stateCtrl: FormControl;
   filteredStates: Observable<any[]>;
+  states: any[];
+  // end auto complete var
 
-  filterStates(name: string) {
-    return this.drivers.filter(state =>{
-      console.log("d",state);
+  selectedDriver: Driver;
 
-      state.name.toLowerCase().indexOf(name.toLowerCase()) === 0;
-    })
-      
-  }
-
-  constructor(private adminService: AdminService) { 
+  constructor(private adminService: AdminService) {
+    this.stateCtrl = new FormControl();
+    this.filteredStates = this.stateCtrl.valueChanges
+      .pipe(
+        startWith(''),
+        map(state => state ? this.filterStates(state) : this.states.slice())
+      );
   }
 
   ngOnInit() {
@@ -46,8 +49,9 @@ export class DriverListComponent implements OnInit {
     this.adminService.getAllDriversDetails()
     .subscribe( drivers => {
 
+        this.states = drivers['msg'];
         this.drivers = drivers['msg'];
-        console.log("drifers",this.drivers);
+
         this.stateCtrl = new FormControl();
         this.filteredStates = this.stateCtrl.valueChanges
           .pipe(
@@ -56,6 +60,22 @@ export class DriverListComponent implements OnInit {
           );
     } );
   }
+
+  filterStates(name: string) {
+    return this.states.filter(state =>
+      state.name.toLowerCase().indexOf(name.toString().toLowerCase()) === 0);
+  }
+
+  displayFn(state): string {
+    return state ? state.name : state;
+  }
+
+  getDriver(driver) {
+    this.selectedDriver = driver;
+    console.log("selected",this.selectedDriver);
+  }
+
+
 
   selectDriver (driver) {
     //alert(driver['name']);
@@ -79,14 +99,6 @@ export class DriverListComponent implements OnInit {
           }
         };
 
-  }
-
-  onSelectDriver(e,driver) {
-    console.log("driver",e);
-  }
-
-  displayFn(driver): string {
-    return driver? driver.name: driver;
   }
 
 }
