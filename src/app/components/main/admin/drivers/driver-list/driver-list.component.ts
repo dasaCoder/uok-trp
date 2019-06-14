@@ -33,7 +33,7 @@ export class DriverListComponent implements OnInit {
   states: any[];
   // end auto complete var
 
-  selectedDriver: any[];
+  selectedDriver: Driver;
 
   constructor(private adminService: AdminService) {
     this.stateCtrl = new FormControl();
@@ -71,7 +71,8 @@ export class DriverListComponent implements OnInit {
   }
 
   getDriver(driver) {
-    this.selectDriver = driver;
+    this.selectedDriver = driver;
+    console.log("selected",this.selectedDriver);
   }
 
 

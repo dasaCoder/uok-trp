@@ -24,6 +24,13 @@
   <div class="col-lg-3"></div>
 
 </div>
+
+
+<div class="row"  *ngIf="selectedDriver">
+  <app-profile [driver]="selectedDriver"></app-profile>
+</div>
+
+
 <div class="row">
 
     <div class="col-lg-5" *ngIf="drivers">
