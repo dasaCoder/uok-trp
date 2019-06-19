@@ -11,26 +11,31 @@
         </div>
         
         <mat-form-field>
-          <input matInput placeholder="User Name" class="trp-select">
+          <input [(ngModel)]="username" matInput placeholder="User Name" class="trp-select" required>
         </mat-form-field>
 
         <mat-form-field>
-            <input  matInput type="password" placeholder="Password" class="trp-select">
+            <input  [(ngModel)]="password" matInput type="password" placeholder="Password" class="trp-select" required>
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select placeholder="Role">
+          <mat-select [(ngModel)]="role" placeholder="Role" required>
             <mat-option value="admin">Admin</mat-option>
             <mat-option value="assistant">Assistant</mat-option>
           </mat-select>
         </mat-form-field>
 
         <mat-card-actions style="text-align: center">
-          <button class="btn-success" mat-button>Add</button>
+          <button
+          class="btn-success" 
+          mat-button
+          [disabled]="!username || !password || !role"
+           class="btn btn-success" mat-button>Add</button>
         </mat-card-actions>
       </mat-card>
 
     </div>
+
     <div class="col-lg-6">
         <mat-card>
 
@@ -45,7 +50,7 @@
             </mat-form-field>
 
             <mat-form-field>
-                <input [(ngModel)]="newPassword"  matInput type="password" placeholder="Password" class="trp-select">
+                <input [(ngModel)]="newPassword"  matInput type="password" placeholder="Password" class="trp-select" required>
             </mat-form-field>
 
             <mat-form-field>
@@ -54,7 +59,7 @@
 
             <mat-card-actions style="text-align: center">
               <button 
-                class="btn-success" 
+                class="btn btn-success" 
                 mat-button
                 [disabled]="!oldPassword || !newPassword || newPassword != confirmPassword"
               >Add</button>
