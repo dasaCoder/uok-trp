@@ -204,7 +204,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
           this.todayReqData = data;
 
           this.todayReqDataSource.data = this.todayReqData;
-console.log("today",this.todayReqData);
+
       });
   }
 
@@ -324,7 +324,7 @@ console.log("today",this.todayReqData);
 
   // logout from the system
   logout() {
-    if(confirm("Are you sure to logged out from the system?")){
+    if(confirm('Are you sure to logged out from the system?')){
 
       this.authService.logout();
       location.href = '/login';
