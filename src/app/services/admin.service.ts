@@ -27,6 +27,22 @@ export class AdminService {
 
   }
 
+  // add new admin user
+  addAdmin(admin) {
+      return this.http.post(`${this.url}/admin/add`, admin, {
+        headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+      })
+  }
+
+  // change admin password
+  // @param _id
+  // @param oldpassword, newPassword
+  changeAdminPassword(obj) {
+    return this.http.post(`${this.url}/admin/change/password`, obj, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    })  
+  }
+
   // return list of drivers (just names)
   getDrivers() {
     //let headers = new HttpHeaders();
