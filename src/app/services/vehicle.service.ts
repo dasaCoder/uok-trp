@@ -11,7 +11,31 @@ export class VehicleService {
   }
   // return vehicle list for admin request view
   get_vehicle_list_admin(){
-    return this.http.get('https://uok-transport-division.herokuapp.com/vehicles');
+    return this.http.get('https://uok-transport-division.herokuapp.com/vehicles')
+              .toPromise()
+              .then(res => <any[]> res)
+              .then(data => {
+                var dataT = [];
+
+                if(data['msg'] === undefined) {
+                  return;
+                }
+
+                /*data['msg'].forEach(element => {
+
+
+                  dataT.push({
+                    'refNo'   : element['refNo'],
+                    'to'      : element['departure']['pickupPoint'],
+                    'from'    : element['departure']['dropPoint'],
+                    'driver'  : (element['driver'] !== undefined )? element['driver']['name'] : 'Not assigned',
+                    'vehicle' : (element['vehicle'] !== undefined)? element['vehicle']['vehicle_no'] : 'Not assigned'
+                  });
+
+                }); */
+console.log('vehicle dataT',dataT);
+                return dataT;
+              });
   }
 
 }

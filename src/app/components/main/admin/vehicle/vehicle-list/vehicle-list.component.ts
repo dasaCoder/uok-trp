@@ -1,7 +1,14 @@
+import { VehicleService } from './../../../../../services/vehicle.service';
+import { Vehicle } from './../../../../../classes/vehicle';
 import { MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../../../../services/admin.service';
 import { RepairHistoryComponent } from '../../dashboard/repair-history/repair-history.component';
+import { FormControl } from '@angular/forms';
+
+import {Observable} from 'rxjs/Observable';
+import {startWith} from 'rxjs/operators/startWith';
+import {map} from 'rxjs/operators/map';
 
 @Component({
   selector: 'app-vehicle-list',
@@ -15,16 +22,31 @@ export class VehicleListComponent implements OnInit {
   options: any = [];
   vehicles: any[] = [];
   clickedItem;
-  selectedVehicle;
+  selectedVehicle: Vehicle;
 
   // repair history
   repairHistory: any[] = [];
   selectedHistoryRecord;
 
+  // auto complete var
+  stateCtrl: FormControl;
+  filteredStates: Observable<any[]>;
+  states: any[];
+  // end auto complete var
+
+
   constructor(
+    private vehicleService: VehicleService,
     private adminService: AdminService,
     private dialog: MatDialog
-    ) { }
+    ) {
+      this.stateCtrl = new FormControl();
+      this.filteredStates = this.stateCtrl.valueChanges
+        .pipe(
+          startWith(''),
+          map(state => state ? this.filterStates(state) : this.states.slice())
+        );
+     }
 
   ngOnInit() {
 
@@ -32,12 +54,32 @@ export class VehicleListComponent implements OnInit {
       .subscribe((response => {
         console.log(response['data']);
         this.vehicles = response['data'];
+        this.states = response['data'];
+
+        this.stateCtrl = new FormControl();
+        this.filteredStates = this.stateCtrl.valueChanges
+          .pipe(
+            startWith(''),
+            map(state => state ? this.filterStates(state) : this.vehicles.slice())
+          );
       }));
 
   }
 
+  /* auto complete */
+  filterStates(name: string) {
+    return this.states.filter(state =>
+      state['vehicle_no'].toLowerCase().indexOf(name.toString().toLowerCase()) === 0);
+  }
+
+  displayFn(state): string {
+    return state ? state['vehicle_no'] : state;
+  }
+
+  /* end auto complete */
+
   selectVehicle (vehicle) {
-    //console.log(vehicle);
+    console.log(vehicle);
 
     this.clickedItem = vehicle['_id'];
     this.selectedVehicle = vehicle;

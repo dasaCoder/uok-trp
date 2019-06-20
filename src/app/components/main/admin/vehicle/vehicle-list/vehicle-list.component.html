@@ -1,6 +1,37 @@
-<div class="row">
+<div class="row" style="margin-top:-35px">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <form class="">
+            <mat-form-field class="example-full-width" style="width:100%">
+                <mat-icon matPrefix style="margin-right: 20px;">search</mat-icon>
+              <input matInput #vehicleName  [matAutocomplete]="auto" [formControl]="stateCtrl" style="border-bottom: none;margin-bottom:-2px;width: 95%!important">
+              <button mat-button *ngIf="selectedVehicle" matSuffix mat-icon-button aria-label="Clear" (click)="selectedVehicle=null;vehicleName.value=''">
+                  <mat-icon style="color:black;">close</mat-icon>
+                </button>
+              <mat-autocomplete
+                  #auto="matAutocomplete"
+                  [displayWith]="displayFn"
+                  (optionSelected) = "selectVehicle($event.option.value)"
+              >
+                <mat-option *ngFor="let vehicle of filteredStates | async" [value]="vehicle">
+                  <img style="vertical-align:middle;" aria-hidden src="../../../../../../assets/images/admin/car.png" height="25" />
+                  <span>{{ vehicle['vehicle_no'] }}</span> |
+                  <!-- <small>Liecence No: {{vehicle.driving_liecence_no}}</small> -->
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
 
-  <div class="col-lg-3" *ngIf="vehicles">
+          </form>
+    </div>
+    <div class="col-lg-3"></div>
+
+  </div>
+
+<div class="row" *ngIf="selectedVehicle">
+
+  <!--
+    // vehicle list
+    <div class="col-lg-3" *ngIf="vehicles">
 
     <div style="overflow-y: scroll; height:55vh;">
       <mat-card style="cursor: pointer" [ngClass]="{clicked: clickedItem === vehicle['_id']}" (click)="selectVehicle(vehicle)"  *ngFor="let vehicle of vehicles" >
@@ -10,13 +41,34 @@
 
       </mat-card>
     </div>
-</div>
-    <div class="col-lg-6">
+</div> -->
 
-        <mat-card *ngIf="selectedVehicle">
-          <img mat-card-avatar src="../../../../../../assets/images/pattern/pattern.png">
-          <mat-card-title style="display:inline"> {{ selectedVehicle['vehicle_no'] }}</mat-card-title>
-        </mat-card>
+    <div class="col-lg-3">
+        <div style="text-align:center">
+            <img src="../../../../../../assets/images/admin/car.png" style="width:20vw;border-radius: 50%;">
+          </div>
+
+            <mat-list>
+              <mat-list-item>
+                  <mat-icon mat-list-icon>directions_car</mat-icon>
+                  <h4 mat-line>{{selectedVehicle.vehicle_no}}</h4>
+              </mat-list-item>
+
+              <mat-list-item>
+                  <mat-icon mat-list-icon>error_outline</mat-icon>
+                  <h4 mat-line>{{selectedVehicle.vehicle_type}}</h4>
+              </mat-list-item>
+
+              <mat-list-item>
+                  <mat-icon mat-list-icon>build</mat-icon>
+                  <h4 mat-line>{{selectedVehicle.chassi_no}}</h4>
+              </mat-list-item>
+
+
+            </mat-list>
+    </div>
+
+    <div class="col-lg-6">
 
           <app-sheduler *ngIf="requests" [requests]="requests"></app-sheduler>
 
