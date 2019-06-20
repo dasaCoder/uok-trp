@@ -19,22 +19,19 @@
       <mat-cell *matCellDef="let element"> {{element.from}} </mat-cell>
     </ng-container>
 
-
     <ng-container matColumnDef="driver">
       <mat-header-cell *matHeaderCellDef> Driver </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.driver}} </mat-cell>
     </ng-container>
-
 
     <ng-container matColumnDef="vehicle">
       <mat-header-cell *matHeaderCellDef> Vehicle </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.vehicle}} </mat-cell>
     </ng-container>
 
-
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="loadRequest(row['refNo'])"></mat-row>
+    
   </mat-table>
-
 
 </div>
