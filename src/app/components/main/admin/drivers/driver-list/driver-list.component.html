@@ -4,7 +4,10 @@
       <form class="">
           <mat-form-field class="example-full-width" style="width:100%">
               <mat-icon matPrefix style="margin-right: 20px;">search</mat-icon>
-            <input matInput  [matAutocomplete]="auto" [formControl]="stateCtrl" style="border-bottom: none;margin-bottom:-2px;width: 95%!important">
+            <input matInput #driverName  [matAutocomplete]="auto" [formControl]="stateCtrl" style="border-bottom: none;margin-bottom:-2px;width: 95%!important">
+            <button mat-button *ngIf="selectedDriver" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDriver=null;driverName.value=''">
+                <mat-icon style="color:black;">close</mat-icon>
+              </button>
             <mat-autocomplete
                 #auto="matAutocomplete"
                 [displayWith]="displayFn"
@@ -31,7 +34,7 @@
 </div>
 
 
-<div class="row">
+<div class="row" *ngIf="!selectedDriver">
 
     <div class="col-lg-5" *ngIf="drivers">
 
@@ -53,9 +56,7 @@
           <div class="">
               <img mat-card-avatar src="../../../../../../assets/images/pattern/pattern.png">
               <mat-card-title style="display:inline"> {{ selectedDriverName }}</mat-card-title>
-
               <button mat-icon-button style="float: right;vertical-align: bottom;background: gainsboro;" ><mat-icon>delete_outline</mat-icon></button>
-
           </div>
 
         </mat-card>
