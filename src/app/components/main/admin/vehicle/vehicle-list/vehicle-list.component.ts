@@ -1,6 +1,6 @@
 import { VehicleService } from './../../../../../services/vehicle.service';
 import { Vehicle } from './../../../../../classes/vehicle';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatTableDataSource } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../../../../services/admin.service';
 import { RepairHistoryComponent } from '../../dashboard/repair-history/repair-history.component';
@@ -34,6 +34,11 @@ export class VehicleListComponent implements OnInit {
   states: any[];
   // end auto complete var
 
+  displayedColumns: string[] = ['vehicle_no','vehicle_type'];
+
+  vehicleList: Vehicle[] = [];
+
+  vehicleListDataSource = new MatTableDataSource<Vehicle>(this.vehicleList);
 
   constructor(
     private vehicleService: VehicleService,
@@ -63,6 +68,12 @@ export class VehicleListComponent implements OnInit {
             map(state => state ? this.filterStates(state) : this.vehicles.slice())
           );
       }));
+
+      this.vehicleService.getVehicleListForTable()
+          .then(vehicles => {
+            this.vehicleList = vehicles;
+            this.vehicleListDataSource.data = this.vehicleList;
+          });
 
   }
 

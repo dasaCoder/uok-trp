@@ -26,83 +26,109 @@
     <div class="col-lg-3"></div>
 
   </div>
+  <mat-card style="width:100%">
+    <div class="row" *ngIf="selectedVehicle">
 
-<div class="row" *ngIf="selectedVehicle">
+      <!--
+        // vehicle list
+        <div class="col-lg-3" *ngIf="vehicles">
 
-  <!--
-    // vehicle list
-    <div class="col-lg-3" *ngIf="vehicles">
+        <div style="overflow-y: scroll; height:55vh;">
+          <mat-card style="cursor: pointer" [ngClass]="{clicked: clickedItem === vehicle['_id']}" (click)="selectVehicle(vehicle)"  *ngFor="let vehicle of vehicles" >
 
-    <div style="overflow-y: scroll; height:55vh;">
-      <mat-card style="cursor: pointer" [ngClass]="{clicked: clickedItem === vehicle['_id']}" (click)="selectVehicle(vehicle)"  *ngFor="let vehicle of vehicles" >
+              <img mat-card-sm-image src="../../../../../../assets/images/pattern/pattern.png" style="display: inline">
+              <mat-card-subtitle style="display:inline">{{ vehicle['vehicle_no'] }}</mat-card-subtitle>
 
-          <img mat-card-sm-image src="../../../../../../assets/images/pattern/pattern.png" style="display: inline">
-          <mat-card-subtitle style="display:inline">{{ vehicle['vehicle_no'] }}</mat-card-subtitle>
+          </mat-card>
+        </div>
+    </div> -->
 
-      </mat-card>
-    </div>
-</div> -->
+        <div class="col-lg-3">
+            <div style="text-align:center">
+                <img src="../../../../../../assets/images/admin/car.png" style="width:20vw;border-radius: 50%;">
+              </div>
 
-    <div class="col-lg-3">
-        <div style="text-align:center">
-            <img src="../../../../../../assets/images/admin/car.png" style="width:20vw;border-radius: 50%;">
+                <mat-list>
+                  <mat-list-item>
+                      <mat-icon mat-list-icon>directions_car</mat-icon>
+                      <h4 mat-line>{{selectedVehicle.vehicle_no}}</h4>
+                  </mat-list-item>
+
+                  <mat-list-item>
+                      <mat-icon mat-list-icon>error_outline</mat-icon>
+                      <h4 mat-line>{{selectedVehicle.vehicle_type}}</h4>
+                  </mat-list-item>
+
+                  <mat-list-item>
+                      <mat-icon mat-list-icon>build</mat-icon>
+                      <h4 mat-line>{{selectedVehicle.chassi_no}}</h4>
+                  </mat-list-item>
+
+
+                </mat-list>
+        </div>
+
+        <div class="col-lg-6">
+
+              <app-sheduler *ngIf="requests" [requests]="requests"></app-sheduler>
+
+              <app-sheduler *ngIf="!requests" [requests]="[]"></app-sheduler>
+
           </div>
 
-            <mat-list>
-              <mat-list-item>
-                  <mat-icon mat-list-icon>directions_car</mat-icon>
-                  <h4 mat-line>{{selectedVehicle.vehicle_no}}</h4>
-              </mat-list-item>
-
-              <mat-list-item>
-                  <mat-icon mat-list-icon>error_outline</mat-icon>
-                  <h4 mat-line>{{selectedVehicle.vehicle_type}}</h4>
-              </mat-list-item>
-
-              <mat-list-item>
-                  <mat-icon mat-list-icon>build</mat-icon>
-                  <h4 mat-line>{{selectedVehicle.chassi_no}}</h4>
-              </mat-list-item>
 
 
-            </mat-list>
-    </div>
+      <div class="col-lg-3">
+          <mat-card *ngIf="selectedVehicle">
+            <mat-card-title>
+              <mat-icon>settings</mat-icon>
+              Settings
+            </mat-card-title>
+            <br>
 
-    <div class="col-lg-6">
+            <mat-card-subtitle>Maintenence History</mat-card-subtitle>
 
-          <app-sheduler *ngIf="requests" [requests]="requests"></app-sheduler>
+            <mat-card-content>
 
-          <app-sheduler *ngIf="!requests" [requests]="[]"></app-sheduler>
+              <mat-list>
 
+                  <mat-list-item
+                    [ngClass]="{selectedHistoryRecord: selectedHistoryRecord === record}"
+                    class="listOnRepair"
+                    *ngFor="let record of repairHistory"
+                  (click) ="loadRepairDialog()">REPAIR/{{record['_id'].substr(20)}}</mat-list-item>
+
+                  <mat-list-item *ngIf="repairHistory.length == 0">0 records</mat-list-item>
+
+              </mat-list>
+
+            </mat-card-content>
+          </mat-card>
       </div>
+    </div>
+  </mat-card>
 
+<mat-card style="width:100%">
+    <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="vehicleListDataSource">
 
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
 
-  <div class="col-lg-3">
-      <mat-card *ngIf="selectedVehicle">
-        <mat-card-title>
-          <mat-icon>settings</mat-icon>
-          Settings
-        </mat-card-title>
-        <br>
+          <!-- Position Column -->
+          <ng-container matColumnDef="vehicle_no">
+            <mat-header-cell *matHeaderCellDef> Vehicle No </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.vehicle_no}} </mat-cell>
+          </ng-container>
 
-        <mat-card-subtitle>Maintenence History</mat-card-subtitle>
+          <!-- Name Column -->
+          <ng-container matColumnDef="vehicle_type">
+            <mat-header-cell *matHeaderCellDef> Vehicle Type </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.vehicle_type}} </mat-cell>
+          </ng-container>
 
-        <mat-card-content>
-
-          <mat-list>
-
-              <mat-list-item
-                [ngClass]="{selectedHistoryRecord: selectedHistoryRecord === record}"
-                class="listOnRepair"
-                *ngFor="let record of repairHistory"
-               (click) ="loadRepairDialog()">REPAIR/{{record['_id'].substr(20)}}</mat-list-item>
-
-               <mat-list-item *ngIf="repairHistory.length == 0">0 records</mat-list-item>
-
-          </mat-list>
-
-        </mat-card-content>
-      </mat-card>
-  </div>
-</div>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+</mat-card>

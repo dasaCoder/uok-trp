@@ -11,7 +11,12 @@ export class VehicleService {
   }
   // return vehicle list for admin request view
   get_vehicle_list_admin(){
-    return this.http.get('https://uok-transport-division.herokuapp.com/vehicles')
+    return this.http.get('https://uok-transport-division.herokuapp.com/vehicles');
+  }
+
+
+  getVehicleListForTable() {
+    return this.http.get('https://uok-transport-division.herokuapp.com/vehicles/all_vehicles')
               .toPromise()
               .then(res => <any[]> res)
               .then(data => {
@@ -21,18 +26,15 @@ export class VehicleService {
                   return;
                 }
 
-                /*data['msg'].forEach(element => {
+                data['msg'].forEach(element => {
 
 
                   dataT.push({
-                    'refNo'   : element['refNo'],
-                    'to'      : element['departure']['pickupPoint'],
-                    'from'    : element['departure']['dropPoint'],
-                    'driver'  : (element['driver'] !== undefined )? element['driver']['name'] : 'Not assigned',
-                    'vehicle' : (element['vehicle'] !== undefined)? element['vehicle']['vehicle_no'] : 'Not assigned'
+                    'vehicle_no'   : element['vehicle_no'],
+                    'vehicle_type'      : element['vehicle_type'].toUpperCase()
                   });
 
-                }); */
+                });
 console.log('vehicle dataT',dataT);
                 return dataT;
               });
