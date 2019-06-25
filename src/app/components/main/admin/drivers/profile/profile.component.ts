@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
   todayReqDataSource = new MatTableDataSource<RequestElement>(this.todayReqData);
   monthReqDataSource = new MatTableDataSource<RequestElement>(this.monthReqData);
 
-  constructor(private route: ActivatedRoute, private adminService: AdminService; private router: Router) {
+  constructor(private route: ActivatedRoute, private adminService: AdminService, private router: Router) {
 
    }
 

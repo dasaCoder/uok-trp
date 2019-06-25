@@ -19,8 +19,9 @@ export class AddComponent implements OnInit {
     this.isSubmited = true;
 console.log("driver ob",driver);
     // calling addDriver method in admin service
-    if (driver.name !== '' || driver.nic_no !== '' || driver.driving_liecence_no !== '' || driver.telephone !== '' || driver.address !== '') {
+    if (driver.name !== '' || driver.nic_no !== '' || driver.driving_liecence_no !== '' || driver.telephone !== '' || driver.address !== '' || driver.password !== '') {
       //alert('ok');
+
       this.adminService.addDriver(driver)
         .subscribe(response => {
           console.log(response);
