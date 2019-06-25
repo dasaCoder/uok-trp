@@ -29,7 +29,7 @@ export class AdminService {
 
   // add new admin user
   addAdmin(admin) {
-      return this.http.post(`${this.url}/add`, admin, {
+      return this.http.post(`${this.url}/admin`, admin, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       })
   }

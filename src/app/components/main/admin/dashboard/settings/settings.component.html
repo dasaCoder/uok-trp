@@ -30,7 +30,8 @@
           class="btn-success" 
           mat-button
           [disabled]="!username || !password || !role"
-           class="btn btn-success" mat-button>Add</button>
+          (click)="addAdmin()"
+          class="btn btn-success" mat-button>Add</button>
         </mat-card-actions>
       </mat-card>
 
