@@ -15,7 +15,7 @@
               >
                 <mat-option *ngFor="let vehicle of filteredStates | async" [value]="vehicle">
                   <img style="vertical-align:middle;" aria-hidden src="../../../../../../assets/images/admin/car.png" height="25" />
-                  <span>{{ vehicle['vehicle_no'] }}</span> |
+                  <span>{{ vehicle['vehicle_no'] }}</span> 
                   <!-- <small>Liecence No: {{vehicle.driving_liecence_no}}</small> -->
                 </mat-option>
               </mat-autocomplete>

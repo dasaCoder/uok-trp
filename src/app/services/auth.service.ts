@@ -5,12 +5,20 @@ import {JwtHelper} from 'angular2-jwt';
 @Injectable()
 export class AuthService {
 
+  public url = 'https://uok-transport-division.herokuapp.com';
+
   constructor(private http: HttpClient) { }
   login(body) {
     // console.log(body);
     return this.http.post('https://uok-transport-division.herokuapp.com/requests/getStatus', body);
   }
-  
+
+  //driver login
+  driverLogin(obj) {
+      return this.http.post(`${this.url}/admin/driver/login`, obj);
+  }
+
+  mm
   isLoggedIn(): boolean {
     if(localStorage.getItem('token') === null){
       //alert('not logged in');
