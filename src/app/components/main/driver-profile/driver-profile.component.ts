@@ -11,18 +11,16 @@ export class DriverProfileComponent implements OnInit {
 
   public driver;
 
-  constructor(private activatedRoute: ActivatedRoute; private adminService: AdminService) { }
+  constructor(private activatedRoute: ActivatedRoute, private adminService: AdminService) { }
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(params => {
-      const _id = params['_id'];
-      
-      this.adminService.getDriver(_id)
-          .subscribe( driver => {
-            this.driver = driver;
-          })
-
-    })
+    let _id = this.activatedRoute.snapshot.queryParams['_id'];
+    console.log("_di",_id);
+    this.adminService.getDriver(_id)
+        .subscribe(driver=> {
+          this.driver = driver['data'][0];
+          console.log("driver", driver);
+        })
   }
 
 }

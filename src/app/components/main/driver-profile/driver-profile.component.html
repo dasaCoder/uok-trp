@@ -1,1 +1,7 @@
-driver profile
+
+<div class="container">
+    <app-profile *ngIf="driver" [driver]='driver'></app-profile>
+    
+    <mat-spinner style="margin: 10vw auto;width: 100px;" *ngIf="!driver"></mat-spinner>
+
+</div>

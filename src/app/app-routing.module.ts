@@ -63,7 +63,7 @@ const routes: Routes = [
         path: 'login',
       component: LoginComponent
   },
-  { path: 'driver/:_id', component: DriverProfileComponent }
+  { path: 'driver', component: DriverProfileComponent }
 ];
 
 @NgModule({
