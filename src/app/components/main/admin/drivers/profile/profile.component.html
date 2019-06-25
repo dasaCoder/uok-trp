@@ -33,6 +33,10 @@
           </mat-list-item>
         </mat-list>
 
+        <div class="row" *ngIf="isLoggedIn" style="text-align:right">
+          <button mat-button (click) ="logoutDriver()" class="btn btn-danger">Logout</button>
+        </div>
+
     </div>
 
     <div class="col-lg-7">

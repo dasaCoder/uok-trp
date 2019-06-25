@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AdminService } from '../../../../../services/admin.service';
-import {ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router } from '@angular/router';
 import {Request} from '../../../../../classes/request';
 import {Driver} from '../../../../../classes/driver';
 import * as html2canvas from 'html2canvas';
@@ -16,6 +16,7 @@ import { MatTableDataSource } from '@angular/material';
 export class ProfileComponent implements OnInit {
 
   @Input() driver;
+  @Input() isLoggedIn?: boolean; // this will true when drive logged in
 
   //public driver: Driver; // driver details
   public reqListOnDriver: Request[] = [];
@@ -29,7 +30,7 @@ export class ProfileComponent implements OnInit {
   todayReqDataSource = new MatTableDataSource<RequestElement>(this.todayReqData);
   monthReqDataSource = new MatTableDataSource<RequestElement>(this.monthReqData);
 
-  constructor(private route: ActivatedRoute, private adminService: AdminService) {
+  constructor(private route: ActivatedRoute, private adminService: AdminService; private router: Router) {
 
    }
 
@@ -74,6 +75,15 @@ export class ProfileComponent implements OnInit {
           this.monthReqData = data;
           this.monthReqDataSource.data = this.monthReqData;
         })
+  }
+
+  logoutDriver() {
+    localStorage.removeItem('username');
+    localStorage.removeItem('token');
+    localStorage.removeItem('_id');
+
+    this.router.navigate(['/']);
+
   }
 
 
