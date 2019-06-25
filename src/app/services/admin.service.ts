@@ -38,7 +38,7 @@ export class AdminService {
   // @param _id
   // @param oldpassword, newPassword
   changeAdminPassword(obj) {
-    return this.http.post(`${this.url}/admin/change/password`, obj, {
+    return this.http.post(`${this.url}/password/change`, obj, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     })
   }

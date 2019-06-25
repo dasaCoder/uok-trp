@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         .subscribe(resp => {
           if (resp['status'] === 200) {
             localStorage.setItem('token', resp['token']);
-
+            localStorage.setItem('username',this.username);
             window.location.href = '/admin/dashboard';
             //window.location.reload();
           } else {

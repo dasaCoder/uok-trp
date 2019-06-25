@@ -63,6 +63,7 @@
                 class="btn btn-success" 
                 mat-button
                 [disabled]="!oldPassword || !newPassword || newPassword != confirmPassword"
+                (click) ="changeAdminPassword()"
               >Add</button>
             </mat-card-actions>
         </mat-card>

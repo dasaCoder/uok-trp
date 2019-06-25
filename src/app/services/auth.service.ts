@@ -10,6 +10,7 @@ export class AuthService {
     // console.log(body);
     return this.http.post('https://uok-transport-division.herokuapp.com/requests/getStatus', body);
   }
+  
   isLoggedIn(): boolean {
     if(localStorage.getItem('token') === null){
       //alert('not logged in');
