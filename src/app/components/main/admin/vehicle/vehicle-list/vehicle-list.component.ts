@@ -156,6 +156,7 @@ export class VehicleListComponent implements OnInit {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
+    console.log("wb",wb);
     /* save to file */
     XLSX.writeFile(wb, 'SheetJS.xlsx');
 
