@@ -1,10 +1,12 @@
 import { VehicleService } from './../../../../../services/vehicle.service';
 import { Vehicle } from './../../../../../classes/vehicle';
 import { MatDialog, MatTableDataSource } from '@angular/material';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { AdminService } from '../../../../../services/admin.service';
 import { RepairHistoryComponent } from '../../dashboard/repair-history/repair-history.component';
 import { FormControl } from '@angular/forms';
+
+import * as XLSX from 'xlsx';
 
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
@@ -16,6 +18,8 @@ import {map} from 'rxjs/operators/map';
   styleUrls: ['./vehicle-list.component.css']
 })
 export class VehicleListComponent implements OnInit {
+
+  @ViewChild('TABLE') table: ElementRef;
 
   refNo;
   requests: any[];
@@ -144,6 +148,17 @@ export class VehicleListComponent implements OnInit {
     repiarDialogRef.afterClosed().subscribe(data => {
       this.loadRepairHistory(this.clickedItem);
     });
+  }
+
+  // export the vehicle details
+  exportAsExcel() {
+    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);//converts a DOM TABLE element to a worksheet
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, 'SheetJS.xlsx');
+
   }
 
 }

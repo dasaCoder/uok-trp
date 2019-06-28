@@ -1,3 +1,4 @@
+import { CdkTableModule } from '@angular/cdk/table';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -156,7 +157,8 @@ import { SettingsComponent } from './components/main/admin/dashboard/settings/se
     ReactiveFormsModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    CdkTableModule
   ],
   providers: [
     AvailableVehicleService,
