@@ -15,7 +15,7 @@
               >
                 <mat-option *ngFor="let vehicle of filteredStates | async" [value]="vehicle">
                   <img style="vertical-align:middle;" aria-hidden src="../../../../../../assets/images/admin/car.png" height="25" />
-                  <span>{{ vehicle['vehicle_no'] }}</span> 
+                  <span>{{ vehicle['vehicle_no'] }}</span>
                   <!-- <small>Liecence No: {{vehicle.driving_liecence_no}}</small> -->
                 </mat-option>
               </mat-autocomplete>
@@ -110,7 +110,10 @@
 
 <mat-card style="width:100%">
     <div class="example-container mat-elevation-z8">
-        <mat-table #table [dataSource]="vehicleListDataSource">
+      <div class="row">
+          <button #exportButton mat-button>Export xlsx</button>
+      </div>
+        <mat-table #table [dataSource]="vehicleListDataSource" matSort ngxMatTableExporter [cdkTable]="table" [exporterButton]="exportButton" sheetName="vehicles" fileName="vehicle_list">
 
           <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
