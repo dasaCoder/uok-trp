@@ -109,8 +109,8 @@
   </mat-card>
 
 <mat-card style="width:100%">
-    <button mat-raised-button color="primary" (click)="exportAsExcel()">Export as Excel</button>
-    <div class="example-container mat-elevation-z8" #TABLE>
+    
+    <div *ngIf="vehicleListDataSource" class="example-container mat-elevation-z8" #TABLE>
         <mat-table #table [dataSource]="vehicleListDataSource">
 
           <!--- Note that these columns can be defined in any order.
@@ -131,5 +131,6 @@
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
+        <button mat-raised-button color="primary" (click)="exportAsExcel()">Export as Excel</button>
       </div>
 </mat-card>

@@ -126,6 +126,18 @@ export class ReqeustPreveiwComponent implements OnInit {
 
 
   markDocumentedRequest(refNo) {
+    this.requestService.change_status(refNo, 3)
+      .subscribe( response => {
+        //alert('daon');
+        console.log(response['msg']);
+        this.selectedRequest['status'] = 3;
+        this.openSnackBar("Marked Successfully!", "Got it!");
+
+        this.isChangeOccured = 1;
+      });
+  }
+
+  completeRequest(refNo) {
     this.requestService.change_status(refNo, 4)
       .subscribe( response => {
         //alert('daon');
