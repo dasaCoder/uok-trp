@@ -77,16 +77,17 @@
             <div class="col-lg-6">
 
               <mat-icon matListIcon>date_range</mat-icon><label>   Date to pick you :</label>
-              <input [(ngModel)]="departure.pickupDate"
-                     [owlDateTimeTrigger]="dtPicker1"
-                     [owlDateTime]="dtPicker1"
-                     class="trp-min-input no-tr"
-                     [min]="minDate"
-              >
 
+                <input matInput 
+                    [min]="minDate" 
+                    (click)="pickupDatePicker.open()"
+                    class="trp-min-input" 
+                    [(ngModel)]="departure.pickupDate" 
+                    [matDatepicker]="pickupDatePicker" 
+                    style="border-bottom: 1px solid #9e9e9e;">
+                
+                <mat-datepicker #pickupDatePicker></mat-datepicker>
 
-              <owl-date-time
-                #dtPicker1 [pickerType]="'calendar'"></owl-date-time>
 
             </div>
 
@@ -107,17 +108,16 @@
                 <label *ngIf="isReturnExpected">   Returning date:</label>
                 <label *ngIf="!isReturnExpected">   Expected Finishing date:</label>
 
-
-                <input [(ngModel)]="arrival.dropDate"
-                       [owlDateTimeTrigger]="dtPicker2"
-                       [owlDateTime]="dtPicker2"
-                       class="trp-min-input"
-                       [min]="departure.pickupDate"
-                >
-                <owl-date-time
-                  #dtPicker2 [pickerType]="'calendar'"
-                ></owl-date-time>
-
+                
+                <input matInput 
+                    [min]="departure.pickupDate? departure.pickupDate: minDate" 
+                    (click)="dropDatePicker.open()"
+                    class="trp-min-input" 
+                    [(ngModel)]="departure.dropDate" 
+                    [matDatepicker]="dropDatePicker" 
+                    style="border-bottom: 1px solid #9e9e9e;">
+                
+                <mat-datepicker #dropDatePicker></mat-datepicker>
 
 
               </div>

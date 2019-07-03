@@ -109,7 +109,7 @@ export class RequestFormComponent implements OnInit {
    isGood = true;
    step = 1;
    dateObj = new Date();
-   minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+   minDate = new Date(new Date().getTime() + 72 * 60 * 60 * 1000);
    formData: Request = new Request();
    arrival: Trip = new Trip();
    departure: Trip = new Trip();
