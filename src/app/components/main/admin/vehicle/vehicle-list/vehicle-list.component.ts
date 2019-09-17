@@ -5,7 +5,6 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { AdminService } from '../../../../../services/admin.service';
 import { RepairHistoryComponent } from '../../dashboard/repair-history/repair-history.component';
 import { FormControl } from '@angular/forms';
-
 import * as XLSX from 'xlsx';
 
 import {Observable} from 'rxjs/Observable';
@@ -76,6 +75,7 @@ export class VehicleListComponent implements OnInit {
       this.vehicleService.getVehicleListForTable()
           .then(vehicles => {
             this.vehicleList = vehicles;
+            console.log("vehicle list",this.vehicleList);
             this.vehicleListDataSource.data = this.vehicleList;
           });
 
@@ -150,16 +150,14 @@ export class VehicleListComponent implements OnInit {
     });
   }
 
-  // export the vehicle details
-  exportAsExcel() {
-    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);//converts a DOM TABLE element to a worksheet
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  public exportAsExcelFile(): void {
+    const readyToExport = this.vehicleList;
 
-    console.log("wb",wb);
-    /* save to file */
-    XLSX.writeFile(wb, 'SheetJS.xlsx');
+    const workBook = XLSX.utils.book_new(); // create a new blank book
+    const workSheet = XLSX.utils.json_to_sheet(readyToExport);
 
+    XLSX.utils.book_append_sheet(workBook, workSheet, 'data'); // add the worksheet to the book
+    XLSX.writeFile(workBook, 'vehicle_list.xlsx'); // initiate a file download in browser
   }
 
 }

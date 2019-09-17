@@ -63,7 +63,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MatTabsModule} from '@angular/material';
 import { DashboardComponent } from './components/main/admin/dashboard/dashboard.component';
 import { DemoMaterialModule } from './material.module';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableModule } from '@angular/material';
 
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { FullCalendarModule } from 'primeng/fullcalendar';
