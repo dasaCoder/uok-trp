@@ -9,7 +9,7 @@ export class AdminService {
   public token: string;
   public headers;
   constructor(private http: HttpClient) {
-    this.url = 'https://uok-transport-division.herokuapp.com/admin';
+    this.url = 'http://localhost:5000/admin';
     this.token = 'Bearer ' + localStorage.getItem('token');
     this.headers = new HttpHeaders();
     this.headers.set('authorization', this.token);
@@ -100,7 +100,7 @@ export class AdminService {
       'arrival': details['arrival'],
       'departure': details['departure']
     };
-console.log("body",body);
+
     return this.http.post( `${this.url}/vehicle/maintenance/add?_id=${_id}`, body, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     });
@@ -116,6 +116,13 @@ console.log("body",body);
   // get repair history for given vehicle
   getRepairHistory(_id) {
     return this.http.get( this.url + `/../vehicles/maintenance/single/get?_id=${_id}`, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    });
+  }
+
+  // get suggested vehicles for given request
+  getSuggestedVehicles(_id) {
+    return this.http.get( this.url + `/../vehicles/suggestions?_id=${_id}`, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     });
   }

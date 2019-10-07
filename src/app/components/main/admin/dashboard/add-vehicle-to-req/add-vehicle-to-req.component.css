@@ -2,3 +2,15 @@
   background-color: #4CAF50;
   color: #ffffff;
 }
+
+.suggested{
+  /* background: #fbdeb6; */
+    border-left: 5px solid;
+    border-color: #ff9400;
+}
+
+.selected{
+  background: #eeffff!important;
+  border-left: 5px solid!important;
+  border-color: #bcc1db!important;
+}

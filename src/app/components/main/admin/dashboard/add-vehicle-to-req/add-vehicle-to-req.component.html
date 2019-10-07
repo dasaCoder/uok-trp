@@ -12,7 +12,13 @@
       <div style="overflow-y: scroll; height:55vh;">
 
           <mat-list   >
-              <mat-list-item style="cursor: pointer;    border-bottom: 1px solid #c8c8c8;" [ngClass]="{clicked: clickedItem === vehicle['_id']}" (click)="selectVehicle(vehicle)"  *ngFor="let vehicle of vehicles">
+              <mat-list-item style="cursor: pointer;border-bottom: 1px solid #c8c8c8;" 
+                  [ngClass]="{suggested: isSuggested(vehicle['_id'],vehicle['status'])}"
+                  [ngClass]="{clicked: clickedItem === vehicle['_id']}" 
+                  (click)="selectVehicle(vehicle)"  
+                  *ngFor="let vehicle of vehicles"
+              >
+
                 <img matListAvatar src="../../../../../../assets/images/pattern/pattern.png" alt="avatar">
                 <h3 matLine> {{ vehicle['vehicle_no'] }} </h3>
                 <p matLine>
@@ -26,6 +32,15 @@
                     >
                         Under Maintenence
                     </mat-chip>
+                  </span>
+
+                  <span class="demo-2" *ngIf="isSuggested(vehicle['_id'],vehicle['status'])">
+                    <mat-chip
+                        [selected]="true"
+                        style="background-color:#ff9400;height: 18px;"
+                      >
+                          Suggested
+                      </mat-chip>
                   </span>
                 </p>
               </mat-list-item>
