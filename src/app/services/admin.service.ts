@@ -9,7 +9,7 @@ export class AdminService {
   public token: string;
   public headers;
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:5000/admin';
+    this.url = 'https://uok-transport-division.herokuapp.com/admin';
     this.token = 'Bearer ' + localStorage.getItem('token');
     this.headers = new HttpHeaders();
     this.headers.set('authorization', this.token);
@@ -78,8 +78,6 @@ export class AdminService {
       } );
   }
   setDriver(refNo, _id) {
-    // console.log(refNo + name);
-
     return this.http.post(`${this.url}/driver/set_driver`, {refNo: refNo, _id: _id}, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );

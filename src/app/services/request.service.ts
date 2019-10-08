@@ -6,7 +6,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 @Injectable()
 export class RequestService {
 
-  url = "http://localhost:5000/requests";
+  url = "https://uok-transport-division.herokuapp.com/requests";
 
   constructor(private http: HttpClient) { }
   getOneRequest(refNo) {
