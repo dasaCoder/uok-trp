@@ -679,14 +679,15 @@ NEW modification to landing page*/
 }
 
 .btn-next:hover {
-  border: 1px solid #FFBE27;
-  background-color: white;
+  border: 3px solid #FFBE27;
+  background-color: white!important;
   color: #FFBE27;
   border-radius: 100px;
   padding: 0.5em 2em;
+  font-weight: bold;
 }
 .btn:focus, .btn-large:focus, .btn-small:focus, .btn-floating:focus {
-  background-color: #FFBE27!important;
+  background-color: #FFBE27;
 }
 
 .trp-zebra{
