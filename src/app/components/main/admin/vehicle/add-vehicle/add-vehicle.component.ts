@@ -27,6 +27,7 @@ export class AddVehicleComponent implements OnInit {
         }
 
       });
+
   }
 
   addVehicle(vehicle: Vehicle) {

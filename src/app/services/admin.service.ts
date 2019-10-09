@@ -78,8 +78,6 @@ export class AdminService {
       } );
   }
   setDriver(refNo, _id) {
-    // console.log(refNo + name);
-
     return this.http.post(`${this.url}/driver/set_driver`, {refNo: refNo, _id: _id}, {
         headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
       } );
@@ -100,7 +98,7 @@ export class AdminService {
       'arrival': details['arrival'],
       'departure': details['departure']
     };
-console.log("body",body);
+
     return this.http.post( `${this.url}/vehicle/maintenance/add?_id=${_id}`, body, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     });
@@ -116,6 +114,13 @@ console.log("body",body);
   // get repair history for given vehicle
   getRepairHistory(_id) {
     return this.http.get( this.url + `/../vehicles/maintenance/single/get?_id=${_id}`, {
+      headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
+    });
+  }
+
+  // get suggested vehicles for given request
+  getSuggestedVehicles(_id) {
+    return this.http.get( this.url + `/../vehicles/suggestions?_id=${_id}`, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + this.token),
     });
   }

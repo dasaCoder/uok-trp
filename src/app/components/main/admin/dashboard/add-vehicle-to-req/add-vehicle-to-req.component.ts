@@ -17,6 +17,7 @@ export class AddVehicleToReqComponent implements OnInit {
   vehicles: any[] = [];
   clickedItem;
   selectedVehicle;
+  notSuggestedVehicles: any[] = [];
 
   constructor(
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -34,6 +35,25 @@ export class AddVehicleToReqComponent implements OnInit {
         this.vehicles = response['data'];
       }));
 
+     // get not suggested vehicles
+     // this will return a set of vehicles which unavailable
+     this.adminService.getSuggestedVehicles(this.refNo)
+     .subscribe(data =>{
+       if(data['success']) {
+          this.notSuggestedVehicles = data['msg'];
+          console.log("et",this.notSuggestedVehicles);
+       }
+       else{
+         console.log("err");
+       }
+     })
+
+  }
+
+  // check whether the given _id is included in isNotsuggested list
+  // return true if not include
+  isSuggested(_id,vehicleStatus) {
+    return !this.notSuggestedVehicles.includes(_id) && vehicleStatus != '102';
   }
 
   selectVehicle (vehicle) {
