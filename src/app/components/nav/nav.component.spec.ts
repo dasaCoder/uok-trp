@@ -1,6 +1,8 @@
+import { AuthService } from './../../services/auth.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavComponent } from './nav.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('NavComponent', () => {
   let component: NavComponent;
@@ -8,7 +10,10 @@ describe('NavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavComponent ]
+      declarations: [ NavComponent ],
+      providers: [AuthService]
+      ,
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
   }));
